@@ -10,7 +10,7 @@
 
 Ship dashboards, editors, workspaces, and data-heavy tools with a consistent visual language that works for both humans and AI agents.
 
-[🌐 Live Demo](https://design-system-prompt-x.lovable.app/) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
+[🌐 Live Demo](https://democrito-design-system.lovable.app/) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
 
 ---
 
