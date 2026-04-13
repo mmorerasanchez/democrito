@@ -118,11 +118,14 @@ fontFamily: {
 
 | Principle | Description |
 | --- | --- |
-| **Monochromatic + Accent** | 95% neutral grays, 4% single accent hue, 1% semantic colors |
+| **Monochromatic + Accent** | 95% warm stone grays, 4% terracotta orange accent, 1% semantic colors |
 | **3-Surface Hierarchy** | `--background` → `--surface` → `--card` creates depth without complexity |
 | **Typography as Hierarchy** | Three fonts convey meaning: Display (titles), Body (content), Mono (data) |
-| **Purposeful Color** | Every color has a specific function. No decorative colors. |
-| **IDE-Inspired** | Clean, distraction-free workspace optimized for dense, data-rich UIs |
+| **Progressive Disclosure** | Start with the lightest variant, add complexity as needed |
+| **Accessible by Default** | WCAG 2.1 AA, 44×44px touch targets, keyboard navigation |
+| **IDE-Inspired** | Clean, distraction-free workspace optimized for prompt engineering |
+
+> See [`docs/principles.md`](docs/principles.md) for the full guide with examples.
 
 ---
 
