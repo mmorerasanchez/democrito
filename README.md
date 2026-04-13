@@ -232,6 +232,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history following [Keep a Changelog](https://keepachangelog.com/) format |
 | [`CLAUDE.md`](CLAUDE.md) | AI agent context file — auto-read by Claude Code, Cursor, and similar tools |
 | [`docs/`](docs/README.md) | Documentation hub — architecture, theming guide, AI usage, component references |
+| [`skill/democrito/`](skill/democrito/SKILL.md) | Claude Skill folder — portable AI-native context (principles, tokens, components, agent usage) |
 | [`.editorconfig`](.editorconfig) | Editor formatting consistency (indent, line endings, charset) |
 
 ---
