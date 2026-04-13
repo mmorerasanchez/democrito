@@ -33,7 +33,7 @@ npm install
 npm run dev
 ```
 
-> **Package manager:** The project uses `npm` as the primary package manager. A `bun.lockb` file may be present from the Lovable build environment — it can be safely ignored. Always use `npm install` / `npm run dev` for local development.
+> **Package manager:** The project uses `npm` as the primary package manager. Always use `npm install` / `npm run dev` for local development.
 
 ---
 
@@ -151,7 +151,7 @@ democrito is optimized to work with AI development tools. Paste or reference the
 Point your Lovable project to the live design system URL and reference it in prompts:
 
 ```
-Use democrito (the design system at https://design-system-prompt-x.lovable.app/)
+Use democrito (the design system at https://democrito-design-system.lovable.app/)
 for all visual decisions. Key rules:
 - 3 fonts: Plus Jakarta Sans (font-display) for titles, Satoshi (font-body)
   for body text, JetBrains Mono (font-mono) for ALL data and code content
@@ -205,7 +205,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 
 | Resource | Description |
 | --- | --- |
-| [Live Design System](https://design-system-prompt-x.lovable.app/) | Interactive component gallery, token reference, and theme playground |
+| [Live Design System](https://democrito-design-system.lovable.app/) | Interactive component gallery, token reference, and theme playground |
 | [`docs/theming.md`](docs/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
 | [`src/DESIGN_SYSTEM.md`](src/DESIGN_SYSTEM.md) | Complete design system specification — component inventory, token reference, usage rules |
 | [`src/index.css`](src/index.css) | CSS custom properties, font imports, three-theme definitions, base resets |

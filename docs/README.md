@@ -22,6 +22,7 @@
 | [Atoms](./components/atoms.md) | Atoms | Foundational building blocks — `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text` |
 | [Molecules](./components/molecules.md) | Molecules | Compositions of atoms — `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav` |
 | [Organisms](./components/organisms.md) | Organisms | Major UI sections — `TopBar`, `DataTable`, `PromptCard`, `FilterBar`, `DashboardStats` |
+| [Templates](./components/templates.md) | Templates | Page layout shells — `AppShell`, `EditorLayout`, `LibraryLayout`, `DashboardLayout` |
 
 ## Root Documentation
 
