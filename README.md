@@ -35,6 +35,20 @@ npm run dev
 
 > **Package manager:** The project uses `npm` as the primary package manager. Always use `npm install` / `npm run dev` for local development.
 
+## Install via shadcn CLI
+
+democrito is published as a [shadcn/ui-compatible registry](https://ui.shadcn.com/docs/registry). You can install the base design system or the warm theme variant directly:
+
+```bash
+# Install the democrito base (dark + light themes, tokens, fonts)
+npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/registry.json democrito
+
+# Optionally add the warm theme variant
+npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/registry.json democrito-warm
+```
+
+> See [`registry.json`](registry.json) for the full manifest.
+
 ---
 
 ## Architecture
