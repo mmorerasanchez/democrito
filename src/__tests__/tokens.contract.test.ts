@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 /**
  * Token contract test — verifies that every token defined in design-tokens.json
- * has a corresponding CSS custom property in src/index.css :root.
+ * has a corresponding CSS custom property in src/index.css.
  */
 
 const tokensJson = JSON.parse(
@@ -16,33 +16,33 @@ const indexCss = readFileSync(
   "utf-8"
 );
 
-function extractTokenNames(obj: Record<string, any>, prefix = ""): string[] {
+// Groups in design-tokens.json whose name is NOT part of the CSS variable name
+// e.g. color.semantic.success → --success (not --semantic-success)
+const TRANSPARENT_GROUPS = new Set(["color", "semantic", "layout", "motion", "typography"]);
+
+function extractTokenNames(obj: Record<string, any>, segments: string[] = []): string[] {
   const names: string[] = [];
   for (const [key, value] of Object.entries(obj)) {
     if (key.startsWith("$")) continue;
     if (value && typeof value === "object" && !value.$value) {
-      // Check if this level has theme variants (dark/light/warm) with $value
       const hasThemeValues = ["dark", "light", "warm"].some(
         (t) => value[t] && value[t].$value
       );
-      if (hasThemeValues) {
-        names.push(prefix ? `${prefix}-${key}` : key);
+      const hasDirectValue = value.$value !== undefined;
+
+      if (hasThemeValues || hasDirectValue) {
+        const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, key];
+        names.push(newSegments.join("-"));
       } else {
-        names.push(...extractTokenNames(value, prefix ? `${prefix}-${key}` : key));
+        const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, key];
+        names.push(...extractTokenNames(value, newSegments));
       }
     }
   }
   return names;
 }
 
-// Extract top-level groups from design-tokens.json (color, typography, etc.)
-const allTokenNames: string[] = [];
-for (const [groupKey, groupValue] of Object.entries(tokensJson)) {
-  if (groupKey.startsWith("$")) continue;
-  if (typeof groupValue === "object" && groupValue !== null) {
-    allTokenNames.push(...extractTokenNames(groupValue as Record<string, any>));
-  }
-}
+const allTokenNames = extractTokenNames(tokensJson).filter((n) => n.length > 0);
 
 describe("Design token contract", () => {
   it("should have tokens defined in design-tokens.json", () => {
