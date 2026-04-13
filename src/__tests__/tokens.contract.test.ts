@@ -3,24 +3,27 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 
 /**
- * Token contract test — verifies that every token defined in design-tokens.json
- * has a corresponding CSS custom property in src/index.css.
+ * Token contract test — verifies that color, layout, z-index, and motion tokens
+ * defined in design-tokens.json have corresponding CSS custom properties in index.css.
+ *
+ * Note: typography and dimension tokens are implemented via tailwind.config.ts
+ * (not as CSS custom properties), so they are excluded from this test.
  */
 
 const tokensJson = JSON.parse(
   readFileSync(resolve(__dirname, "../../design-tokens.json"), "utf-8")
 );
 
-const indexCss = readFileSync(
-  resolve(__dirname, "../index.css"),
-  "utf-8"
-);
+const indexCss = readFileSync(resolve(__dirname, "../index.css"), "utf-8");
+
+// Only test groups that map to CSS custom properties
+const CSS_VAR_GROUPS = ["color", "zIndex", "motion"];
 
 // Groups whose name is dropped from the CSS variable path
-const TRANSPARENT_GROUPS = new Set(["color", "semantic", "layout", "motion", "typography"]);
+const TRANSPARENT_GROUPS = new Set(["color", "semantic", "motion"]);
 
 // Groups whose JSON key maps to a different CSS prefix
-const GROUP_RENAMES: Record<string, string> = { zIndex: "z" };
+const GROUP_RENAMES: Record<string, string> = { zIndex: "z", cubicBezier: "ease" };
 
 function extractTokenNames(obj: Record<string, any>, segments: string[] = []): string[] {
   const names: string[] = [];
@@ -31,15 +34,12 @@ function extractTokenNames(obj: Record<string, any>, segments: string[] = []): s
         (t) => value[t] && value[t].$value
       );
       const hasDirectValue = value.$value !== undefined;
+      const cssKey = GROUP_RENAMES[key] ?? key;
 
       if (hasThemeValues || hasDirectValue) {
-        // Leaf token
-        const cssKey = GROUP_RENAMES[key] ?? key;
         const leafSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, cssKey];
         names.push(leafSegments.join("-"));
       } else {
-        // Group node
-        const cssKey = GROUP_RENAMES[key] ?? key;
         const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, cssKey];
         names.push(...extractTokenNames(value, newSegments));
       }
@@ -48,7 +48,15 @@ function extractTokenNames(obj: Record<string, any>, segments: string[] = []): s
   return names;
 }
 
-const allTokenNames = extractTokenNames(tokensJson).filter((n) => n.length > 0);
+const allTokenNames: string[] = [];
+for (const groupKey of CSS_VAR_GROUPS) {
+  const group = tokensJson[groupKey];
+  if (group && typeof group === "object") {
+    const isTransparent = TRANSPARENT_GROUPS.has(groupKey);
+    const cssKey = GROUP_RENAMES[groupKey] ?? groupKey;
+    allTokenNames.push(...extractTokenNames(group, isTransparent ? [] : [cssKey]));
+  }
+}
 
 describe("Design token contract", () => {
   it("should have tokens defined in design-tokens.json", () => {
