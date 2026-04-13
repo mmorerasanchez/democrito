@@ -9,6 +9,7 @@
 | Document | Description |
 |---|---|
 | [Getting Started](./getting-started.md) | Installation, dev setup, and first steps |
+| [Design Principles](./principles.md) | The 6 foundational beliefs behind every design decision |
 | [Architecture](./architecture.md) | Atomic Design decisions and rationale |
 | [Design Tokens](./tokens.md) | Complete tokens reference — colors, typography, spacing, radii, motion |
 | [Theming](./theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
