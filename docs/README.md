@@ -25,6 +25,18 @@
 | [Organisms](./components/organisms.md) | Organisms | Major UI sections — `TopBar`, `DataTable`, `PromptCard`, `FilterBar`, `DashboardStats` |
 | [Templates](./components/templates.md) | Templates | Page layout shells — `AppShell`, `EditorLayout`, `LibraryLayout`, `DashboardLayout` |
 
+## Claude Skill (Portable AI Context)
+
+The [`skill/democrito/`](../skill/democrito/SKILL.md) folder provides a self-contained set of design-system context files optimized for AI agents. It includes condensed versions of principles, tokens, components, and agent usage guides — ready to drop into any Claude Skill, MCP knowledge source, or AI tool context window.
+
+| File | Description |
+|---|---|
+| [SKILL.md](../skill/democrito/SKILL.md) | Overview, architecture, and coding rules |
+| [principles.md](../skill/democrito/principles.md) | 6 core design principles |
+| [tokens.md](../skill/democrito/tokens.md) | Compact token reference |
+| [components.md](../skill/democrito/components.md) | Full component inventory |
+| [agent-usage.md](../skill/democrito/agent-usage.md) | Prompting strategies and compact token block |
+
 ## Root Documentation
 
 These files live at the project root:
