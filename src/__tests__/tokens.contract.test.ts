@@ -16,25 +16,31 @@ const indexCss = readFileSync(
   "utf-8"
 );
 
-// Groups in design-tokens.json whose name is NOT part of the CSS variable name
-// e.g. color.semantic.success → --success (not --semantic-success)
+// Groups whose name is dropped from the CSS variable path
 const TRANSPARENT_GROUPS = new Set(["color", "semantic", "layout", "motion", "typography"]);
+
+// Groups whose JSON key maps to a different CSS prefix
+const GROUP_RENAMES: Record<string, string> = { zIndex: "z" };
 
 function extractTokenNames(obj: Record<string, any>, segments: string[] = []): string[] {
   const names: string[] = [];
   for (const [key, value] of Object.entries(obj)) {
     if (key.startsWith("$")) continue;
-    if (value && typeof value === "object" && !value.$value) {
+    if (value && typeof value === "object") {
       const hasThemeValues = ["dark", "light", "warm"].some(
         (t) => value[t] && value[t].$value
       );
       const hasDirectValue = value.$value !== undefined;
 
       if (hasThemeValues || hasDirectValue) {
-        const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, key];
-        names.push(newSegments.join("-"));
+        // Leaf token
+        const cssKey = GROUP_RENAMES[key] ?? key;
+        const leafSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, cssKey];
+        names.push(leafSegments.join("-"));
       } else {
-        const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, key];
+        // Group node
+        const cssKey = GROUP_RENAMES[key] ?? key;
+        const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, cssKey];
         names.push(...extractTokenNames(value, newSegments));
       }
     }
