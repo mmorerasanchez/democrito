@@ -10,10 +10,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:visual": "npx playwright test",
+    "test:visual:update": "npx playwright test --update-snapshots"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@playwright/test": "^1.59.1",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",

@@ -33,78 +33,15 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 
 ## Design Tokens
 
-### Spacing
+> **Full reference:** [`docs/tokens.md`](docs/tokens.md) — colors, typography, spacing, radii, motion.
 
-Base unit: **4px**. Use Tailwind spacing utilities mapped to this grid:
-
-| Token | Value |
-|---|---|
-| `1` | 4px |
-| `2` | 8px |
-| `3` | 12px |
-| `4` | 16px |
-| `6` | 24px |
-| `8` | 32px |
-| `12` | 48px |
-| `16` | 64px |
-
-Layout-specific tokens: `--header-height: 3.5rem`, `--sidebar-width: 15rem`, `--sidebar-collapsed: 4rem`, `--right-panel: 22rem`.
-
-### Border Radius
-
-Based on `--radius: 0.75rem` (12px) by default — may be overridden per project:
-
-| Class | Computed | Pixels (default) |
-|---|---|---|
-| `rounded-sm` | `calc(var(--radius) - 8px)` | ~4px |
-| `rounded-md` | `calc(var(--radius) - 4px)` | ~8px |
-| `rounded-lg` | `var(--radius)` | 12px |
-| `rounded-full` | `9999px` | pill |
-
-### Colors
-
-All colors are defined as CSS custom properties in HSL (without `hsl()` wrapper) in `src/index.css` and mapped in `tailwind.config.ts`. Three themes: **Dark** (`:root`), **Light** (`.light`), **Warm** (`.warm`).
-
-**Core surfaces** (3-layer hierarchy):
-- `--background` → page background (deepest layer)
-- `--surface` → panels, sidebars, headers
-- `--card` → cards, dialogs, elevated content
-
-**Text**: `--foreground`, `--muted-foreground`, `--foreground-subtle`, `--accent`
-
-**Accent** (3-tier intensity): `--accent`, `--accent-muted`, `--accent-subtle`
-
-**Semantic**: `--success`, `--warning`, `--error`, `--info` (each with `-bg` and `-border` variants)
-
-**Category palette** (9 distinct hues for content tagging): `--category-teal`, `--category-amber`, `--category-emerald`, `--category-orange`, `--category-violet`, `--category-rose`, `--category-blue`, `--category-red`, `--category-gold`
-
-**Status lifecycle**: `--status-draft`, `--status-testing`, `--status-production`, `--status-archived`
-
-> **Never hardcode hex/rgb values.** Always use semantic token classes like `bg-surface`, `text-accent`, `border-border`.
-
-### Typography
-
-Three font families — each with a mandatory purpose (defaults shown; may be overridden):
-
-| Family | Class | Default Font | Use for |
-|---|---|---|---|
-| Display | `font-display` | Plus Jakarta Sans | Headings, labels, buttons |
-| Body | `font-body` | Satoshi | Body text, descriptions |
-| Mono | `font-mono` | JetBrains Mono | Data, code, user content |
-
-Size scale defined in `tailwind.config.ts`:
-
-| Class | Size | Line Height |
-|---|---|---|
-| `text-2xs` | 10px | 1.4 |
-| `text-xs` | 12px | 1.4 |
-| `text-sm` | 13px | 1.5 |
-| `text-base` | 14px | 1.6 |
-| `text-md` | 16px | 1.5 |
-| `text-lg` | 18px | 1.5 |
-| `text-xl` | 22px | 1.4 |
-| `text-2xl` | 24px | 1.3 |
-| `text-3xl` | 36px | 1.2 |
+**Key behavioral rules:**
+- All colors are HSL CSS custom properties in `src/index.css`, mapped in `tailwind.config.ts`
+- Three themes: **Dark** (`:root`), **Light** (`.light`), **Warm** (`.warm`)
+- 3-surface hierarchy: `--background` → `--surface` → `--card`
+- 3-font system: `font-display` (headings), `font-body` (text), `font-mono` (data/code)
+- Spacing base unit: 4px. Layout tokens: `--header-height`, `--sidebar-width`, `--sidebar-collapsed`, `--right-panel`
+- Never hardcode hex/rgb — always use semantic token classes (`bg-surface`, `text-accent`, `border-border`)
 
 ---
 

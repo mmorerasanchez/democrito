@@ -10,7 +10,7 @@
 
 Ship dashboards, editors, workspaces, and data-heavy tools with a consistent visual language that works for both humans and AI agents.
 
-[🌐 Live Demo](https://design-system-prompt-x.lovable.app/) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
+[🌐 Live Demo](https://democrito-design-system.lovable.app/) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
 
 ---
 
@@ -33,7 +33,21 @@ npm install
 npm run dev
 ```
 
-> **Package manager:** The project uses `npm` as the primary package manager. A `bun.lockb` file may be present from the Lovable build environment — it can be safely ignored. Always use `npm install` / `npm run dev` for local development.
+> **Package manager:** The project uses `npm` as the primary package manager. Always use `npm install` / `npm run dev` for local development.
+
+## Install via shadcn CLI
+
+democrito is published as a [shadcn/ui-compatible registry](https://ui.shadcn.com/docs/registry). You can install the base design system or the warm theme variant directly:
+
+```bash
+# Install the democrito base (dark + light themes, tokens, fonts)
+npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/registry.json democrito
+
+# Optionally add the warm theme variant
+npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/registry.json democrito-warm
+```
+
+> See [`registry.json`](registry.json) for the full manifest.
 
 ---
 
@@ -104,11 +118,14 @@ fontFamily: {
 
 | Principle | Description |
 | --- | --- |
-| **Monochromatic + Accent** | 95% neutral grays, 4% single accent hue, 1% semantic colors |
+| **Monochromatic + Accent** | 95% warm stone grays, 4% terracotta orange accent, 1% semantic colors |
 | **3-Surface Hierarchy** | `--background` → `--surface` → `--card` creates depth without complexity |
 | **Typography as Hierarchy** | Three fonts convey meaning: Display (titles), Body (content), Mono (data) |
-| **Purposeful Color** | Every color has a specific function. No decorative colors. |
-| **IDE-Inspired** | Clean, distraction-free workspace optimized for dense, data-rich UIs |
+| **Progressive Disclosure** | Start with the lightest variant, add complexity as needed |
+| **Accessible by Default** | WCAG 2.1 AA, 44×44px touch targets, keyboard navigation |
+| **IDE-Inspired** | Clean, distraction-free workspace optimized for prompt engineering |
+
+> See [`docs/principles.md`](docs/principles.md) for the full guide with examples.
 
 ---
 
@@ -151,7 +168,7 @@ democrito is optimized to work with AI development tools. Paste or reference the
 Point your Lovable project to the live design system URL and reference it in prompts:
 
 ```
-Use democrito (the design system at https://design-system-prompt-x.lovable.app/)
+Use democrito (the design system at https://democrito-design-system.lovable.app/)
 for all visual decisions. Key rules:
 - 3 fonts: Plus Jakarta Sans (font-display) for titles, Satoshi (font-body)
   for body text, JetBrains Mono (font-mono) for ALL data and code content
@@ -205,7 +222,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 
 | Resource | Description |
 | --- | --- |
-| [Live Design System](https://design-system-prompt-x.lovable.app/) | Interactive component gallery, token reference, and theme playground |
+| [Live Design System](https://democrito-design-system.lovable.app/) | Interactive component gallery, token reference, and theme playground |
 | [`docs/theming.md`](docs/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
 | [`src/DESIGN_SYSTEM.md`](src/DESIGN_SYSTEM.md) | Complete design system specification — component inventory, token reference, usage rules |
 | [`src/index.css`](src/index.css) | CSS custom properties, font imports, three-theme definitions, base resets |
@@ -215,6 +232,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history following [Keep a Changelog](https://keepachangelog.com/) format |
 | [`CLAUDE.md`](CLAUDE.md) | AI agent context file — auto-read by Claude Code, Cursor, and similar tools |
 | [`docs/`](docs/README.md) | Documentation hub — architecture, theming guide, AI usage, component references |
+| [`skill/democrito/`](skill/democrito/SKILL.md) | Claude Skill folder — portable AI-native context (principles, tokens, components, agent usage) |
 | [`.editorconfig`](.editorconfig) | Editor formatting consistency (indent, line endings, charset) |
 
 ---
