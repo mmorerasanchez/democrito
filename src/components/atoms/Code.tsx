@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
-interface CodeProps extends React.HTMLAttributes<HTMLElement> {}
+type CodeProps = React.HTMLAttributes<HTMLElement>;
 
 const Code = forwardRef<HTMLElement, CodeProps>(({ className, ...props }, ref) => {
   return (
