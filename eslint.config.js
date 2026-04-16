@@ -19,7 +19,11 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      // Disabled: shadcn/ui primitives intentionally co-export component + helpers
+      // (e.g. `Badge` + `badgeVariants`, `useFormField` + `Form`). Breaking them
+      // apart would diverge from shadcn's upstream pattern and add surface area
+      // without correctness benefit. Fast Refresh still works fine in dev.
+      "react-refresh/only-export-components": "off",
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
