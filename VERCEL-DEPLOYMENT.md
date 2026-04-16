@@ -503,4 +503,4 @@ This is more than enough for democrito.design. You'd only need a paid plan if yo
 
 - [SEO-GEO-PLAN.md](../SEO-GEO-PLAN.md) — Full SEO/GEO strategy (deployment architecture section)
 - [ASTRO-MIGRATION-PLAN.md](./ASTRO-MIGRATION-PLAN.md) — Astro migration (Prompt 11 covers deployment)
-- [docs/getting-started-v2.md](./docs/getting-started-v2.md) — Developer-facing getting started guide
+- [docs/getting-started.md](./docs/getting-started.md) — Developer-facing getting started guide

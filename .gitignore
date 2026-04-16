@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Lockfiles (npm is the canonical package manager)
+bun.lockb
