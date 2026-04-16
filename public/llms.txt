@@ -1,0 +1,40 @@
+# democrito
+
+Themeable atomic design system with warm industrial aesthetic, three-surface depth,
+and three-font semantic typography. Built for data-dense, IDE-inspired applications.
+
+URL:  https://democrito.design
+Repo: https://github.com/mmorerasanchez/democrito
+
+## Stack
+
+React 18, TypeScript, Tailwind CSS 3.4, shadcn/ui, Vite
+
+## Install
+
+Via shadcn registry:
+  npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+
+Via git clone:
+  git clone https://github.com/mmorerasanchez/democrito.git
+
+## Key files for AI agents
+
+- CLAUDE.md             — coding rules and architecture summary
+- DESIGN.md             — visual philosophy and taste layer
+- src/DESIGN_SYSTEM.md  — full component inventory and specification
+
+## Design principles
+
+- Three-surface hierarchy: background → surface → card
+- Three-font system: display (headings), body (text), mono (data/code)
+- Monochromatic palette + single terracotta accent (hsl 18 65% 55%)
+- Semantic tokens only — never hardcoded hex/rgb
+
+## Themes
+
+- Dark   (`:root`, default)
+- Light  (`.light`)
+- Warm   (`.warm`)
+
+Every color token is defined in all three themes in src/index.css.
