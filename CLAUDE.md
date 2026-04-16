@@ -59,6 +59,67 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 
 ---
 
+## Git Workflow
+
+Follow `CONTRIBUTING.md` for commit conventions and branch naming.
+
+**Never commit directly to `main`.** Always create a feature branch (`feat/`, `fix/`, `chore/`),
+commit there, then create a PR.
+
+### Notion status sync
+
+Every change request in `changes @democrito` has a Status property that must stay
+in sync with development progress:
+
+1. **When you start work** on a change request — set its Status to **In progress**
+   via Notion MCP before writing any code.
+2. **When you create a PR** — set its Status to **Review** via Notion MCP immediately
+   after the PR is created.
+
+The same applies to `docs @democrito` when working directly on a doc.
+
+Do not skip these transitions. They are how the project owner tracks progress
+without asking.
+
+---
+
+## Notion MCP
+
+Connected. Claude Code can search and fetch from the democrito Notion workspace.
+
+| Database | Collection URL | Purpose |
+|---|---|---|
+| `docs @democrito` | `collection://341887eb-6e4e-801b-923c-000b6a7f747e` | Feature docs, SDDs, architecture decisions |
+| `changes @democrito` | `collection://341887eb-6e4e-805e-8df7-000bc4a49ef0` | Change requests for execution |
+
+**Usage rules:**
+- Always check the relevant database before creating content — avoid duplicates.
+- For scoped searches, use the `collection://` URLs above.
+- For surgical edits, use `notion-update-page` with `content_updates` — never replace whole page bodies.
+- Don't fetch the same database repeatedly in one session — cache the result and reuse.
+
+---
+
+## Verification
+
+Run after any code changes:
+
+```bash
+npm run lint && npm run test
+```
+
+Available test commands:
+
+| Command | Purpose |
+|---|---|
+| `npm run test` | Vitest unit tests (single run) |
+| `npm run test:watch` | Vitest in watch mode |
+| `npm run test:visual` | Playwright visual regression |
+| `npm run test:visual:update` | Update Playwright snapshots |
+| `npm run lint` | ESLint |
+
+---
+
 ## Key Files
 
 | File | Purpose |
@@ -67,5 +128,6 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 | `tailwind.config.ts` | Tailwind mappings to CSS variables, font/size/color definitions |
 | `docs/theming.md` | How to customize the system for a specific brand or product |
 | `src/DESIGN_SYSTEM.md` | Full design system specification and component inventory |
+| `DESIGN.md` | Design philosophy and visual language — the "taste layer" for AI agents |
 | `CONTRIBUTING.md` | Development workflow, commit conventions, component creation guide |
 | `CHANGELOG.md` | Version history (Keep a Changelog format) |
