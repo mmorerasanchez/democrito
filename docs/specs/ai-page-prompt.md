@@ -9,7 +9,7 @@
 > - Status: Draft
 > - Source SDD: docs/specs/ai-page-sdd.md
 > - Behaviour Spec: docs/specs/ai-page-behaviour.md
-> - Business context: docs/specs/business-model-democrito.md
+> - Business context: Notion-only (not in repo — see changes @democrito)
 > - Prompt chain: 1 of 2 — next: ai-page-v2-sales (Knowledge Packs + CTAs, after storefront is live)
 > - Created: 2026-04-17
 
