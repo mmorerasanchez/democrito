@@ -25,13 +25,19 @@ const TRANSPARENT_GROUPS = new Set(["color", "semantic", "motion"]);
 // Groups whose JSON key maps to a different CSS prefix
 const GROUP_RENAMES: Record<string, string> = { zIndex: "z", cubicBezier: "ease" };
 
-function extractTokenNames(obj: Record<string, any>, segments: string[] = []): string[] {
+type TokenNode = { $value?: unknown } & Record<string, TokenNode | unknown>;
+
+function extractTokenNames(obj: Record<string, unknown>, segments: string[] = []): string[] {
   const names: string[] = [];
-  for (const [key, value] of Object.entries(obj)) {
+  for (const [key, rawValue] of Object.entries(obj)) {
     if (key.startsWith("$")) continue;
-    if (value && typeof value === "object") {
+    if (rawValue && typeof rawValue === "object") {
+      const value = rawValue as TokenNode;
       const hasThemeValues = ["dark", "light", "warm"].some(
-        (t) => value[t] && value[t].$value
+        (t) => {
+          const themeNode = value[t] as TokenNode | undefined;
+          return themeNode && themeNode.$value;
+        }
       );
       const hasDirectValue = value.$value !== undefined;
       const cssKey = GROUP_RENAMES[key] ?? key;
@@ -41,7 +47,7 @@ function extractTokenNames(obj: Record<string, any>, segments: string[] = []): s
         names.push(leafSegments.join("-"));
       } else {
         const newSegments = TRANSPARENT_GROUPS.has(key) ? segments : [...segments, cssKey];
-        names.push(...extractTokenNames(value, newSegments));
+        names.push(...extractTokenNames(value as Record<string, unknown>, newSegments));
       }
     }
   }

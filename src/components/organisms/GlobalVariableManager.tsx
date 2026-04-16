@@ -117,7 +117,7 @@ export function GlobalVariableManager({ className }: GlobalVariableManagerProps)
               <TableRow key={v.id}>
                 <TableCell className="font-mono text-sm font-medium text-accent">{`{{${v.name}}}`}</TableCell>
                 <TableCell>
-                  <Badge variant={typeColors[v.type] as any} size="sm">{v.type}</Badge>
+                  <Badge variant={typeColors[v.type] as React.ComponentProps<typeof Badge>["variant"]} size="sm">{v.type}</Badge>
                 </TableCell>
                 <TableCell className="font-mono text-xs text-foreground max-w-[120px] truncate">{v.defaultValue}</TableCell>
                 <TableCell className="font-body text-xs text-muted-foreground hidden sm:table-cell max-w-[200px] truncate">{v.description}</TableCell>
