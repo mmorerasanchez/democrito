@@ -1,0 +1,112 @@
+# democrito — Full Reference for LLM Agents
+
+Themeable atomic design system with warm industrial aesthetic, three-surface depth,
+and three-font semantic typography. Built for data-dense, IDE-inspired applications.
+
+URL:  https://democrito.design
+Repo: https://github.com/mmorerasanchez/democrito
+
+## Stack
+
+React 18, TypeScript, Tailwind CSS 3.4, shadcn/ui, Vite
+
+## Install
+
+Via shadcn registry:
+  npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+
+Via git clone:
+  git clone https://github.com/mmorerasanchez/democrito.git
+
+## Key files for AI agents
+
+- CLAUDE.md             — coding rules and architecture summary
+- DESIGN.md             — visual philosophy and taste layer
+- src/DESIGN_SYSTEM.md  — full component inventory and specification
+- docs/tokens.md        — full token reference
+- docs/theming.md       — theme customization guide
+- docs/architecture.md  — atomic design architecture
+
+## Architecture — Atomic Design
+
+| Level      | Directory                    | Count |
+|------------|------------------------------|-------|
+| Atoms      | src/components/atoms/        | 8     |
+| Molecules  | src/components/molecules/    | 18    |
+| Organisms  | src/components/organisms/    | 39    |
+| Templates  | src/components/templates/    | 7     |
+
+UI primitives in src/components/ui/ are shadcn/ui components — extend via CVA
+variants, never modify directly. One component per file, PascalCase filenames,
+barrel index.ts per level.
+
+## Themes
+
+- Dark   (`:root`, default)
+- Light  (`.light`)
+- Warm   (`.warm`)
+
+Every color token is defined in all three themes in src/index.css.
+
+## Token reference — Dark theme (HSL values)
+
+All colors are HSL CSS custom properties in src/index.css, mapped in tailwind.config.ts.
+
+Surfaces (3-layer hierarchy):
+  --background          20 14% 4%
+  --surface             20 8%  8%
+  --card                12 6%  15%
+
+Text:
+  --foreground          60 9%  98%
+  --foreground-muted    24 5%  64%
+  --foreground-subtle   24 5%  45%
+
+Accent (terracotta):
+  --accent              18 65% 55%
+
+Border:
+  --border              25 8%  25%
+
+Never hardcode hex/rgb — always use semantic token classes
+(bg-surface, text-accent, border-border, etc.).
+
+## Typography — 3-font semantic system
+
+  font-display  Plus Jakarta Sans  — headings
+  font-body     Satoshi            — prose / UI text
+  font-mono     JetBrains Mono     — data, code, user-generated content
+
+User-editable content (code, data values, prompt variables) must use font-mono.
+
+## Spacing
+
+Base unit: 4px. Scale: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64.
+
+## Border radius
+
+  --radius  0.75rem   (lg)
+  md        calc(var(--radius) - 4px)
+  sm        calc(var(--radius) - 8px)
+
+## Layout dimensions
+
+  --header-height      3.5rem
+  --sidebar-width      15rem
+  --sidebar-collapsed  4rem
+  --right-panel        22rem
+
+## Do's
+
+- Check existing atoms/molecules/ui before creating new components
+- Use shadcn/ui primitives as base; extend via CVA variants
+- Define every new color token in all three themes
+- Use semantic tokens (bg-card, text-muted-foreground) not raw colors
+- Use font-mono for code, data, and user-editable content
+
+## Don'ts
+
+- Don't write bg-gray-800, text-white, or any hex/rgb literal
+- Don't modify shadcn/ui primitives in-place — extend via variants
+- Don't add a color token without defining it for all three themes
+- Don't skip the TypeScript props interface on a component
