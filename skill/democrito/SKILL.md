@@ -1,3 +1,8 @@
+---
+name: democrito
+description: Use this skill when working with the democrito design system — generating UI components, applying design tokens, or following atomic-design conventions. Triggers on mentions of democrito, design system, design tokens, atomic design, shadcn component, theme, color system, typography, or "build a component" for any React + Tailwind + shadcn project that has adopted democrito. Provides tokens, principles, component inventory, and three-theme guidance so Claude produces on-system code from the first attempt.
+---
+
 # democrito — Claude Skill
 
 > **democrito** is an Atomic Design System and the visual foundation of
@@ -5,57 +10,63 @@
 > This skill gives Claude the full design-system context needed to generate on-system
 > UI code from the first attempt.
 
+**Do not trigger this skill for:** prompt engineering, AI evaluation, business-model work, or any prompt-x-specific feature development. This skill covers the design-system layer only.
+
 ---
 
-## What This Skill Provides
+## Reference Files
 
-| File | Purpose |
+Read these bundled files on-demand when you need deeper context:
+
+| File | When to read |
 |---|---|
-| `SKILL.md` | Overview, architecture, and coding rules (this file) |
-| `principles.md` | 6 core design principles that guide every decision |
-| `tokens.md` | Complete token reference — colors, typography, spacing, motion |
-| `components.md` | Component inventory across all atomic levels |
-| `agent-usage.md` | Prompting strategies and compact token block for any AI tool |
+| `principles.md` | Before any visual / structural decision — the 6 design principles behind every token and component choice |
+| `tokens.md` | Whenever you need the exact HSL value, Tailwind class, or purpose of a design token (surfaces, text, accent, semantic, typography, spacing, motion) |
+| `components.md` | Before creating a new component — check the inventory across Atoms, Molecules, Organisms, and Templates to avoid duplicates |
+| `agent-usage.md` | For prompting strategies and the compact token block to hand to other AI tools |
+
+---
+
+## Methodology
+
+When generating or reviewing democrito code, apply this order:
+
+1. **Tokens first.** Never hardcode colors, spacing, or radii. Every visual value comes from `src/index.css` CSS custom properties, mapped through `tailwind.config.ts`. Use Tailwind utility classes bound to tokens (`bg-surface`, `text-foreground-muted`, `border-border`) — never `bg-gray-800` or `text-white`.
+2. **Three-surface hierarchy.** Build depth with `--background` → `--surface` → `--card`, in that order. Inputs must not share a surface with their containing card.
+3. **Three-font system.** `font-display` for headings, `font-body` for prose, `font-mono` for all data, code, user-generated content, and tokens/commands.
+4. **Three-theme compliance.** Every new color token must be defined in all three themes: `:root` (dark, default), `.light`, and `.warm`.
+5. **Principles gate.** Changes must respect the six principles from `principles.md`:
+   1. Monochromatic + Accent
+   2. 3-Surface Hierarchy
+   3. Typography as Hierarchy
+   4. Progressive Disclosure
+   5. Accessible by Default
+   6. IDE-Inspired
 
 ---
 
 ## Architecture — Atomic Design
 
-The component library follows **Atomic Design** methodology:
-
 | Level | Directory | Description | Examples |
 |---|---|---|---|
-| **Atoms** | `src/components/atoms/` | Single-purpose building blocks | `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text` |
-| **Molecules** | `src/components/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState` |
+| **Atoms** | `src/components/atoms/` | Single-purpose building blocks | `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text`, `CopyButton`, `CodeBlock` |
+| **Molecules** | `src/components/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState`, `TokenReferenceCard` |
 | **Organisms** | `src/components/organisms/` | Major UI sections | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm` |
 | **Templates** | `src/components/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout` |
-| **Pages** | `src/pages/` | Route-level components | `DashboardPage`, `LibraryPage`, `SettingsPage` |
+| **Pages** | `src/pages/` | Route-level components | `DashboardPage`, `LibraryPage`, `SettingsPage`, `AiPage` |
 
 **UI Primitives** (`src/components/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 
 ---
 
-## Design Token Essentials
-
-- All colors are HSL CSS custom properties in `src/index.css`, mapped in `tailwind.config.ts`
-- **Three themes**: Dark (`:root`), Light (`.light`), Warm (`.warm`)
-- **3-surface hierarchy**: `--background` → `--surface` → `--card`
-- **3-font system**: `font-display` (headings), `font-body` (text), `font-mono` (data/code)
-- **Spacing**: 4px base grid
-- Never hardcode hex/rgb — always use semantic token classes
-
----
-
 ## Coding Rules
 
-1. **Check existing atoms first** — verify the component doesn't already exist in `atoms/`, `molecules/`, or `ui/`.
-2. **Always use design tokens** — never use magic numbers for colors, spacing, or radii.
-3. **TypeScript with proper prop types** — explicit `interface` for every component's props.
-4. **Follow naming conventions** — PascalCase filenames, one component per file, barrel `index.ts` exports.
-5. **Extend shadcn/ui primitives** — compose them into atoms/molecules, never rebuild from scratch.
-6. **User-editable content uses `font-mono`** — all code, data values, and user-generated content.
-7. **Three-theme compliance** — new color tokens must be defined in all three themes.
-8. **Semantic color only** — use `bg-card`, `text-muted-foreground`, etc. Never `bg-gray-800` or `text-white`.
+1. **Check existing components first** — verify the component doesn't already exist in `atoms/`, `molecules/`, or `ui/` before creating anything new.
+2. **TypeScript with explicit prop interfaces** — every component must declare an `interface` for its props with JSDoc descriptions.
+3. **PascalCase filenames, one component per file, barrel `index.ts` exports.**
+4. **Extend shadcn/ui primitives via CVA variants** — compose them into atoms/molecules, never rebuild from scratch.
+5. **User-editable content uses `font-mono`** — all code, data values, and user-generated content.
+6. **Semantic color only** — use `bg-card`, `text-muted-foreground`, `border-border`. Never `bg-gray-800` or `text-white`.
 
 ---
 
@@ -69,7 +80,7 @@ The component library follows **Atomic Design** methodology:
 
 ---
 
-## Key Files
+## Key Files (in host repos adopting democrito)
 
 | File | Purpose |
 |---|---|
@@ -81,4 +92,4 @@ The component library follows **Atomic Design** methodology:
 
 ---
 
-*See the companion files in this skill folder for detailed token, component, and principle references.*
+*See the companion files in this skill folder for detailed token, component, principle, and usage references.*
