@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "democrito",
-  "homepage": "https://democrito-design-system.lovable.app",
+  "homepage": "https://democrito.design",
   "items": [
     {
       "name": "democrito",
@@ -136,7 +136,7 @@
         }
       },
       "categories": ["design-system", "monochromatic", "atomic-design"],
-      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent.\n\n## Three themes\n- **Dark** (default) — deep warm grays\n- **Light** — warm off-whites\n- **Warm** — parchment-toned mid-range\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\nSee https://democrito-design-system.lovable.app for the full showcase.",
+      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent.\n\n## Three themes\n- **Dark** (default) — deep warm grays\n- **Light** — warm off-whites\n- **Warm** — parchment-toned mid-range\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\nSee https://democrito.design for the full showcase.",
       "meta": {
         "version": "3.0.0",
         "license": "MIT",

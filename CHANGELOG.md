@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.0] — 2026-04-17
+
+### Added
+
+- Production deployment to `democrito.design` via Vercel (first stable release).
+
+### Changed
+
+- Live showcase URL migrated from `democrito-design-system.lovable.app` to `democrito.design` across `README.md` and `registry.json`.
+
+---
+
 ## [0.3.0] — 2026-02-19
 
 ### Changed
