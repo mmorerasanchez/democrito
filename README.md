@@ -51,6 +51,25 @@ npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/regis
 
 ---
 
+## Claude Skill
+
+Install democrito as a Claude Code skill to get design-system-aware assistance in every session. Claude will automatically trigger it on mentions of democrito, design tokens, atomic design, or "build a component".
+
+```bash
+# Copy the skill folder into your project's Claude skills directory
+cp -R skill/democrito ~/.claude/skills/
+```
+
+Or, in a repo that has cloned democrito:
+
+```bash
+ln -s "$(pwd)/skill/democrito" ~/.claude/skills/democrito
+```
+
+The skill bundles four knowledge files — `principles.md`, `tokens.md`, `components.md`, and `agent-usage.md` — so Claude can read each on demand. See [`skill/democrito/SKILL.md`](skill/democrito/SKILL.md) for the full definition and triggering rules.
+
+---
+
 ## Architecture
 
 The design system follows **Atomic Design** methodology — Atoms → Molecules → Organisms → Templates — with design tokens defined as CSS custom properties in `src/index.css` and mapped through `tailwind.config.ts`.
