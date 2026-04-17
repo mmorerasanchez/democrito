@@ -23,6 +23,7 @@ import PromptDetailPage from "@/pages/PromptDetailPage";
 import OnboardingPage from "@/pages/OnboardingPage";
 import NotFound from "@/pages/NotFound";
 import TokenSmokeTest from "@/pages/TokenSmokeTest";
+import AiPage from "@/pages/AiPage";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,8 @@ const App = () => (
             </Route>
             <Route path="/app/welcome" element={<ProtectedGate><OnboardingPage /></ProtectedGate>} />
             <Route path="/test/tokens" element={<TokenSmokeTest />} />
+            {/* /ai is standalone (no sidebar) — marketing/education page for the AI integration story */}
+            <Route path="/ai" element={<AiPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
