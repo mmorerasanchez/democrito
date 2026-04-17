@@ -10,7 +10,7 @@
 
 Ship dashboards, editors, workspaces, and data-heavy tools with a consistent visual language that works for both humans and AI agents.
 
-[🌐 Live Demo](https://democrito-design-system.lovable.app/) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
+[🌐 Live Demo](https://democrito.design) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
 
 ---
 
@@ -168,7 +168,7 @@ democrito is optimized to work with AI development tools. Paste or reference the
 Point your Lovable project to the live design system URL and reference it in prompts:
 
 ```
-Use democrito (the design system at https://democrito-design-system.lovable.app/)
+Use democrito (the design system at https://democrito.design)
 for all visual decisions. Key rules:
 - 3 fonts: Plus Jakarta Sans (font-display) for titles, Satoshi (font-body)
   for body text, JetBrains Mono (font-mono) for ALL data and code content
@@ -222,7 +222,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 
 | Resource | Description |
 | --- | --- |
-| [Live Design System](https://democrito-design-system.lovable.app/) | Interactive component gallery, token reference, and theme playground |
+| [Live Design System](https://democrito.design) | Interactive component gallery, token reference, and theme playground |
 | [`docs/theming.md`](docs/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
 | [`src/DESIGN_SYSTEM.md`](src/DESIGN_SYSTEM.md) | Complete design system specification — component inventory, token reference, usage rules |
 | [`src/index.css`](src/index.css) | CSS custom properties, font imports, three-theme definitions, base resets |
