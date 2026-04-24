@@ -31,7 +31,7 @@ function Section({ id, title, description, children }: { id: string; title: stri
         <h2 className="font-display text-lg font-medium tracking-tight">{title}</h2>
         <p className="font-body text-sm text-muted-foreground">{description}</p>
       </div>
-      <div className="rounded-lg border border-border bg-card p-6 space-y-6">{children}</div>
+      <div className="overflow-hidden rounded-lg border border-border bg-card p-6 space-y-6">{children}</div>
     </section>
   );
 }
