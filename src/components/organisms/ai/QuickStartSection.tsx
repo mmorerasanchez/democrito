@@ -1,4 +1,5 @@
 import { CodeBlock, Text } from "@/components/atoms";
+import { INSTALL_COMMAND } from "./install-command";
 
 interface InstallPath {
   title: string;
@@ -13,7 +14,7 @@ const PATHS: InstallPath[] = [
     title: "shadcn Registry",
     recommended: true,
     description: "Installs the component registry and drops the AI context files into your project root.",
-    code: "npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito",
+    code: INSTALL_COMMAND,
     language: "bash",
   },
   {
