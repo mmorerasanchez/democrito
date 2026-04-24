@@ -25,7 +25,7 @@ const TRANSPARENT_GROUPS = new Set(["color", "semantic", "motion"]);
 // Groups whose JSON key maps to a different CSS prefix
 const GROUP_RENAMES: Record<string, string> = { zIndex: "z", cubicBezier: "ease" };
 
-type TokenNode = { $value?: unknown } & Record<string, TokenNode | unknown>;
+interface TokenNode { [key: string]: TokenNode | string }
 
 function extractTokenNames(obj: Record<string, unknown>, segments: string[] = []): string[] {
   const names: string[] = [];
