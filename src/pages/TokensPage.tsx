@@ -133,7 +133,27 @@ function matchesQuery(query: string, ...fields: (string | undefined)[]) {
   if (!query) return true;
   const q = query.trim().toLowerCase();
   if (!q) return true;
-  return fields.some((f) => f?.toLowerCase().includes(q));
+  // Allow searching hex with or without a leading "#" (e.g. "#a35a3a" or "a35a3a").
+  const qHex = q.startsWith("#") ? q.slice(1) : q;
+  return fields.some((f) => {
+    if (!f) return false;
+    const lower = f.toLowerCase();
+    return lower.includes(q) || lower.includes(qHex);
+  });
+}
+
+/**
+ * Compute the live hex/hsl for a color token so search can match against
+ * computed values, not just the token name. Returns empty strings when
+ * the variable can't be parsed (defensive — keeps search resilient).
+ */
+function colorTokenSearchFields(token: string): { hex: string; hsl: string } {
+  const raw = getCssVar(token);
+  const parsed = parseHsl(raw);
+  return {
+    hsl: raw ? `hsl(${raw})` : "",
+    hex: parsed ? hslToHex(parsed.h, parsed.s, parsed.l) : "",
+  };
 }
 
 function ColorGroup({
@@ -145,7 +165,10 @@ function ColorGroup({
   tokens: ColorToken[];
   query: string;
 }) {
-  const filtered = tokens.filter((t) => matchesQuery(query, t.token, t.label));
+  const filtered = tokens.filter((t) => {
+    const { hex, hsl } = colorTokenSearchFields(t.token);
+    return matchesQuery(query, t.token, t.label, hex, hsl);
+  });
   if (filtered.length === 0) return null;
   return (
     <div className="space-y-2">
