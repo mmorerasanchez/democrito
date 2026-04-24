@@ -273,15 +273,31 @@ const SHADOWS = [
   { name: "xl", tw: "shadow-xl" },
 ] as const;
 
+/**
+ * Map a CSS variable name (e.g. "--accent", "--card-foreground") to the
+ * Tailwind utility prefix(es) it powers. Mirrors `tailwind.config.ts`.
+ * Returns the bare token (no `bg-`/`text-`/`border-` prefix) so consumers
+ * can compose: `bg-${tw}`, `text-${tw}`, etc.
+ */
+function cssVarToTailwindToken(cssVar: string): string {
+  const name = cssVar.replace(/^--/, "");
+  // -foreground suffixes map to `<base>-foreground` in Tailwind (e.g. text-card-foreground).
+  return name;
+}
+
 /** Build a JSON snapshot of all current design tokens for download. */
 function buildExportPayload() {
-  const colors: Record<string, { token: string; hsl: string; hex: string }> = {};
+  const colors: Record<
+    string,
+    { cssVar: string; tailwind: string; hsl: string; hex: string }
+  > = {};
   for (const group of COLOR_GROUPS) {
     for (const t of group.tokens) {
       const raw = getCssVar(t.token);
       const parsed = parseHsl(raw);
       colors[t.label ?? t.token.replace("--", "")] = {
-        token: t.token,
+        cssVar: t.token,
+        tailwind: cssVarToTailwindToken(t.token),
         hsl: raw ? `hsl(${raw})` : "",
         hex: parsed ? hslToHex(parsed.h, parsed.s, parsed.l) : "",
       };
@@ -305,11 +321,22 @@ function buildExportPayload() {
         body: "Satoshi, Outfit, Inter, system-ui, sans-serif",
         mono: "JetBrains Mono, IBM Plex Mono, Consolas, monospace",
       },
-      scale: TYPE_SCALE.map(({ label, classes }) => ({ label, classes })),
+      scale: TYPE_SCALE.map(({ label, classes }) => ({ label, tailwind: classes })),
     },
-    spacing: SPACING.map((s) => ({ ...s })),
-    radius: RADII.map((r) => ({ ...r })),
-    shadows: SHADOWS.map((s) => ({ ...s })),
+    spacing: SPACING.map((s) => ({
+      name: s.name,
+      value: s.value,
+      tailwind: s.tw,
+    })),
+    radius: RADII.map((r) => ({
+      name: r.name,
+      tailwind: r.tw,
+      cssVar: r.name === "none" || r.name === "full" || r.name === "xl" ? null : "--radius",
+    })),
+    shadows: SHADOWS.map((s) => ({
+      name: s.name,
+      tailwind: s.tw,
+    })),
     breakpoints: {
       sm: "480px",
       md: "768px",
@@ -318,10 +345,10 @@ function buildExportPayload() {
       "2xl": "1536px",
     },
     layout: {
-      headerHeight: getCssVar("--header-height"),
-      sidebarWidth: getCssVar("--sidebar-width"),
-      sidebarCollapsed: getCssVar("--sidebar-collapsed"),
-      rightPanel: getCssVar("--right-panel"),
+      headerHeight: { value: getCssVar("--header-height"), cssVar: "--header-height", tailwind: "h-header" },
+      sidebarWidth: { value: getCssVar("--sidebar-width"), cssVar: "--sidebar-width", tailwind: "w-sidebar-w" },
+      sidebarCollapsed: { value: getCssVar("--sidebar-collapsed"), cssVar: "--sidebar-collapsed", tailwind: "w-sidebar-collapsed" },
+      rightPanel: { value: getCssVar("--right-panel"), cssVar: "--right-panel", tailwind: "w-right-panel" },
     },
   };
 }
