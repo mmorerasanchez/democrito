@@ -34,7 +34,7 @@ export function TabNav({ items, value, onValueChange, className }: TabNavProps) 
               "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-display text-sm font-medium transition-colors duration-150",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive
-                ? "bg-card text-foreground shadow-sm"
+                ? "bg-card text-foreground shadow-xs"
                 : "text-muted-foreground hover:text-foreground",
               item.disabled && "cursor-not-allowed opacity-40 hover:text-muted-foreground",
             )}

@@ -290,7 +290,7 @@ const RADII = [
 
 const SHADOWS = [
   { name: "none", tw: "shadow-none" },
-  { name: "sm", tw: "shadow-sm" },
+  { name: "xs", tw: "shadow-xs" },
   { name: "md", tw: "shadow-md" },
   { name: "lg", tw: "shadow-lg" },
   { name: "xl", tw: "shadow-xl" },

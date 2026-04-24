@@ -1,9 +1,160 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-sm: 480px;
+
+  --font-display: "Plus Jakarta Sans", Poppins, Inter, system-ui, sans-serif;
+  --font-body: Satoshi, Outfit, Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", Consolas, monospace;
+
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: 1.4;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.6;
+  --text-md: 1rem;
+  --text-md--line-height: 1.5;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.2;
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-surface: hsl(var(--surface));
+  --color-foreground-muted: hsl(var(--foreground-muted));
+  --color-foreground-subtle: hsl(var(--foreground-subtle));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-muted: hsl(var(--accent-muted));
+  --color-accent-subtle: hsl(var(--accent-subtle));
+
+  --color-warm-dark: hsl(var(--warm-dark));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --color-success: hsl(var(--success));
+  --color-success-bg: hsl(var(--success-bg) / 0.1);
+  --color-success-border: hsl(var(--success-border) / 0.3);
+  --color-warning: hsl(var(--warning));
+  --color-warning-bg: hsl(var(--warning-bg) / 0.1);
+  --color-warning-border: hsl(var(--warning-border) / 0.3);
+  --color-error: hsl(var(--error));
+  --color-error-bg: hsl(var(--error-bg) / 0.1);
+  --color-error-border: hsl(var(--error-border) / 0.3);
+  --color-info: hsl(var(--info));
+  --color-info-bg: hsl(var(--info-bg) / 0.1);
+  --color-info-border: hsl(var(--info-border) / 0.3);
+
+  --color-category-teal: hsl(var(--category-teal));
+  --color-category-amber: hsl(var(--category-amber));
+  --color-category-emerald: hsl(var(--category-emerald));
+  --color-category-orange: hsl(var(--category-orange));
+  --color-category-violet: hsl(var(--category-violet));
+  --color-category-rose: hsl(var(--category-rose));
+  --color-category-blue: hsl(var(--category-blue));
+  --color-category-red: hsl(var(--category-red));
+  --color-category-gold: hsl(var(--category-gold));
+
+  --color-status-draft: hsl(var(--status-draft));
+  --color-status-testing: hsl(var(--status-testing));
+  --color-status-production: hsl(var(--status-production));
+  --color-status-archived: hsl(var(--status-archived));
+
+  --spacing-header: var(--header-height);
+  --spacing-sidebar-w: var(--sidebar-width);
+  --spacing-sidebar-collapsed: var(--sidebar-collapsed);
+  --spacing-right-panel: var(--right-panel);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 8px);
+
+  --z-index-dropdown: 50;
+  --z-index-sticky: 100;
+  --z-index-overlay: 200;
+  --z-index-modal: 300;
+  --z-index-toast: 400;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-ai-pulse: ai-pulse 1.4s ease-in-out infinite;
+  --animate-ai-cursor: ai-cursor 1s step-end infinite;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out;
+  --animate-bulk-bar-in: bulk-bar-in 0.3s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes ai-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  @keyframes ai-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes bulk-bar-in {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes caret-blink {
+    0%, 70%, 100% { opacity: 1; }
+    20%, 50% { opacity: 0; }
+  }
+}
 
 /* Design System — All colors in HSL */
 
