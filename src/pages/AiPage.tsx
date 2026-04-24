@@ -1,4 +1,3 @@
-import { Heading } from "@/components/atoms";
 import { TokenReferenceCard } from "@/components/molecules/TokenReferenceCard";
 import {
   ComparisonSection,
