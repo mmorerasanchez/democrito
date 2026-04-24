@@ -10,7 +10,7 @@ import { INSTALL_COMMAND } from "./install-command";
  */
 export function HeroSection() {
   return (
-    <section className="space-y-4">
+    <section>
       <div className="relative">
         <CodeBlock
           code={INSTALL_COMMAND}
