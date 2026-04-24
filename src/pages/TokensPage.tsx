@@ -298,7 +298,10 @@ function downloadTokensJson() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `democrito-tokens-${payload.activeTheme}.json`;
+  // Sanitize: strip whitespace and lowercase so the filename is always
+  // a clean slug like "democrito-tokens-light.json" — never "democrito-tokens- light .json".
+  const themeSlug = String(payload.activeTheme).trim().toLowerCase().replace(/\s+/g, "-");
+  a.download = `democrito-tokens-${themeSlug}.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
