@@ -1,4 +1,4 @@
-import { CodeBlock, Heading } from "@/components/atoms";
+import { CodeBlock } from "@/components/atoms";
 
 const WITHOUT_SNIPPET = `// Generic button — no design system context
 <button style={{
@@ -21,22 +21,22 @@ const WITH_SNIPPET = `// democrito-aware — tokens, typography, atomic design
 
 export function ComparisonSection() {
   return (
-    <section className="flex flex-col gap-6">
-      <Heading level="h2" className="text-2xl font-semibold">
+    <section className="space-y-4">
+      <h2 className="font-display text-lg font-medium tracking-tight">
         How It Works
-      </Heading>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      </h2>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <ComparisonPanel
           label="Without democrito context"
           code={WITHOUT_SNIPPET}
           ariaLabel="AI output without democrito context"
-          className="md:pr-3 md:border-r md:border-border"
+          className="sm:pr-3 sm:border-r sm:border-border"
         />
         <ComparisonPanel
           label="With democrito context"
           code={WITH_SNIPPET}
           ariaLabel="AI output with democrito context"
-          className="border-t border-border pt-6 md:border-t-0 md:pt-0 md:pl-3"
+          className="border-t border-border pt-6 sm:border-t-0 sm:pt-0 sm:pl-3"
         />
       </div>
     </section>

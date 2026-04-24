@@ -1,4 +1,4 @@
-import { CodeBlock, Heading, Text } from "@/components/atoms";
+import { CodeBlock, Text } from "@/components/atoms";
 
 interface InstallPath {
   title: string;
@@ -32,17 +32,17 @@ const PATHS: InstallPath[] = [
 
 export function QuickStartSection() {
   return (
-    <section className="flex flex-col gap-6">
-      <Heading level="h2" className="text-2xl font-semibold">
+    <section className="space-y-4">
+      <h2 className="font-display text-lg font-medium tracking-tight">
         Quick Start
-      </Heading>
-      <div className="flex flex-col gap-6">
+      </h2>
+      <div className="space-y-6">
         {PATHS.map((path) => (
-          <div key={path.title} className="flex flex-col gap-2">
+          <div key={path.title} className="space-y-2">
             <div className="flex items-baseline gap-2">
-              <Heading level="h3" className="text-base">
+              <h3 className="font-display text-base font-medium">
                 {path.title}
-              </Heading>
+              </h3>
               {path.recommended && (
                 <span className="font-mono text-xs uppercase tracking-wide text-accent">
                   recommended
