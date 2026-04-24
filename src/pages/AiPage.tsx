@@ -1,4 +1,4 @@
-import { Heading, Logo } from "@/components/atoms";
+import { Heading } from "@/components/atoms";
 import { TokenReferenceCard } from "@/components/molecules/TokenReferenceCard";
 import {
   ComparisonSection,
@@ -7,42 +7,38 @@ import {
   HeroSection,
   QuickStartSection,
 } from "@/components/organisms/ai";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 /**
- * /ai — full-width marketing/education page. No sidebar, no breadcrumbs.
- * Header is inlined here rather than via ShowcaseLayout to honour the spec's
- * "no sidebar, no navigation beyond the global header" constraint.
+ * /ai — documentation page rendered inside ShowcaseLayout.
+ * Sibling of Overview, Tokens, Atoms, etc. — uses the showcase
+ * page pattern (page header + section blocks).
  */
 export default function AiPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <header className="sticky top-0 z-sticky flex h-header items-center justify-between border-b border-border bg-surface px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
-          <Logo size={24} />
-          <h1 className="font-mono text-lg font-semibold tracking-tight lowercase">
-            democrito
-          </h1>
-          <span className="font-mono text-2xs text-muted-foreground">/ai</span>
-        </div>
-        <ThemeToggle />
-      </header>
+    <div className="space-y-12">
+      <div className="space-y-4">
+        <h1 className="font-display text-xl font-semibold tracking-tight">
+          AI Integration
+        </h1>
+        <p className="max-w-2xl font-body text-base text-muted-foreground">
+          The first open-source design system with structured AI context files.
+          Drop three files into your project and every AI assistant produces on-brand output.
+        </p>
+      </div>
 
-      <main className="flex-1 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-4xl flex-col gap-16 pb-20">
-          <HeroSection />
-          <FileArchitectureSection />
-          <QuickStartSection />
-          <ComparisonSection />
-          <section className="flex flex-col gap-6">
-            <Heading level="h2" className="text-2xl font-semibold">
-              Token Quick Reference
-            </Heading>
-            <TokenReferenceCard />
-          </section>
-          <EcosystemSection />
-        </div>
-      </main>
+      <HeroSection />
+      <FileArchitectureSection />
+      <QuickStartSection />
+      <ComparisonSection />
+
+      <section className="space-y-4">
+        <h2 className="font-display text-lg font-medium tracking-tight">
+          Token Quick Reference
+        </h2>
+        <TokenReferenceCard />
+      </section>
+
+      <EcosystemSection />
     </div>
   );
 }
