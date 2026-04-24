@@ -26,18 +26,52 @@ function getCssVar(name: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
+/**
+ * Copy text using the async Clipboard API when available, otherwise fall
+ * back to a hidden <textarea> + document.execCommand("copy"). The fallback
+ * covers non-secure contexts (http://) and older browsers where
+ * navigator.clipboard is undefined or rejects.
+ */
+async function copyToClipboard(value: string): Promise<boolean> {
+  if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(value);
+      return true;
+    } catch {
+      /* fall through to legacy path */
+    }
+  }
+  if (typeof document === "undefined") return false;
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = value;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.left = "0";
+    ta.style.opacity = "0";
+    ta.style.pointerEvents = "none";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
 /** Compact icon-only copy button used inside swatch cards. */
 function MiniCopy({ value, label }: { value: string; label: string }) {
   const [copied, setCopied] = useState(false);
   const handle = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    try {
-      await navigator.clipboard.writeText(value);
+    const ok = await copyToClipboard(value);
+    if (ok) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* swallow */
     }
   };
   const Icon = copied ? Check : Copy;
