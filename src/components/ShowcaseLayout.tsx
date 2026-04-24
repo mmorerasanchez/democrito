@@ -1,18 +1,36 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/atoms";
 import { Outlet } from "react-router-dom";
+
+/**
+ * Auto-closes the mobile sidebar drawer whenever the route changes,
+ * so users aren't left with an open overlay after navigating.
+ */
+function CloseMobileSidebarOnNav() {
+  const { setOpenMobile, isMobile } = useSidebar();
+  const location = useLocation();
+  useEffect(() => {
+    if (isMobile) setOpenMobile(false);
+  }, [location.pathname, isMobile, setOpenMobile]);
+  return null;
+}
+
 export function ShowcaseLayout() {
-  return <SidebarProvider>
+  return (
+    <SidebarProvider>
+      <CloseMobileSidebarOnNav />
       <div className="flex min-h-screen w-full">
         <AppSidebar />
-        <div className="flex flex-1 flex-col">
-          <header className="sticky top-0 z-sticky flex h-header items-center justify-between border-b border-border bg-surface px-4">
-            <div className="flex items-center gap-3">
+        <div className="flex min-w-0 flex-1 flex-col">
+          <header className="sticky top-0 z-sticky flex h-header items-center justify-between gap-2 border-b border-border bg-surface px-4">
+            <div className="flex min-w-0 items-center gap-2 sm:gap-3">
               <SidebarTrigger className="lg:hidden" />
               <Logo size={24} />
-              <h1 className="font-mono text-lg font-semibold tracking-tight lowercase">
+              <h1 className="truncate font-mono text-lg font-semibold tracking-tight lowercase">
                 democrito
               </h1>
               <span className="font-mono text-2xs text-muted-foreground">v3</span>
@@ -20,11 +38,12 @@ export function ShowcaseLayout() {
             <ThemeToggle />
           </header>
           <main className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto w-full max-w-5xl">
               <Outlet />
             </div>
           </main>
         </div>
       </div>
-    </SidebarProvider>;
+    </SidebarProvider>
+  );
 }

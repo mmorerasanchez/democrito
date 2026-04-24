@@ -49,7 +49,7 @@ export default function OverviewPage() {
         <Text size="lg" variant="muted" className="max-w-prose">
           A minimal, monochromatic, hand-crafted atomic design system — the visual foundation of prompt-x. Ready to integrate in your app.
         </Text>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button onClick={() => window.open(REPO_URL, "_blank")}>
             <Star className="h-4 w-4" />
             Star on GitHub

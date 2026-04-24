@@ -32,7 +32,7 @@ function Section({ id, title, description, composedOf, children }: { id: string;
           <p className="mt-1 font-mono text-2xs text-accent">Composed of: {composedOf}</p>
         )}
       </div>
-      <div className="rounded-lg border border-border bg-card p-6 space-y-6">{children}</div>
+      <div className="overflow-hidden rounded-lg border border-border bg-card p-6 space-y-6">{children}</div>
     </section>
   );
 }
