@@ -7,13 +7,13 @@
       "name": "democrito",
       "type": "registry:base",
       "title": "democrito",
-      "description": "Minimal, monochromatic atomic design system — warm stone grays with terracotta orange accent. Three themes (dark, light, warm), three fonts, three surfaces.",
+      "description": "Minimal, monochromatic atomic design system — warm stone grays with terracotta orange accent. Three themes (dark, light, warm), three fonts, three surfaces. Tailwind CSS v4 + CSS-first config.",
       "author": "mmorerasanchez",
       "style": "default",
       "iconLibrary": "lucide",
       "baseColor": "stone",
       "dependencies": [
-        "tailwindcss-animate",
+        "tw-animate-css",
         "class-variance-authority",
         "clsx",
         "tailwind-merge",
@@ -38,6 +38,51 @@
         }
       ],
       "cssVars": {
+        "theme": {
+          "font-display": "\"Plus Jakarta Sans\", Poppins, Inter, system-ui, sans-serif",
+          "font-body": "Satoshi, Outfit, Inter, system-ui, sans-serif",
+          "font-mono": "\"JetBrains Mono\", \"IBM Plex Mono\", Consolas, monospace",
+          "color-border": "hsl(var(--border))",
+          "color-input": "hsl(var(--input))",
+          "color-ring": "hsl(var(--ring))",
+          "color-background": "hsl(var(--background))",
+          "color-foreground": "hsl(var(--foreground))",
+          "color-surface": "hsl(var(--surface))",
+          "color-foreground-muted": "hsl(var(--foreground-muted))",
+          "color-foreground-subtle": "hsl(var(--foreground-subtle))",
+          "color-primary": "hsl(var(--primary))",
+          "color-primary-foreground": "hsl(var(--primary-foreground))",
+          "color-secondary": "hsl(var(--secondary))",
+          "color-secondary-foreground": "hsl(var(--secondary-foreground))",
+          "color-destructive": "hsl(var(--destructive))",
+          "color-destructive-foreground": "hsl(var(--destructive-foreground))",
+          "color-muted": "hsl(var(--muted))",
+          "color-muted-foreground": "hsl(var(--muted-foreground))",
+          "color-accent": "hsl(var(--accent))",
+          "color-accent-foreground": "hsl(var(--accent-foreground))",
+          "color-popover": "hsl(var(--popover))",
+          "color-popover-foreground": "hsl(var(--popover-foreground))",
+          "color-card": "hsl(var(--card))",
+          "color-card-foreground": "hsl(var(--card-foreground))",
+          "color-success": "hsl(var(--success))",
+          "color-warning": "hsl(var(--warning))",
+          "color-error": "hsl(var(--error))",
+          "color-info": "hsl(var(--info))",
+          "spacing-header": "var(--header-height)",
+          "spacing-sidebar-w": "var(--sidebar-width)",
+          "spacing-sidebar-collapsed": "var(--sidebar-collapsed)",
+          "spacing-right-panel": "var(--right-panel)",
+          "radius-lg": "var(--radius)",
+          "radius-md": "calc(var(--radius) - 4px)",
+          "radius-sm": "calc(var(--radius) - 8px)",
+          "animate-accordion-down": "accordion-down 0.2s ease-out",
+          "animate-accordion-up": "accordion-up 0.2s ease-out",
+          "animate-ai-pulse": "ai-pulse 1.4s ease-in-out infinite",
+          "animate-ai-cursor": "ai-cursor 1s step-end infinite",
+          "animate-slide-in-right": "slide-in-right 0.3s ease-out",
+          "animate-bulk-bar-in": "bulk-bar-in 0.3s ease-out",
+          "animate-caret-blink": "caret-blink 1.25s ease-out infinite"
+        },
         "dark": {
           "background": "20 14% 4%",
           "foreground": "60 9% 98%",
@@ -60,10 +105,16 @@
           "ring": "18 65% 55%",
           "radius": "0.75rem",
           "surface": "20 8% 8%",
+          "foreground-muted": "24 5% 64%",
+          "foreground-subtle": "24 5% 45%",
           "success": "148 45% 50%",
           "warning": "40 75% 55%",
           "error": "6 65% 60%",
           "info": "215 50% 62%",
+          "header-height": "3.5rem",
+          "sidebar-width": "15rem",
+          "sidebar-collapsed": "4rem",
+          "right-panel": "22rem",
           "sidebar-background": "24 10% 10%",
           "sidebar-foreground": "60 9% 98%",
           "sidebar-primary": "18 65% 55%",
@@ -94,6 +145,8 @@
           "input": "25 8% 89%",
           "ring": "18 65% 55%",
           "surface": "40 6% 97%",
+          "foreground-muted": "20 6% 41%",
+          "foreground-subtle": "20 3% 55%",
           "success": "148 50% 42%",
           "warning": "40 80% 48%",
           "error": "6 70% 52%",
@@ -108,37 +161,40 @@
           "sidebar-ring": "18 65% 55%"
         }
       },
-      "tailwind": {
-        "config": {
-          "theme": {
-            "extend": {
-              "fontFamily": {
-                "display": ["Plus Jakarta Sans", "Poppins", "Inter", "system-ui", "sans-serif"],
-                "body": ["Satoshi", "Outfit", "Inter", "system-ui", "sans-serif"],
-                "mono": ["JetBrains Mono", "IBM Plex Mono", "Consolas", "monospace"]
-              },
-              "colors": {
-                "surface": "hsl(var(--surface))",
-                "success": "hsl(var(--success))",
-                "warning": "hsl(var(--warning))",
-                "error": "hsl(var(--error))",
-                "info": "hsl(var(--info))"
-              },
-              "spacing": {
-                "header": "var(--header-height)",
-                "sidebar-w": "var(--sidebar-width)",
-                "sidebar-collapsed": "var(--sidebar-collapsed)",
-                "right-panel": "var(--right-panel)"
-              }
-            }
-          },
-          "plugins": ["tailwindcss-animate"]
+      "css": {
+        "@keyframes accordion-down": {
+          "from": { "height": "0" },
+          "to": { "height": "var(--radix-accordion-content-height)" }
+        },
+        "@keyframes accordion-up": {
+          "from": { "height": "var(--radix-accordion-content-height)" },
+          "to": { "height": "0" }
+        },
+        "@keyframes ai-pulse": {
+          "0%, 100%": { "opacity": "0.4" },
+          "50%": { "opacity": "1" }
+        },
+        "@keyframes ai-cursor": {
+          "0%, 100%": { "opacity": "1" },
+          "50%": { "opacity": "0" }
+        },
+        "@keyframes slide-in-right": {
+          "from": { "transform": "translateX(100%)" },
+          "to": { "transform": "translateX(0)" }
+        },
+        "@keyframes bulk-bar-in": {
+          "from": { "transform": "translateY(100%)", "opacity": "0" },
+          "to": { "transform": "translateY(0)", "opacity": "1" }
+        },
+        "@keyframes caret-blink": {
+          "0%, 70%, 100%": { "opacity": "1" },
+          "20%, 50%": { "opacity": "0" }
         }
       },
       "categories": ["design-system", "monochromatic", "atomic-design"],
-      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent.\n\n## Three themes\n- **Dark** (default) — deep warm grays\n- **Light** — warm off-whites\n- **Warm** — parchment-toned mid-range\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\nSee https://democrito.design for the full showcase.",
+      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent. Requires Tailwind CSS v4.\n\n## Three themes\n- **Dark** (default, applied via `:root`) — deep warm grays\n- **Light** (`.light` class) — warm off-whites\n- **Warm** (`.warm` class) — parchment-toned mid-range (install the `democrito-warm` registry item)\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\n## Setup\n1. Install Tailwind v4: `npm i -D tailwindcss@^4 @tailwindcss/vite@^4`\n2. Add `@tailwindcss/vite` to `vite.config.ts` plugins\n3. In your `src/index.css`: `@import \"tailwindcss\"; @import \"tw-animate-css\";`\n4. Run `npx shadcn@latest add https://democrito.design/r/democrito.json`\n\nSee https://democrito.design for the full showcase.",
       "meta": {
-        "version": "3.0.0",
+        "version": "3.1.0",
         "license": "MIT",
         "repository": "https://github.com/mmorerasanchez/democrito"
       }
@@ -147,7 +203,7 @@
       "name": "democrito-warm",
       "type": "registry:theme",
       "title": "democrito warm",
-      "description": "Warm parchment theme variant for democrito — mid-range warm tones with a refined terracotta accent.",
+      "description": "Warm parchment theme variant for democrito — mid-range warm tones with a refined terracotta accent. Applied via the `.warm` class on a theme root.",
       "author": "mmorerasanchez",
       "cssVars": {
         "light": {
@@ -171,6 +227,8 @@
           "input": "28 14% 81%",
           "ring": "18 60% 45%",
           "surface": "40 15% 94%",
+          "foreground-muted": "20 6% 41%",
+          "foreground-subtle": "20 3% 55%",
           "success": "152 45% 38%",
           "warning": "38 70% 45%",
           "error": "8 60% 48%",

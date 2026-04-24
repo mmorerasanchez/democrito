@@ -25,3 +25,7 @@ dist-ssr
 
 # Lockfiles (npm is the canonical package manager)
 bun.lockb
+
+# Playwright artifacts
+playwright-report/
+test-results/
