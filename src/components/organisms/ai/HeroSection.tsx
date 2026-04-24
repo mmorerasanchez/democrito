@@ -1,8 +1,6 @@
 import { CodeBlock } from "@/components/atoms";
 import { CopyButton } from "@/components/atoms/CopyButton";
-
-const INSTALL_COMMAND =
-  "npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito";
+import { INSTALL_COMMAND } from "./install-command";
 
 /**
  * Install command CTA. Renders the install snippet in a CodeBlock with the
