@@ -416,10 +416,15 @@ export default function TokensPage() {
   // Match counts so we can hide whole sections + show an empty state.
   const colorMatches = useMemo(
     () =>
-      COLOR_GROUPS.reduce(
-        (acc, g) => acc + g.tokens.filter((t) => matchesQuery(trimmedQuery, t.token, t.label)).length,
-        0,
-      ),
+      COLOR_GROUPS.reduce((acc, g) => {
+        return (
+          acc +
+          g.tokens.filter((t) => {
+            const { hex, hsl } = colorTokenSearchFields(t.token);
+            return matchesQuery(trimmedQuery, t.token, t.label, hex, hsl);
+          }).length
+        );
+      }, 0),
     [trimmedQuery],
   );
   const typeMatches = useMemo(
