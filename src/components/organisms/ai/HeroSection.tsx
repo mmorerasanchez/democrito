@@ -1,22 +1,15 @@
-import { CodeBlock, CopyButton, Heading } from "@/components/atoms";
+import { CodeBlock, CopyButton } from "@/components/atoms";
 
 const INSTALL_COMMAND =
   "npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito";
 
+/**
+ * Install command CTA. The page-level h1/description live in AiPage;
+ * this section only contains the copy-to-clipboard install block.
+ */
 export function HeroSection() {
   return (
-    <section className="flex flex-col gap-6 pt-20 pb-4">
-      <Heading
-        level="h1"
-        className="font-display text-3xl font-bold md:text-4xl"
-      >
-        Built for AI-Native Development
-      </Heading>
-      <p className="max-w-2xl font-body text-lg text-muted-foreground">
-        The first open-source design system with structured AI context files.
-        Drop three files into your project and every AI assistant produces on-brand output.
-      </p>
-
+    <section className="space-y-4">
       {/* Mobile: command in a scrollable CodeBlock with a full-width CopyButton below. */}
       <div className="flex flex-col gap-3 md:hidden">
         <CodeBlock code={INSTALL_COMMAND} language="bash" showCopy={false} />

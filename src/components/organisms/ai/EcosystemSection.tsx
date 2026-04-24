@@ -1,4 +1,4 @@
-import { Heading, Link, Tag, Text } from "@/components/atoms";
+import { Link, Tag, Text } from "@/components/atoms";
 import { Card } from "@/components/ui/card";
 
 interface EcosystemItem {
@@ -43,17 +43,20 @@ const ITEMS: EcosystemItem[] = [
 
 export function EcosystemSection() {
   return (
-    <section className="flex flex-col gap-6">
-      <Heading level="h2" className="text-2xl font-semibold">
+    <section className="space-y-4">
+      <h2 className="font-display text-lg font-medium tracking-tight">
         Ecosystem
-      </Heading>
+      </h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {ITEMS.map((item) => (
-          <Card key={item.name} className="flex flex-col gap-3 p-5">
+          <Card
+            key={item.name}
+            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5"
+          >
             <div className="flex items-start justify-between gap-3">
-              <Heading level="h3" className="text-base">
+              <h3 className="font-display text-base font-medium">
                 {item.name}
-              </Heading>
+              </h3>
               {item.status === "live" ? (
                 <Tag color="emerald">Live</Tag>
               ) : (

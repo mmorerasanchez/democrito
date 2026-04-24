@@ -1,4 +1,4 @@
-import { Heading, Text } from "@/components/atoms";
+import { Text } from "@/components/atoms";
 import { Card } from "@/components/ui/card";
 
 interface FileCardData {
@@ -30,15 +30,15 @@ const FILES: FileCardData[] = [
 
 export function FileArchitectureSection() {
   return (
-    <section className="flex flex-col gap-6">
-      <Heading level="h2" className="text-2xl font-semibold">
+    <section className="space-y-4">
+      <h2 className="font-display text-lg font-medium tracking-tight">
         Three-File Architecture
-      </Heading>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      </h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {FILES.map((file) => (
           <Card
             key={file.filename}
-            className="flex flex-col gap-3 p-5 transition-colors duration-150 hover:border-accent-subtle"
+            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition-colors duration-150 hover:border-accent-subtle"
           >
             <p className="font-mono text-base font-medium text-foreground">
               {file.filename}
