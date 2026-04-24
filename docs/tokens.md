@@ -319,6 +319,55 @@ Dedicated tokens for the sidebar component, themed per theme:
 
 ---
 
+## Interactive Tooling (`/tokens` page)
+
+The `/tokens` showcase page includes built-in tooling for working with tokens:
+
+### Search & Filter
+
+A search box at the top of the page filters all token sections (colors, typography, spacing, radius, shadows) in real time. Matching is case-insensitive and works across:
+
+- Token name (e.g. `accent`, `foreground-muted`)
+- Tailwind class (e.g. `bg-accent`, `text-sm`)
+- Computed HEX value (e.g. `#D47639` or `D47639` — leading `#` is optional)
+- Computed HSL value (e.g. `18 65% 55%`)
+
+Empty sections are hidden automatically. An empty state is shown when no tokens match the query.
+
+### JSON Export
+
+The "Export tokens" button downloads a JSON file named `democrito-tokens-{theme}.json` containing all tokens for the currently active theme. The export schema:
+
+```json
+{
+  "meta": { "generator": "democrito", "theme": "dark", "version": "3.1.0", "exported": "..." },
+  "colors": {
+    "background": { "cssVar": "--background", "tailwind": "bg-background", "hsl": "20 14% 4%", "hex": "#0D0B0A" }
+  },
+  "typography": {
+    "fonts": { "display": "Plus Jakarta Sans", "body": "Satoshi", "mono": "JetBrains Mono" },
+    "scale": [
+      { "label": "2xs", "tailwind": "text-2xs", "size": "0.625rem", "lineHeight": "1.4" }
+    ]
+  },
+  "spacing": [
+    { "name": "header", "tailwind": "h-header", "value": "3.5rem", "cssVar": "--header-height" }
+  ],
+  "radius": [
+    { "name": "lg", "tailwind": "rounded-lg", "value": "var(--radius)", "cssVar": "--radius" }
+  ],
+  "shadows": [
+    { "name": "xs", "tailwind": "shadow-xs" }
+  ]
+}
+```
+
+### Per-Swatch Copy
+
+Each color swatch displays two compact copy chips — one for HEX, one for HSL. Clicking copies the value to the clipboard. The icon flips to a checkmark on success. Uses the async Clipboard API with a `document.execCommand("copy")` fallback for non-secure contexts and older browsers.
+
+---
+
 ## Touch Targets
 
 Minimum interactive element size: **44×44px** (WCAG 2.5.5 AAA).

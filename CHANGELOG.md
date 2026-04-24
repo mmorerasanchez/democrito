@@ -39,6 +39,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The three CSS custom property theme blocks (`:root`, `.light`, `.warm`) are unchanged — the token system is still the source of truth; only the Tailwind integration layer moved.
 - CSS bundle grew from ~83 KB → ~116 KB (+39%) due to `tw-animate-css` shipping a broader catalogue of utilities than `tailwindcss-animate`. JS bundle unchanged.
 
+### Added — `/ai` showcase page integration (Session 9)
+
+- `/ai` route moved from standalone layout into the `ShowcaseLayout` shell — now a peer of `/tokens`, `/atoms`, etc.
+- "AI" tab added to the sidebar navigation with `Bot` icon from Lucide.
+- All 5 AI organism sections (`HeroSection`, `FileArchitectureSection`, `QuickStartSection`, `ComparisonSection`, `EcosystemSection`) restyled to match showcase design patterns: `font-display text-lg font-medium tracking-tight` headings, `space-y-4` section spacing, `rounded-lg border border-border bg-card` cards, `sm:`/`lg:` breakpoint progression.
+- Shared `INSTALL_COMMAND` constant extracted to `src/components/organisms/ai/install-command.ts` — single source of truth for hero and quick-start sections.
+
+### Added — `/tokens` page tooling (Session 9)
+
+- **Search/filter box** — filters color, typography, spacing, radius, and shadow sections by token name, Tailwind class, HEX value, or HSL value. Leading `#` is stripped for hex search convenience. Empty state shown when no tokens match.
+- **JSON export** — "Export tokens" button downloads a `democrito-tokens-{theme}.json` file containing all active-theme tokens with `cssVar`, `tailwind`, `hsl`, and `hex` mappings for colors; `name`, `tailwind`, and `cssVar` for spacing, radius, and shadows; full typography scale with `tailwind` classes.
+- **Per-swatch HEX/HSL copy** — compact copy chips on each color swatch; uses async Clipboard API with `document.execCommand("copy")` fallback for non-secure contexts.
+
+### Added — Responsive audit (Session 9)
+
+- `CloseMobileSidebarOnNav` helper in `ShowcaseLayout` — auto-closes the mobile sidebar drawer on route change.
+- `min-w-0` on the `ShowcaseLayout` flex content column to prevent overflow.
+- Header gap tightened (`gap-2 sm:gap-3`) with `truncate` on the wordmark for 320px safety.
+- `OverviewPage` hero CTAs refactored to `flex-col sm:flex-row` for mobile stacking.
+- `overflow-hidden` safety net added to `AtomsPage` and `MoleculesPage` Section demo wrappers.
+
+### Removed — Legacy `/app` pages (Session 10)
+
+- Deleted 7 prompt-x application pages: `DashboardPage`, `LibraryPage`, `PromptDetailPage`, `PromptEditorPage`, `AIDesignerPage`, `SettingsPage`, `OnboardingPage`.
+- Deleted `ProtectedGate` component (only used by `/app` routes).
+- Removed all `/app` route definitions from `App.tsx`.
+- All organisms, templates, and molecules retained — they're showcased by the design system pages.
+
+### Fixed — Registry token completeness
+
+- `registry.json` `cssVars` expanded: `theme` 75 keys, `dark` 63 keys, `light` 58 keys — added `color-accent-muted`, `color-accent-subtle`, `color-warm-dark`, 8× `color-sidebar-*`, 8× semantic `{success,warning,error,info}-{bg,border}`, 9× `color-category-*`, 4× `color-status-*`.
+- `democrito-warm` theme variant receives the same treatment with warm-specific HSL values.
+- E2E verified: fresh Vite+RTS project installs registry and compiles `bg-category-teal`, `bg-sidebar`, `bg-accent-muted`, `bg-success-bg`, etc.
+
 ---
 
 ## [1.0.0] — 2026-04-17
@@ -229,6 +263,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `LICENSE` — MIT license
 - `src/DESIGN_SYSTEM.md` — complete design system specification (v2.3)
 
+[3.1.0]: https://github.com/mmorerasanchez/democrito/compare/v1.0.0...v3.1.0
+[1.0.0]: https://github.com/mmorerasanchez/democrito/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/mmorerasanchez/democrito/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mmorerasanchez/democrito/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mmorerasanchez/democrito/releases/tag/v0.1.0
