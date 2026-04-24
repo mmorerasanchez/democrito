@@ -14,7 +14,14 @@ export function HeroSection() {
   return (
     <section className="space-y-4">
       <div className="relative">
-        <CodeBlock code={INSTALL_COMMAND} language="bash" showCopy={false} />
+        <CodeBlock
+          code={INSTALL_COMMAND}
+          language="bash"
+          showCopy={false}
+          // Reserve space on the right so the copy button never overlaps
+          // the code, regardless of line length, wrapping, or font size.
+          className="pr-14"
+        />
         <CopyButton
           variant="ghost"
           value={INSTALL_COMMAND}
