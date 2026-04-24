@@ -46,6 +46,7 @@ const App = () => (
               <Route path="/organisms" element={<OrganismsPage />} />
               <Route path="/templates" element={<TemplatesPage />} />
               <Route path="/pages" element={<PagesPage />} />
+              <Route path="/ai" element={<AiPage />} />
             </Route>
             {/* App pages */}
             <Route path="/app" element={<ProtectedGate><AppShell /></ProtectedGate>}>
@@ -58,8 +59,6 @@ const App = () => (
             </Route>
             <Route path="/app/welcome" element={<ProtectedGate><OnboardingPage /></ProtectedGate>} />
             <Route path="/test/tokens" element={<TokenSmokeTest />} />
-            {/* /ai is standalone (no sidebar) — marketing/education page for the AI integration story */}
-            <Route path="/ai" element={<AiPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
