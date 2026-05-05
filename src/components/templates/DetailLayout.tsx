@@ -6,7 +6,7 @@ interface DetailLayoutProps {
   breadcrumb?: ReactNode;
   /** Title area (title + actions) */
   titleBar: ReactNode;
-  /** StatusLifecycleBar or similar status indicator */
+  /** Status indicator slot */
   statusBar?: ReactNode;
   /** Tabs navigation (optional — omitted on saved view) */
   tabs?: ReactNode;

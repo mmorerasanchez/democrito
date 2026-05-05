@@ -1,7 +1,7 @@
 # Using democrito with AI Coding Tools
 
 > How to get consistent, on-system results from AI code generators by providing the right context.
-> democrito is the visual foundation of [prompt-x](https://github.com/mmorerasanchez/prompt-x), a prompt engineering platform.
+> democrito is a production-ready, themeable atomic design system for data-dense, IDE-inspired applications.
 
 ---
 
@@ -163,12 +163,12 @@ Copy-paste this block into any AI tool's context window for on-system results.
 
 ```
 === democrito Design System — Token Reference ===
-(Visual foundation of prompt-x — a prompt engineering platform)
+(General-purpose atomic design system for data-dense, IDE-inspired applications)
 
 ARCHITECTURE: Atomic Design (atoms → molecules → organisms → templates → pages)
 - atoms/: single-purpose, no child components (Heading, Tag, Spinner, Code, Kbd, Link, Text)
 - molecules/: compose 2+ atoms (FormField, SearchBar, StatCard, TokenCounter, TabNav)
-- organisms/: major UI sections (TopBar, DataTable, PromptCard, FilterBar, DashboardStats)
+- organisms/: major UI sections (TopBar, DataTable, FilterBar, DashboardStats, AuthForm)
 - templates/: layout shells, no logic (AppShell, EditorLayout, LibraryLayout, DetailLayout)
 - ui/: shadcn/ui primitives — extend via CVA, never rebuild
 

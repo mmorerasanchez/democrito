@@ -1,5 +1,5 @@
 /**
- * Prototype access control — soft gate for the interactive prompt-x prototype.
+ * Prototype access control — soft gate for the interactive prototype.
  * Change PROTOTYPE_PASSWORD to update the access password.
  */
 

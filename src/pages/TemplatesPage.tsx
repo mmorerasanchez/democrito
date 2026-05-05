@@ -64,7 +64,7 @@ export default function TemplatesPage() {
       <TemplatePreview
         title="Editor Layout"
         description="Split-pane: left editor (50%) + resizer (4px) + right preview/playground (50%). Collapses to stacked on mobile."
-        composedOf="AppShell + PromptEditorPanel + CompiledPreviewPanel"
+        composedOf="AppShell + Editor pane + Preview pane"
         responsive="Split-pane collapses to stacked on md and below"
         layout="split-pane"
         zones={[]}
@@ -80,7 +80,7 @@ export default function TemplatesPage() {
       <TemplatePreview
         title="Library Layout"
         description="FilterBar + card grid/list + Pagination + Bulk Actions (conditional). Card grid: 1-col mobile, 2-col md, 3-col lg."
-        composedOf="AppShell + FilterBar + PromptCard grid + Pagination + BulkActionsBar"
+        composedOf="AppShell + FilterBar + Card grid + Pagination + BulkActionsBar"
         responsive="1-col mobile → 2-col md → 3-col lg"
         layout="sidebar-main"
         zones={[
@@ -103,7 +103,7 @@ export default function TemplatesPage() {
       <TemplatePreview
         title="Detail View Layout"
         description="Header with breadcrumb + title + lifecycle bar + actions. Tabs below. Content area."
-        composedOf="AppShell + BreadcrumbNav + StatusLifecycleBar + Tabs"
+        composedOf="AppShell + BreadcrumbNav + Status indicator + Tabs"
         responsive="Full-width on mobile"
         layout="sidebar-main"
         zones={[
@@ -152,8 +152,8 @@ export default function TemplatesPage() {
 
       <TemplatePreview
         title="Comparison Layout"
-        description="Toolbar with version selectors + sync toggle + close button. 2-column VersionComparison below."
-        composedOf="Toolbar + VersionComparison (2-col diff)"
+        description="Toolbar with version selectors + sync toggle + close button. 2-column diff view below."
+        composedOf="Toolbar + 2-col diff"
         responsive="Stacked columns on mobile"
         layout="comparison"
         zones={[]}

@@ -1,13 +1,13 @@
 # democrito Design System v2.3
 
-> Single Source of Truth · Last updated: 2026-02-12
-> democrito is the visual foundation of [prompt-x](https://github.com/mmorerasanchez/prompt-x) — a prompt engineering platform.
+> Single Source of Truth · Last updated: 2026-05-05
+> democrito is a general-purpose, themeable Atomic Design System for data-dense, IDE-inspired applications.
 
 ---
 
 ## 1. Executive Summary
 
-democrito is the design system powering prompt-x, a prompt engineering platform built on the principle that **Prompts Are Code**. The design system uses monochromatic warm stone grays (95% of surface area), a terracotta orange accent (4%), and semantic colors (1%). It is IDE-inspired with a distraction-free workspace aesthetic, ships 80+ components across 5 atomic layers, supports 3 themes (dark default, light, warm), and meets WCAG 2.1 AA accessibility standards.
+democrito is a production-ready design system for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal platforms. The design system uses monochromatic warm stone grays (95% of surface area), a terracotta orange accent (4%), and semantic colors (1%). It is IDE-inspired with a distraction-free workspace aesthetic, ships 80+ components across 5 atomic layers, supports 3 themes (dark default, light, warm), and meets WCAG 2.1 AA accessibility standards.
 
 ---
 
@@ -17,11 +17,11 @@ democrito is the design system powering prompt-x, a prompt engineering platform 
 |---|---|
 | Monochromatic + Accent | 95% warm stone grays, 4% terracotta orange, 1% semantic |
 | 3-Surface Hierarchy | `background` → `surface` → `card` creates depth without complexity |
-| Prompts Are Code | All user-editable content, variables, model strings use `font-mono` always |
-| Typography as Hierarchy | Display (titles/nav), Body (labels/descriptions), Mono (data/prompts) |
+| Data Is Code | All user-editable content, variables, identifiers, and code use `font-mono` always |
+| Typography as Hierarchy | Display (titles/nav), Body (labels/descriptions), Mono (data/code) |
 | Progressive Disclosure | Start with lightest variant, add complexity on demand |
 | Accessible by Default | WCAG 2.1 AA, 44×44px touch targets, Radix UI primitives |
-| IDE-Inspired | Clean, distraction-free workspace for prompt engineering |
+| IDE-Inspired | Clean, distraction-free workspace for data-dense work |
 
 ---
 
@@ -248,7 +248,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | ParameterControl | custom | Ready | Slider + numeric input for model params |
 | VariableHighlight | custom | Ready | Inline {{variable}} token with accent styling |
 | TokenCounter | custom | Ready | |
-| PromptFieldHeader | custom | Ready | Anatomy field header with dot, label, token count |
+| FieldHeader | custom | Ready | Field header with colored dot, label, token count |
 | StatCard | custom | Ready | Trend shown via +/- prefix and color only (no icons) |
 | EmptyState | custom | Ready | Title + description + CTA button (no icon) |
 | NavItem | custom | Ready | Supports collapsed mode with count badge overlay |
@@ -259,12 +259,10 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | ActivityFeedItem | custom | Ready | Activity row with user, action badge, target, timestamp |
 | VariableEditorRow | custom | Ready | Name/value input pair with delete and highlight state |
 | RunHistoryItem | custom | Ready | Run entry with model, status, tokens, latency |
-| TestCaseRow | custom | Ready | Test case with checkbox, input/expected, status, score |
-| ScoreBreakdown | custom | Ready | Score badge that opens a centered modal with weighted rubric |
 
-### Organisms (15 — showcase)
+### Organisms (19 — public surface)
 
-> Additional prompt-x specific organisms exist in the codebase but are not part of the public design system showcase. They are used exclusively by the interactive prototype.
+> 23 prompt-x example organisms + 2 example molecules (TestCaseRow, ScoreBreakdown) live in `src/examples/prompt-x/`. They are full-featured reference implementations and are NOT part of the public democrito surface.
 
 | Name | Base | Status |
 |---|---|---|

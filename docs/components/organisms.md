@@ -2,7 +2,7 @@
 
 > Major UI sections composed of molecules, atoms, and UI primitives.
 > Directory: `src/components/organisms/`
-> **19 generic components · 5 categories**, plus 5 AI-page showcase organisms and 23 prompt-x-specific organisms (see end of file).
+> **19 components · 5 categories**, plus 5 AI-page showcase organisms. 23 prompt-x example organisms live in [`src/examples/prompt-x/`](../../src/examples/prompt-x/) and are documented at the bottom of this page.
 
 ---
 
@@ -360,11 +360,32 @@ Marketing-page organisms used on the AI overview route (`/ai`). Live in
 
 ---
 
-# prompt-x organisms
+# Examples: prompt-x organisms
 
-The 23 prompt-x-specific organisms currently live alongside the generics in
-`src/components/organisms/` (mixed export). They are slated for extraction to
-`src/examples/prompt-x/` in v3.2.0. They are not part of the public design system
-surface and are not documented individually here — see [`src/components/organisms/`](../../src/components/organisms/)
-for the full list.
-| `hideActions` | `boolean` | `false` | Hide footer buttons |
+The 23 prompt-x-specific organisms live in [`src/examples/prompt-x/`](../../src/examples/prompt-x/). They are NOT exported from the public registry or the main organisms barrel, but stand as full reference implementations of how to compose democrito atoms into a prompt-engineering UI.
+
+| Component | Description |
+|---|---|
+| `AIGenerationPanel` | Right-pane assistant for AI-driven prompt generation, with model picker and streaming output |
+| `AnatomyFieldCard` | Card for a single prompt anatomy field (role / task / examples / etc.) with variable highlighting |
+| `CLEARScorePanel` | CLEAR rubric breakdown panel — five sub-scores plus overall, with critique text |
+| `CompiledPreview` | Live preview of the compiled prompt with resolved variables and token counts |
+| `CreatePromptDialog` | Modal for creating a new prompt — name, description, template picker |
+| `EvalConfirmModal` | Confirmation modal before running an evaluation, surfacing cost + dataset stats |
+| `EvaluationResults` | Results table for a finished evaluation run — per-test-case pass/fail/score |
+| `EvaluationResultsView` | Full-page evaluation results view with summary stats, score chart, and case drill-down |
+| `GlobalVariableManager` | Workspace-level variables editor with scope filters |
+| `ImprovedPromptPanel` | Side-by-side panel showing original vs. AI-improved prompt with apply controls |
+| `PlaygroundPanel` | Run pane — model picker, parameter controls, streaming output, run history |
+| `PresetCard` | Card representing a reusable prompt preset (template + defaults) |
+| `PresetDetailPanel` | Detail view for a preset — anatomy preview, variables, derived runs |
+| `PromptCard` | Library card for a prompt — title, status, last-run, score, action menu |
+| `PromptConfigFields` | Form fields for prompt configuration — model, temperature, top-p, max tokens, etc. |
+| `PromptEditorPanel` | Multi-field anatomy editor with token counters and variable management |
+| `StatusLifecycleBar` | Horizontal lifecycle bar (draft → testing → production → archived) |
+| `TemplatePicker` | Modal picker for choosing a starter template when creating a prompt |
+| `TestDatasetManager` | Test dataset CRUD with rows, expected outputs, and bulk import |
+| `TestRunnerModal` | Modal that streams a multi-test-case run with per-case status badges |
+| `VariableManager` | Per-prompt variable editor — name, default value, description |
+| `VersionComparison` | Two-column diff view comparing two prompt versions |
+| `VersionTimeline` | Vertical timeline of prompt versions with author, timestamp, and inline diff toggle |

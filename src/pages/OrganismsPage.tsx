@@ -293,10 +293,10 @@ function SettingsNavDemo() {
 function OnboardingWizardDemo() {
   const [step, setStep] = useState(1);
   const steps = [
-    { id: "connect", title: "Connect an API Key", description: "Add your OpenAI or Anthropic API key to start using AI models.", completed: true },
-    { id: "create", title: "Create Your First Prompt", description: "Use the editor to build a structured prompt with anatomy fields.", completed: false },
-    { id: "test", title: "Run a Test", description: "Send your prompt to a model and evaluate the response quality.", completed: false },
-    { id: "deploy", title: "Deploy to Production", description: "Promote your prompt from testing to production when it's ready.", completed: false },
+    { id: "connect", title: "Connect an Account", description: "Authenticate to start using the workspace.", completed: true },
+    { id: "create", title: "Create Your First Project", description: "Use the editor to set up a new workspace project.", completed: false },
+    { id: "test", title: "Run a Test", description: "Validate your setup with a test run before going live.", completed: false },
+    { id: "deploy", title: "Deploy to Production", description: "Promote your project from staging to production when it's ready.", completed: false },
   ];
   return (
     <OnboardingWizard

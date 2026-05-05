@@ -6,7 +6,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.2+-06B6D4?logo=tailwindcss&logoColor=white)
 ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-latest-000000?logo=shadcnui&logoColor=white)
 
-**A general-purpose, themeable atomic design system** — the visual foundation of prompt-x, a prompt engineering platform. Built on React, Tailwind CSS, and Radix UI with structured tokens, accessible components, and three-theme support.
+**A production-ready, themeable atomic design system for data-dense, IDE-inspired applications.** Built on React, Tailwind CSS, and Radix UI with structured tokens, accessible components, and three-theme support.
 
 Ship dashboards, editors, workspaces, and data-heavy tools with a consistent visual language that works for both humans and AI agents.
 
@@ -20,7 +20,9 @@ AI-assisted development tools like Lovable, Cursor, v0, and Claude Code generate
 
 **democrito** solves that by providing a **single source of truth** for every visual decision: CSS custom properties as design tokens, pre-built accessible components following Atomic Design, a three-font typography hierarchy, and a monochromatic + accent color philosophy. Whether a human engineer or an AI agent is building the next feature, the output is consistent and professional.
 
-**Use it for:** prompt engineering tools, analytics dashboards, developer platforms, internal tools, AI chat interfaces, or any application where clarity and density matter.
+**Use it for:** dashboards, editors, workspaces, and data-heavy tools.[^1]
+
+[^1]: democrito was originally built as the visual foundation of [prompt-x](https://github.com/mmorerasanchez/prompt-x). It is now product-agnostic; the prompt-x-specific components live in [`src/examples/prompt-x/`](src/examples/prompt-x/).
 
 ---
 
@@ -82,8 +84,8 @@ src/
 │
 ├── components/
 │   ├── atoms/                         # Smallest building blocks (10 components)
-│   ├── molecules/                     # Compositions of atoms (18 components)
-│   ├── organisms/                     # Major UI sections (19 generic + 23 prompt-x)
+│   ├── molecules/                     # Compositions of atoms (16 components)
+│   ├── organisms/                     # Major UI sections (19 components)
 │   ├── templates/                     # Page layout shells (7 components)
 │   └── ui/                            # shadcn/ui primitives (49 components)
 │
@@ -98,12 +100,12 @@ src/
 | Layer | Count | Description |
 | --- | --- | --- |
 | **Atoms** | 10 | Typography, code, tags, links, copy button, spinner |
-| **Molecules** | 18 | Form fields, nav items, stat cards, search, diff, variable editors |
+| **Molecules** | 16 | Form fields, nav items, stat cards, search, diff, variable editors |
 | **Organisms** | 19 | Navigation, tables, auth, settings, data management, API tooling |
 | **Templates** | 7 | Page layout shells (app shell, editor, dashboard, comparison) |
 | **shadcn/ui primitives** | 49 | Radix UI + shadcn base components |
 
-> **Note:** An additional 23 prompt-x-specific organisms currently live alongside the generics in `src/components/organisms/` and are slated for extraction to `src/examples/prompt-x/` in v3.2.0. They are not part of the public design system surface.
+> **Examples:** [`src/examples/prompt-x/`](src/examples/prompt-x/) contains 23 organisms + 2 molecules built for prompt-engineering UIs. They are not part of the public design system surface, but stand as fully-functional reference implementations of how to compose democrito atoms into a real product.
 
 ---
 
@@ -144,7 +146,7 @@ fontFamily: {
 | **Typography as Hierarchy** | Three fonts convey meaning: Display (titles), Body (content), Mono (data) |
 | **Progressive Disclosure** | Start with the lightest variant, add complexity as needed |
 | **Accessible by Default** | WCAG 2.1 AA, 44×44px touch targets, keyboard navigation |
-| **IDE-Inspired** | Clean, distraction-free workspace optimized for prompt engineering |
+| **IDE-Inspired** | Clean, distraction-free workspace optimized for data-dense work |
 
 > See [`docs/principles.md`](docs/principles.md) for the full guide with examples.
 

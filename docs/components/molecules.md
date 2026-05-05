@@ -247,26 +247,26 @@ Single line in a diff view with semantic coloring.
 
 ---
 
-## PromptFieldHeader
+## FieldHeader
 
-Header bar for an anatomy field section with colored dot and token counter.
+Header bar for a labeled field section with a colored category dot and token counter.
 
 **Composes**: `TokenCounter` (molecule)
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `label` | `string` | — | Field name |
-| `field` | `AnatomyField` | — | Anatomy field for color coding |
+| `field` | `AnatomyField` | — | Field category for color coding |
 | `tokenCount` | `number` | — | Token usage |
 | `tokenMax` | `number` | `4000` | Max tokens for progress |
 | `required` | `boolean` | — | Required indicator |
 | `actions` | `ReactNode` | — | Right-side action slot |
 
 ```tsx
-<PromptFieldHeader label="Role" field="role" tokenCount={52} required />
+<FieldHeader label="Role" field="role" tokenCount={52} required />
 ```
 
-**Tokens**: all `bg-anatomy-*` tokens, `font-body`, `font-mono`, `text-error` (required)
+**Tokens**: all `bg-category-*` tokens, `font-body`, `font-mono`, `text-error` (required)
 
 ---
 
@@ -339,50 +339,6 @@ Single run entry in a history list.
 
 ---
 
-## TestCaseRow
-
-Single row in a test dataset table.
-
-**Composes**: `Badge` (ui), `Checkbox` (ui)
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `name` | `string` | — | Test case name |
-| `input` | `string` | — | Input/prompt |
-| `expected` | `string` | — | Expected output |
-| `status` | `"pass" \| "fail" \| "pending" \| "skipped"` | — | Test status |
-| `score` | `number` | — | Score (0-100) |
-| `selected` | `boolean` | `false` | Row selected |
-| `onSelect` | `(selected: boolean) => void` | — | Selection handler |
-| `onClick` | `() => void` | — | Click handler |
-
-```tsx
-<TestCaseRow name="test-01" input="Hello" status="pass" score={92} />
-```
-
-**Tokens**: `font-mono`, `text-success`/`text-warning`/`text-error` (score thresholds), `bg-accent/5` (selected)
-
----
-
-## ScoreBreakdown
-
-Score badge that opens a modal with weighted rubric methodology.
-
-**Composes**: `Badge` (ui), `Dialog`/`DialogContent` (ui), `ChevronDown` (lucide)
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `score` | `number` | `90` | Overall score |
-| `criteria` | `ScoreCriterion[]` | default 5 criteria | Score breakdown |
-
-```tsx
-<ScoreBreakdown score={87} />
-```
-
-**Tokens**: `font-mono`, `bg-card`, `border-border`, `text-success`/`text-warning`/`text-error`, `font-display` (modal headings)
-
----
-
 ## ParameterControl
 
 Labeled slider + numeric input for model parameters.
@@ -404,3 +360,18 @@ Labeled slider + numeric input for model parameters.
 ```
 
 **Tokens**: `font-body` (label), `font-mono` (value/unit), `text-muted-foreground`
+
+
+---
+
+# Examples: prompt-x molecules
+
+The following molecules live in [`src/examples/prompt-x/`](../../src/examples/prompt-x/) and are NOT part of the public molecules barrel. They are full reference implementations for prompt-engineering UIs, importable for projects building on the prompt-x stack.
+
+## TestCaseRow
+
+Single row in a test dataset table — checkbox, name, input/expected preview, status badge, and score.
+
+## ScoreBreakdown
+
+Score badge that opens a centered modal with a weighted-rubric breakdown.

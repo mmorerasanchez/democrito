@@ -1,6 +1,6 @@
 # Getting Started with democrito
 
-> democrito is an **atomic design system** and **visual foundation** for prompt engineering tools, dashboards, and AI-powered applications. Ship consistent, themeable interfaces across React, Next.js, Astro, Vue, and Svelte — or integrate with Claude Code, Lovable, v0, and other AI development tools.
+> democrito is an **atomic design system** for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal platforms. Ship consistent, themeable interfaces across React, Next.js, Astro, Vue, and Svelte — or integrate with Claude Code, Lovable, v0, and other AI development tools.
 
 Whether you're a **developer integrating democrito into your project** or a **contributor exploring the codebase**, this guide has the path for you.
 

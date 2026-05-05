@@ -537,7 +537,7 @@ and tools. This is how they relate:
 
 ### For Products Built on democrito
 
-If you're building a product on top of democrito (like prompt-x),
+If you're building a product on top of democrito,
 create your own `DESIGN.md` that:
 
 1. References democrito as the visual foundation

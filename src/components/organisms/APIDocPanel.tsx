@@ -124,7 +124,7 @@ export function APIDocPanel({ className }: APIDocPanelProps) {
           <div className="space-y-1">
             <span className="font-body text-xs text-muted-foreground">Base URL</span>
             <div className="flex items-center gap-2 rounded-md border border-border bg-surface px-3 py-2">
-              <code className="font-mono text-sm text-accent">https://api.prompt-x.io/api/v1</code>
+              <code className="font-mono text-sm text-accent">https://api.example.com/v1</code>
               <Button variant="ghost" size="icon" className="ml-auto h-7 w-7 min-h-0 min-w-0">
                 <Copy className="h-3 w-3" />
               </Button>
