@@ -265,9 +265,10 @@ IDE-inspired, clean, distraction-free aesthetic.
 
 ---
 
-## License
+## License & Usage
 
-MIT — see [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE) for the license and [USAGE.md](USAGE.md) for usage
+terms, attribution guidance, and the paid kit license summary.
 
 ---
 

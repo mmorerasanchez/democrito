@@ -164,8 +164,7 @@ Tokens ──▶ Atoms ──▶ Molecules ──▶ Organisms ──▶ Templat
 
 | File | Role |
 |---|---|
-| `src/index.css` | **Source of truth** — CSS custom properties in HSL, defined for all three themes (Dark, Light, Warm) |
-| `tailwind.config.ts` | **Tailwind bridge** — maps CSS variables to utility classes (`bg-surface`, `text-accent`, etc.) |
+| `src/index.css` | **Source of truth** — CSS custom properties in HSL + CSS-first `@theme` block that maps tokens to Tailwind utilities (`bg-surface`, `text-accent`, etc.). Defined for all three themes (Dark, Light, Warm). |
 
 ### Token categories
 

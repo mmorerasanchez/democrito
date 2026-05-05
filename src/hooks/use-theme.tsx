@@ -11,7 +11,7 @@ const ThemeContext = createContext<ThemeContextType>({ theme: "warm", setTheme: 
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem("promptx-theme") as Theme | null;
+    const stored = localStorage.getItem("democrito-theme") as Theme | null;
     return stored || "warm";
   });
 
@@ -19,7 +19,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const root = document.documentElement;
     root.classList.remove("dark", "light", "warm");
     root.classList.add(theme);
-    localStorage.setItem("promptx-theme", theme);
+    localStorage.setItem("democrito-theme", theme);
   }, [theme]);
 
   return (

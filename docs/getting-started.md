@@ -73,7 +73,7 @@ import "./index.css";
 
 **2. Copy the Tailwind config**
 
-If using Tailwind CSS, copy the font families, spacing, colors, and animation sections from `tailwind.config.ts` into your project's config.
+If using Tailwind CSS, these are already in `src/index.css` under the `@theme` block — copy that block into your project's CSS.
 
 **3. Add the three fonts**
 
@@ -125,7 +125,6 @@ In your `.cursorrules` file or in a prompt:
 ```
 @CLAUDE.md
 @src/index.css
-@tailwind.config.ts
 ```
 
 The agent will read democrito's token definitions and generate components that integrate seamlessly.
@@ -275,7 +274,7 @@ src/
 ├── hooks/                     # Custom React hooks (use-theme, use-mobile)
 └── lib/                       # Utilities (cn helper, etc.)
 
-tailwind.config.ts            # Tailwind token mappings
+# No config file — Tailwind v4 uses CSS-first @theme in src/index.css
 design-tokens.json            # W3C DTCG format for tooling interop
 CLAUDE.md                      # AI agent context (auto-read by Claude Code, Cursor)
 CONTRIBUTING.md               # Contribution guidelines
