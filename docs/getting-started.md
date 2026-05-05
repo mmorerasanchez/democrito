@@ -28,7 +28,7 @@ npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito
 - **Three Google Fonts** — Plus Jakarta Sans (display), Satoshi (body), JetBrains Mono (data)
 - **cn() utility** — classname merging for conditional styles
 - **Three-surface depth hierarchy** — background → surface → card
-- **Three theme definitions** — dark (default), light, warm
+- **Three theme definitions** — warm (default, `:root`), dark (`.dark`), light (`.light`)
 
 **Important:** This does NOT install React components. democrito provides the **design tokens and visual foundation** that makes shadcn/ui components (button, card, input, etc.) look consistent with your design system. Install shadcn components separately as needed:
 
@@ -36,23 +36,24 @@ npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito
 npx shadcn@latest add button card input
 ```
 
-**For the warm theme variant**, also run:
-
-```bash
-npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito-warm
-```
-
-**After installation**, switch themes by adding a class to your root element:
+**After installation**, the warm palette is the default — `:root` already carries it. Switch to dark or light by adding a class to your root element:
 
 ```html
-<!-- Dark (default) -->
+<!-- Warm (default) -->
 <html>
+
+<!-- Dark -->
+<html class="dark">
 
 <!-- Light -->
 <html class="light">
+```
 
-<!-- Warm -->
-<html class="warm">
+The `democrito-warm` registry item is retained as a backwards-compatible alias and is no longer required for the warm theme:
+
+```bash
+# Optional — only needed if you want the explicit `.warm` selector for backwards-compat:
+npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito-warm
 ```
 
 ---

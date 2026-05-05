@@ -36,7 +36,7 @@ When generating or reviewing democrito code, apply this order:
 1. **Tokens first.** Never hardcode colors, spacing, or radii. Every visual value comes from `src/index.css` CSS custom properties, mapped through `tailwind.config.ts`. Use Tailwind utility classes bound to tokens (`bg-surface`, `text-foreground-muted`, `border-border`) — never `bg-gray-800` or `text-white`.
 2. **Three-surface hierarchy.** Build depth with `--background` → `--surface` → `--card`, in that order. Inputs must not share a surface with their containing card.
 3. **Three-font system.** `font-display` for headings, `font-body` for prose, `font-mono` for all data, code, user-generated content, and tokens/commands.
-4. **Three-theme compliance.** Every new color token must be defined in all three themes: `:root` (dark, default), `.light`, and `.warm`.
+4. **Three-theme compliance.** Every new color token must be defined in all three themes: `:root` (warm, default), `.dark`, and `.light`.
 5. **Principles gate.** Changes must respect the six principles from `principles.md`:
    1. Monochromatic + Accent
    2. 3-Surface Hierarchy

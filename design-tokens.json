@@ -8,165 +8,165 @@
 
     "background": {
       "$description": "Page background — darkest surface layer",
-      "dark":  { "$value": "hsl(20 14% 4%)" },
+      "warm":  { "$value": "hsl(30 18% 91%)" },
       "light": { "$value": "hsl(30 5% 96%)" },
-      "warm":  { "$value": "hsl(30 18% 91%)" }
+      "dark":  { "$value": "hsl(20 14% 4%)" }
     },
     "surface": {
       "$description": "Panels, sidebars, headers — mid-layer",
-      "dark":  { "$value": "hsl(20 8% 8%)" },
+      "warm":  { "$value": "hsl(40 15% 94%)" },
       "light": { "$value": "hsl(40 6% 97%)" },
-      "warm":  { "$value": "hsl(40 15% 94%)" }
+      "dark":  { "$value": "hsl(20 8% 8%)" }
     },
     "card": {
       "$description": "Cards, dialogs, elevated content — top layer",
-      "dark":  { "$value": "hsl(12 6% 15%)" },
+      "warm":  { "$value": "hsl(30 25% 97%)" },
       "light": { "$value": "hsl(40 8% 99%)" },
-      "warm":  { "$value": "hsl(30 25% 97%)" }
+      "dark":  { "$value": "hsl(12 6% 15%)" }
     },
     "foreground": {
       "$description": "Primary text color",
-      "dark":  { "$value": "hsl(60 9% 98%)" },
+      "warm":  { "$value": "hsl(12 6% 15%)" },
       "light": { "$value": "hsl(24 10% 10%)" },
-      "warm":  { "$value": "hsl(12 6% 15%)" }
+      "dark":  { "$value": "hsl(60 9% 98%)" }
     },
     "foreground-muted": {
       "$description": "Secondary text — timestamps, labels",
-      "dark":  { "$value": "hsl(24 5% 64%)" },
+      "warm":  { "$value": "hsl(20 6% 41%)" },
       "light": { "$value": "hsl(20 6% 41%)" },
-      "warm":  { "$value": "hsl(20 6% 41%)" }
+      "dark":  { "$value": "hsl(24 5% 64%)" }
     },
     "foreground-subtle": {
       "$description": "Tertiary text — placeholders, hints",
-      "dark":  { "$value": "hsl(24 5% 45%)" },
+      "warm":  { "$value": "hsl(20 3% 55%)" },
       "light": { "$value": "hsl(20 3% 55%)" },
-      "warm":  { "$value": "hsl(20 3% 55%)" }
+      "dark":  { "$value": "hsl(24 5% 45%)" }
     },
 
     "primary": {
       "$description": "Standard button fills — inverts with theme",
-      "dark":  { "$value": "hsl(20 6% 90%)" },
+      "warm":  { "$value": "hsl(15 10% 22%)" },
       "light": { "$value": "hsl(24 10% 10%)" },
-      "warm":  { "$value": "hsl(15 10% 22%)" }
+      "dark":  { "$value": "hsl(20 6% 90%)" }
     },
     "primary-foreground": {
-      "dark":  { "$value": "hsl(20 14% 4%)" },
+      "warm":  { "$value": "hsl(30 25% 97%)" },
       "light": { "$value": "hsl(40 6% 98%)" },
-      "warm":  { "$value": "hsl(30 25% 97%)" }
+      "dark":  { "$value": "hsl(20 14% 4%)" }
     },
     "secondary": {
-      "dark":  { "$value": "hsl(20 8% 17%)" },
+      "warm":  { "$value": "hsl(28 14% 87%)" },
       "light": { "$value": "hsl(30 8% 93%)" },
-      "warm":  { "$value": "hsl(28 14% 87%)" }
+      "dark":  { "$value": "hsl(20 8% 17%)" }
     },
     "secondary-foreground": {
-      "dark":  { "$value": "hsl(60 9% 98%)" },
+      "warm":  { "$value": "hsl(12 6% 15%)" },
       "light": { "$value": "hsl(24 10% 10%)" },
-      "warm":  { "$value": "hsl(12 6% 15%)" }
+      "dark":  { "$value": "hsl(60 9% 98%)" }
     },
     "muted": {
-      "dark":  { "$value": "hsl(24 10% 12%)" },
+      "warm":  { "$value": "hsl(25 12% 88%)" },
       "light": { "$value": "hsl(25 6% 91%)" },
-      "warm":  { "$value": "hsl(25 12% 88%)" }
+      "dark":  { "$value": "hsl(24 10% 12%)" }
     },
     "muted-foreground": {
-      "dark":  { "$value": "hsl(24 5% 64%)" },
+      "warm":  { "$value": "hsl(20 6% 41%)" },
       "light": { "$value": "hsl(20 6% 41%)" },
-      "warm":  { "$value": "hsl(20 6% 41%)" }
+      "dark":  { "$value": "hsl(24 5% 64%)" }
     },
 
     "accent": {
       "$description": "Primary CTA — terracotta orange",
-      "dark":  { "$value": "hsl(18 65% 55%)" },
+      "warm":  { "$value": "hsl(18 60% 45%)" },
       "light": { "$value": "hsl(18 65% 55%)" },
-      "warm":  { "$value": "hsl(18 60% 45%)" }
+      "dark":  { "$value": "hsl(18 65% 55%)" }
     },
     "accent-foreground": {
-      "dark":  { "$value": "hsl(60 9% 98%)" },
+      "warm":  { "$value": "hsl(30 25% 97%)" },
       "light": { "$value": "hsl(40 6% 99%)" },
-      "warm":  { "$value": "hsl(30 25% 97%)" }
+      "dark":  { "$value": "hsl(60 9% 98%)" }
     },
     "accent-muted": {
       "$description": "Soft terracotta — hover states, disabled badges",
-      "dark":  { "$value": "hsl(18 40% 30%)" },
+      "warm":  { "$value": "hsl(18 38% 55%)" },
       "light": { "$value": "hsl(18 35% 65%)" },
-      "warm":  { "$value": "hsl(18 38% 55%)" }
+      "dark":  { "$value": "hsl(18 40% 30%)" }
     },
     "accent-subtle": {
       "$description": "Warm highlight — code blocks, active tab selection",
-      "dark":  { "$value": "hsl(20 15% 10%)" },
+      "warm":  { "$value": "hsl(30 15% 92%)" },
       "light": { "$value": "hsl(30 12% 94%)" },
-      "warm":  { "$value": "hsl(30 15% 92%)" }
+      "dark":  { "$value": "hsl(20 15% 10%)" }
     },
     "warm-dark": {
       "$description": "High-contrast emphasis text on warm-toned surfaces",
-      "dark":  { "$value": "hsl(20 8% 72%)" },
+      "warm":  { "$value": "hsl(20 14% 30%)" },
       "light": { "$value": "hsl(20 12% 36%)" },
-      "warm":  { "$value": "hsl(20 14% 30%)" }
+      "dark":  { "$value": "hsl(20 8% 72%)" }
     },
 
     "destructive": {
-      "dark":  { "$value": "hsl(6 65% 60%)" },
+      "warm":  { "$value": "hsl(8 60% 48%)" },
       "light": { "$value": "hsl(6 70% 52%)" },
-      "warm":  { "$value": "hsl(8 60% 48%)" }
+      "dark":  { "$value": "hsl(6 65% 60%)" }
     },
     "destructive-foreground": {
-      "dark":  { "$value": "hsl(60 9% 98%)" },
+      "warm":  { "$value": "hsl(30 25% 97%)" },
       "light": { "$value": "hsl(40 6% 99%)" },
-      "warm":  { "$value": "hsl(30 25% 97%)" }
+      "dark":  { "$value": "hsl(60 9% 98%)" }
     },
 
     "border": {
-      "dark":  { "$value": "hsl(25 8% 25%)" },
+      "warm":  { "$value": "hsl(28 14% 81%)" },
       "light": { "$value": "hsl(25 8% 89%)" },
-      "warm":  { "$value": "hsl(28 14% 81%)" }
+      "dark":  { "$value": "hsl(25 8% 25%)" }
     },
     "input": {
-      "dark":  { "$value": "hsl(20 8% 17%)" },
+      "warm":  { "$value": "hsl(28 14% 81%)" },
       "light": { "$value": "hsl(25 8% 89%)" },
-      "warm":  { "$value": "hsl(28 14% 81%)" }
+      "dark":  { "$value": "hsl(20 8% 17%)" }
     },
     "ring": {
-      "dark":  { "$value": "hsl(18 65% 55%)" },
+      "warm":  { "$value": "hsl(18 60% 45%)" },
       "light": { "$value": "hsl(18 65% 55%)" },
-      "warm":  { "$value": "hsl(18 60% 45%)" }
+      "dark":  { "$value": "hsl(18 65% 55%)" }
     },
 
     "popover": {
-      "dark":  { "$value": "hsl(12 6% 15%)" },
+      "warm":  { "$value": "hsl(30 25% 97%)" },
       "light": { "$value": "hsl(40 8% 99%)" },
-      "warm":  { "$value": "hsl(30 25% 97%)" }
+      "dark":  { "$value": "hsl(12 6% 15%)" }
     },
     "popover-foreground": {
-      "dark":  { "$value": "hsl(60 9% 98%)" },
+      "warm":  { "$value": "hsl(12 6% 15%)" },
       "light": { "$value": "hsl(24 10% 10%)" },
-      "warm":  { "$value": "hsl(12 6% 15%)" }
+      "dark":  { "$value": "hsl(60 9% 98%)" }
     },
 
     "semantic": {
       "success": {
         "$description": "Positive feedback",
-        "dark":  { "$value": "hsl(148 45% 50%)" },
+        "warm":  { "$value": "hsl(152 45% 38%)" },
         "light": { "$value": "hsl(148 50% 42%)" },
-        "warm":  { "$value": "hsl(152 45% 38%)" }
+        "dark":  { "$value": "hsl(148 45% 50%)" }
       },
       "warning": {
         "$description": "Caution feedback",
-        "dark":  { "$value": "hsl(40 75% 55%)" },
+        "warm":  { "$value": "hsl(38 70% 45%)" },
         "light": { "$value": "hsl(40 80% 48%)" },
-        "warm":  { "$value": "hsl(38 70% 45%)" }
+        "dark":  { "$value": "hsl(40 75% 55%)" }
       },
       "error": {
         "$description": "Error / danger feedback",
-        "dark":  { "$value": "hsl(6 65% 60%)" },
+        "warm":  { "$value": "hsl(8 60% 48%)" },
         "light": { "$value": "hsl(6 70% 52%)" },
-        "warm":  { "$value": "hsl(8 60% 48%)" }
+        "dark":  { "$value": "hsl(6 65% 60%)" }
       },
       "info": {
         "$description": "Informational feedback",
-        "dark":  { "$value": "hsl(215 50% 62%)" },
+        "warm":  { "$value": "hsl(215 45% 48%)" },
         "light": { "$value": "hsl(215 55% 52%)" },
-        "warm":  { "$value": "hsl(215 45% 48%)" }
+        "dark":  { "$value": "hsl(215 50% 62%)" }
       }
     },
 
@@ -193,29 +193,29 @@
 
     "sidebar": {
       "background": {
-        "dark":  { "$value": "hsl(24 10% 10%)" },
+        "warm":  { "$value": "hsl(40 15% 94%)" },
         "light": { "$value": "hsl(40 6% 97%)" },
-        "warm":  { "$value": "hsl(40 15% 94%)" }
+        "dark":  { "$value": "hsl(24 10% 10%)" }
       },
       "foreground": {
-        "dark":  { "$value": "hsl(60 9% 98%)" },
+        "warm":  { "$value": "hsl(12 6% 15%)" },
         "light": { "$value": "hsl(24 10% 10%)" },
-        "warm":  { "$value": "hsl(12 6% 15%)" }
+        "dark":  { "$value": "hsl(60 9% 98%)" }
       },
       "primary": {
-        "dark":  { "$value": "hsl(18 65% 55%)" },
+        "warm":  { "$value": "hsl(18 60% 45%)" },
         "light": { "$value": "hsl(18 65% 55%)" },
-        "warm":  { "$value": "hsl(18 60% 45%)" }
+        "dark":  { "$value": "hsl(18 65% 55%)" }
       },
       "accent": {
-        "dark":  { "$value": "hsl(24 10% 14%)" },
+        "warm":  { "$value": "hsl(28 14% 87%)" },
         "light": { "$value": "hsl(30 8% 93%)" },
-        "warm":  { "$value": "hsl(28 14% 87%)" }
+        "dark":  { "$value": "hsl(24 10% 14%)" }
       },
       "border": {
-        "dark":  { "$value": "hsl(30 6% 25%)" },
+        "warm":  { "$value": "hsl(28 14% 81%)" },
         "light": { "$value": "hsl(25 8% 89%)" },
-        "warm":  { "$value": "hsl(28 14% 81%)" }
+        "dark":  { "$value": "hsl(30 6% 25%)" }
       }
     }
   },

@@ -2,7 +2,7 @@
 
 > How to customize the design system for your specific product or brand.
 
-The design system ships with a warm, monochromatic palette and three themes (Dark, Light, Warm). Everything is built on CSS custom properties and Tailwind mappings — **you never touch component code to rebrand**.
+The design system ships with a warm, monochromatic palette as the default and two opt-in variants — **Warm** (`:root`, default), **Dark** (`.dark`), **Light** (`.light`). Everything is built on CSS custom properties and Tailwind mappings — **you never touch component code to rebrand**.
 
 ---
 

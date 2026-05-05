@@ -191,7 +191,7 @@ COLORS (use Tailwind classes, never hardcode):
 SPACING: 4px base grid. Layout: h-header=56px, w-sidebar-w=240px, w-right-panel=352px
 RADII: rounded-sm=4px, rounded-md=8px, rounded-lg=12px, rounded-full=pill
 Z-INDEX: dropdown=50, sticky=100, overlay=200, modal=300, toast=400
-THEMES: 3 themes (dark default, .light, .warm) — all via CSS variables, auto-switching
+THEMES: 3 themes — warm default (`:root`), `.dark`, `.light` — all via CSS variables, auto-switching
 
 RULES:
 1. Check existing atoms before creating new components

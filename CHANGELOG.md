@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.1] — 2026-05-05
+
+### Changed — Warm is now the default theme
+
+- `:root` now carries the warm palette (Sanzo Wada–derived stone + terracotta). Dark and light themes are class-toggled via `.dark` / `.light`.
+- `:root` selector also retains `.warm` as a backwards-compatible alias — existing apps using `<body class="warm">` continue to work.
+- The `democrito-warm` registry entry is retained as a no-op alias for backwards compatibility.
+- Theme-invariant tokens (`--radius`, `--category-*`, `--status-*`, layout, z-index, motion, `--ai-*`) are now defined on `:root` so they apply unconditionally regardless of theme class.
+- `ThemeToggle` cycle order is now Warm → Dark → Light. The Warm button's `aria-label` includes "(default)".
+- Default theme state in `useTheme` initializer is now `"warm"`.
+- All documentation, skill files, and preview HTML updated to lead with warm.
+
+### Updated
+
+- `design-tokens.json` per-token sub-keys reordered to list `warm` first.
+- `registry.json` base description, `docs` block, and `democrito-warm` variant description updated to reflect warm-as-default.
+- `awesome-design-md-submission/preview.html` retitled and re-tokenised to the warm palette.
+
 ## [3.2.0] — 2026-05-05
 
 ### Changed

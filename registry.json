@@ -7,7 +7,7 @@
       "name": "democrito",
       "type": "registry:base",
       "title": "democrito",
-      "description": "Minimal, monochromatic atomic design system — warm stone grays with terracotta orange accent. Three themes (dark, light, warm), three fonts, three surfaces. Tailwind CSS v4 + CSS-first config.",
+      "description": "Minimal, monochromatic atomic design system — warm stone grays with terracotta orange accent. Three themes — warm (default, `:root`), dark (`.dark`), light (`.light`) — three fonts, three surfaces. Tailwind CSS v4 + CSS-first config.",
       "author": "mmorerasanchez",
       "style": "default",
       "iconLibrary": "lucide",
@@ -272,9 +272,9 @@
         }
       },
       "categories": ["design-system", "monochromatic", "atomic-design"],
-      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent. Requires Tailwind CSS v4.\n\n## Three themes\n- **Dark** (default, applied via `:root`) — deep warm grays\n- **Light** (`.light` class) — warm off-whites\n- **Warm** (`.warm` class) — parchment-toned mid-range (install the `democrito-warm` registry item)\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\n## Setup\n1. Install Tailwind v4: `npm i -D tailwindcss@^4 @tailwindcss/vite@^4`\n2. Add `@tailwindcss/vite` to `vite.config.ts` plugins\n3. In your `src/index.css`: `@import \"tailwindcss\"; @import \"tw-animate-css\";`\n4. Run `npx shadcn@latest add https://democrito.design/r/democrito.json`\n\nSee https://democrito.design for the full showcase.",
+      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent. Requires Tailwind CSS v4.\n\n## Three themes\n- **Warm** (default, applied via `:root`) — Sanzo Wada earth-tones, terracotta accent\n- **Dark** (`.dark` class) — deep cold stone grays\n- **Light** (`.light` class) — warm off-whites\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\n## Setup\n1. Install Tailwind v4: `npm i -D tailwindcss@^4 @tailwindcss/vite@^4`\n2. Add `@tailwindcss/vite` to `vite.config.ts` plugins\n3. In your `src/index.css`: `@import \"tailwindcss\"; @import \"tw-animate-css\";`\n4. Run `npx shadcn@latest add https://democrito.design/r/democrito.json`\n\nSee https://democrito.design for the full showcase.",
       "meta": {
-        "version": "3.1.0",
+        "version": "3.2.1",
         "license": "MIT",
         "repository": "https://github.com/mmorerasanchez/democrito"
       }
@@ -283,7 +283,7 @@
       "name": "democrito-warm",
       "type": "registry:theme",
       "title": "democrito warm",
-      "description": "Warm parchment theme variant for democrito — mid-range warm tones with a refined terracotta accent. Applied via the `.warm` class on a theme root.",
+      "description": "Warm theme variant for democrito — now the default theme, retained as a no-op alias for backwards compatibility. Applied via the `.warm` class on a theme root, or omit the class entirely (`:root` already carries the warm palette).",
       "author": "mmorerasanchez",
       "cssVars": {
         "light": {
