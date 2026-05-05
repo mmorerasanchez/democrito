@@ -91,7 +91,7 @@ Accessibility is not an afterthought or an enhancement — it's a baseline requi
 
 ## 6. IDE-Inspired
 
-**Clean, distraction-free workspace optimized for prompt engineering.**
+**Clean, distraction-free workspace optimized for data-dense work.**
 
 democrito is designed for tools, not toys. The visual language borrows from code editors and developer tools: high information density, precise alignment, monospaced data, and minimal ornamentation. The interface should feel like a professional workspace where every pixel earns its place.
 

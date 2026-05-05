@@ -1,9 +1,10 @@
 # CLAUDE.md — AI Agent Context
 
 > This file is auto-read by AI coding agents (Claude Code, Cursor, Windsurf, etc.)
-> working with **democrito**, an Atomic Design System and the visual foundation of
-> [prompt-x](https://github.com/mmorerasanchez/prompt-x) — a prompt engineering platform.
-> It provides essential project context to produce consistent, on-system code from the first generation.
+> working with **democrito**, a general-purpose, themeable Atomic Design System for
+> data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal
+> platforms. It provides essential project context to produce consistent, on-system
+> code from the first generation.
 
 > **⚠️ Themeable system.** This is a general-purpose, brandable design system. Before
 > using default token values, check `src/index.css` (the `@theme` block) for any

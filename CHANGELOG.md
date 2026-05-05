@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.0] — 2026-05-05
+
+### Changed
+
+- **democrito is now product-agnostic.** All prompt-x–specific organisms and molecules have moved to [`src/examples/prompt-x/`](src/examples/prompt-x/) — out of the public design system surface.
+- Public organism count: **42 → 19** (23 prompt-x organisms moved to `src/examples/prompt-x/`).
+- Public molecule count: **18 → 16** (`TestCaseRow`, `ScoreBreakdown` moved to `src/examples/prompt-x/`).
+- `PromptFieldHeader` renamed to **`FieldHeader`** — generic field header molecule.
+
+### Removed
+
+- All prompt-x origin framing from `README.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `DESIGN.md`, `src/DESIGN_SYSTEM.md`, skill files, and docs. Single surviving references: a footnote in `README.md` and the sub-header on the Overview page.
+
+### Added
+
+- `src/examples/prompt-x/` — 23 organisms + 2 molecules, fully intact and importable for projects building on the prompt-x stack.
+- `## Examples: prompt-x organisms` and `## Examples: prompt-x molecules` sections in `docs/components/`.
+
+---
+
 ## [3.1.1] — 2026-05-05
 
 ### Fixed

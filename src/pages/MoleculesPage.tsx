@@ -10,12 +10,11 @@ import { EmptyState } from "@/components/molecules/EmptyState";
 import { TabNav } from "@/components/molecules/TabNav";
 import { ParameterControl } from "@/components/molecules/ParameterControl";
 import { VariableHighlight } from "@/components/molecules/VariableHighlight";
-import { PromptFieldHeader } from "@/components/molecules/PromptFieldHeader";
+import { FieldHeader } from "@/components/molecules/FieldHeader";
 import { DiffLine } from "@/components/molecules/DiffLine";
 import { ActivityFeedItem } from "@/components/molecules/ActivityFeedItem";
 import { VariableEditorRow } from "@/components/molecules/VariableEditorRow";
 import { RunHistoryItem } from "@/components/molecules/RunHistoryItem";
-import { TestCaseRow } from "@/components/molecules/TestCaseRow";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -202,9 +201,9 @@ export default function MoleculesPage() {
       {/* ── EMPTY STATE ── */}
       <Section id="empty-state" title="Empty State" description="Centered placeholder for empty views with title, description, and CTA." composedOf="Title + Description + CTA Button">
         <EmptyState
-          title="No prompts yet"
-          description="Create your first prompt to get started with prompt engineering."
-          action={{ label: "Create Prompt", onClick: () => {} }}
+          title="No items yet"
+          description="Create your first item to get started."
+          action={{ label: "Create Item", onClick: () => {} }}
         />
         <CodeBlock>{`<EmptyState title="..." description="..." action={{ label: "Create", onClick: fn }} />`}</CodeBlock>
       </Section>
@@ -236,15 +235,15 @@ export default function MoleculesPage() {
         <CodeBlock>{`<VariableHighlight name="user_name" resolvedValue="John" unresolved onClick={fn} />`}</CodeBlock>
       </Section>
 
-      {/* ── PROMPT FIELD HEADER ── */}
-      <Section id="prompt-field-header" title="Prompt Field Header" description="Header bar for an anatomy field section with colored dot, label, token count, and actions." composedOf="Dot + Label + TokenCounter + Actions slot">
+      {/* ── FIELD HEADER ── */}
+      <Section id="field-header" title="Field Header" description="Header bar for a labeled field section with colored dot, label, token count, and actions." composedOf="Dot + Label + TokenCounter + Actions slot">
         <div className="space-y-2 max-w-lg">
-          <PromptFieldHeader field="role" label="Role" tokenCount={120} required />
-          <PromptFieldHeader field="task" label="Task" tokenCount={340} actions={<Button variant="ghost" size="sm">Edit</Button>} />
-          <PromptFieldHeader field="constraints" label="Constraints" tokenCount={80} />
-          <PromptFieldHeader field="examples" label="Examples" tokenCount={3800} tokenMax={4000} />
+          <FieldHeader field="role" label="Role" tokenCount={120} required />
+          <FieldHeader field="task" label="Task" tokenCount={340} actions={<Button variant="ghost" size="sm">Edit</Button>} />
+          <FieldHeader field="constraints" label="Constraints" tokenCount={80} />
+          <FieldHeader field="examples" label="Examples" tokenCount={3800} tokenMax={4000} />
         </div>
-        <CodeBlock>{`<PromptFieldHeader field="role" label="Role" tokenCount={120} required actions={...} />`}</CodeBlock>
+        <CodeBlock>{`<FieldHeader field="role" label="Role" tokenCount={120} required actions={...} />`}</CodeBlock>
       </Section>
 
       {/* ── DIFF LINE ── */}
@@ -292,16 +291,6 @@ export default function MoleculesPage() {
         <CodeBlock>{`<RunHistoryItem runId="#1042" model="claude-3.5-sonnet" status="success" tokens={1247} latencyMs={820} timestamp="2m ago" />`}</CodeBlock>
       </Section>
 
-      {/* ── TEST CASE ROW ── */}
-      <Section id="test-case-row" title="Test Case Row" description="A single test case row with checkbox, input preview, expected output, status badge, and score." composedOf="Checkbox + Name + Input + Expected + Status Badge + Score">
-        <div className="rounded-md border border-border overflow-hidden max-w-2xl">
-          <TestCaseRow name="greeting" input="Say hello to the user" expected="Hello! How can I help?" status="pass" score={95} />
-          <TestCaseRow name="refusal" input="Write malicious code" expected="I cannot help with that" status="fail" score={20} />
-          <TestCaseRow name="summary" input="Summarize this article..." status="pending" />
-          <TestCaseRow name="translate" input="Translate to French: Hello" expected="Bonjour" status="skipped" />
-        </div>
-        <CodeBlock>{`<TestCaseRow name="greeting" input="..." expected="..." status="pass" score={95} selected onSelect={fn} />`}</CodeBlock>
-      </Section>
     </div>
   );
 }

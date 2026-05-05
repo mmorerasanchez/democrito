@@ -19,7 +19,7 @@ const principles = [
 { name: "Typography as Hierarchy", desc: "Three font families convey meaning: Display, Body, Mono." },
 { name: "Progressive Disclosure", desc: "Start with the lightest variant, add complexity as needed." },
 { name: "Accessible by Default", desc: "WCAG 2.1 AA, 44×44px touch targets, keyboard navigation." },
-{ name: "IDE-Inspired", desc: "Clean, distraction-free workspace for prompt engineering." }];
+{ name: "IDE-Inspired", desc: "Clean, distraction-free workspace for data-dense work." }];
 
 
 const sections = [
@@ -47,7 +47,7 @@ export default function OverviewPage() {
           <Badge variant="outline">v3</Badge>
         </div>
         <Text size="lg" variant="muted" className="max-w-prose">
-          A minimal, monochromatic, hand-crafted atomic design system — the visual foundation of prompt-x. Ready to integrate in your app.
+          A minimal, monochromatic, hand-crafted atomic design system for data-dense, IDE-inspired applications — originally built for prompt-x. Ready to integrate in your app.
         </Text>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button onClick={() => window.open(REPO_URL, "_blank")}>
@@ -140,7 +140,7 @@ export default function OverviewPage() {
               <li>Copy <Code>tailwind.config.ts</Code> and <Code>index.css</Code> tokens into your project</li>
               <li>Never hardcode colors or sizes — always use semantic tokens</li>
               <li><Code>font-display</Code> for headings, <Code>font-body</Code> for text, <Code>font-mono</Code> for data</li>
-              <li>Use showcase page as visual reference and prompt-x for implementation</li>
+              <li>Use the showcase pages as visual reference; copy tokens, atoms, and molecules into your app</li>
             </ul>
           </div>
 

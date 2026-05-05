@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { TestCaseRow } from "@/components/molecules/TestCaseRow";
+import { TestCaseRow } from "./TestCaseRow";
 import { Plus, Play, Upload } from "lucide-react";
 
 interface TestCase {

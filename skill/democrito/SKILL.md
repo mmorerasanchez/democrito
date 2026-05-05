@@ -5,12 +5,14 @@ description: Use this skill when working with the democrito design system — ge
 
 # democrito — Claude Skill
 
-> **democrito** is an Atomic Design System and the visual foundation of
-> [prompt-x](https://github.com/mmorerasanchez/prompt-x), a prompt engineering platform.
+> **democrito** is a general-purpose, themeable Atomic Design System for data-dense,
+> IDE-inspired applications — dashboards, editors, AI tools, and internal platforms.
 > This skill gives Claude the full design-system context needed to generate on-system
 > UI code from the first attempt.
 
-**Do not trigger this skill for:** prompt engineering, AI evaluation, business-model work, or any prompt-x-specific feature development. This skill covers the design-system layer only.
+**Trigger this skill when:** generating React + Tailwind + shadcn UI in any project that has adopted democrito; applying tokens; composing atoms/molecules/organisms/templates; rebranding via theme tokens.
+
+**Do not trigger this skill for:** application logic, data modeling, business rules, or any product-specific feature work. This skill covers the design-system layer only.
 
 ---
 

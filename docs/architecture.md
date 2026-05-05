@@ -1,7 +1,7 @@
 # Architecture
 
 > Why the democrito design system is structured the way it is, and how the pieces fit together.
-> democrito is the visual foundation of [prompt-x](https://github.com/mmorerasanchez/prompt-x), a prompt engineering platform.
+> democrito is a general-purpose, themeable atomic design system for data-dense, IDE-inspired applications.
 
 ---
 

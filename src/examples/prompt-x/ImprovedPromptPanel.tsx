@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { TabNav } from "@/components/molecules/TabNav";
-import { AnatomyFieldCard } from "@/components/organisms/AnatomyFieldCard";
+import { AnatomyFieldCard } from "./AnatomyFieldCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Copy, Save, RefreshCw, Check } from "lucide-react";
-import type { AnatomyField } from "@/components/organisms/AnatomyFieldCard";
+import type { AnatomyField } from "./AnatomyFieldCard";
 
 interface AnatomyFieldData {
   field: AnatomyField;

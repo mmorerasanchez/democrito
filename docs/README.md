@@ -1,6 +1,6 @@
 # democrito Documentation
 
-> Comprehensive documentation for the **democrito** Atomic Design System — the visual foundation of [prompt-x](https://github.com/mmorerasanchez/prompt-x).
+> Comprehensive documentation for the **democrito** Atomic Design System — a general-purpose, themeable system for data-dense, IDE-inspired applications.
 
 ---
 

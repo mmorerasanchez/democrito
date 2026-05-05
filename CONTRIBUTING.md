@@ -1,6 +1,6 @@
 # Contributing to democrito
 
-Thank you for considering contributing to **democrito** — the atomic design system and visual foundation of [prompt-x](https://github.com/mmorerasanchez/prompt-x)! 🎉
+Thank you for considering contributing to **democrito** — a production-ready, product-agnostic atomic design system for developers and AI agents! 🎉
 
 Whether you're fixing a bug, proposing a new component, improving documentation, or suggesting a design token change — your contributions make this project better for everyone. We appreciate your time and effort.
 
