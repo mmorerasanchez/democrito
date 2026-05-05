@@ -246,3 +246,84 @@ import { Link } from "@/components/atoms";
 ### Design Tokens
 
 `font-body`, `text-accent`, `hover:underline`
+
+---
+
+## Logo
+
+Brand mark rendered from the uploaded logo image. Works across all three themes
+(Dark, Light, Warm) without per-theme assets.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `number` | `28` | Width and height in pixels |
+| `className` | `string` | — | Additional classes |
+
+### Usage
+
+```tsx
+import { Logo } from "@/components/atoms";
+
+<Logo size={32} />
+```
+
+---
+
+## CodeBlock
+
+Multi-line code display with optional language label and overlay copy button.
+Uses `--surface` (not `--card`) so it reads as content, not an elevated container.
+Horizontal-scroll only — content never wraps.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `code` | `string` | — | Code to render and optionally copy. Whitespace is preserved exactly |
+| `language` | `string` | — | Optional language label shown top-left (e.g. `"bash"`, `"tsx"`) |
+| `showCopy` | `boolean` | `true` | Whether to render the overlay copy button |
+| `className` | `string` | — | Additional classes |
+
+### Usage
+
+```tsx
+import { CodeBlock } from "@/components/atoms";
+
+<CodeBlock language="bash" code={`npm install democrito`} />
+```
+
+### Design Tokens
+
+`bg-surface`, `font-mono`, `text-foreground-muted`
+
+---
+
+## CopyButton
+
+Copy-to-clipboard button. Two variants: `primary` (label + icon, accent background)
+and `ghost` (icon-only, typically overlaid on a `CodeBlock`). Falls back to
+selecting the nearest `<pre>` if the clipboard API is unavailable.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Text written to the clipboard on click |
+| `variant` | `"primary" \| "ghost"` | — | `primary` shows label + icon; `ghost` is icon-only |
+| `label` | `string` | `value` | Visible text for the `primary` variant. Ignored for `ghost` |
+| `className` | `string` | — | Additional classes |
+| _...rest_ | `ButtonHTMLAttributes` | — | Standard button props (excluding `value`) |
+
+### Usage
+
+```tsx
+import { CopyButton } from "@/components/atoms";
+
+<CopyButton variant="primary" value="npm install democrito" label="Copy install command" />
+```
+
+### Design Tokens
+
+`bg-accent`, `text-accent-foreground` (primary); `text-foreground-muted` (ghost)

@@ -2,7 +2,7 @@
 
 > Major UI sections composed of molecules, atoms, and UI primitives.
 > Directory: `src/components/organisms/`
-> **15 components · 4 categories**
+> **19 generic components · 5 categories**, plus 5 AI-page showcase organisms and 23 prompt-x-specific organisms (see end of file).
 
 ---
 
@@ -11,8 +11,9 @@
 | Category | Count | Components |
 |---|---|---|
 | [Navigation & Layout](#navigation--layout) | 5 | TopBar, SidebarNav, FilterBar, BulkActionsBar, UserMenu |
-| [Dashboard & Data](#dashboard--data) | 4 | DataTable, DashboardStats, ActivityFeed, AuthForm |
-| [Import & Export](#import--export) | 2 | ImportDialog, ExportMenu |
+| [Dashboard & Data](#dashboard--data) | 5 | DataTable, DashboardStats, ActivityFeed, AuthForm, RunHistory |
+| [Data Management](#data-management) | 2 | DataManager, OrganizationManager |
+| [Import, Export & API](#import-export--api) | 3 | ImportDialog, ExportMenu, APIDocPanel |
 | [Settings & Config](#settings--config) | 4 | SettingsNav, APIKeyManager, IntegrationCard, OnboardingWizard |
 
 ---
@@ -260,4 +261,110 @@ Step-by-step wizard with progress indicator and navigation.
 | `currentStep` | `number` | — | Active step index |
 | `onNext`/`onBack`/`onSkip` | `() => void` | — | Navigation handlers |
 | `children` | `ReactNode` | — | Step content slot |
+
+---
+
+# Dashboard & Data (additional)
+
+---
+
+## RunHistory
+
+Chronological list of run/execution entries with status, timestamp, and metadata.
+Composes `RunHistoryItem` (molecule) and surfaces filters, pagination, and an
+empty state when there are no runs yet.
+
+**Composes**: `RunHistoryItem` (molecule), `EmptyState` (molecule), `Button` (ui)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `runs` | `RunRecord[]` | — | List of run entries to render |
+| `onRunClick` | `(runId: string) => void` | — | Handler invoked when a row is selected |
+| `loading` | `boolean` | `false` | Show skeleton state |
+| `emptyMessage` | `string` | — | Message rendered when `runs` is empty |
+
+---
+
+# Data Management
+
+Generic CRUD/admin surfaces for managing collections of records or organizations.
+
+---
+
+## DataManager
+
+Generic record-management surface — combines a data table, filter bar, bulk-action
+toolbar, and create/edit modal triggers. Used as a reusable shell for resource
+listing pages (datasets, prompts, evaluations, etc.).
+
+**Composes**: `DataTable`, `FilterBar`, `BulkActionsBar`, `EmptyState`
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `records` | `T[]` | — | Records to render |
+| `columns` | `Column<T>[]` | — | Column definitions for the embedded table |
+| `onCreate`/`onEdit`/`onDelete` | `(record: T) => void` | — | CRUD handlers |
+| `loading` | `boolean` | `false` | Show skeleton/loader state |
+
+---
+
+## OrganizationManager
+
+Manage an organization's members, roles, and invites. Renders a member list,
+role selector, invite form, and pending-invite tracker.
+
+**Composes**: `DataTable`, `FormField` (molecule), `Button` (ui), `Avatar` (ui)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `members` | `OrgMember[]` | — | Current organization members |
+| `pendingInvites` | `OrgInvite[]` | — | Outstanding invitations |
+| `onInvite` | `(email: string, role: Role) => void` | — | Invite handler |
+| `onRoleChange` | `(memberId: string, role: Role) => void` | — | Role-change handler |
+| `onRemove` | `(memberId: string) => void` | — | Remove-member handler |
+
+---
+
+# Import, Export & API (additional)
+
+---
+
+## APIDocPanel
+
+Inline API documentation panel — renders an endpoint's method, path, request
+schema, response schema, and a copyable cURL example. Designed to live alongside
+an editor or settings surface so engineers don't need to leave the page.
+
+**Composes**: `CodeBlock` (atom), `CopyButton` (atom), `Tag` (atom), `Tabs` (ui)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `endpoint` | `EndpointSpec` | — | OpenAPI-shaped endpoint description |
+| `defaultLanguage` | `"curl" \| "ts" \| "python"` | `"curl"` | Initial code-sample language |
+| `showAuth` | `boolean` | `true` | Whether to render the auth/token requirement section |
+
+---
+
+# Showcase (AI page)
+
+Marketing-page organisms used on the AI overview route (`/ai`). Live in
+`src/components/organisms/ai/` and not part of the general application surface.
+
+| Component | Purpose |
+|---|---|
+| `HeroSection` | Hero block with headline, subhead, and primary CTA |
+| `FileArchitectureSection` | Visual breakdown of the file-tree architecture |
+| `QuickStartSection` | Install + first-run instructions with copyable commands |
+| `ComparisonSection` | Feature comparison table vs. alternative tools |
+| `EcosystemSection` | Ecosystem partners / supported integrations grid |
+
+---
+
+# prompt-x organisms
+
+The 23 prompt-x-specific organisms currently live alongside the generics in
+`src/components/organisms/` (mixed export). They are slated for extraction to
+`src/examples/prompt-x/` in v3.2.0. They are not part of the public design system
+surface and are not documented individually here — see [`src/components/organisms/`](../../src/components/organisms/)
+for the full list.
 | `hideActions` | `boolean` | `false` | Hide footer buttons |

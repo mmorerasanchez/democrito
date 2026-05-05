@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.1] — 2026-05-05
+
+### Fixed
+
+- `CLAUDE.md` and `README.md`: removed all references to deleted `tailwind.config.ts` (removed in v3.1.0 — replaced by CSS-first `@theme` block in `src/index.css`).
+- `README.md`: updated Tailwind CSS badge from `3.4+` to `4.2+`.
+- `public/llms.txt`: updated Tailwind CSS version to `4.2`.
+- Component inventory tables in `README.md` and `CLAUDE.md` updated to reflect actual barrel exports: 10 / 18 / 19 / 7 (public surface) + 23 prompt-x organisms currently in `src/components/organisms/`, slated for extraction to `src/examples/prompt-x/` in v3.2.0.
+- `docs/components/*.md` audited against barrel exports; missing atom stubs (`Logo`, `CodeBlock`, `CopyButton`) added; organisms docs now accurately reflect the 19-component public surface plus AI showcase + prompt-x pointer sections.
+
+---
+
 ## [3.1.0] — 2026-04-24
 
 ### Changed — Tailwind CSS v4 migration (CSS-first config)

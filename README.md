@@ -3,7 +3,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-06B6D4?logo=tailwindcss&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.2+-06B6D4?logo=tailwindcss&logoColor=white)
 ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-latest-000000?logo=shadcnui&logoColor=white)
 
 **A general-purpose, themeable atomic design system** — the visual foundation of prompt-x, a prompt engineering platform. Built on React, Tailwind CSS, and Radix UI with structured tokens, accessible components, and three-theme support.
@@ -72,7 +72,7 @@ The skill bundles four knowledge files — `principles.md`, `tokens.md`, `compon
 
 ## Architecture
 
-The design system follows **Atomic Design** methodology — Atoms → Molecules → Organisms → Templates — with design tokens defined as CSS custom properties in `src/index.css` and mapped through `tailwind.config.ts`.
+The design system follows **Atomic Design** methodology — Atoms → Molecules → Organisms → Templates — with design tokens defined as CSS custom properties in `src/index.css` and defined in the CSS-first `@theme` block in `src/index.css`.
 
 > **Token formats:** The source of truth is CSS custom properties in `src/index.css`. A [`design-tokens.json`](design-tokens.json) file in [W3C DTCG format](https://design-tokens.github.io/community-group/format/) is also provided for tooling interoperability (Figma Token Studio, Style Dictionary, Specify, etc.). See [`docs/tokens.md`](docs/tokens.md) for the full reference.
 
@@ -81,11 +81,11 @@ src/
 ├── index.css                          # Design tokens (CSS custom properties), font imports, base resets
 │
 ├── components/
-│   ├── atoms/                         # Smallest building blocks (7 components)
+│   ├── atoms/                         # Smallest building blocks (10 components)
 │   ├── molecules/                     # Compositions of atoms (18 components)
-│   ├── organisms/                     # Major UI sections (15 components)
+│   ├── organisms/                     # Major UI sections (19 generic + 23 prompt-x)
 │   ├── templates/                     # Page layout shells (7 components)
-│   └── ui/                            # shadcn/ui primitives (40+ components)
+│   └── ui/                            # shadcn/ui primitives (49 components)
 │
 ├── pages/                             # Route pages (showcase + prototype)
 ├── hooks/                             # Custom React hooks
@@ -97,11 +97,13 @@ src/
 
 | Layer | Count | Description |
 | --- | --- | --- |
-| **Atoms** | 7 | Typography, code, tags, links, spinners |
-| **Molecules** | 18 | Form fields, nav items, stat cards, search bars |
-| **Organisms** | 15 | Navigation, data tables, auth forms, settings, import/export |
-| **Templates** | 7 | Page layout shells (app shell, editor, dashboard) |
-| **UI Primitives** | 40+ | shadcn/ui + Radix UI accessible base components |
+| **Atoms** | 10 | Typography, code, tags, links, copy button, spinner |
+| **Molecules** | 18 | Form fields, nav items, stat cards, search, diff, variable editors |
+| **Organisms** | 19 | Navigation, tables, auth, settings, data management, API tooling |
+| **Templates** | 7 | Page layout shells (app shell, editor, dashboard, comparison) |
+| **shadcn/ui primitives** | 49 | Radix UI + shadcn base components |
+
+> **Note:** An additional 23 prompt-x-specific organisms currently live alongside the generics in `src/components/organisms/` and are slated for extraction to `src/examples/prompt-x/` in v3.2.0. They are not part of the public design system surface.
 
 ---
 
@@ -121,7 +123,7 @@ The entire visual identity is controlled through CSS custom properties — **no 
 ```
 
 ```ts
-// Swap fonts in tailwind.config.ts
+// Swap fonts in src/index.css under @theme
 fontFamily: {
   display: ["Inter", "system-ui", "sans-serif"],
   body:    ["Inter", "system-ui", "sans-serif"],
@@ -199,10 +201,10 @@ for all visual decisions. Key rules:
 
 ### With Cursor / Claude Code
 
-Reference `src/index.css` and `tailwind.config.ts` directly in your context:
+Reference `src/index.css` directly in your context:
 
 ```
-@src/index.css @tailwind.config.ts
+@src/index.css
 Build a new component following the democrito design system.
 Use CSS custom properties (--background, --surface, --card, --foreground).
 All user-editable content must use font-mono (JetBrains Mono).
@@ -229,7 +231,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 | --- | --- |
 | **React 18** | UI library |
 | **TypeScript 5** (strict) | Type safety |
-| **Tailwind CSS 3.4** | Utility-first styling with design token integration |
+| **Tailwind CSS 4.2** | Utility-first styling with design token integration |
 | **Radix UI / shadcn/ui** | Accessible, unstyled component primitives |
 | **Lucide React** | Icon library |
 | **Vite** | Build tool and dev server |
@@ -244,8 +246,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 | [Live Design System](https://democrito.design) | Interactive component gallery, token reference, and theme playground |
 | [`docs/theming.md`](docs/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
 | [`src/DESIGN_SYSTEM.md`](src/DESIGN_SYSTEM.md) | Complete design system specification — component inventory, token reference, usage rules |
-| [`src/index.css`](src/index.css) | CSS custom properties, font imports, three-theme definitions, base resets |
-| [`tailwind.config.ts`](tailwind.config.ts) | Tailwind CSS integration with all custom tokens, fonts, spacing, and animations |
+| [`src/index.css`](src/index.css) | CSS custom properties + Tailwind v4 `@theme` — source of truth for all tokens |
 | [`design-tokens.json`](design-tokens.json) | W3C DTCG–format tokens for tooling interoperability (Figma, Style Dictionary) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contribution guidelines, commit conventions, and component creation workflow |
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history following [Keep a Changelog](https://keepachangelog.com/) format |
