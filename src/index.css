@@ -159,8 +159,8 @@
 /* Design System — All colors in HSL */
 
 @layer base {
-  /* Dark theme (DEFAULT) */
-  :root {
+  /* Dark theme */
+  .dark {
     --background: 20 14% 4%;
     --foreground: 60 9% 98%;
 
@@ -339,7 +339,8 @@
     --sidebar-ring: 18 65% 55%;
   }
 
-  /* Warm theme */
+  /* Warm theme (DEFAULT) — applies via :root, with .warm as backwards-compat alias */
+  :root,
   .warm {
     --background: 30 18% 91%;
     --foreground: 12 6% 15%;
@@ -400,6 +401,58 @@
     --sidebar-accent-foreground: 12 6% 15%;
     --sidebar-border: 28 14% 81%;
     --sidebar-ring: 18 60% 45%;
+
+    --radius: 0.75rem;
+
+    /* Categorical palette — 9 distinct hues for content tagging */
+    --category-teal: 185 55% 42%;
+    --category-amber: 38 80% 50%;
+    --category-emerald: 152 55% 40%;
+    --category-orange: 25 85% 52%;
+    --category-violet: 262 55% 55%;
+    --category-rose: 340 65% 55%;
+    --category-blue: 230 60% 58%;
+    --category-red: 0 70% 55%;
+    --category-gold: 48 85% 48%;
+
+    /* Status colors */
+    --status-draft: 45 93% 47%;
+    --status-testing: 217 91% 60%;
+    --status-production: 142 71% 45%;
+    --status-archived: 0 0% 45%;
+
+    /* Layout */
+    --header-height: 3.5rem;
+    --sidebar-width: 15rem;
+    --sidebar-collapsed: 4rem;
+    --right-panel: 22rem;
+
+    /* Z-index scale */
+    --z-base: 0;
+    --z-dropdown: 50;
+    --z-sticky: 100;
+    --z-overlay: 200;
+    --z-modal: 300;
+    --z-toast: 400;
+
+    /* Motion */
+    --duration-instant: 50ms;
+    --duration-fast: 100ms;
+    --duration-normal: 150ms;
+    --duration-medium: 200ms;
+    --duration-slow: 300ms;
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* AI state tokens */
+    --ai-pulse-duration: 1.5s;
+    --ai-thinking-dot-size: 6px;
+    --ai-thinking-gap: 4px;
+    --ai-thinking-duration: 1.4s;
+    --ai-cursor-width: 2px;
+    --ai-cursor-blink: 1s;
   }
 }
 

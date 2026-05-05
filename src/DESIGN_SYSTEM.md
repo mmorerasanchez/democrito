@@ -7,7 +7,7 @@
 
 ## 1. Executive Summary
 
-democrito is a production-ready design system for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal platforms. The design system uses monochromatic warm stone grays (95% of surface area), a terracotta orange accent (4%), and semantic colors (1%). It is IDE-inspired with a distraction-free workspace aesthetic, ships 80+ components across 5 atomic layers, supports 3 themes (dark default, light, warm), and meets WCAG 2.1 AA accessibility standards.
+democrito is a production-ready design system for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal platforms. The design system uses monochromatic warm stone grays (95% of surface area), a terracotta orange accent (4%), and semantic colors (1%). It is IDE-inspired with a distraction-free workspace aesthetic, ships 80+ components across 5 atomic layers, supports 3 themes (warm default, dark, light), and meets WCAG 2.1 AA accessibility standards.
 
 ---
 
@@ -445,13 +445,13 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 
 ## 11. Theme System
 
-Three themes applied via class on `<html>`:
+Three themes — warm is the default at `:root`; dark and light are class-toggled:
 
-| Theme | Class | Description |
+| Theme | Selector | Description |
 |---|---|---|
-| Dark | `.dark` (default) | Warm dark grays, light text |
-| Light | `.light` | Cool light grays, dark text |
-| Warm | `.warm` | Sepia-toned, paper-like warmth |
+| Warm | `:root` (default) | Sanzo Wada earth-tones, terracotta accent |
+| Dark | `.dark` | Cold stone grays, light text |
+| Light | `.light` | Warm off-whites, dark text |
 
 - **Primary button** inverts per theme (light-on-dark in dark, dark-on-light in light)
 - **Accent** stays terracotta orange (`hue 18°`) across all themes. Warm theme intentionally uses `hsl(18, 60%, 45%)` (−10% lightness) for better contrast on warm surfaces — this is by design.

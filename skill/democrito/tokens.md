@@ -8,7 +8,7 @@
 ## Color Palette
 
 All colors are defined as CSS custom properties in HSL format (without the `hsl()` wrapper).
-Three themes are supported: **Dark** (default), **Light**, and **Warm**.
+Three themes are supported: **Warm** (default, `:root`), **Dark** (`.dark`), and **Light** (`.light`).
 
 ### Core Surfaces (3-Layer Hierarchy)
 

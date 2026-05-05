@@ -38,7 +38,7 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 
 **Key behavioral rules:**
 - All colors are HSL CSS custom properties in `src/index.css`, defined via CSS-first `@theme` in `src/index.css`
-- Three themes: **Dark** (`:root`), **Light** (`.light`), **Warm** (`.warm`)
+- Three themes: **Warm** (`:root`, default), **Dark** (`.dark`), **Light** (`.light`)
 - 3-surface hierarchy: `--background` → `--surface` → `--card`
 - 3-font system: `font-display` (headings), `font-body` (text), `font-mono` (data/code)
 - Spacing base unit: 4px. Layout tokens: `--header-height`, `--sidebar-width`, `--sidebar-collapsed`, `--right-panel`
@@ -54,7 +54,7 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 4. **Follow existing naming conventions** — PascalCase filenames, one component per file, barrel `index.ts` exports.
 5. **Use shadcn/ui primitives as the base** — extend via CVA variants in `ui/` components; compose them into atoms/molecules, never rebuild from scratch.
 6. **User-editable content uses `font-mono`** — all code, data values, and user-generated content must use the mono font family.
-7. **Three-theme compliance** — any new color token must be defined in all three themes (`:root`, `.light`, `.warm`) in `src/index.css`.
+7. **Three-theme compliance** — any new color token must be defined in all three themes (`:root` for warm default, `.dark`, `.light`) in `src/index.css`.
 8. **Semantic color only** — use `bg-card`, `text-muted-foreground`, `border-border` etc. Never write `bg-gray-800` or `text-white`.
 9. **Check for theme overrides** — before assuming default token values, verify the project's `src/index.css` `@theme` block for custom theme configuration.
 

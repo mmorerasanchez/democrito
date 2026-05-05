@@ -156,13 +156,19 @@ fontFamily: {
 
 All tokens are defined as HSL in `src/index.css`. Hex approximations below for quick reference.
 
-| Token | Dark (Default) | Light | Warm |
+| Theme | Selector | Notes |
+| --- | --- | --- |
+| **Warm** | `:root` (default) | Sanzo Wada earth-tones, terracotta accent |
+| **Dark** | `.dark` | Cold stone grays, deep workshop-at-night feel |
+| **Light** | `.light` | High-contrast warm off-whites |
+
+| Token | Warm (Default) | Dark | Light |
 | --- | --- | --- | --- |
-| `--background` | `hsl(20 14% 4%)` · `#0E0C0B` | `hsl(30 5% 96%)` · `#F5F4F3` | `hsl(30 18% 91%)` · `#EDE8E2` |
-| `--surface` | `hsl(20 8% 8%)` · `#161413` | `hsl(40 6% 97%)` · `#F8F7F6` | `hsl(40 15% 94%)` · `#F3F0EB` |
-| `--card` | `hsl(12 6% 15%)` · `#282423` | `hsl(40 8% 99%)` · `#FDFCFB` | `hsl(30 25% 97%)` · `#FAF8F5` |
-| `--foreground` | `hsl(60 9% 98%)` · `#FAFAF9` | `hsl(24 10% 10%)` · `#1C1917` | `hsl(12 6% 15%)` · `#282423` |
-| `--accent` | `hsl(18 65% 55%)` · `#D4734A` | `hsl(18 65% 55%)` · `#D4734A` | `hsl(18 60% 45%)` · `#B85C33` |
+| `--background` | `hsl(30 18% 91%)` · `#EDE8E2` | `hsl(20 14% 4%)` · `#0E0C0B` | `hsl(30 5% 96%)` · `#F5F4F3` |
+| `--surface` | `hsl(40 15% 94%)` · `#F3F0EB` | `hsl(20 8% 8%)` · `#161413` | `hsl(40 6% 97%)` · `#F8F7F6` |
+| `--card` | `hsl(30 25% 97%)` · `#FAF8F5` | `hsl(12 6% 15%)` · `#282423` | `hsl(40 8% 99%)` · `#FDFCFB` |
+| `--foreground` | `hsl(12 6% 15%)` · `#282423` | `hsl(60 9% 98%)` · `#FAFAF9` | `hsl(24 10% 10%)` · `#1C1917` |
+| `--accent` | `hsl(18 60% 45%)` · `#B85C33` | `hsl(18 65% 55%)` · `#D4734A` | `hsl(18 65% 55%)` · `#D4734A` |
 
 ---
 
@@ -198,7 +204,7 @@ for all visual decisions. Key rules:
 - Colors: 95% neutral grays, single accent hue, semantic feedback colors
 - 3-surface hierarchy: Background → Surface → Card
 - Radix UI / shadcn/ui for all component primitives
-- Dark theme is default. Support Light and Warm themes.
+- Warm theme is default (`:root`). Support Dark (`.dark`) and Light (`.light`) themes.
 ```
 
 ### With Cursor / Claude Code

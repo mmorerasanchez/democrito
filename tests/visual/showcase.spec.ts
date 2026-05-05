@@ -10,17 +10,17 @@ const SHOWCASE_ROUTES = [
   { name: "pages", path: "/pages" },
 ] as const;
 
-const THEMES = ["dark", "light", "warm"] as const;
+const THEMES = ["warm", "dark", "light"] as const;
 
 /**
  * Set the active theme by manipulating the <html> class list.
- * Dark = no class (default :root), Light = .light, Warm = .warm.
+ * Warm = no class (default :root), Dark = .dark, Light = .light.
  */
 async function setTheme(page: Page, theme: (typeof THEMES)[number]) {
   await page.evaluate((t) => {
     const html = document.documentElement;
-    html.classList.remove("light", "warm");
-    if (t !== "dark") {
+    html.classList.remove("dark", "light", "warm");
+    if (t !== "warm") {
       html.classList.add(t);
     }
   }, theme);

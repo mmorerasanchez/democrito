@@ -59,7 +59,10 @@ small, well-defined visual atoms compose into larger structures.
 ## 2. Color Palette & Roles
 
 All colors are HSL CSS custom properties defined in `src/index.css`.
-Three themes exist: **Dark** (default), **Light**, and **Warm**.
+The default palette is **Warm** — a Sanzo Wada–derived earth-tone system
+anchored in stone gray with a terracotta orange accent. **Dark** and
+**Light** variants are available via `.dark` and `.light` class toggles
+on a theme root.
 
 ### Core Surfaces (3-layer depth hierarchy)
 
@@ -354,8 +357,7 @@ All depth comes from the surface hierarchy, not from shadows:
   referenceable, it's `font-mono`
 - **Define tokens before using them** — add to `src/index.css` first,
   then map in `tailwind.config.ts`, then use in components
-- **Test in all three themes** — Dark, Light, and Warm (Warm is the
-  easiest to forget)
+- **Test in all three themes** — Warm (default), Dark, and Light
 - **Use Radix UI / shadcn/ui primitives** for all interactive
   elements — extend via CVA variants, never rebuild
 - **Use Lucide React** as the only icon library
@@ -504,8 +506,8 @@ When making a visual decision while working in democrito:
 3. Is a fourth font being introduced? → Stop. Three is the limit.
 4. Is the color decorative or functional? → If decorative, remove it.
 5. Does the mono contract hold? → Editable content must be mono.
-6. Does it work in all three themes? → If not tested in Warm, it's
-   not done.
+6. Does it work in all three themes? → If not tested in Dark and
+   Light, it's not done (Warm is the default and is your baseline).
 7. Does it violate the Don'ts in section 7? → Don't ship it.
 8. Would this feel right in VS Code or Linear? → If no, rethink.
 
@@ -554,24 +556,26 @@ this?"* If yes → democrito. If no → your product's design.md.
 
 ## Appendix: Theme Previews
 
-### Dark (default)
+### Warm (default)
 
-Warm stone grays with terracotta accent. The "workshop at night"
+The most differentiated theme — democrito's baseline. Inspired by
+Sanzo Wada's earth-tone palettes. Background is a visible warm beige
+(`30 18% 91%`). Cards are warm ivory (`30 25% 97%`). This theme makes
+democrito feel like a physical artifact — paper, stone, clay.
+
+### Dark
+
+Cold stone grays with terracotta accent. The "workshop at night"
 feel. Background is near-black with warm undertones (`20 14% 4%`).
 Surfaces step up in lightness. Text is warm white (`60 9% 98%`).
+Applied via `.dark` class.
 
 ### Light
 
 Warm off-whites with the same terracotta accent. Background is warm
 cream (`30 5% 96%`), not pure white. Cards are near-white
 (`40 8% 99%`). Text is dark warm gray (`24 10% 10%`).
-
-### Warm
-
-The most differentiated theme. Inspired by Sanzo Wada's earth-tone
-palettes. Background is a visible warm beige (`30 18% 91%`). Cards
-are warm ivory (`30 25% 97%`). This theme makes democrito feel like
-a physical artifact — paper, stone, clay.
+Applied via `.light` class.
 
 ---
 

@@ -7,12 +7,12 @@ interface ThemeContextType {
   setTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ theme: "dark", setTheme: () => {} });
+const ThemeContext = createContext<ThemeContextType>({ theme: "warm", setTheme: () => {} });
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem("promptx-theme") as Theme | null;
-    return stored || "dark";
+    return stored || "warm";
   });
 
   useEffect(() => {
