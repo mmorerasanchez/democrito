@@ -10,7 +10,7 @@ The design system ships with a warm, monochromatic palette as the default and tw
 
 ```
 index.css          →  CSS custom properties (source of truth)
-tailwind.config.ts →  Maps CSS vars to Tailwind classes
+src/index.css @theme →  Maps CSS vars to Tailwind utilities
 components/        →  Only use semantic tokens (bg-surface, text-accent, etc.)
 ```
 
@@ -108,14 +108,14 @@ You can remap these to your own categorical needs — they're used via `text-cat
 
 ### Font Families
 
-Three font stacks in `tailwind.config.ts`, each with a strict purpose:
+Three font stacks in the `@theme` block of `src/index.css`, each with a strict purpose:
 
-```ts
-fontFamily: {
-  display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
-  body:    ["Satoshi", "system-ui", "sans-serif"],
-  mono:    ['"JetBrains Mono"', "Consolas", "monospace"],
-},
+```css
+@theme {
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body:    "Satoshi", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", Consolas, monospace;
+}
 ```
 
 | Stack | Class | Use For |
@@ -124,7 +124,7 @@ fontFamily: {
 | Body | `font-body` | Paragraphs, descriptions, helper text |
 | Mono | `font-mono` | Data values, code, user-generated content, table headers |
 
-**To rebrand:** Replace the font names in both `tailwind.config.ts` and the `@import` statements at the top of `index.css`. The class names (`font-display`, etc.) stay the same — components don't change.
+**To rebrand:** Replace the font names in the `@theme { --font-*: }` entries and the `@import` statements at the top of `src/index.css`. The class names (`font-display`, etc.) stay the same — components don't change.
 
 ### Type Scale
 
@@ -231,13 +231,13 @@ A data-heavy dashboard with a cool-toned palette and tight spacing.
 }
 ```
 
-```ts
-// tailwind.config.ts — font overrides
-fontFamily: {
-  display: ["Inter", "system-ui", "sans-serif"],
-  body:    ["Inter", "system-ui", "sans-serif"],
-  mono:    ['"IBM Plex Mono"', "Consolas", "monospace"],
-},
+```css
+/* src/index.css — @theme font overrides */
+@theme {
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", Consolas, monospace;
+}
 ```
 
 ```css
@@ -289,13 +289,13 @@ A friendly, spacious consumer product with a green accent.
 }
 ```
 
-```ts
-// tailwind.config.ts — font overrides
-fontFamily: {
-  display: ['"DM Sans"', "system-ui", "sans-serif"],
-  body:    ['"DM Sans"', "system-ui", "sans-serif"],
-  mono:    ['"Fira Code"', "monospace"],
-},
+```css
+/* src/index.css — @theme font overrides */
+@theme {
+  --font-display: "DM Sans", system-ui, sans-serif;
+  --font-body:    "DM Sans", system-ui, sans-serif;
+  --font-mono:    "Fira Code", monospace;
+}
 ```
 
 ```css
@@ -315,7 +315,7 @@ fontFamily: {
 
 1. **Pick your accent color** — one hue that defines your brand. Set `--accent`, `--accent-muted`, `--accent-subtle`.
 2. **Set your surface scale** — three HSL values with increasing lightness (dark themes) or decreasing saturation (light themes).
-3. **Choose your fonts** — update `@import` in `index.css` and `fontFamily` in `tailwind.config.ts`.
+3. **Choose your fonts** — update `@import` and the `@theme { --font-*: }` entries in `src/index.css`.
 4. **Tune radius** — set `--radius` once; all components inherit.
 5. **Adjust semantics** — shift success/warning/error/info hues to harmonize with your palette temperature.
 6. **Test all three layers** — background, surface, and card should feel like a natural depth progression.

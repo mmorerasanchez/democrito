@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.2] — 2026-05-05
+
+### Fixed
+- `src/index.css`: corrected theme cascade — `:root, .warm` block moved to top
+  of `@layer base` so `.dark` and `.light` correctly override the warm default.
+  Dark and light themes were non-functional due to CSS declaration order.
+- `src/hooks/use-theme.tsx`: localStorage key renamed from `promptx-theme` to
+  `democrito-theme`.
+- `public/robots.txt`: removed broken `Sitemap:` reference.
+- Swept stale `tailwind.config.ts` references from `docs/architecture.md`,
+  `docs/theming.md`, `docs/migration.md`, `docs/getting-started.md`,
+  `public/llms-full.txt`, and `.github/PULL_REQUEST_TEMPLATE.md`.
+
+### Added
+- `USAGE.md` — plain-English usage terms, MIT scope, paid kit license boundary.
+- `CODE_OF_CONDUCT.md` — Contributor Covenant v2.1.
+- `SECURITY.md` — security contact.
+- `.github/FUNDING.yml` — sponsor link.
+- `README.md`: License & Usage section now links to `USAGE.md`.
+
+---
+
 ## [3.2.1] — 2026-05-05
 
 ### Changed — Warm is now the default theme

@@ -50,7 +50,7 @@ Every color token is defined in all three themes in src/index.css.
 
 ## Token reference — Dark theme (HSL values)
 
-All colors are HSL CSS custom properties in src/index.css, mapped in tailwind.config.ts.
+All colors are HSL CSS custom properties in src/index.css, configured via CSS-first `@theme` in src/index.css.
 
 Surfaces (3-layer hierarchy):
   --background          20 14% 4%

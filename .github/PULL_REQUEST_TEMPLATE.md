@@ -17,7 +17,7 @@ Brief summary of changes.
 - [ ] Molecules
 - [ ] Organisms
 - [ ] Templates
-- [ ] Tokens (`index.css` / `tailwind.config.ts`)
+- [ ] Tokens (`src/index.css` — CSS custom properties + `@theme` block)
 - [ ] Documentation only
 - [ ] CI / Tooling
 
