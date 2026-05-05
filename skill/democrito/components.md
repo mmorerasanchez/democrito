@@ -255,6 +255,101 @@ import { Link } from "@/components/atoms";
 
 ---
 
+## Logo
+
+Brand mark using the uploaded logo image. Theme-agnostic (works across Dark, Light, Warm).
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `number` | `28` | Width/height in pixels |
+| `className` | `string` | — | Additional classes |
+
+### Usage
+
+```tsx
+import { Logo } from "@/components/atoms";
+
+<Logo />
+<Logo size={40} className="rounded-md" />
+```
+
+### Design Tokens
+
+`shrink-0`, `object-contain`
+
+---
+
+## CodeBlock
+
+Multi-line code display with optional language label and overlay copy button. Uses `--surface` (not `--card`) — content, not an elevated container. Overflow is horizontal-scroll only — never wrap.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `code` | `string` | — | Code to render and copy. Whitespace preserved. |
+| `language` | `string` | — | Language label shown top-left (e.g. `"bash"`, `"tsx"`) |
+| `showCopy` | `boolean` | `true` | Render the overlay copy button |
+| `className` | `string` | — | Additional classes |
+| _...rest_ | `HTMLAttributes<HTMLDivElement>` | — | Standard div props |
+
+### Usage
+
+```tsx
+import { CodeBlock } from "@/components/atoms";
+
+<CodeBlock language="tsx" code={`<Button>Click</Button>`} />
+<CodeBlock code="npm install" language="bash" showCopy={false} />
+```
+
+### Design Tokens
+
+`bg-surface`, `rounded-lg`, `font-mono`, `text-sm`, `text-foreground`, `text-foreground-muted`
+
+### Rules
+
+- Composes `CopyButton` (ghost variant) — never re-implement the copy affordance.
+- Use `Code` (atom) for inline snippets, `CodeBlock` for multi-line.
+
+---
+
+## CopyButton
+
+Clipboard-copy button with success state. Two variants: `primary` (label + icon, accent background) and `ghost` (icon-only, typically overlaid on a `CodeBlock`).
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Text written to clipboard |
+| `variant` | `"primary" \| "ghost"` | — | Required. Visual style |
+| `label` | `string` | `value` | Visible text for `primary` variant. Ignored for `ghost`. |
+| `className` | `string` | — | Additional classes |
+| _...rest_ | `ButtonHTMLAttributes` (minus `value`) | — | Standard button props |
+
+### Behavior
+
+- Shows `Copied!` for 2s after click (resets icon to check, then back to copy).
+- Falls back to selecting the nearest `<pre>` if `navigator.clipboard` fails.
+- `aria-live="polite"` announcement for screen readers.
+
+### Usage
+
+```tsx
+import { CopyButton } from "@/components/atoms";
+
+<CopyButton variant="primary" value="npm install democrito" label="Copy install command" />
+<CopyButton variant="ghost" value={code} />
+```
+
+### Design Tokens
+
+`bg-accent`, `text-accent-foreground`, `text-foreground-muted`, `hover:bg-surface`, `font-mono`, `text-sm`, min touch target 44px
+
+---
+
 # Molecules
 
 > Compositions of 2+ atoms or UI primitives.
@@ -624,7 +719,7 @@ Labeled slider + numeric input for model parameters.
 
 > Major UI sections composed of molecules, atoms, and UI primitives.
 > Directory: `src/components/organisms/`
-> **15 components · 4 categories**
+> **19 components · 4 categories**
 
 ---
 
@@ -633,9 +728,9 @@ Labeled slider + numeric input for model parameters.
 | Category | Count | Components |
 |---|---|---|
 | [Navigation & Layout](#navigation--layout) | 5 | TopBar, SidebarNav, FilterBar, BulkActionsBar, UserMenu |
-| [Dashboard & Data](#dashboard--data) | 4 | DataTable, DashboardStats, ActivityFeed, AuthForm |
-| [Import & Export](#import--export) | 2 | ImportDialog, ExportMenu |
-| [Settings & Config](#settings--config) | 4 | SettingsNav, APIKeyManager, IntegrationCard, OnboardingWizard |
+| [Dashboard & Data](#dashboard--data) | 5 | DataTable, DashboardStats, ActivityFeed, AuthForm, RunHistory |
+| [Import & Export](#import--export) | 3 | ImportDialog, ExportMenu, DataManager |
+| [Settings & Config](#settings--config) | 6 | SettingsNav, APIKeyManager, IntegrationCard, OnboardingWizard, APIDocPanel, OrganizationManager |
 
 ---
 
@@ -784,6 +879,24 @@ Login/signup form with social OAuth and email/password fields.
 
 ---
 
+## RunHistory
+
+Scrollable list of playground/evaluation run entries with success/error counters in the header.
+
+**Composes**: `RunHistoryItem` (molecule), `Badge` (ui)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `runs` | `RunEntry[]` | — | Run entries to display |
+| `onRunClick` | `(id: string) => void` | — | Run row click handler |
+| `className` | `string` | — | Additional classes |
+
+**RunEntry**: `{ id: string; runId: string; model: string; status: "success" \| "error" \| "running" \| "pending"; tokens?: number; latencyMs?: number; timestamp: string }`
+
+**Behavior**: max-height `320px` with internal scroll; empty state message when `runs.length === 0`.
+
+---
+
 ## Import & Export
 
 Content import and export in multiple formats.
@@ -817,6 +930,23 @@ Export format selection panel with descriptions.
 | `promptName` | `string` | — | Current prompt name |
 
 **ExportFormat**: `"json" \| "csv" \| "yaml" \| "markdown" \| "clipboard"`
+
+---
+
+## DataManager
+
+Full-data export/import panel with selectable scopes and destructive "danger zone" actions (clear runs, delete account).
+
+**Composes**: `Button`/`Checkbox`/`Label`/`Dialog` (ui)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional classes |
+
+**Behavior:**
+- Export section: checkboxes for `All prompts`, `Variables`, `Settings & Presets` → triggers JSON download.
+- Import section: drag-drop zone for `.json` files (democrito export format).
+- Danger zone: confirmation dialogs for clearing run history and account deletion.
 
 ---
 
@@ -883,6 +1013,39 @@ Step-by-step wizard with progress indicator and navigation.
 | `onNext`/`onBack`/`onSkip` | `() => void` | — | Navigation handlers |
 | `children` | `ReactNode` | — | Step content slot |
 | `hideActions` | `boolean` | `false` | Hide footer buttons |
+
+---
+
+## APIDocPanel
+
+Expandable API documentation panel listing endpoints with method-coloured badges, descriptions, and copy-able sample request/response payloads.
+
+**Composes**: `Badge`/`Button` (ui), `ChevronDown`/`ChevronRight`/`Copy` (lucide)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional classes |
+
+**Endpoint** (internal): `{ method: "GET" \| "POST" \| "PUT" \| "DELETE"; path: string; description: string; sampleRequest?: string; sampleResponse: string }`
+
+**Behavior**: each endpoint row expands to reveal request/response samples; copy buttons on each sample.
+
+---
+
+## OrganizationManager
+
+Tab + tag management UI for organising prompts. Two sections: workspace tabs (with default-tab indicator) and tags (primary with colour, secondary without).
+
+**Composes**: `Badge`/`BadgeDot`/`Button`/`Input`/`Label`/`Dialog`/`RadioGroup` (ui)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional classes |
+
+**Behavior:**
+- Add/edit/delete tabs via modal dialog.
+- Add/edit/delete tags; primary tags pick from a 10-colour palette.
+- Default-tab toggle and tag-type (`primary` / `secondary`) selection.
 
 ---
 
