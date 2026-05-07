@@ -20,7 +20,9 @@ const ITEMS: EcosystemItem[] = [
   {
     name: "Claude Skill",
     description: "Dedicated Claude skill for generating democrito-compliant components on demand.",
-    status: "coming-soon",
+    status: "live",
+    href: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md",
+    external: true,
   },
   {
     name: "llms.txt",
