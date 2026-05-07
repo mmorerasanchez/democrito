@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    background: hsl(20, 14%, 4%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 96px;
+    font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, hsl(18, 65%, 55%, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .logo {
+    width: 160px;
+    margin-bottom: 48px;
+    opacity: 0.95;
+  }
+
+  .tagline {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: hsl(30, 25%, 92%);
+    letter-spacing: -0.02em;
+    max-width: 760px;
+  }
+
+  .tagline .accent {
+    color: hsl(18, 65%, 55%);
+  }
+
+  .sub {
+    margin-top: 24px;
+    font-size: 22px;
+    font-weight: 400;
+    color: hsl(30, 10%, 55%);
+    letter-spacing: 0.01em;
+  }
+
+  .corner {
+    position: absolute;
+    bottom: 64px;
+    right: 96px;
+    font-size: 15px;
+    font-weight: 600;
+    color: hsl(30, 10%, 35%);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <img class="logo" src="../../logo/logo-light-warm.png" alt="democrito" />
+  <div class="tagline">
+    Atomic Design System<br>for <span class="accent">AI-Native</span> Development
+  </div>
+  <div class="sub">React · TypeScript · Tailwind CSS v4 · shadcn/ui</div>
+  <div class="corner">democrito.design</div>
+</body>
+</html>
