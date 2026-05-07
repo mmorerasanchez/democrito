@@ -26,6 +26,7 @@ Via git clone:
 - docs/tokens.md        — full token reference
 - docs/theming.md       — theme customization guide
 - docs/architecture.md  — atomic design architecture
+- /.well-known/mcp.json — AI agent discovery manifest
 
 ## Architecture — Atomic Design
 
