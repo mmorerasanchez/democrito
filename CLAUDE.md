@@ -84,20 +84,7 @@ without asking.
 
 ---
 
-## Notion MCP
-
-Connected. Claude Code can search and fetch from the democrito Notion workspace.
-
-| Database | Collection URL | Purpose |
-|---|---|---|
-| `docs @democrito` | `collection://341887eb-6e4e-801b-923c-000b6a7f747e` | Feature docs, SDDs, architecture decisions |
-| `changes @democrito` | `collection://341887eb-6e4e-805e-8df7-000bc4a49ef0` | Change requests for execution |
-
-**Usage rules:**
-- Always check the relevant database before creating content — avoid duplicates.
-- For scoped searches, use the `collection://` URLs above.
-- For surgical edits, use `notion-update-page` with `content_updates` — never replace whole page bodies.
-- Don't fetch the same database repeatedly in one session — cache the result and reuse.
+> Maintainers track work in a private Notion workspace. Internal access only.
 
 ---
 

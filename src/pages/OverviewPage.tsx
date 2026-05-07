@@ -6,9 +6,9 @@ import { ArrowRight, Palette, Box, Layers, LayoutGrid, Layout, FileText, Star, E
 
 const stats = [
 { label: "Design Tokens", count: "90+", description: "Colors, typography, spacing, radius, z-index, themes" },
-{ label: "Atoms", count: "7", description: "Heading, Text, Tag, Spinner, Code, Kbd, Link" },
-{ label: "Molecules", count: "18", description: "FormField, SearchBar, StatCard, TokenCounter, TabNav, etc." },
-{ label: "Organisms", count: "15", description: "TopBar, DataTable, AuthForm, FilterBar, UserMenu, etc." },
+{ label: "Atoms", count: "10", description: "Logo, Heading, Text, Tag, Spinner, Code, CodeBlock, CopyButton, Kbd, Link" },
+{ label: "Molecules", count: "16", description: "FormField, SearchBar, StatCard, TokenCounter, TabNav, etc." },
+{ label: "Organisms", count: "19", description: "TopBar, DataTable, AuthForm, FilterBar, UserMenu, etc." },
 { label: "Templates", count: "7", description: "AppShell, Editor, Library, Dashboard, Detail, Comparison" },
 { label: "UI Primitives", count: "48", description: "shadcn/ui base components — Button, Dialog, Table, etc." }];
 
@@ -24,9 +24,9 @@ const principles = [
 
 const sections = [
 { name: "Tokens", path: "/tokens", icon: Palette, desc: "Colors, Typography, Spacing, Radius, Shadows, Breakpoints" },
-{ name: "Atoms", path: "/atoms", icon: Box, desc: "Heading, Text, Tag, Spinner, Code, Kbd, Link" },
+{ name: "Atoms", path: "/atoms", icon: Box, desc: "Logo, Heading, Text, Tag, Spinner, Code, CodeBlock, CopyButton, Kbd, Link" },
 { name: "Molecules", path: "/molecules", icon: Layers, desc: "FormField, SearchBar, Cards, TabNav, Counters" },
-{ name: "Organisms", path: "/organisms", icon: LayoutGrid, desc: "TopBar, DataTable, Card, AuthForm, FilterBar" },
+{ name: "Organisms", path: "/organisms", icon: LayoutGrid, desc: "TopBar, DataTable, AuthForm, FilterBar, ActivityFeed, OnboardingWizard, …" },
 { name: "Templates", path: "/templates", icon: Layout, desc: "AppShell, Layouts and Pages" },
 { name: "Pages", path: "/pages", icon: FileText, desc: "Dashboard Demo" }];
 
@@ -47,7 +47,7 @@ export default function OverviewPage() {
           <Badge variant="outline">v3</Badge>
         </div>
         <Text size="lg" variant="muted" className="max-w-prose">
-          A minimal, monochromatic, hand-crafted atomic design system for data-dense, IDE-inspired applications — originally built for prompt-x. Ready to integrate in your app.
+          A minimal, monochromatic, hand-crafted atomic design system for data-dense, IDE-inspired applications. Ready to integrate in your app.
         </Text>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button onClick={() => window.open(REPO_URL, "_blank")}>
@@ -137,7 +137,7 @@ export default function OverviewPage() {
           <div className="space-y-2">
             <Text variant="muted" size="sm" className="font-display font-medium">Usage rules</Text>
             <ul className="space-y-1.5 font-body text-sm text-muted-foreground list-disc list-inside">
-              <li>Copy <Code>tailwind.config.ts</Code> and <Code>index.css</Code> tokens into your project</li>
+              <li>Copy the <Code>@theme</Code> block from <Code>index.css</Code> into your project</li>
               <li>Never hardcode colors or sizes — always use semantic tokens</li>
               <li><Code>font-display</Code> for headings, <Code>font-body</Code> for text, <Code>font-mono</Code> for data</li>
               <li>Use the showcase pages as visual reference; copy tokens, atoms, and molecules into your app</li>

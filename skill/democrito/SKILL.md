@@ -33,7 +33,7 @@ Read these bundled files on-demand when you need deeper context:
 
 When generating or reviewing democrito code, apply this order:
 
-1. **Tokens first.** Never hardcode colors, spacing, or radii. Every visual value comes from `src/index.css` CSS custom properties, mapped through `tailwind.config.ts`. Use Tailwind utility classes bound to tokens (`bg-surface`, `text-foreground-muted`, `border-border`) — never `bg-gray-800` or `text-white`.
+1. **Tokens first.** Never hardcode colors, spacing, or radii. Every visual value comes from the `@theme` block in `src/index.css` (Tailwind v4 — no `tailwind.config.ts`). Use Tailwind utility classes bound to tokens (`bg-surface`, `text-foreground-muted`, `border-border`) — never `bg-gray-800` or `text-white`.
 2. **Three-surface hierarchy.** Build depth with `--background` → `--surface` → `--card`, in that order. Inputs must not share a surface with their containing card.
 3. **Three-font system.** `font-display` for headings, `font-body` for prose, `font-mono` for all data, code, user-generated content, and tokens/commands.
 4. **Three-theme compliance.** Every new color token must be defined in all three themes: `:root` (warm, default), `.dark`, and `.light`.
@@ -86,8 +86,7 @@ When generating or reviewing democrito code, apply this order:
 
 | File | Purpose |
 |---|---|
-| `src/index.css` | CSS custom properties — source of truth for all design tokens |
-| `tailwind.config.ts` | Tailwind mappings to CSS variables |
+| `src/index.css` (`@theme` block) | CSS custom properties — source of truth for all design tokens and Tailwind utilities |
 | `CLAUDE.md` | Auto-read context file for AI agents working in the repo |
 | `docs/theming.md` | How to customize the system for a specific brand |
 | `CONTRIBUTING.md` | Development workflow and conventions |

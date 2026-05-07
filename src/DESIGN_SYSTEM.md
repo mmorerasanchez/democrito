@@ -239,7 +239,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | Progress | shadcn/ui Progress | Ready |
 | Kbd | custom | Ready |
 
-### Molecules (18)
+### Molecules (16)
 
 | Name | Base | Status | Notes |
 |---|---|---|---|
@@ -253,12 +253,14 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | EmptyState | custom | Ready | Title + description + CTA button (no icon) |
 | NavItem | custom | Ready | Supports collapsed mode with count badge overlay |
 | TabNav | custom | Ready | Horizontal tab navigation with active state, optional icons, disabled support |
-| Breadcrumb | shadcn/ui Breadcrumb | Ready | |
-| Pagination | shadcn/ui Pagination | Ready | |
+| BreadcrumbNav | custom | Ready | |
+| AvatarGroup | custom | Ready | Overlapping avatar stack with +N overflow badge |
 | DiffLine | custom | Ready | Single diff line with line number, +/− prefix, semantic color |
 | ActivityFeedItem | custom | Ready | Activity row with user, action badge, target, timestamp |
 | VariableEditorRow | custom | Ready | Name/value input pair with delete and highlight state |
 | RunHistoryItem | custom | Ready | Run entry with model, status, tokens, latency |
+
+> **Pagination** is a shadcn/ui primitive at `src/components/ui/pagination.tsx`, not a custom democrito molecule.
 
 ### Organisms (19 — public surface)
 
@@ -281,19 +283,24 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | APIKeyManager | custom | Ready |
 | IntegrationCard | custom | Ready |
 | OnboardingWizard | custom | Ready |
+| RunHistory | custom | Ready |
+| APIDocPanel | custom | Ready |
+| OrganizationManager | custom | Ready |
+| DataManager | custom | Ready |
 
-### Templates (8)
+### Templates (7)
 
 | Name | Description | Status |
 |---|---|---|
+| AppShell | Full-page wrapper: header + collapsible sidebar + main | Ready |
 | EditorLayout | Split-pane: 50/50 editor + preview with resizer | Ready |
 | LibraryLayout | Sidebar + filterable card grid | Ready |
 | DashboardLayout | Sidebar + header + scrollable main + optional right panel | Ready |
 | DetailLayout | Sidebar + full-width detail view with tabs | Ready |
 | ComparisonLayout | Side-by-side Version A / Version B (50/50) diff panels | Ready |
-| SettingsLayout | Horizontal tab navigation below header + content area | Ready |
-| AuthLayout | Centered card on full-height background | Ready |
-| ModalLayout | Centered modal (60–80% viewport) over dimmed overlay | Ready |
+| TemplatePreview | Lightweight preview frame for showcase pages | Ready |
+
+> **Planned (not yet implemented):** SettingsLayout, AuthLayout, ModalLayout
 
 ---
 
@@ -590,4 +597,4 @@ All 4 entry points share the same evaluator workflow:
 
 *80+ components · 3 themes · 9 anatomy fields · 7 app pages · WCAG 2.1 AA*
 
-<!-- CHECKSUM: Atoms(22) + Molecules(18) + Organisms(15 showcase) + Templates(8) = 63 showcase -->
+<!-- CHECKSUM: Atoms(22) + Molecules(16) + Organisms(19 showcase) + Templates(7) = 64 showcase -->
