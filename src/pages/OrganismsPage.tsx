@@ -14,6 +14,10 @@ import { SettingsNav } from "@/components/organisms/SettingsNav";
 import { APIKeyManager } from "@/components/organisms/APIKeyManager";
 import { IntegrationCard } from "@/components/organisms/IntegrationCard";
 import { OnboardingWizard } from "@/components/organisms/OnboardingWizard";
+import { RunHistory } from "@/components/organisms/RunHistory";
+import { APIDocPanel } from "@/components/organisms/APIDocPanel";
+import { OrganizationManager } from "@/components/organisms/OrganizationManager";
+import { DataManager } from "@/components/organisms/DataManager";
 import { Badge } from "@/components/ui/badge";
 
 function CategoryHeader({ id, title, description, count }: { id: string; title: string; description: string; count: number }) {
@@ -69,9 +73,9 @@ export default function OrganismsPage() {
 
   const categories = [
     { id: "cat-navigation", label: "Navigation & Layout", count: 5, ids: ["topbar", "sidebar", "filterbar", "bulkactions", "usermenu"] },
-    { id: "cat-dashboard", label: "Dashboard & Data", count: 4, ids: ["datatable", "dashstats", "activityfeed", "authform"] },
-    { id: "cat-settings", label: "Settings & Config", count: 4, ids: ["settingsnav", "apikeymanager", "integrationcard", "onboardingwizard"] },
-    { id: "cat-io", label: "Import & Export", count: 2, ids: ["importdialog", "exportmenu"] },
+    { id: "cat-dashboard", label: "Dashboard & Data", count: 6, ids: ["datatable", "dashstats", "activityfeed", "authform", "runhistory", "apidocpanel"] },
+    { id: "cat-settings", label: "Settings & Config", count: 5, ids: ["settingsnav", "apikeymanager", "integrationcard", "onboardingwizard", "orgmanager"] },
+    { id: "cat-io", label: "Import & Export", count: 3, ids: ["importdialog", "exportmenu", "datamanager"] },
   ];
 
   return (
@@ -81,7 +85,7 @@ export default function OrganismsPage() {
         <p className="mt-1 font-body text-base text-muted-foreground">
           Complex components composed of molecules and atoms. These form the major UI sections.
         </p>
-        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">15 components · 4 categories</p>
+        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">19 components · 4 categories</p>
       </div>
 
       {/* ── CATEGORY JUMP NAV ── */}
@@ -157,7 +161,7 @@ export default function OrganismsPage() {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Dashboard & Data                                  */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-dashboard" title="Dashboard & Data" description="Data display, metrics, authentication, and activity tracking." count={4} />
+      <CategoryHeader id="cat-dashboard" title="Dashboard & Data" description="Data display, metrics, authentication, and activity tracking." count={6} />
 
       {/* ── DATA TABLE ── */}
       <Section id="datatable" title="Data Table" description="Sortable columns, mono headers uppercase, hover with orange left border accent." composedOf="Table headers + sortable columns + rows + pagination">
@@ -202,10 +206,39 @@ export default function OrganismsPage() {
         <CodeBlock>{`<ActivityFeed items={[{ actor, initials, action, resource, time }]} />`}</CodeBlock>
       </Section>
 
+      {/* ── RUN HISTORY ── */}
+      <Section
+        id="runhistory"
+        title="Run History"
+        description="Scrollable list of playground/evaluation run entries with success/error header stats."
+        composedOf="RunHistoryItem × N + summary header"
+      >
+        <RunHistory
+          runs={[
+            { id: "1", runId: "#1042", model: "claude-3.5-sonnet", status: "success", tokens: 1247, latencyMs: 820, timestamp: "2m ago" },
+            { id: "2", runId: "#1041", model: "gpt-4-turbo",       status: "error",   tokens: 0,    latencyMs: 1500, timestamp: "5m ago" },
+            { id: "3", runId: "#1040", model: "claude-3.5-sonnet", status: "running", tokens: 340,  timestamp: "8m ago" },
+            { id: "4", runId: "#1039", model: "gemini-1.5-pro",    status: "pending", timestamp: "12m ago" },
+          ]}
+        />
+        <CodeBlock>{`<RunHistory runs={[...]} onRunClick={fn} />`}</CodeBlock>
+      </Section>
+
+      {/* ── API DOC PANEL ── */}
+      <Section
+        id="apidocpanel"
+        title="API Doc Panel"
+        description="Collapsible API endpoint documentation with HTTP method badges and sample request/response code."
+        composedOf="Badge (method) + endpoint list + code blocks"
+      >
+        <APIDocPanel />
+        <CodeBlock>{`<APIDocPanel />`}</CodeBlock>
+      </Section>
+
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Settings & Config                                  */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-settings" title="Settings & Config" description="API keys, integrations, onboarding, and settings navigation." count={4} />
+      <CategoryHeader id="cat-settings" title="Settings & Config" description="API keys, integrations, onboarding, and settings navigation." count={5} />
 
       {/* ── SETTINGS NAV ── */}
       <Section id="settingsnav" title="Settings Nav" description="Horizontal tab navigation for settings pages. Wraps TabNav molecule." composedOf="TabNav">
@@ -246,10 +279,21 @@ export default function OrganismsPage() {
         <CodeBlock>{`<OnboardingWizard steps={[{ id, title, description, completed }]} currentStep={0} onNext={fn} onSkip={fn} />`}</CodeBlock>
       </Section>
 
+      {/* ── ORGANIZATION MANAGER ── */}
+      <Section
+        id="orgmanager"
+        title="Organization Manager"
+        description="Tab and tag management for workspace organization — create, rename, reorder, and delete."
+        composedOf="Input + Badge + Dialog + RadioGroup + Button"
+      >
+        <OrganizationManager />
+        <CodeBlock>{`<OrganizationManager />`}</CodeBlock>
+      </Section>
+
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Import & Export                                    */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-io" title="Import & Export" description="Content import and export in multiple formats." count={2} />
+      <CategoryHeader id="cat-io" title="Import & Export" description="Content import and export in multiple formats." count={3} />
 
       {/* ── IMPORT DIALOG ── */}
       <Section id="importdialog" title="Import Dialog" description="Multi-format import with paste area and file drop zone." composedOf="Textarea + Button + format selector">
@@ -265,6 +309,17 @@ export default function OrganismsPage() {
           <ExportMenu promptName="Customer Support Bot" />
         </div>
         <CodeBlock>{`<ExportMenu promptName="Customer Support Bot" onExport={(format) => {}} />`}</CodeBlock>
+      </Section>
+
+      {/* ── DATA MANAGER ── */}
+      <Section
+        id="datamanager"
+        title="Data Manager"
+        description="Export, import, and clear workspace data — with confirmation dialogs for destructive actions."
+        composedOf="Checkbox + Button + Dialog"
+      >
+        <DataManager />
+        <CodeBlock>{`<DataManager />`}</CodeBlock>
       </Section>
     </div>
   );
