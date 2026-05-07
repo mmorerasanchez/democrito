@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.3.0] — 2026-05-07
+
+### Fixed
+- EcosystemSection: Claude Skill badge changed from "coming-soon" to "live"; added link to raw SKILL.md URL (#16)
+- OrganismsPage: Added missing showcase sections for RunHistory, APIDocPanel, OrganizationManager, DataManager; header corrected to "19 components · 4 categories" (#17)
+- OverviewPage: Stat card counts corrected to Atoms 10 / Molecules 16 / Organisms 19; removed stale "originally built for prompt-x" copy
+- index.html: Added og-image.png (1200×630, warm theme); removed TODO comment; confirmed absolute og:image URLs (#15)
+- Added public/.well-known/mcp.json for AI agent discovery (#15)
+- Added vercel.json Content-Type rule for .well-known/mcp.json (#15)
+- Removed stale tailwind.config.ts references from src/, docs/, skill/, public/
+- Removed internal Notion collection:// URLs from CLAUDE.md
+- DESIGN_SYSTEM.md: Template count corrected to 7; ghost SettingsLayout/AuthLayout/ModalLayout entries removed; Organism table completed with all 19 public components; Molecule table corrected to 16 with AvatarGroup added and Pagination moved to shadcn note
+
+---
+
 ## [3.2.2] — 2026-05-05
 
 ### Fixed

@@ -298,7 +298,7 @@ const SHADOWS = [
 
 /**
  * Map a CSS variable name (e.g. "--accent", "--card-foreground") to the
- * Tailwind utility prefix(es) it powers. Mirrors `tailwind.config.ts`.
+ * Tailwind utility prefix(es) it powers. Mirrors the `@theme` block in `src/index.css`.
  * Returns the bare token (no `bg-`/`text-`/`border-` prefix) so consumers
  * can compose: `bg-${tw}`, `text-${tw}`, etc.
  */
