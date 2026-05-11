@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home, Palette, Box, Layers, LayoutGrid, Layout, FileText, Bot } from "lucide-react";
+import { Home, Palette, Box, Layers, LayoutGrid, Layout, Bot } from "lucide-react";
 
 const navItems = [
   { title: "Overview", url: "/", icon: Home },
@@ -17,8 +17,7 @@ const navItems = [
   { title: "Atoms", url: "/atoms", icon: Box },
   { title: "Molecules", url: "/molecules", icon: Layers },
   { title: "Organisms", url: "/organisms", icon: LayoutGrid },
-  { title: "Templates", url: "/templates", icon: Layout },
-  { title: "Pages", url: "/pages", icon: FileText },
+  { title: "Pages", url: "/pages", icon: Layout },
   { title: "AI", url: "/ai", icon: Bot },
 ];
 

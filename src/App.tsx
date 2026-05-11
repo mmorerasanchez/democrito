@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { ShowcaseLayout } from "@/components/ShowcaseLayout";
 import OverviewPage from "@/pages/OverviewPage";
@@ -11,10 +11,10 @@ import AtomsPage from "@/pages/AtomsPage";
 import MoleculesPage from "@/pages/MoleculesPage";
 import OrganismsPage from "@/pages/OrganismsPage";
 import TemplatesPage from "@/pages/TemplatesPage";
-import PagesPage from "@/pages/PagesPage";
 import NotFound from "@/pages/NotFound";
 import TokenSmokeTest from "@/pages/TokenSmokeTest";
 import AiPage from "@/pages/AiPage";
+import UseCasesPage from "@/pages/UseCasesPage";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -35,9 +35,10 @@ const App = () => (
               <Route path="/atoms" element={<AtomsPage />} />
               <Route path="/molecules" element={<MoleculesPage />} />
               <Route path="/organisms" element={<OrganismsPage />} />
-              <Route path="/templates" element={<TemplatesPage />} />
-              <Route path="/pages" element={<PagesPage />} />
+              <Route path="/pages" element={<TemplatesPage />} />
+              <Route path="/templates" element={<Navigate to="/pages" replace />} />
               <Route path="/ai" element={<AiPage />} />
+              <Route path="/use-cases" element={<UseCasesPage />} />
             </Route>
             <Route path="/test/tokens" element={<TokenSmokeTest />} />
             <Route path="*" element={<NotFound />} />

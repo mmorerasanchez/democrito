@@ -2,15 +2,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heading, Text, Code, Logo } from "@/components/atoms";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Palette, Box, Layers, LayoutGrid, Layout, FileText, Star, ExternalLink, Terminal } from "lucide-react";
+import { ArrowRight, Palette, Box, Layers, LayoutGrid, Layout, Star, ExternalLink, Terminal, Sparkles, Code2, BarChart3, Workflow } from "lucide-react";
 
 const stats = [
-{ label: "Design Tokens", count: "90+", description: "Colors, typography, spacing, radius, z-index, themes" },
-{ label: "Atoms", count: "10", description: "Logo, Heading, Text, Tag, Spinner, Code, CodeBlock, CopyButton, Kbd, Link" },
-{ label: "Molecules", count: "16", description: "FormField, SearchBar, StatCard, TokenCounter, TabNav, etc." },
-{ label: "Organisms", count: "19", description: "TopBar, DataTable, AuthForm, FilterBar, UserMenu, etc." },
-{ label: "Templates", count: "7", description: "AppShell, Editor, Library, Dashboard, Detail, Comparison" },
-{ label: "UI Primitives", count: "48", description: "shadcn/ui base components — Button, Dialog, Table, etc." }];
+{ label: "Design Tokens", count: "90+" },
+{ label: "Atoms", count: "10" },
+{ label: "Molecules", count: "16" },
+{ label: "Organisms", count: "19" },
+{ label: "Pages", count: "7" },
+{ label: "UI Primitives", count: "48" }];
 
 
 const principles = [
@@ -24,12 +24,32 @@ const principles = [
 
 const sections = [
 { name: "Tokens", path: "/tokens", icon: Palette, desc: "Colors, Typography, Spacing, Radius, Shadows, Breakpoints" },
-{ name: "Atoms", path: "/atoms", icon: Box, desc: "Logo, Heading, Text, Tag, Spinner, Code, CodeBlock, CopyButton, Kbd, Link" },
-{ name: "Molecules", path: "/molecules", icon: Layers, desc: "FormField, SearchBar, Cards, TabNav, Counters" },
-{ name: "Organisms", path: "/organisms", icon: LayoutGrid, desc: "TopBar, DataTable, AuthForm, FilterBar, ActivityFeed, OnboardingWizard, …" },
-{ name: "Templates", path: "/templates", icon: Layout, desc: "AppShell, Layouts and Pages" },
-{ name: "Pages", path: "/pages", icon: FileText, desc: "Dashboard Demo" }];
+{ name: "Atoms", path: "/atoms", icon: Box, desc: "Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link, ..." },
+{ name: "Molecules", path: "/molecules", icon: Layers, desc: "Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, ..." },
+{ name: "Organisms", path: "/organisms", icon: LayoutGrid, desc: "Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, ..." },
+{ name: "Pages", path: "/pages", icon: Layout, desc: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ..." }];
 
+
+const useCases = [
+  {
+    name: "Solo Developer",
+    path: "/use-cases#solo-developer",
+    icon: Code2,
+    desc: "Building an AI prompt library with Lovable + Claude Code. Violet accent, dark-first, mono-heavy.",
+  },
+  {
+    name: "Two-person Startup",
+    path: "/use-cases#startup",
+    icon: BarChart3,
+    desc: "Building a developer observability dashboard. Blue accent, professional dual-theme.",
+  },
+  {
+    name: "Growth Engineer",
+    path: "/use-cases#growth-engineer",
+    icon: Workflow,
+    desc: "Building an internal AI ops platform. Amber accent, dark warm, optimised for sustained use.",
+  },
+];
 
 const REPO_URL = "https://github.com/mmorerasanchez/democrito";
 
@@ -47,7 +67,7 @@ export default function OverviewPage() {
           <Badge variant="outline">v3</Badge>
         </div>
         <Text size="lg" variant="muted" className="max-w-prose">
-          A minimal, monochromatic, hand-crafted atomic design system for data-dense, IDE-inspired applications. Ready to integrate in your app.
+          Hand-crafted atomic design system for AI applications. Ready to integrate in your app and LLM.
         </Text>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button onClick={() => window.open(REPO_URL, "_blank")}>
@@ -64,14 +84,16 @@ export default function OverviewPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-        {stats.map((s) =>
-        <div key={s.label} className="rounded-md border border-border bg-card p-4 space-y-1">
-            <p className="font-mono text-2xl font-bold text-accent">{s.count}</p>
-            <p className="font-display text-sm font-medium">{s.label}</p>
-            <p className="font-body text-2xs text-muted-foreground line-clamp-2">{s.description}</p>
-          </div>
-        )}
+      <div>
+        <Heading level="h2" className="mb-4">Summary</Heading>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {stats.map((s) =>
+          <div key={s.label} className="rounded-md border border-border bg-card p-4 space-y-1">
+              <p className="font-mono text-2xl font-bold text-accent">{s.count}</p>
+              <p className="font-display text-sm font-medium">{s.label}</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Explore */}
@@ -89,7 +111,7 @@ export default function OverviewPage() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="font-display text-sm font-medium group-hover:text-accent transition-colors">{s.name}</p>
-                <p className="font-body text-xs text-muted-foreground">{s.desc}</p>
+                <p className="font-body text-xs text-muted-foreground line-clamp-2">{s.desc}</p>
               </div>
               <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-0.5" />
             </Link>
@@ -148,11 +170,9 @@ export default function OverviewPage() {
           <div className="space-y-2">
             <Text variant="muted" size="sm" className="font-display font-medium">AI-ready</Text>
             <Text size="sm" variant="muted">
-              Includes <Code>CLAUDE.md</Code> for Cursor/Claude Code auto-context and a full{" "}
-              <a href={`${REPO_URL}/blob/main/docs/ai-usage.md`} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                AI usage guide
-              </a>{" "}
-              for Lovable, v0, Copilot, and more.
+              Includes structured context files read automatically by AI coding agents:{" "}
+              <Code>CLAUDE.md</Code>, <Code>DESIGN.md</Code>, and <Code>src/DESIGN_SYSTEM.md</Code>.
+              Drop the repo into Cursor, Claude Code, or Windsurf and every LLM generates on-system output from the first prompt.
             </Text>
           </div>
 
@@ -169,6 +189,51 @@ export default function OverviewPage() {
               </Button>
             </a>
           </div>
+
+          {/* AI CTA */}
+          <div className="rounded-md border border-accent/20 bg-accent/5 p-4 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex items-start gap-3 flex-1">
+              <div className="rounded-md bg-accent/10 p-2 text-accent shrink-0">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="font-display text-sm font-medium">AI-Ready by Design</p>
+                <p className="font-body text-xs text-muted-foreground mt-0.5">
+                  democrito ships structured AI context files so every LLM produces on-brand output — no prompt engineering required.
+                </p>
+              </div>
+            </div>
+            <Button variant="outline" size="sm" onClick={() => navigate("/ai")} className="shrink-0">
+              Explore AI Integration
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Use Cases */}
+      <div>
+        <Heading level="h2" className="mb-1">Use Cases</Heading>
+        <Text variant="muted" size="sm" className="mb-4">
+          Three real projects. Full implementation decisions — from the problem through the token overrides.
+        </Text>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {useCases.map((u) =>
+          <Link
+            key={u.path}
+            to={u.path}
+            className="group flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-all duration-150 hover:-translate-y-px hover:shadow-md hover:border-accent/30">
+
+              <div className="rounded-md bg-accent/10 p-2 text-accent shrink-0">
+                <u.icon className="h-5 w-5" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-display text-sm font-medium group-hover:text-accent transition-colors">{u.name}</p>
+                <p className="font-body text-xs text-muted-foreground line-clamp-2">{u.desc}</p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-0.5 shrink-0" />
+            </Link>
+          )}
         </div>
       </div>
     </div>);

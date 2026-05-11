@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/atoms";
 import { Outlet } from "react-router-dom";
+import { useTheme } from "@/hooks/use-theme";
 
 /**
  * Auto-closes the mobile sidebar drawer whenever the route changes,
@@ -19,10 +20,22 @@ function CloseMobileSidebarOnNav() {
   return null;
 }
 
+function FaviconSync() {
+  const { theme } = useTheme();
+  useEffect(() => {
+    const link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+    if (link) {
+      link.href = theme === "dark" ? "/favicon-dark.png" : "/favicon-light-warm.png";
+    }
+  }, [theme]);
+  return null;
+}
+
 export function ShowcaseLayout() {
   return (
     <SidebarProvider>
       <CloseMobileSidebarOnNav />
+      <FaviconSync />
       <div className="flex min-h-screen w-full">
         <AppSidebar />
         <div className="flex min-w-0 flex-1 flex-col">
