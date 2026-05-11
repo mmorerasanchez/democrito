@@ -20,6 +20,14 @@ function CloseMobileSidebarOnNav() {
   return null;
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    document.getElementById("main-scroll")?.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+  return null;
+}
+
 function FaviconSync() {
   const { theme } = useTheme();
   useEffect(() => {
@@ -36,6 +44,7 @@ export function ShowcaseLayout() {
     <SidebarProvider>
       <CloseMobileSidebarOnNav />
       <FaviconSync />
+      <ScrollToTop />
       <div className="flex min-h-screen w-full">
         <AppSidebar />
         <div className="flex min-w-0 flex-1 flex-col">
@@ -50,7 +59,7 @@ export function ShowcaseLayout() {
             </div>
             <ThemeToggle />
           </header>
-          <main className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
+          <main id="main-scroll" className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
             <div className="mx-auto w-full max-w-5xl">
               <Outlet />
             </div>

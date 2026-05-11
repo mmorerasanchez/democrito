@@ -24,23 +24,6 @@ const ITEMS: EcosystemItem[] = [
     href: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md",
     external: true,
   },
-  {
-    name: "llms.txt",
-    description: "Concise project summary for LLM agents — stack, install, design principles.",
-    status: "live",
-    href: "/llms.txt",
-  },
-  {
-    name: "robots.txt",
-    description: "Standard crawler permissions with forward-looking sitemap reference.",
-    status: "live",
-    href: "/robots.txt",
-  },
-  {
-    name: "npm Package",
-    description: "First-class npm distribution with versioned releases.",
-    status: "coming-soon",
-  },
 ];
 
 export function EcosystemSection() {
@@ -53,7 +36,7 @@ export function EcosystemSection() {
         {ITEMS.map((item) => (
           <Card
             key={item.name}
-            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5"
+            className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5 overflow-hidden"
           >
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-display text-base font-medium">
@@ -72,7 +55,7 @@ export function EcosystemSection() {
               <Link
                 href={item.href}
                 external={item.external}
-                className="font-mono text-xs"
+                className="font-mono text-xs truncate block"
               >
                 {item.href}
               </Link>
