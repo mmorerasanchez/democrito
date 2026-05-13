@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Check, Copy, Download, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { TokenReferenceCard } from "@/components/molecules/TokenReferenceCard";
 
 /* ── helpers ── */
 function hslToHex(h: number, s: number, l: number): string {
@@ -644,6 +645,16 @@ export default function TokensPage() {
             </div>
           </div>
         </Section>
+      )}
+
+      {/* Token Quick Reference */}
+      {!trimmedQuery && (
+        <section className="space-y-4">
+          <h2 className="font-display text-lg font-medium tracking-tight">
+            Quick Reference
+          </h2>
+          <TokenReferenceCard />
+        </section>
       )}
     </div>
   );

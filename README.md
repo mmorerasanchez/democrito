@@ -42,11 +42,11 @@ npm run dev
 democrito is published as a [shadcn/ui-compatible registry](https://ui.shadcn.com/docs/registry). You can install the base design system or the warm theme variant directly:
 
 ```bash
-# Install the democrito base (dark + light themes, tokens, fonts)
-npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/registry.json democrito
+# Install the democrito base (warm + dark + light themes, tokens, fonts)
+npx shadcn@latest add https://democrito.design/r/democrito.json democrito
 
 # Optionally add the warm theme variant
-npx shadcn@latest add https://github.com/mmorerasanchez/democrito/raw/main/registry.json democrito-warm
+npx shadcn@latest add https://democrito.design/r/democrito.json democrito-warm
 ```
 
 > See [`registry.json`](registry.json) for the full manifest.
@@ -84,10 +84,10 @@ src/
 │
 ├── components/
 │   ├── atoms/                         # Smallest building blocks (10 components)
-│   ├── molecules/                     # Compositions of atoms (16 components)
+│   ├── molecules/                     # Compositions of atoms (18 components)
 │   ├── organisms/                     # Major UI sections (19 components)
 │   ├── templates/                     # Page layout shells (7 components)
-│   └── ui/                            # shadcn/ui primitives (49 components)
+│   └── ui/                            # shadcn/ui primitives (40+ components)
 │
 ├── pages/                             # Route pages (showcase + prototype)
 ├── hooks/                             # Custom React hooks
@@ -100,10 +100,10 @@ src/
 | Layer | Count | Description |
 | --- | --- | --- |
 | **Atoms** | 10 | Typography, code, tags, links, copy button, spinner |
-| **Molecules** | 16 | Form fields, nav items, stat cards, search, diff, variable editors |
+| **Molecules** | 18 | Form fields, nav items, stat cards, search, diff, variable editors |
 | **Organisms** | 19 | Navigation, tables, auth, settings, data management, API tooling |
 | **Templates** | 7 | Page layout shells (app shell, editor, dashboard, comparison) |
-| **shadcn/ui primitives** | 49 | Radix UI + shadcn base components |
+| **shadcn/ui primitives** | 40+ | Radix UI + shadcn base components |
 
 > **Examples:** [`src/examples/prompt-x/`](src/examples/prompt-x/) contains 23 organisms + 2 molecules built for prompt-engineering UIs. They are not part of the public design system surface, but stand as fully-functional reference implementations of how to compose democrito atoms into a real product.
 
