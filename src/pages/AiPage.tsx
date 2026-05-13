@@ -6,7 +6,7 @@ import {
   HeroSection,
 } from "@/components/organisms/ai";
 
-function AnthropicIcon({ className }: { className?: string }) {
+function ClaudeIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -15,7 +15,7 @@ function AnthropicIcon({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <path d="M13.827 3.52h3.603L24 20h-3.603l-6.57-16.48zm-7.258 0h3.767L16.906 20h-3.674l-1.343-3.461H5.017L3.674 20H0L6.57 3.52zm4.132 9.959L8.453 7.687 6.205 13.48h4.496z" />
+      <path d="M9.883 4.906a3.97 3.97 0 0 0-5.62 0 3.97 3.97 0 0 0 0 5.62l.006.005 2.148 2.15a.587.587 0 0 1 0 .825l-2.148 2.15-.006.005a3.97 3.97 0 0 0 0 5.62 3.97 3.97 0 0 0 5.62 0l2.148-2.148a.587.587 0 0 1 .825 0l2.148 2.148a3.97 3.97 0 0 0 5.62 0 3.97 3.97 0 0 0 0-5.62l-.006-.005-2.148-2.15a.587.587 0 0 1 0-.825l2.148-2.15.006-.005a3.97 3.97 0 0 0 0-5.62 3.97 3.97 0 0 0-5.62 0L12.856 7.05a.587.587 0 0 1-.825 0L9.883 4.906z" />
     </svg>
   );
 }
@@ -23,7 +23,7 @@ function AnthropicIcon({ className }: { className?: string }) {
 const platforms = [
   {
     path: "/ai/claude",
-    icon: AnthropicIcon,
+    icon: ClaudeIcon,
     name: "Claude",
     badge: "Anthropic",
     desc: "Four tools — chat, design, Cowork, and terminal — with a single context layer. CLAUDE.md, DESIGN.md, and the compact token block keep every Claude surface on-brand from the first prompt.",
