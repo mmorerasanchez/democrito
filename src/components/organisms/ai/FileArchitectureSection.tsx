@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import { Text } from "@/components/atoms";
 import { Card } from "@/components/ui/card";
 
@@ -5,6 +6,7 @@ interface FileCardData {
   filename: string;
   role: string;
   description: string;
+  githubUrl: string;
 }
 
 const FILES: FileCardData[] = [
@@ -13,18 +15,21 @@ const FILES: FileCardData[] = [
     role: "Coding Rules",
     description:
       "Project stack, code conventions, architecture rules, common mistakes. Loaded automatically by Claude Code on session start.",
+    githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/CLAUDE.md",
   },
   {
     filename: "DESIGN.md",
     role: "Design Philosophy",
     description:
       "Visual principles, colour system rationale, typography rules, spacing philosophy. The \"taste\" layer that guides aesthetic decisions.",
+    githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/DESIGN.md",
   },
   {
     filename: "DESIGN_SYSTEM.md",
     role: "Token Inventory",
     description:
       "Complete reference of CSS custom properties, component inventory, variant specifications. The machine-readable specification.",
+    githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/src/DESIGN_SYSTEM.md",
   },
 ];
 
@@ -47,6 +52,16 @@ export function FileArchitectureSection() {
             <Text variant="muted" size="sm">
               {file.description}
             </Text>
+            <a
+              href={file.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto flex items-center gap-1 font-mono text-2xs text-muted-foreground hover:text-accent transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="h-3 w-3" />
+              View on GitHub
+            </a>
           </Card>
         ))}
       </div>
