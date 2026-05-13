@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { ContactCreator } from "@/components/ContactCreator";
+import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Logo } from "@/components/atoms";
 import { Outlet } from "react-router-dom";
@@ -62,6 +64,10 @@ export function ShowcaseLayout() {
           <main id="main-scroll" className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
             <div className="mx-auto w-full max-w-5xl">
               <Outlet />
+            </div>
+            <div className="mx-auto w-full max-w-5xl mt-16 space-y-4 border-t border-border pt-8 pb-10">
+              <ContactCreator />
+              <Footer />
             </div>
           </main>
         </div>

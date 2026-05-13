@@ -10,7 +10,7 @@ import { INSTALL_COMMAND } from "./install-command";
  */
 export function HeroSection() {
   return (
-    <section>
+    <section className="space-y-2">
       <div className="relative">
         <CodeBlock
           code={INSTALL_COMMAND}
@@ -26,6 +26,16 @@ export function HeroSection() {
           label="install command"
           className="absolute right-2 top-2 h-9 w-9 min-h-0 min-w-0 opacity-100 md:opacity-50 md:transition-opacity md:duration-100 md:hover:opacity-100 md:focus-visible:opacity-100"
         />
+      </div>
+      <div className="flex justify-end">
+        <a
+          href="https://democrito.design/r/democrito.json"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-2xs text-muted-foreground transition-colors hover:text-accent"
+        >
+          registry.json ↗
+        </a>
       </div>
     </section>
   );
