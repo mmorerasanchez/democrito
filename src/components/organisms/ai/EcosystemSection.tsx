@@ -24,6 +24,13 @@ const ITEMS: EcosystemItem[] = [
     href: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md",
     external: true,
   },
+  {
+    name: "Contact the Creator",
+    description: "Questions, collaborations, or feedback on democrito — reach out directly.",
+    status: "live" as const,
+    href: "https://www.linkedin.com/in/mmorerasanchez/",
+    external: true,
+  },
 ];
 
 export function EcosystemSection() {

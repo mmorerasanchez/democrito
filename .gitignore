@@ -31,10 +31,14 @@ playwright-report/
 test-results/
 
 # Internal working documents — not for public distribution
-docs/cr-*.md
-docs/web-ai-pages-*.md
-docs/web-presentation-*.md
-docs/testing-session-*.md
-docs/lovable-prompt-*.md
-docs/use-cases-*.md
+# Patterns use **/ to catch files at any depth inside docs/
+docs/**/cr-*.md
+docs/**/web-ai-pages-*.md
+docs/**/web-presentation-*.md
+docs/**/testing-session-*.md
+docs/**/lovable-prompt-*.md
+docs/**/use-cases-*.md
+docs/**/proposition-*.md
+docs/**/session-*.md
+docs/**/draft-*.md
 .lovable/

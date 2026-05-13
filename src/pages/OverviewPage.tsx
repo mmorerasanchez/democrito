@@ -78,12 +78,17 @@ export default function OverviewPage() {
         <Text variant="muted" size="sm" className="max-w-prose">
           Install democrito in your preferred mode, AI-ready.
         </Text>
-        <QuickStartSection />
+        <QuickStartSection showHeading={false} />
       </div>
 
       {/* What */}
       <div className="space-y-12">
-        <Heading level="h2">What</Heading>
+        <div className="space-y-2">
+          <Heading level="h2">What</Heading>
+          <Text variant="muted" size="sm" className="max-w-prose">
+            Hand-crafted design system for new gen applications, AI-ready.
+          </Text>
+        </div>
 
         {/* Summary */}
         <div>

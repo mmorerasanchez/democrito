@@ -1,31 +1,36 @@
 import { Link } from "react-router-dom";
-import { Star, ExternalLink, ArrowRight, Sparkles, Code2, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Heading, Text, Code, CodeBlock } from "@/components/atoms";
+import { ArrowRight, Github, Heart } from "lucide-react";
 import {
   EcosystemSection,
   FileArchitectureSection,
   HeroSection,
 } from "@/components/organisms/ai";
 
-const REPO_URL = "https://github.com/mmorerasanchez/democrito";
-
-const installCode = `git clone ${REPO_URL}.git
-cd democrito
-npm install
-npm run dev`;
+function AnthropicIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M13.827 3.52h3.603L24 20h-3.603l-6.57-16.48zm-7.258 0h3.767L16.906 20h-3.674l-1.343-3.461H5.017L3.674 20H0L6.57 3.52zm4.132 9.959L8.453 7.687 6.205 13.48h4.496z" />
+    </svg>
+  );
+}
 
 const platforms = [
   {
     path: "/ai/claude",
-    icon: Sparkles,
+    icon: AnthropicIcon,
     name: "Claude",
     badge: "Anthropic",
     desc: "Four tools — chat, design, Cowork, and terminal — with a single context layer. CLAUDE.md, DESIGN.md, and the compact token block keep every Claude surface on-brand from the first prompt.",
   },
   {
     path: "/ai/vibe-coding",
-    icon: Code2,
+    icon: Heart,
     name: "Vibe Coding Tools",
     badge: "Lovable · Stitch · Replit",
     desc: "Visual-first builders that generate full apps from prompts. democrito's context files — DESIGN.md, CLAUDE.md, and the token block — wire into each platform's knowledge layer.",
@@ -91,36 +96,6 @@ export default function AiPage() {
       </section>
 
       <EcosystemSection />
-
-      {/* Getting Started */}
-      <div>
-        <Heading level="h2" className="mb-4">Getting Started</Heading>
-        <div className="rounded-lg border border-border bg-card p-6 space-y-6">
-          <CodeBlock code={installCode} language="bash" />
-          <div className="space-y-2">
-            <Text variant="muted" size="sm" className="font-display font-medium">Usage rules</Text>
-            <ul className="space-y-1.5 font-body text-sm text-muted-foreground list-disc list-inside">
-              <li>Copy the <Code>@theme</Code> block from <Code>index.css</Code> into your project — all tokens are CSS custom properties</li>
-              <li>Install via shadcn registry: <Code>npx shadcn add https://democrito.design/registry.json</Code></li>
-              <li>Never hardcode colors or sizes — always use semantic tokens (no inline hex or HSL)</li>
-              <li><Code>font-display</Code> for headings, <Code>font-body</Code> for paragraphs, <Code>font-mono</Code> for all data values and user-editable content</li>
-              <li>Drop <Code>CLAUDE.md</Code> and <Code>src/DESIGN_SYSTEM.md</Code> into any AI coding agent — every LLM generates on-brand output from the first prompt</li>
-            </ul>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button variant="secondary" onClick={() => window.open(REPO_URL, "_blank")}>
-              <Star className="h-4 w-4" />
-              Star on GitHub
-            </Button>
-            <a href="https://www.linkedin.com/in/mmorerasanchez/" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline">
-                <ExternalLink className="h-4 w-4" />
-                Contact Creator
-              </Button>
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

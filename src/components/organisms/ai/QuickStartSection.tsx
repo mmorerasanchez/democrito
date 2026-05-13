@@ -31,12 +31,18 @@ const PATHS: InstallPath[] = [
   },
 ];
 
-export function QuickStartSection() {
+interface QuickStartSectionProps {
+  showHeading?: boolean;
+}
+
+export function QuickStartSection({ showHeading = true }: QuickStartSectionProps) {
   return (
     <section className="space-y-4">
-      <h2 className="font-display text-lg font-medium tracking-tight">
-        Quick Start
-      </h2>
+      {showHeading && (
+        <h2 className="font-display text-lg font-medium tracking-tight">
+          Quick Start
+        </h2>
+      )}
       <div className="space-y-6">
         {PATHS.map((path) => (
           <div key={path.title} className="space-y-2">
