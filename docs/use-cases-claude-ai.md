@@ -47,12 +47,16 @@ DESIGN SYSTEM: democrito
 - Three themes: warm (default, :root), dark (.dark), light (.light)
 - Components use Radix UI / shadcn/ui primitives only — never rebuild from scratch
 - Icons: Lucide React only
+- Semantic status tokens: text-success, text-error, text-warning, text-info (never text-green-*, text-red-*, text-yellow-*)
+- Semantic status backgrounds: bg-success-bg/10, bg-error-bg/10, bg-warning-bg/10, bg-info-bg/10
 
 RULES:
 - Never hardcode hex or RGB values — always use semantic token classes
+- Never use Tailwind's built-in color palette (text-green-600, bg-red-500, etc.) — always use democrito semantic tokens
 - font-mono is mandatory for any data value, variable, code, or user-editable text
 - No fourth surface level — never use arbitrary bg colors outside the three-surface system
 - All new components must be classifiable as: atom / molecule / organism / template
+- Semantic tokens handle dark/light theming internally — never add dark: overrides at component level
 
 When I ask for component code, give me React + TypeScript + Tailwind utility classes using democrito tokens.
 ```
@@ -80,6 +84,33 @@ What token should I use for a disabled input field background?
 - [ ] Data/code values use `font-mono` class
 - [ ] Component imports from `@/components/ui/` not custom builds
 - [ ] No fourth surface level introduced
+- [ ] No hardcoded Tailwind colors (`text-green-*`, `text-red-*`, `bg-blue-*` etc.)
+- [ ] No `dark:` overrides at component level (semantic tokens handle theming)
+
+**Debug prompts — use when Claude violates a rule:**
+
+```
+The color you used (e.g. text-green-600) is a hardcoded Tailwind color. 
+democrito has semantic tokens for this: text-success, text-error, text-warning, text-info. 
+Please update every hardcoded color to use the correct semantic token.
+```
+
+```
+You added dark: overrides at the component level. democrito's semantic tokens 
+handle theming internally across all three themes — remove all dark: prefixes 
+from the component. The tokens adapt automatically.
+```
+
+```
+You built a custom card shell instead of using the shadcn Card primitive. 
+Rebuild this using Card, CardHeader, CardContent from @/components/ui/card.
+```
+
+```
+This component uses font-sans or no font class on the [label/value/description]. 
+Apply the democrito font rule: font-display for headings/labels, font-body for 
+descriptions, font-mono for all data values and code.
+```
 
 ---
 
@@ -126,6 +157,10 @@ Expected: `font-mono`, because API keys are user-editable/data values — refere
 - [ ] No hallucinated token names
 - [ ] Font-mono rationale explained correctly
 - [ ] Surface hierarchy respected in Prompt 3
+
+**Finding — common Prompt 3 gotcha:** Designers often reach for `bg-card` inside a `bg-card` modal thinking "elevated inside elevated." The correct pattern is `bg-surface` inside `bg-card` — it recedes rather than stacks, maintaining visual depth without introducing a fourth surface level.
+
+**Finding — Prompt 4 edge case:** If an API key is partially masked (`sk-...•••••••xyz`), the full row including the masked characters must stay `font-mono`. Never split font treatment within a single data field.
 
 ---
 
@@ -310,31 +345,72 @@ Show me the complete updated file.
 **Step 3 — Customize `src/DESIGN_SYSTEM.md`:**
 
 ```
-Read src/DESIGN_SYSTEM.md. Update the following sections for our brand:
-1. Replace the color palette values with our brand tokens:
-   - Primary accent: [YOUR HSL VALUE]
-   - Background (warm default): [YOUR HSL VALUE]  
-   - Surface: [YOUR HSL VALUE]
-   - Card: [YOUR HSL VALUE]
-2. Replace font references:
-   - Display font: [YOUR HEADING FONT]
-   - Body font: [YOUR BODY FONT]
-   - Mono font: keep JetBrains Mono (or specify alternative)
-3. Update the project name and description in the header
-Keep all structural rules, component inventory, and atomic design guidelines.
-Show me the updated file.
+Read src/DESIGN_SYSTEM.md. Update the following for our brand — and ONLY these things:
+
+1. Header: Replace "democrito Design System" with "[YOUR NAME] Design System"
+2. Section 1 (Executive Summary): Replace "terracotta orange" with "[YOUR ACCENT COLOR NAME]" 
+   and "warm stone grays" with your surface palette description
+3. Section 3 (Font System): Replace in the Font Families table:
+   - font-display: [YOUR HEADING FONT] (fallbacks: Poppins, Inter, system-ui)
+   - font-body: [YOUR BODY FONT] (fallbacks: Outfit, Inter, system-ui)
+   - font-mono: keep JetBrains Mono (or specify alternative)
+4. Section 4 (Color System), Core Surfaces table: Replace the Dark HSL values:
+   - --background: [YOUR BACKGROUND HSL]
+   - --surface: [YOUR SURFACE HSL]
+   - --card: [YOUR CARD HSL]
+5. Section 4, Accent & Action table: Replace --accent HSL with [YOUR ACCENT HSL]
+
+Do NOT change: status colors, semantic colors (success/warning/error/info), 
+anatomy field colors, spacing, component inventory, or design principles.
+Show me the complete updated header + Section 1 + Section 3 font table + Section 4 core surfaces table.
 ```
 
-**Step 4 — Update `src/index.css`:**
+**Step 4a — Update colors in `src/index.css`:**
 
 Give Claude Code this prompt:
 
 ```
-In src/index.css, update the :root, .warm theme block with our brand colors.
-Replace --accent with [YOUR BRAND HSL], --background with [YOUR BACKGROUND HSL],
---surface and --card accordingly. Keep dark and light theme blocks but adjust
-the accent to match our brand hue. Keep all structural tokens unchanged.
+In src/index.css, find the :root, .warm { } block. Make the following replacements only:
+
+Accent (replace all five — they must stay in sync):
+  --accent:          [YOUR ACCENT HSL, e.g. 210 85% 55%]
+  --accent-muted:    [YOUR ACCENT at lower saturation/lightness, e.g. 210 60% 65%]
+  --ring:            [SAME AS --accent — controls focus rings]
+  --sidebar-primary: [SAME AS --accent — controls sidebar active item]
+  --sidebar-ring:    [SAME AS --accent — controls sidebar focus ring]
+
+Surfaces (warm theme is light — use high lightness values, e.g. 88–97%):
+  --background: [YOUR BACKGROUND HSL, e.g. 220 15% 91%]
+  --surface:    [YOUR SURFACE HSL — slightly lighter, e.g. 220 12% 94%]
+  --card:       [YOUR CARD HSL — lightest, near-white, e.g. 220 20% 97%]
+
+Do NOT change: foreground colors, semantic colors (success/warning/error/info),
+status colors, category palette, .dark block, or .light block.
+Show me only the updated :root, .warm { } block.
 ```
+
+**Step 4b — Update fonts in `src/index.css`:**
+
+Give Claude Code this prompt:
+
+```
+In src/index.css, make two font-related updates:
+
+1. Replace the @import lines at the very top of the file with the correct
+   import URLs for our brand fonts:
+   [PASTE YOUR GOOGLE FONTS OR CDN IMPORT URL HERE]
+   If a font is a system font (e.g. Inter), remove its @import line entirely.
+
+2. In the @theme { } block, update these three lines:
+   --font-display: "[YOUR DISPLAY FONT]", [fallbacks], system-ui, sans-serif;
+   --font-body:    [YOUR BODY FONT], [fallbacks], system-ui, sans-serif;
+   --font-mono:    "JetBrains Mono", "IBM Plex Mono", Consolas, monospace;
+
+Do NOT change any other property in the @theme block or anywhere else.
+Show me the updated @import lines and the three updated --font-* lines in @theme.
+```
+
+> **Why @theme and not :root?** Tailwind v4 compiles font utility classes (`font-display`, `font-body`, `font-mono`) from the `@theme` block at build time. Overriding the CSS variable in `:root` has no effect on those utility classes. See `docs/getting-started.md` for the full explanation.
 
 **Step 5 — Verify context loads correctly:**
 
@@ -345,13 +421,19 @@ what is the primary accent color, what are the three font roles, and what is the
 three-surface hierarchy? Answer in one sentence each.
 ```
 
-Expected: Claude Code answers with your brand's values, not democrito's.
+**What a passing response looks like (against the unmodified democrito source):**
+1. *"The design system is called democrito — a general-purpose, themeable Atomic Design System for data-dense, IDE-inspired applications."*
+2. *"The primary accent color is terracotta orange (`--accent: 18 65% 55%` in dark theme)."*
+3. *"The three font roles are font-display (Plus Jakarta Sans, headings/buttons), font-body (Satoshi, descriptions/labels), and font-mono (JetBrains Mono, all data/code/user-editable content)."*
+4. *"The three-surface hierarchy is bg-background (page shell, darkest) → bg-surface (panels/sidebars) → bg-card (elevated cards/dialogs)."*
+
+After your customization, the same prompt should return YOUR brand name, accent, and font names in place of democrito's.
 
 **Acceptance criteria:**
-- [ ] CLAUDE.md references your brand name and colors
-- [ ] DESIGN_SYSTEM.md updated with your palette
-- [ ] src/index.css warm theme reflects your accent and background
-- [ ] Claude Code reads the context correctly and answers with your brand values
+- [ ] CLAUDE.md references your brand name and fonts
+- [ ] DESIGN_SYSTEM.md updated — Section 3 font table + Section 4 core surfaces + accent
+- [ ] src/index.css :root, .warm block reflects your accent HSL and surface HSLs
+- [ ] Claude Code reads the context correctly and answers with your brand values, not democrito's
 
 ---
 
@@ -381,41 +463,75 @@ Keep all design rules, atomic design guidelines, and structural content exactly 
 Save the file.
 ```
 
-**Prompt 3 — Update token file:**
+**Prompt 3 — Update colors in src/index.css:**
 ```
-In src/index.css, find the :root, .warm block. Replace these token values:
-- --accent: [YOUR HSL e.g. 210 85% 55%]
-- --background: [YOUR HSL e.g. 220 20% 8%]
-- --surface: [YOUR HSL e.g. 220 18% 12%]
-- --card: [YOUR HSL e.g. 220 16% 16%]
-Keep all other tokens and all .dark / .light blocks untouched. Save the file.
+In src/index.css, find the :root, .warm { } block. Replace these token values only:
+
+Accent — all five must stay in sync:
+  --accent:          [YOUR ACCENT HSL, e.g. 210 85% 55%]
+  --accent-muted:    [lightened version, e.g. 210 60% 65%]
+  --ring:            [SAME AS --accent]
+  --sidebar-primary: [SAME AS --accent]
+  --sidebar-ring:    [SAME AS --accent]
+
+Surfaces — warm theme is light, use high lightness (88–97%):
+  --background: [e.g. 220 15% 91%]
+  --surface:    [e.g. 220 12% 94%]
+  --card:       [e.g. 220 20% 97%]
+
+Keep ALL other tokens and ALL .dark / .light blocks untouched. Save the file.
 ```
+
+**Prompt 3b — Update fonts in src/index.css:**
+```
+In src/index.css, make two changes:
+
+1. At the top of the file, replace the @import lines with the correct
+   font imports for our brand:
+   [YOUR FONT IMPORT URL — from Google Fonts, Fontshare, or CDN]
+   Remove any @import for fonts we're not using.
+
+2. In the @theme { } block, update these three lines only:
+   --font-display: "[YOUR DISPLAY FONT]", [fallbacks], system-ui, sans-serif;
+   --font-body:    [YOUR BODY FONT], [fallbacks], system-ui, sans-serif;
+   --font-mono:    "JetBrains Mono", "IBM Plex Mono", Consolas, monospace;
+
+Do not change anything else in @theme. Save the file.
+```
+
+> **Why @theme and not :root?** Font utility classes in Tailwind v4 are compiled statically from `@theme` at build time — overriding in `:root` has no effect. This is a Tailwind v4 CSS-first constraint, documented in `docs/getting-started.md`.
 
 **Prompt 4 — Verify:**
 ```
-Read CLAUDE.md and src/index.css. Confirm: what is the design system name, 
-what is the --accent value in the warm theme, and what are the three font roles?
+Read CLAUDE.md, src/DESIGN_SYSTEM.md, and src/index.css. Confirm:
+1. What is the design system name?
+2. What is the --accent value in the :root, .warm block?
+3. What are the --font-display and --font-body values in the @theme block?
+4. What is the three-surface hierarchy?
+Answer in one sentence each.
 ```
 
 **Acceptance criteria:**
-- [ ] Cowork reads and edits the files correctly
-- [ ] No structural content removed (only brand values replaced)
-- [ ] Token values updated in :root, .warm block only
-- [ ] Verification prompt returns correct brand values
+- [ ] Cowork reads and edits all files correctly without corruption
+- [ ] No structural content removed from CLAUDE.md or DESIGN_SYSTEM.md
+- [ ] All five accent-linked tokens updated in sync in :root, .warm block
+- [ ] @theme font values updated (not :root)
+- [ ] @import lines replaced with brand font URLs
+- [ ] Prompt 4 returns your brand name, accent HSL, font names, and correct surface hierarchy
 
 ---
 
 ## Testing scorecard
 
-| UC | Test | Platform | Status |
-|---|---|---|---|
-| A1 | Claude chat — token context | Claude.ai | ⬜ |
-| A2 | Cowork skill — 4 prompts | Cowork | ⬜ |
-| A3 | Claude Code — external CLAUDE.md | Claude Code | ⬜ |
-| B1 | Design spec generation | Claude.ai / Cowork | ⬜ |
-| B2 | Behaviour spec — Prompts Are Code | Claude.ai / Cowork | ⬜ |
-| C1 | Fork + customize via terminal | GitHub + Claude Code | ⬜ |
-| C2 | Fork + customize via Cowork | Cowork | ⬜ |
+| UC | Test | Platform | Status | Notes |
+|---|---|---|---|---|
+| A1 | Claude chat — token context | Claude.ai | ✅ | One correction needed: hardcoded Tailwind colors → semantic tokens |
+| A2 | Cowork skill — 4 prompts | Cowork | ✅ | 4/4 pass — all criteria met |
+| A3 | Claude Code — external CLAUDE.md | Claude Code | ⚠️ | Token compliance perfect; wrong launch directory (prompt-x vs my-app) |
+| B1 | Design spec generation | Claude.ai / Cowork | ✅ | Run in Cowork session 2026-05-13 |
+| B2 | Behaviour spec — Prompts Are Code | Claude.ai / Cowork | ✅ | font-mono applied independently; VariableToken gap flagged |
+| C1 | Fork + customize via terminal | GitHub + Claude Code | ✅ | Simulated in Cowork — 2 bugs found and fixed in prompts |
+| C2 | Fork + customize via Cowork | Cowork | ✅ | Simulated in Cowork — 2 bugs found and fixed in prompts |
 
 ---
 
