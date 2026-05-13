@@ -266,7 +266,7 @@ Create `src/pages/UseCasesPage.tsx`. Apply all democrito design system rules str
 
 Step 1 — Install democrito
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+npx shadcn@latest add https://democrito.design/r/democrito.json democrito
 ```
 *Caption:* Drops 70+ CSS custom properties into your project and wires up Tailwind v4's `@theme` block. Root is warm by default — you'll override it in Step 2.
 
@@ -359,7 +359,7 @@ npx shadcn@latest add button card input textarea badge separator
 
 Step 1 — Install democrito
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+npx shadcn@latest add https://democrito.design/r/democrito.json democrito
 ```
 *Caption:* After install, your existing shadcn components shift to the warm default. You're about to override it — don't panic at the terracotta.
 
@@ -486,7 +486,7 @@ const toggleTheme = () => {
 
 Step 1 — Install democrito
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+npx shadcn@latest add https://democrito.design/r/democrito.json democrito
 ```
 *Caption:* Out of the box, warm theme is already close to what you need. You're making targeted adjustments rather than a full override.
 

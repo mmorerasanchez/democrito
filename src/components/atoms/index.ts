@@ -6,5 +6,6 @@ export { CodeBlock } from "./CodeBlock";
 export { CopyButton } from "./CopyButton";
 export { Kbd } from "./Kbd";
 export { Tag } from "./Tag";
+export { StatusBadge } from "./StatusBadge";
 export { Spinner, ThinkingDots } from "./Spinner";
 export { Link } from "./Link";

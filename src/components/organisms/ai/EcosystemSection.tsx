@@ -14,7 +14,7 @@ const ITEMS: EcosystemItem[] = [
     name: "shadcn Registry",
     description: "Installable component registry for Claude, Cursor, and other shadcn-aware tooling.",
     status: "live",
-    href: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json",
+    href: "https://democrito.design/r/democrito.json",
     external: true,
   },
   {

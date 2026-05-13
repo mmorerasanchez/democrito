@@ -7,7 +7,7 @@
       "name": "democrito",
       "type": "registry:base",
       "title": "democrito",
-      "description": "Minimal, monochromatic atomic design system — warm stone grays with terracotta orange accent. Three themes — warm (default, `:root`), dark (`.dark`), light (`.light`) — three fonts, three surfaces. Tailwind CSS v4 + CSS-first config.",
+      "description": "Minimal, monochromatic atomic design system \u2014 warm stone grays with terracotta orange accent. Three themes \u2014 warm (default, `:root`), dark (`.dark`), light (`.light`) \u2014 three fonts, three surfaces. Tailwind CSS v4 + CSS-first config.",
       "author": "mmorerasanchez",
       "style": "default",
       "iconLibrary": "lucide",
@@ -34,7 +34,8 @@
       "files": [
         {
           "path": "src/lib/utils.ts",
-          "type": "registry:lib"
+          "type": "registry:lib",
+          "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n"
         }
       ],
       "cssVars": {
@@ -104,9 +105,13 @@
           "spacing-sidebar-w": "var(--sidebar-width)",
           "spacing-sidebar-collapsed": "var(--sidebar-collapsed)",
           "spacing-right-panel": "var(--right-panel)",
+          "radius-xl": "calc(var(--radius) * 1.33)",
           "radius-lg": "var(--radius)",
           "radius-md": "calc(var(--radius) - 4px)",
           "radius-sm": "calc(var(--radius) - 8px)",
+          "radius-2xl": "calc(var(--radius) * 1.67)",
+          "radius-3xl": "calc(var(--radius) * 2)",
+          "radius-4xl": "calc(var(--radius) * 2.67)",
           "animate-accordion-down": "accordion-down 0.2s ease-out",
           "animate-accordion-up": "accordion-up 0.2s ease-out",
           "animate-ai-pulse": "ai-pulse 1.4s ease-in-out infinite",
@@ -181,43 +186,44 @@
           "sidebar-ring": "18 65% 55%"
         },
         "light": {
-          "background": "30 5% 96%",
-          "foreground": "24 10% 10%",
-          "card": "40 8% 99%",
-          "card-foreground": "24 10% 10%",
-          "popover": "40 8% 99%",
-          "popover-foreground": "24 10% 10%",
-          "primary": "24 10% 10%",
-          "primary-foreground": "40 6% 98%",
-          "secondary": "30 8% 93%",
-          "secondary-foreground": "24 10% 10%",
-          "muted": "25 6% 91%",
+          "background": "30 18% 91%",
+          "foreground": "12 6% 15%",
+          "card": "30 25% 97%",
+          "card-foreground": "12 6% 15%",
+          "popover": "30 25% 97%",
+          "popover-foreground": "12 6% 15%",
+          "primary": "15 10% 22%",
+          "primary-foreground": "30 25% 97%",
+          "secondary": "28 14% 87%",
+          "secondary-foreground": "12 6% 15%",
+          "muted": "25 12% 88%",
           "muted-foreground": "20 6% 41%",
-          "accent": "18 65% 55%",
-          "accent-foreground": "40 6% 99%",
-          "destructive": "6 70% 52%",
-          "destructive-foreground": "40 6% 99%",
-          "border": "25 8% 89%",
-          "input": "25 8% 89%",
-          "ring": "18 65% 55%",
-          "surface": "40 6% 97%",
+          "accent": "18 60% 45%",
+          "accent-foreground": "30 25% 97%",
+          "destructive": "8 60% 48%",
+          "destructive-foreground": "30 25% 97%",
+          "border": "28 14% 81%",
+          "input": "28 14% 81%",
+          "ring": "18 60% 45%",
+          "radius": "0.75rem",
+          "surface": "40 15% 94%",
           "foreground-muted": "20 6% 41%",
           "foreground-subtle": "20 3% 55%",
-          "accent-muted": "18 35% 65%",
-          "accent-subtle": "30 12% 94%",
-          "warm-dark": "20 12% 36%",
-          "success": "148 50% 42%",
-          "success-bg": "148 50% 42%",
-          "success-border": "148 50% 42%",
-          "warning": "40 80% 48%",
-          "warning-bg": "40 80% 48%",
-          "warning-border": "40 80% 48%",
-          "error": "6 70% 52%",
-          "error-bg": "6 70% 52%",
-          "error-border": "6 70% 52%",
-          "info": "215 55% 52%",
-          "info-bg": "215 55% 52%",
-          "info-border": "215 55% 52%",
+          "accent-muted": "18 38% 55%",
+          "accent-subtle": "30 15% 92%",
+          "warm-dark": "20 14% 30%",
+          "success": "152 45% 38%",
+          "success-bg": "152 45% 38%",
+          "success-border": "152 45% 38%",
+          "warning": "38 70% 45%",
+          "warning-bg": "38 70% 45%",
+          "warning-border": "38 70% 45%",
+          "error": "8 60% 48%",
+          "error-bg": "8 60% 48%",
+          "error-border": "8 60% 48%",
+          "info": "215 45% 48%",
+          "info-bg": "215 45% 48%",
+          "info-border": "215 45% 48%",
           "category-teal": "185 55% 42%",
           "category-amber": "38 80% 50%",
           "category-emerald": "152 55% 40%",
@@ -231,48 +237,151 @@
           "status-testing": "217 91% 60%",
           "status-production": "142 71% 45%",
           "status-archived": "0 0% 45%",
-          "sidebar-background": "40 6% 97%",
-          "sidebar-foreground": "24 10% 10%",
-          "sidebar-primary": "18 65% 55%",
-          "sidebar-primary-foreground": "40 6% 99%",
-          "sidebar-accent": "30 8% 93%",
-          "sidebar-accent-foreground": "24 10% 10%",
-          "sidebar-border": "25 8% 89%",
-          "sidebar-ring": "18 65% 55%"
+          "header-height": "3.5rem",
+          "sidebar-width": "15rem",
+          "sidebar-collapsed": "4rem",
+          "right-panel": "22rem",
+          "sidebar-background": "40 15% 94%",
+          "sidebar-foreground": "12 6% 15%",
+          "sidebar-primary": "18 60% 45%",
+          "sidebar-primary-foreground": "30 25% 97%",
+          "sidebar-accent": "28 14% 87%",
+          "sidebar-accent-foreground": "12 6% 15%",
+          "sidebar-border": "28 14% 81%",
+          "sidebar-ring": "18 60% 45%"
         }
       },
       "css": {
         "@keyframes accordion-down": {
-          "from": { "height": "0" },
-          "to": { "height": "var(--radix-accordion-content-height)" }
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-accordion-content-height)"
+          }
         },
         "@keyframes accordion-up": {
-          "from": { "height": "var(--radix-accordion-content-height)" },
-          "to": { "height": "0" }
+          "from": {
+            "height": "var(--radix-accordion-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
         },
         "@keyframes ai-pulse": {
-          "0%, 100%": { "opacity": "0.4" },
-          "50%": { "opacity": "1" }
+          "0%, 100%": {
+            "opacity": "0.4"
+          },
+          "50%": {
+            "opacity": "1"
+          }
         },
         "@keyframes ai-cursor": {
-          "0%, 100%": { "opacity": "1" },
-          "50%": { "opacity": "0" }
+          "0%, 100%": {
+            "opacity": "1"
+          },
+          "50%": {
+            "opacity": "0"
+          }
         },
         "@keyframes slide-in-right": {
-          "from": { "transform": "translateX(100%)" },
-          "to": { "transform": "translateX(0)" }
+          "from": {
+            "transform": "translateX(100%)"
+          },
+          "to": {
+            "transform": "translateX(0)"
+          }
         },
         "@keyframes bulk-bar-in": {
-          "from": { "transform": "translateY(100%)", "opacity": "0" },
-          "to": { "transform": "translateY(0)", "opacity": "1" }
+          "from": {
+            "transform": "translateY(100%)",
+            "opacity": "0"
+          },
+          "to": {
+            "transform": "translateY(0)",
+            "opacity": "1"
+          }
         },
         "@keyframes caret-blink": {
-          "0%, 70%, 100%": { "opacity": "1" },
-          "20%, 50%": { "opacity": "0" }
+          "0%, 70%, 100%": {
+            "opacity": "1"
+          },
+          "20%, 50%": {
+            "opacity": "0"
+          }
+        },
+        ".light": {
+          "--background": "30 5% 96%",
+          "--foreground": "24 10% 10%",
+          "--card": "40 8% 99%",
+          "--card-foreground": "24 10% 10%",
+          "--popover": "40 8% 99%",
+          "--popover-foreground": "24 10% 10%",
+          "--primary": "24 10% 10%",
+          "--primary-foreground": "40 6% 98%",
+          "--secondary": "30 8% 93%",
+          "--secondary-foreground": "24 10% 10%",
+          "--muted": "25 6% 91%",
+          "--muted-foreground": "20 6% 41%",
+          "--accent": "18 65% 55%",
+          "--accent-foreground": "40 6% 99%",
+          "--destructive": "6 70% 52%",
+          "--destructive-foreground": "40 6% 99%",
+          "--border": "25 8% 89%",
+          "--input": "25 8% 89%",
+          "--ring": "18 65% 55%",
+          "--radius": "0.75rem",
+          "--surface": "40 6% 97%",
+          "--foreground-muted": "20 6% 41%",
+          "--foreground-subtle": "20 3% 55%",
+          "--accent-muted": "18 35% 65%",
+          "--accent-subtle": "30 12% 94%",
+          "--warm-dark": "20 12% 36%",
+          "--success": "148 50% 42%",
+          "--success-bg": "148 50% 42%",
+          "--success-border": "148 50% 42%",
+          "--warning": "40 80% 48%",
+          "--warning-bg": "40 80% 48%",
+          "--warning-border": "40 80% 48%",
+          "--error": "6 70% 52%",
+          "--error-bg": "6 70% 52%",
+          "--error-border": "6 70% 52%",
+          "--info": "215 55% 52%",
+          "--info-bg": "215 55% 52%",
+          "--info-border": "215 55% 52%",
+          "--sidebar-background": "40 6% 97%",
+          "--sidebar-foreground": "24 10% 10%",
+          "--sidebar-primary": "18 65% 55%",
+          "--sidebar-primary-foreground": "40 6% 99%",
+          "--sidebar-accent": "30 8% 93%",
+          "--sidebar-accent-foreground": "24 10% 10%",
+          "--sidebar-border": "25 8% 89%",
+          "--sidebar-ring": "18 65% 55%",
+          "--header-height": "3.5rem",
+          "--sidebar-width": "15rem",
+          "--sidebar-collapsed": "4rem",
+          "--right-panel": "22rem",
+          "--category-teal": "185 55% 42%",
+          "--category-amber": "38 80% 50%",
+          "--category-emerald": "152 55% 40%",
+          "--category-orange": "25 85% 52%",
+          "--category-violet": "262 55% 55%",
+          "--category-rose": "340 65% 55%",
+          "--category-blue": "230 60% 58%",
+          "--category-red": "0 70% 55%",
+          "--category-gold": "48 85% 48%",
+          "--status-draft": "45 93% 47%",
+          "--status-testing": "217 91% 60%",
+          "--status-production": "142 71% 45%",
+          "--status-archived": "0 0% 45%"
         }
       },
-      "categories": ["design-system", "monochromatic", "atomic-design"],
-      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent. Requires Tailwind CSS v4.\n\n## Three themes\n- **Warm** (default, applied via `:root`) — Sanzo Wada earth-tones, terracotta accent\n- **Dark** (`.dark` class) — deep cold stone grays\n- **Light** (`.light` class) — warm off-whites\n\n## Three fonts\n- `font-display` — Plus Jakarta Sans (headings)\n- `font-body` — Satoshi (body text)\n- `font-mono` — JetBrains Mono (code/data)\n\n## Three surfaces\n`background` → `surface` → `card` creates depth without complexity.\n\n## Setup\n1. Install Tailwind v4: `npm i -D tailwindcss@^4 @tailwindcss/vite@^4`\n2. Add `@tailwindcss/vite` to `vite.config.ts` plugins\n3. In your `src/index.css`: `@import \"tailwindcss\"; @import \"tw-animate-css\";`\n4. Run `npx shadcn@latest add https://democrito.design/r/democrito.json`\n\nSee https://democrito.design for the full showcase.",
+      "categories": [
+        "design-system",
+        "monochromatic",
+        "atomic-design"
+      ],
+      "docs": "Minimal, monochromatic atomic design system with warm stone grays and terracotta orange accent. Requires Tailwind CSS v4.\n\n## Three themes\n- **Warm** (default, applied via `:root`) \u2014 Sanzo Wada earth-tones, terracotta accent\n- **Dark** (`.dark` class) \u2014 deep cold stone grays\n- **Light** (`.light` class) \u2014 warm off-whites\n\n## Three fonts\n- `font-display` \u2014 Plus Jakarta Sans (headings)\n- `font-body` \u2014 Satoshi (body text)\n- `font-mono` \u2014 JetBrains Mono (code/data)\n\n## Three surfaces\n`background` \u2192 `surface` \u2192 `card` creates depth without complexity.\n\n## Setup\n1. Install Tailwind v4: `npm i -D tailwindcss@^4 @tailwindcss/vite@^4`\n2. Add `@tailwindcss/vite` to `vite.config.ts` plugins\n3. In your `src/index.css`: `@import \"tailwindcss\"; @import \"tw-animate-css\";`\n4. Run `npx shadcn@latest add https://democrito.design/r/democrito.json`\n\nSee https://democrito.design for the full showcase.",
       "meta": {
         "version": "3.2.1",
         "license": "MIT",
@@ -283,7 +392,7 @@
       "name": "democrito-warm",
       "type": "registry:theme",
       "title": "democrito warm",
-      "description": "Warm theme variant for democrito — now the default theme, retained as a no-op alias for backwards compatibility. Applied via the `.warm` class on a theme root, or omit the class entirely (`:root` already carries the warm palette).",
+      "description": "Warm theme variant for democrito \u2014 now the default theme, retained as a no-op alias for backwards compatibility. Applied via the `.warm` class on a theme root, or omit the class entirely (`:root` already carries the warm palette).",
       "author": "mmorerasanchez",
       "cssVars": {
         "light": {
@@ -407,7 +516,11 @@
           "sidebar-ring": "18 60% 45%"
         }
       },
-      "categories": ["theme", "warm", "parchment"]
+      "categories": [
+        "theme",
+        "warm",
+        "parchment"
+      ]
     }
   ]
 }
