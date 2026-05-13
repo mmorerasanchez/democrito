@@ -19,7 +19,7 @@ You don't need to clone the repo. Install democrito's **design tokens and visual
 The fastest way to get democrito's tokens, fonts, and CSS custom properties working.
 
 ```bash
-npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+npx shadcn@latest add https://democrito.design/r/democrito.json democrito
 ```
 
 **What this installs:**
@@ -49,12 +49,7 @@ npx shadcn@latest add button card input
 <html class="light">
 ```
 
-The `democrito-warm` registry item is retained as a backwards-compatible alias and is no longer required for the warm theme:
-
-```bash
-# Optional — only needed if you want the explicit `.warm` selector for backwards-compat:
-npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito-warm
-```
+The warm theme is the default (`:root`) — no additional install step required. To activate dark or light themes, add the class to your root element as shown above.
 
 ---
 
@@ -185,19 +180,24 @@ The card should render with the selected theme's colors. Switch themes by toggli
 democrito is built for zero-effort theming. Override any token in your CSS:
 
 ```css
-/* Your project's CSS */
-:root {
-  --accent: 210 100% 55%;        /* Swap terracotta for electric blue */
-  --background: 220 15% 6%;      /* Change the page background */
-  --radius: 0.5rem;              /* Sharper corners */
-}
+/* Your project's CSS — add inside @layer base */
+@layer base {
+  :root, .warm {
+    --accent: 210 100% 55%;        /* Swap terracotta for electric blue */
+    --accent-foreground: 0 0% 100%;
+    --background: 220 15% 6%;      /* Change the page background */
+    --radius: 0.5rem;              /* Sharper corners */
+  }
 
-.light {
-  --accent: 210 100% 50%;        /* Different accent for light theme */
+  .light {
+    --accent: 210 100% 50%;        /* Different accent for light theme */
+  }
 }
 ```
 
 No component code changes needed. Every component automatically inherits your new palette.
+
+> **Font tokens work differently.** `--font-display`, `--font-body`, and `--font-mono` are compiled into Tailwind's utility classes at build time and cannot be overridden via `@layer base`. To swap fonts, edit the `--font-*` values directly inside the `@theme { }` block in your `index.css`, and add the corresponding `@import` URL at the top of the file.
 
 For a complete theming guide with real-world examples, see [Theming](./theming.md).
 

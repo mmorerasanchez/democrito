@@ -13,7 +13,7 @@ React 18, TypeScript, Tailwind CSS 4.2, shadcn/ui, Vite
 ## Install
 
 Via shadcn registry:
-  npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito
+  npx shadcn@latest add https://democrito.design/r/democrito.json democrito
 
 Via git clone:
   git clone https://github.com/mmorerasanchez/democrito.git

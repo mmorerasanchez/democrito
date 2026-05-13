@@ -108,9 +108,13 @@
   --spacing-sidebar-collapsed: var(--sidebar-collapsed);
   --spacing-right-panel: var(--right-panel);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-sm: calc(var(--radius) - 8px);
+  --radius-xl:  calc(var(--radius) * 1.33);
+  --radius-lg:  var(--radius);
+  --radius-md:  calc(var(--radius) - 4px);
+  --radius-sm:  calc(var(--radius) - 8px);
+  --radius-2xl: calc(var(--radius) * 1.67);
+  --radius-3xl: calc(var(--radius) * 2);
+  --radius-4xl: calc(var(--radius) * 2.67);
 
   --z-index-dropdown: 50;
   --z-index-sticky: 100;

@@ -133,7 +133,7 @@ function SoloDeveloperPage() {
           title="Install democrito"
           caption="Drops 70+ CSS custom properties into your project and wires up Tailwind v4's @theme block. Root is warm by default — you'll override it in Step 2."
           language="bash"
-          code={`npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito`}
+          code={`npx shadcn@latest add https://democrito.design/r/democrito.json democrito`}
         />
 
         <Step
@@ -267,7 +267,7 @@ function StartupPage() {
           title="Install democrito"
           caption="After install, your existing shadcn components shift to the warm default. You're about to override it — don't panic at the terracotta."
           language="bash"
-          code={`npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito`}
+          code={`npx shadcn@latest add https://democrito.design/r/democrito.json democrito`}
         />
 
         <Step
@@ -437,7 +437,7 @@ function GrowthEngineerPage() {
           title="Install democrito"
           caption="Out of the box, warm theme is already close to what you need. You're making targeted adjustments rather than a full override."
           language="bash"
-          code={`npx shadcn@latest add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json democrito`}
+          code={`npx shadcn@latest add https://democrito.design/r/democrito.json democrito`}
         />
 
         <Step
