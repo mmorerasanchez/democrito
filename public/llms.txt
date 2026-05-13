@@ -34,8 +34,8 @@ Via git clone:
 
 ## Themes
 
-- Dark   (`:root`, default)
+- Warm   (`:root`, default) — Sanzo Wada earth-tone palette, warm stone grays + terracotta
+- Dark   (`.dark`)
 - Light  (`.light`)
-- Warm   (`.warm`)
 
 Every color token is defined in all three themes in src/index.css.

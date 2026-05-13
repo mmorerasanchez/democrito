@@ -1,35 +1,41 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Code2, Layers } from "lucide-react";
-import { TokenReferenceCard } from "@/components/molecules/TokenReferenceCard";
+import { Star, ExternalLink, ArrowRight, Sparkles, Code2, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Heading, Text, Code, CodeBlock } from "@/components/atoms";
 import {
-  ComparisonSection,
   EcosystemSection,
   FileArchitectureSection,
   HeroSection,
-  QuickStartSection,
 } from "@/components/organisms/ai";
+
+const REPO_URL = "https://github.com/mmorerasanchez/democrito";
+
+const installCode = `git clone ${REPO_URL}.git
+cd democrito
+npm install
+npm run dev`;
 
 const platforms = [
   {
-    path: "/ai/claude-design",
+    path: "/ai/claude",
     icon: Sparkles,
-    name: "Claude Design",
-    badge: "Anthropic Labs",
-    desc: "Import DESIGN.md and src/index.css during onboarding. Every generation follows democrito's surface hierarchy, font rules, and accent constraints — automatically.",
+    name: "Claude",
+    badge: "Anthropic",
+    desc: "Four tools — chat, design, Cowork, and terminal — with a single context layer. CLAUDE.md, DESIGN.md, and the compact token block keep every Claude surface on-brand from the first prompt.",
   },
   {
-    path: "/ai/lovable",
+    path: "/ai/vibe-coding",
     icon: Code2,
-    name: "Lovable",
-    badge: "Primary build env",
-    desc: "Two-tier knowledge: democrito's global rules in Workspace Knowledge, product-specific overrides in Project Knowledge. Connect GitHub for direct CLAUDE.md access.",
+    name: "Vibe Coding Tools",
+    badge: "Lovable · Stitch · Replit",
+    desc: "Visual-first builders that generate full apps from prompts. democrito's context files — DESIGN.md, CLAUDE.md, and the token block — wire into each platform's knowledge layer.",
   },
   {
-    path: "/ai/stitch",
-    icon: Layers,
-    name: "Google Stitch",
-    badge: "Google Labs",
-    desc: "democrito ships DESIGN.md in the Stitch open-source format. Import it and generated screens follow democrito's visual rules. A token mapping pass is needed after export.",
+    path: "/ai/github",
+    icon: Github,
+    name: "GitHub",
+    badge: "Open Source",
+    desc: "Fork it, star it, contribute back. The repo ships with structured context files for every AI tool — browse the source, customize your setup, or propose a new component.",
   },
 ];
 
@@ -53,56 +59,68 @@ export default function AiPage() {
 
       <HeroSection />
       <FileArchitectureSection />
-      <QuickStartSection />
-      <ComparisonSection />
 
-      {/* Integrations */}
+      {/* Three Ways to Interact */}
       <section className="space-y-4">
-        <div className="space-y-1">
-          <h2 className="font-display text-lg font-medium tracking-tight">
-            Integrations
-          </h2>
-          <p className="font-body text-sm text-muted-foreground">
-            democrito ships structured context files for every major AI tool. Pick your platform.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {platforms.map((p) => (
+        <h2 className="font-display text-lg font-medium tracking-tight">
+          Three Ways to Interact
+        </h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {platforms.map((item) => (
             <Link
-              key={p.path}
-              to={p.path}
-              className="group flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-all duration-150 hover:-translate-y-px hover:shadow-md hover:border-accent/30"
+              key={item.path}
+              to={item.path}
+              className="group flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition-colors duration-150 hover:border-accent-subtle"
             >
-              <div className="rounded-md bg-accent/10 p-2 text-accent shrink-0">
-                <p.icon className="h-5 w-5" />
+              <div className="flex items-center justify-between">
+                <item.icon className="h-4 w-4 text-accent" />
+                <ArrowRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-accent transition-colors" />
               </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-baseline gap-2 mb-0.5">
-                  <span className="font-display text-sm font-medium group-hover:text-accent transition-colors">
-                    {p.name}
-                  </span>
-                  <span className="font-mono text-2xs text-muted-foreground">
-                    {p.badge}
-                  </span>
-                </div>
-                <p className="font-body text-xs text-muted-foreground line-clamp-3">
-                  {p.desc}
+              <div>
+                <p className="font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                  {item.name}
                 </p>
+                <p className="font-mono text-xs text-muted-foreground">{item.badge}</p>
               </div>
-              <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-0.5 shrink-0" />
+              <p className="font-body text-sm text-muted-foreground">
+                {item.desc}
+              </p>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="font-display text-lg font-medium tracking-tight">
-          Token Quick Reference
-        </h2>
-        <TokenReferenceCard />
-      </section>
-
       <EcosystemSection />
+
+      {/* Getting Started */}
+      <div>
+        <Heading level="h2" className="mb-4">Getting Started</Heading>
+        <div className="rounded-lg border border-border bg-card p-6 space-y-6">
+          <CodeBlock code={installCode} language="bash" />
+          <div className="space-y-2">
+            <Text variant="muted" size="sm" className="font-display font-medium">Usage rules</Text>
+            <ul className="space-y-1.5 font-body text-sm text-muted-foreground list-disc list-inside">
+              <li>Copy the <Code>@theme</Code> block from <Code>index.css</Code> into your project — all tokens are CSS custom properties</li>
+              <li>Install via shadcn registry: <Code>npx shadcn add https://democrito.design/registry.json</Code></li>
+              <li>Never hardcode colors or sizes — always use semantic tokens (no inline hex or HSL)</li>
+              <li><Code>font-display</Code> for headings, <Code>font-body</Code> for paragraphs, <Code>font-mono</Code> for all data values and user-editable content</li>
+              <li>Drop <Code>CLAUDE.md</Code> and <Code>src/DESIGN_SYSTEM.md</Code> into any AI coding agent — every LLM generates on-brand output from the first prompt</li>
+            </ul>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button variant="secondary" onClick={() => window.open(REPO_URL, "_blank")}>
+              <Star className="h-4 w-4" />
+              Star on GitHub
+            </Button>
+            <a href="https://www.linkedin.com/in/mmorerasanchez/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline">
+                <ExternalLink className="h-4 w-4" />
+                Contact Creator
+              </Button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
