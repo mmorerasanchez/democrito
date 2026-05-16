@@ -722,83 +722,327 @@ Export from src/components/atoms/index.ts. Run lint after.`}
 
 function GithubPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Page header */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Badge variant="outline" className="font-mono text-xs">Open Source</Badge>
         <Heading level="h1">democrito on GitHub</Heading>
-        <Text variant="muted">
-          Fork it, star it, contribute back. The repo ships with structured context
-          files for every AI tool — browse the source, customize your setup, or
-          extend the system.
-        </Text>
+        <P>
+          democrito ships 4 context files that carry the design system to any AI tool:{" "}
+          <Code>CLAUDE.md</Code> (agent coding rules and architecture),{" "}
+          <Code>DESIGN.md</Code> (taste layer — visual philosophy and the why behind every
+          decision), <Code>src/DESIGN_SYSTEM.md</Code> (component inventory and usage
+          rules), and <Code>src/index.css</Code> (all CSS custom properties across the 3
+          themes). Fork the repo and these files come with it.
+        </P>
+        <P>
+          The design context files (<Code>DESIGN.md</Code>,{" "}
+          <Code>src/DESIGN_SYSTEM.md</Code>, <Code>src/index.css</Code>) are the
+          vocabulary layer — they don't change per tool. The instruction files (
+          <Code>CLAUDE.md</Code> and what you add from the ecosystem below) are the agent
+          layer — they tell each specific tool how to work with the system.
+        </P>
       </div>
 
-      <Separator />
+      {/* Steps */}
+      <div className="space-y-8">
 
-      {/* Implementation Guide */}
-      <div className="space-y-6">
-        <Heading level="h2">Implementation Guide</Heading>
-
+        {/* ---------------------------------------------------------------- */}
+        {/* Step 1 — Fork and clone                                          */}
+        {/* ---------------------------------------------------------------- */}
         <Step
           number={1}
-          title="Star the repo"
-          caption="Starring notifies you of new releases. democrito follows semantic versioning — patch releases are safe, minor versions may add tokens, major versions signal breaking changes."
-          language="url"
-          code={`https://github.com/mmorerasanchez/democrito`}
-        />
-
-        <Step
-          number={2}
           title="Fork and clone"
-          caption="Fork first on GitHub (your own copy), then clone your fork. This is the starting point for both customization and contributions."
+          caption={
+            <>
+              Fork on GitHub first — you need your own copy before customizing. The
+              shadcn registry install (<Code>npx shadcn@latest add</Code>) drops the AI
+              context files into an existing project in one command and is the right path
+              if you're integrating into an app you already own. Forking the full repo is
+              the right path if you want to browse the system, customize the base tokens,
+              or contribute.
+            </>
+          }
           language="bash"
           code={`# Fork on GitHub first, then:
 git clone https://github.com/your-username/democrito.git
 cd democrito/app-democrito
 npm install
-npm run dev     # opens showcase at localhost:5173`}
-        />
+npm run dev   # component showcase at localhost:5173`}
+        >
+          <P>
+            democrito follows semantic versioning. Patch releases (<Code>v3.0.x</Code>)
+            are safe to pull. Minor releases (<Code>v3.x.0</Code>) may add tokens — check
+            the changelog before updating. Major releases signal breaking changes.
+          </P>
+        </Step>
 
+        {/* ---------------------------------------------------------------- */}
+        {/* Step 2 — Instruction file ecosystem                              */}
+        {/* ---------------------------------------------------------------- */}
+        <Step
+          number={2}
+          title="Understand the instruction file ecosystem"
+          caption="This is the section that matters most for an AI-native design system. The AI tooling landscape has consolidated around a small set of instruction file formats, and a repository built for AI-native development should ship with — or at minimum document — the right files for each tool."
+        >
+          {/* Landscape table */}
+          <Note label="The current landscape">
+            <P>
+              Every major AI coding tool reads a configuration file from your project root
+              before doing anything:
+            </P>
+            <div className="overflow-x-auto rounded-md border border-border">
+              <table className="w-full font-mono text-xs">
+                <thead>
+                  <tr className="border-b border-border bg-surface">
+                    <th className="px-4 py-2.5 text-left font-semibold text-foreground">File</th>
+                    <th className="px-4 py-2.5 text-left font-semibold text-foreground">Tool(s)</th>
+                    <th className="px-4 py-2.5 text-left font-semibold text-foreground">Location</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  <tr className="bg-background">
+                    <td className="px-4 py-2.5 text-accent"><Code>CLAUDE.md</Code></td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Claude Code (primary)</td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Project root, <Code>~/.claude/</Code>, any subdirectory</td>
+                  </tr>
+                  <tr className="bg-background">
+                    <td className="px-4 py-2.5 text-accent"><Code>AGENTS.md</Code></td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Universal — Codex CLI, Cursor, Gemini CLI, Windsurf, Aider, goose, Devin, Jules, Junie, and 20+ more</td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Project root + subdirectories (nearest wins)</td>
+                  </tr>
+                  <tr className="bg-background">
+                    <td className="px-4 py-2.5 text-accent"><Code>GEMINI.md</Code></td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Gemini CLI (primary)</td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Project root, <Code>~/.gemini/</Code></td>
+                  </tr>
+                  <tr className="bg-background">
+                    <td className="px-4 py-2.5 text-accent"><Code>.github/copilot-instructions.md</Code></td>
+                    <td className="px-4 py-2.5 text-muted-foreground">GitHub Copilot</td>
+                    <td className="px-4 py-2.5 text-muted-foreground"><Code>.github/</Code> directory</td>
+                  </tr>
+                  <tr className="bg-background">
+                    <td className="px-4 py-2.5 text-accent"><Code>.cursor/rules/*.mdc</Code></td>
+                    <td className="px-4 py-2.5 text-muted-foreground">Cursor (current format)</td>
+                    <td className="px-4 py-2.5 text-muted-foreground"><Code>.cursor/rules/</Code> directory</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <P>
+              Claude Code reads <Code>CLAUDE.md</Code> as its primary file and falls back
+              to <Code>AGENTS.md</Code> if no <Code>CLAUDE.md</Code> exists in the
+              directory. This means the two formats co-exist cleanly:{" "}
+              <Code>CLAUDE.md</Code> for Claude-specific additions,{" "}
+              <Code>AGENTS.md</Code> as the single source of truth for everything else.
+            </P>
+            <P>
+              <Code>AGENTS.md</Code> is the closest thing to a universal standard —
+              originated by OpenAI Codex (August 2025), now stewarded by the Linux
+              Foundation's Agentic AI Foundation alongside Anthropic's MCP. It's in
+              60,000+ open-source repositories and natively supported by every tool listed
+              above.
+            </P>
+          </Note>
+
+          {/* What democrito ships */}
+          <Note label="What democrito ships">
+            <P>
+              democrito ships <Code>CLAUDE.md</Code> at the repo root. It covers the full
+              atomic architecture, token rules, naming conventions, 3-theme compliance,
+              and verification commands — everything Claude Code needs from the first
+              session.
+            </P>
+          </Note>
+
+          {/* What to add */}
+          <Note label="What to add for the full ecosystem">
+            <P>
+              If you use tools beyond Claude Code, add <Code>AGENTS.md</Code> at the repo
+              root. The practical approach: have <Code>CLAUDE.md</Code> contain the
+              Claude-specific additions (MCP tools, Claude Code-specific behaviour), and
+              have <Code>AGENTS.md</Code> carry the shared core rules that every tool
+              needs.
+            </P>
+            <P>A minimal <Code>AGENTS.md</Code> for a democrito fork:</P>
+            <StepCode language="markdown">{`# AGENTS.md — democrito
+Design system reference: https://democrito.design
+## Setup
+- Install: \`cd app-democrito && npm install\`
+- Dev server: \`npm run dev\` (localhost:5173)
+- Lint + test: \`npm run lint && npm run test\`
+## Architecture
+Atomic Design — 5 levels:
+- atoms: src/components/atoms/
+- molecules: src/components/molecules/
+- organisms: src/components/organisms/
+- templates: src/components/templates/
+- ui primitives: src/components/ui/ (shadcn — extend via CVA, never modify directly)
+Before creating any component, check all 5 directories for existing implementations.
+## Token rules
+- Surfaces: bg-background → bg-surface → bg-card (never a 4th level)
+- Fonts: font-display (headings/buttons), font-body (prose/labels),
+  font-mono (ALL data values, inputs, identifiers, user-editable content)
+- Colors: semantic tokens only — never bg-gray-*, text-white, dark: overrides, or hardcoded hex/rgb
+- Every new token must be defined in all 3 themes: :root (warm), .dark, .light
+## Conventions
+- PascalCase filenames, one component per file
+- Named exports only, barrel index.ts at each atomic level
+- TypeScript strict mode, explicit props interface with JSDoc on every component
+- Never commit directly to main — feature branches (feat/, fix/, chore/) + PR
+## Verification
+Run after every change: \`npm run lint && npm run test\``}</StepCode>
+            <P>
+              For GitHub Copilot, add{" "}
+              <Code>.github/copilot-instructions.md</Code>. Its glob-scoped variant (
+              <Code>.github/instructions/*.instructions.md</Code> with an{" "}
+              <Code>applyTo</Code> frontmatter field) is useful for splitting component
+              rules from token rules if your team builds heavily with Copilot.
+            </P>
+            <P>
+              For local-only overrides you don't want committed — personal tool paths,
+              experiment flags, machine-specific settings — use{" "}
+              <Code>AGENTS.override.md</Code> in the same directory and add it to{" "}
+              <Code>.gitignore</Code>.
+            </P>
+          </Note>
+
+          {/* Directory hierarchy */}
+          <Note label="The directory hierarchy">
+            <P>
+              For monorepos and projects with a subdirectory structure, place a second
+              instruction file inside the component directory for scoped context. The
+              nearest file to the file being edited wins:
+            </P>
+            <StepCode language="text">{`democrito/
+├── AGENTS.md               ← repo-level: setup, contribution workflow, versioning
+├── CLAUDE.md               ← Claude-specific additions (references AGENTS.md)
+├── DESIGN.md               ← taste layer (design philosophy)
+├── .github/
+│   └── copilot-instructions.md
+└── app-democrito/
+    ├── AGENTS.md           ← component-level (optional): atomic rules, token rules, verify commands
+    └── src/
+        ├── index.css
+        └── DESIGN_SYSTEM.md`}</StepCode>
+          </Note>
+        </Step>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* Step 3 — Design context files                                    */}
+        {/* ---------------------------------------------------------------- */}
         <Step
           number={3}
-          title="Explore the context files"
-          caption="These four files are what AI tools read. Understanding them is the fastest way to understand the whole system."
-          language="text"
-          code={`CLAUDE.md            — agent rules, atomic levels, token rules, verification
-DESIGN.md            — visual language, taste layer, do/don't list
-src/DESIGN_SYSTEM.md — full component inventory and usage rules
-src/index.css        — CSS custom properties, @theme block, all three themes`}
-        />
+          title="Explore the design context files"
+          caption="Separate from the instruction files, democrito ships 3 design context files. These carry the visual system — not the agent rules."
+        >
+          <Note label="DESIGN.md — the taste layer">
+            <P>
+              Documents the visual philosophy: why the system uses 3 surfaces instead of
+              4, why the accent is scarce, what the mono contract is and why it exists.
+              This is what separates a design system from a stylesheet — it gives AI tools
+              the reasoning, not just the values.
+            </P>
+          </Note>
+          <Note label="src/index.css — the token layer">
+            <P>
+              Every color, spacing value, radius, and font assignment as CSS custom
+              properties, defined across all 3 themes (<Code>:root</Code> for warm
+              default, <Code>.dark</Code>, <Code>.light</Code>). This is the source of
+              truth for rendered output.
+            </P>
+          </Note>
+          <Note label="src/DESIGN_SYSTEM.md — the vocabulary layer">
+            <P>
+              The full component inventory, type scale matrix, usage rules, and
+              anti-patterns. Generated from the source files — treat it as a build
+              artifact, regenerable when the source changes.
+            </P>
+          </Note>
+          <P>
+            Understanding how these 3 files relate to each other, and to the instruction
+            files above, is the fastest way to understand the whole system.
+          </P>
+        </Step>
 
+        {/* ---------------------------------------------------------------- */}
+        {/* Step 4 — Customize for your brand                                */}
+        {/* ---------------------------------------------------------------- */}
         <Step
           number={4}
           title="Customize for your brand"
-          caption="Five accent tokens must update in sync. Fonts require three changes in src/index.css. See the Theming guide for full examples."
-          language="bash"
-          code={`# In src/index.css, update the five accent tokens in :root:
-# --accent, --accent-muted, --ring, --sidebar-primary, --sidebar-ring
+          caption="democrito is built for zero-effort theming. The token layer (src/index.css) is the only file that requires code changes for a full rebrand. The design context files (DESIGN.md, src/DESIGN_SYSTEM.md) need prose updates to keep the reasoning consistent with the new values."
+        >
+          <Note label="5 accent tokens must update in sync">
+            <P>
+              Updating only <Code>--accent</Code> and missing the others will produce
+              partially broken hover states, focus rings, and sidebar highlights:
+            </P>
+            <StepCode language="bash">{`# In src/index.css, update all 5 in the :root block:
+# --accent
+# --accent-muted
+# --ring
+# --sidebar-primary
+# --sidebar-ring
 #
-# For fonts: replace @import URLs at top + update @theme block values.
-# Then propagate brand name and values to CLAUDE.md, DESIGN.md,
-# and src/DESIGN_SYSTEM.md.`}
-        />
+# Repeat for .dark and .light — all 3 themes, every time.
+# Skip one and theme switching partially breaks.`}</StepCode>
+          </Note>
+          <Note label="Fonts require 3 changes in src/index.css">
+            <P>
+              Not just the <Code>@theme</Code> block values. The <Code>@import</Code>{" "}
+              URLs at the top of the file must point to your fonts' CDN location. Update
+              both or the font will fall back silently.
+            </P>
+          </Note>
+          <P>
+            After updating <Code>src/index.css</Code>, propagate the new brand values to
+            the reasoning layer: update <Code>DESIGN.md</Code> to replace all references
+            to the old accent name and HSL value, update your <Code>AGENTS.md</Code> if
+            it references the old token values, and regenerate{" "}
+            <Code>src/DESIGN_SYSTEM.md</Code> from the updated context.
+          </P>
+          <P>
+            If you're using <Code>AGENTS.override.md</Code> for local
+            customization work-in-progress that's not ready to commit, add it to{" "}
+            <Code>.gitignore</Code>:
+          </P>
+          <StepCode language="bash">{`echo "AGENTS.override.md" >> .gitignore`}</StepCode>
+          <P>
+            The theming guide at <Code>docs/theming.md</Code> in the repo covers the full
+            walkthrough with before/after examples for accent and font changes.
+          </P>
+        </Step>
 
+        {/* ---------------------------------------------------------------- */}
+        {/* Step 5 — Contribute                                              */}
+        {/* ---------------------------------------------------------------- */}
         <Step
           number={5}
           title="Contribute a component or token"
-          caption="Open an issue first to align on the atomic level and token scope. Then follow the checklist in CONTRIBUTING.md."
+          caption="Open an issue first to align on atomic level and token scope before writing code. The most common avoidable PR rejection is a component that uses hardcoded colors or defines tokens only in the warm theme."
           language="text"
-          code={`Contribution checklist:
-1. Classify atomic level: atom / molecule / organism / template
-2. Create file: src/components/<level>/YourComponent.tsx
-3. Define TypeScript props interface with JSDoc
-4. Use semantic tokens only — no hardcoded colors
-5. Follow three-font rule (display / body / mono)
-6. Export from layer's index.ts barrel
-7. Update src/DESIGN_SYSTEM.md with the new entry
-8. Submit PR: feat(<level>): add YourComponent`}
-        />
+          code={`1.  Classify atomic level: atom / molecule / organism / template
+2.  Create file: src/components/<level>/YourComponent.tsx
+3.  Define TypeScript props interface with JSDoc on every prop
+4.  Use semantic tokens only — no hardcoded colors, spacing, or radii
+5.  Follow the 3-font rule: font-display / font-body / font-mono
+6.  Define any new tokens in all 3 theme blocks: :root, .dark, .light
+7.  Export from the level's index.ts barrel
+8.  Update src/DESIGN_SYSTEM.md with the new component entry
+9.  Run: npm run lint && npm run test && npm run test:visual
+10. Submit PR: feat(<level>): add YourComponent`}
+        >
+          <P>
+            The 3-theme rule in step 6 is the most common contributor error. Adding a
+            token to <Code>:root</Code> only breaks theme switching for every user on dark
+            or light mode. Claude Code can run the update across all 3 blocks in one
+            prompt if you specify which token to change — ask it to "add{" "}
+            <Code>--token-name: value</Code> to all 3 theme blocks in{" "}
+            <Code>src/index.css</Code>" rather than editing manually.
+          </P>
+        </Step>
+
       </div>
     </div>
   );
