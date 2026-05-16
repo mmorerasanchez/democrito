@@ -31,7 +31,7 @@ function StepCode({ language, children }: { language: string; children: string }
 /** Labeled note block — used for "What it is" and "What to know before starting" */
 function Note({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="space-y-2">
+    <div className="rounded-md border border-border bg-surface p-5 space-y-3">
       <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">
         {label}
       </p>
