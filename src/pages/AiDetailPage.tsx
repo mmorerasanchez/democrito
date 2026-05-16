@@ -3,16 +3,23 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Heading, Text, Code } from "@/components/atoms";
+import { CopyButton } from "@/components/atoms/CopyButton";
 
 // ---------------------------------------------------------------------------
-// Shared sub-components (mirrors UseCaseDetailPage pattern)
+// Shared sub-components
 // ---------------------------------------------------------------------------
 
 function StepCode({ language, children }: { language: string; children: string }) {
   return (
     <div className="rounded-md border border-border overflow-hidden">
-      <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-1.5">
+      <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-1.5">
         <span className="font-mono text-2xs text-muted-foreground">{language}</span>
+        <CopyButton
+          variant="ghost"
+          value={children}
+          label="code"
+          className="h-7 w-7 min-h-0 min-w-0 -mr-1 opacity-50 hover:opacity-100 transition-opacity"
+        />
       </div>
       <pre className="overflow-x-auto bg-muted p-4">
         <code className="font-mono text-xs text-foreground whitespace-pre">{children}</code>
@@ -21,29 +28,22 @@ function StepCode({ language, children }: { language: string; children: string }
   );
 }
 
-function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
+/** Labeled note block — used for "What it is" and "What to know before starting" */
+function Note({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-border bg-card p-5 space-y-2">
-      <p className="font-display text-xs font-semibold uppercase tracking-widest text-accent">
-        {title}
+    <div className="space-y-2">
+      <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">
+        {label}
       </p>
-      <Text size="sm" variant="muted" className="leading-relaxed">
-        {children}
-      </Text>
+      <div className="space-y-3">{children}</div>
     </div>
   );
 }
 
-function ChallengeCard({ children }: { children: React.ReactNode }) {
+/** Inline paragraph inside a Note or Step explanation. */
+function P({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-5 space-y-2">
-      <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-        The Challenge
-      </p>
-      <Text size="sm" variant="muted" className="leading-relaxed">
-        {children}
-      </Text>
-    </div>
+    <p className="font-body text-sm leading-relaxed text-muted-foreground">{children}</p>
   );
 }
 
@@ -57,7 +57,7 @@ function Step({
 }: {
   number: number;
   title: string;
-  caption?: string;
+  caption?: React.ReactNode;
   language?: string;
   code?: string;
   children?: React.ReactNode;
@@ -71,19 +71,16 @@ function Step({
         <div>
           <p className="font-display text-sm font-semibold">{title}</p>
           {caption && (
-            <Text size="xs" variant="muted" className="mt-0.5">
+            <div className="mt-1 font-body text-xs leading-relaxed text-muted-foreground">
               {caption}
-            </Text>
+            </div>
           )}
         </div>
       </div>
       {(code || children) && (
-        <div className="pl-9">
-          {code && language ? (
-            <StepCode language={language}>{code}</StepCode>
-          ) : (
-            children
-          )}
+        <div className="pl-9 space-y-3">
+          {code && language && <StepCode language={language}>{code}</StepCode>}
+          {children}
         </div>
       )}
     </div>
@@ -112,294 +109,607 @@ function ClaudePage() {
   return (
     <div className="space-y-10">
       {/* Page header */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Badge variant="outline" className="font-mono text-xs">Anthropic</Badge>
         <Heading level="h1">Using democrito with Claude</Heading>
-        <Text variant="muted">
-          Four tools, one context layer. From a quick prompt in Claude.ai to a full
-          component build in the terminal — CLAUDE.md, DESIGN.md, and the compact
-          token block make every Claude surface produce on-brand output.
-        </Text>
+        <P>
+          democrito ships 3 files that carry the system to any AI tool:{" "}
+          <Code>CLAUDE.md</Code> (agent coding rules), <Code>DESIGN.md</Code> (the
+          taste layer — visual philosophy and the why behind every decision), and{" "}
+          <Code>src/index.css</Code> (the token layer — every color, spacing value,
+          and font assignment as CSS custom properties). The instructions below are
+          organized by Claude product. Each section starts with what the tool actually
+          is, what it can and can't do, and then walks through the workflow in the
+          correct order.
+        </P>
       </div>
 
-      {/* Page-level InfoCards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <InfoCard title="One context layer">
-          democrito ships three files that Claude tools read natively:{" "}
-          <Code>CLAUDE.md</Code> (rules and architecture),{" "}
-          <Code>DESIGN.md</Code> (taste layer and visual language), and{" "}
-          <Code>src/index.css</Code> (every CSS custom property across three themes).
-          Set them up once — every Claude tool draws from the same source.
-        </InfoCard>
-        <InfoCard title="Right tool, right task">
-          Claude.ai chat excels at design specs and one-off components. Claude Design
-          adds visual generation with codebase import. Cowork brings project memory
-          and file access. Claude Code handles multi-file builds and fork customization
-          from the terminal. The four complement each other — they don't compete.
-        </InfoCard>
-        <InfoCard title="The two rules that always break">
-          Across all four tools, two violations appear most often: hardcoded Tailwind
-          colors (<Code>text-green-600</Code> instead of <Code>text-success</Code>)
-          and <Code>dark:</Code> overrides at the component level. Both are covered
-          by debug prompts in the sections below.
-        </InfoCard>
-      </div>
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 1 — Claude.ai                                               */}
+      {/* ------------------------------------------------------------------ */}
+      <Section label="Claude.ai">
 
-      {/* Section 1 — Claude.ai Chat */}
-      <Section label="Claude.ai Chat">
-        <Text variant="muted">
-          No filesystem access — but one context paste is enough. Paste the compact
-          token block at the start of any session, or into a Claude Project for
-          permanence, and Claude.ai produces on-brand components, design specs, and
-          behaviour specs.
-        </Text>
+        <Note label="What it is">
+          <P>
+            The web interface at claude.ai — no install, no local setup required.
+            Claude can fetch the content of any public URL using its built-in tools.
+            You can explore the system, ask questions about design decisions, generate
+            components, and adapt the system for a new brand — all in the browser,
+            before cloning anything.
+          </P>
+        </Note>
 
-        <ChallengeCard>
-          Claude.ai defaults to Tailwind's built-in palette the moment context is
-          missing. <Code>text-green-600</Code> instead of <Code>text-success</Code>,{" "}
-          <Code>dark:bg-gray-800</Code> instead of letting the semantic token handle
-          theming. Without the context block, every new conversation starts from
-          scratch. Paste first — then prompt.
-        </ChallengeCard>
+        <Note label="What to know before starting">
+          <P>
+            Claude does not automatically read every file in a repository from a
+            single GitHub URL. It fetches what it's directed to. The GitHub web page
+            at <Code>github.com/mmorerasanchez/democrito</Code> returns HTML — Claude
+            can parse it, but it won't get file contents from it. The raw content
+            URLs (<Code>raw.githubusercontent.com</Code>) return plain text that
+            Claude reads immediately and completely.
+          </P>
+          <P>
+            For democrito, 3 files carry everything Claude needs. Give it those 3,
+            in that format.
+          </P>
+        </Note>
 
         <div className="space-y-6">
           <Step
             number={1}
-            title="Paste the compact token block at the start of every session"
-            caption="Or add it to a Claude Project's instructions — then it persists across every conversation without re-pasting."
+            title="Share the core files"
+            caption="Paste the following prompt exactly. It gives Claude the raw content URLs for all 3 files and asks it to confirm the 3 things you'll need it to know for every step after this."
             language="text"
-            code={`democrito design system — compact reference
+            code={`I want to work with the democrito design system. Please fetch and read these 3 files:
 
-SURFACES (3 only): bg-background → bg-surface → bg-card
-FONTS:
-  font-display  — headings, button labels, nav labels
-  font-body     — paragraphs, descriptions, helper text
-  font-mono     — ALL data, IDs, code, user-editable content
-SEMANTIC COLORS (never text-green-*, bg-gray-*, etc.):
-  text-foreground · text-muted-foreground · text-accent
-  text-success · text-warning · text-error · text-info
-  bg-success/10 · bg-warning/10 · bg-error/10 · bg-info/10
-  border-border · bg-card · bg-surface · bg-background
-RULES:
-  Never hardcode colors. Never add dark: overrides.
-  Never introduce a fourth surface.`}
-          />
+- https://raw.githubusercontent.com/mmorerasanchez/democrito/main/CLAUDE.md
+- https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md
+- https://raw.githubusercontent.com/mmorerasanchez/democrito/main/src/index.css
+
+Once you've read them, confirm:
+- What is the accent color, its HSL value, and its usage constraint?
+- What are the 3 surface levels and when does each apply?
+- What content must always use font-mono, and why?`}
+          >
+            <P>
+              The 3 confirmation questions are not optional. They verify that Claude
+              loaded the taste layer — the reasoning in <Code>DESIGN.md</Code> — not
+              just the token values in <Code>src/index.css</Code>. A Claude that can
+              explain why font-mono is required on data values will apply that rule
+              correctly when it generates code. A Claude that only knows the value
+              won't.
+            </P>
+            <P>
+              If Claude's answer mentions terracotta, the 3-surface rule, and the mono
+              contract, it loaded correctly. If it returns generic answers or describes
+              a different accent color, re-send the raw URLs — Claude may have fetched
+              the GitHub HTML page instead of the file contents.
+            </P>
+          </Step>
 
           <Step
             number={2}
-            title="Generate a component or design spec"
-            caption="Name the atomic level (atom / molecule / organism) before describing the component. For specs, ask for token mapping and accessibility notes."
+            title="Extract the reasoning before you customize anything"
+            caption="Before modifying the system, use Claude to surface the why behind each rule. This is a calibration step — it establishes that Claude is reasoning from the design philosophy, not just pattern-matching from the tokens."
             language="text"
-            code={`Create a molecule called StatCard.
-Props: label (string), value (string), trend ("up" | "down" | "neutral").
-- Container: bg-card border-border rounded-lg p-4
-- label: font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground
-- value: font-mono text-2xl font-bold text-foreground
-- trend: font-mono text-xs — text-success / text-error / text-muted-foreground
-No dark: prefixes. No hardcoded colors.`}
-          />
+            code={`From the files you just read:
+
+- Why does font-mono appear on inputs, badges, table data, and KPI values — but not
+  on button labels or nav items?
+- What is the design philosophy behind using exactly 1 accent color per screen?
+- Why does the surface hierarchy stop at 3 levels? What would a 4th surface create?`}
+          >
+            <P>
+              These questions have specific answers in <Code>DESIGN.md</Code>. The
+              font-mono answer is the mono contract: everything a user can edit, copy,
+              or reference carries mono — it's a semantic signal, not a style choice.
+              The accent answer is scarcity as meaning: one accent per screen means the
+              accent always marks the single most important action. The 3-surface answer
+              is depth without complexity: background → surface → card covers every real
+              layout need, and a 4th surface creates ambiguity about hierarchy.
+            </P>
+            <P>
+              If Claude can reconstruct that reasoning from the files it read, proceed.
+              You're working with a model that understood the system.
+            </P>
+          </Step>
 
           <Step
             number={3}
-            title="Debug hardcoded colors or dark: overrides"
+            title="Customize the system for your brand"
+            caption="Describe your brand in specific, measurable terms: an HSL value for the accent, a font name, one sentence of aesthetic intent. Vague descriptions produce vague mappings. Specific descriptions produce specific file changes."
             language="text"
-            code={`You used a hardcoded color. Replace with the correct semantic token:
-Status: text-success, text-error, text-warning, text-info
-Surfaces: bg-background, bg-surface, bg-card, bg-muted
-Text: text-foreground, text-muted-foreground, text-foreground-subtle
-Accent: text-accent, bg-accent, bg-accent/10
+            code={`I want to adapt democrito for a brand called [BrandName].
 
-——
+- Accent color: [your HSL value, e.g. hsl(220 70% 45%)]
+- Body font: replace Satoshi with [your font name]
+- Brand aesthetic: [one sentence — e.g. "precise, institutional, no warmth"]
 
-Remove all dark: prefixes. democrito's semantic tokens adapt automatically
-across warm, dark, and light themes — dark: overrides break theme switching.`}
-          />
+Using the democrito system you just read:
+1. Which exact lines in src/index.css need to change, and what are the updated values?
+2. Which sections of DESIGN.md reference the accent color by name or value?
+   Show me those sections with the changes applied.`}
+          >
+            <P>
+              Ask for both files. <Code>src/index.css</Code> is the token layer — the
+              values your components will actually render. <Code>DESIGN.md</Code> is
+              the taste layer — the reasoning your future AI sessions will use to make
+              decisions. If you update the tokens but not the taste layer, you'll get a
+              system where the colors are right but the reasoning is wrong. Every
+              subsequent generation will drift.
+            </P>
+          </Step>
+
+          <Step
+            number={4}
+            title="Generate a component"
+            caption={
+              <>
+                Use token names, not visual descriptions. "A blue button" gives Claude
+                no system information.{" "}
+                <Code>bg-accent text-accent-foreground font-display font-medium</Code>{" "}
+                maps directly to the values Claude already loaded from{" "}
+                <Code>src/index.css</Code> and carries the semantic layer — accent means
+                primary action, font-display means structural label.
+              </>
+            }
+            language="text"
+            code={`Using the democrito design system you have loaded, create a React component called MetricCard.
+
+Props: label (string), value (string), trend ("up" | "down" | "neutral").
+
+Token assignments:
+- Card container: bg-card border-border rounded-lg p-5
+- label: font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground
+- value: font-mono text-2xl font-bold text-foreground
+- trend up: font-mono text-xs text-success
+- trend down: font-mono text-xs text-error
+- trend neutral: font-mono text-xs text-muted-foreground
+
+Rules: no dark: prefixes. No hardcoded colors. Maximum 3 surfaces.`}
+          >
+            <P>
+              The <Code>value</Code> prop uses <Code>font-mono</Code> because a metric
+              value is data — a number the user will read, copy, or reference. The{" "}
+              <Code>label</Code> uses <Code>font-display</Code> because it's structural
+              navigation. These are not style preferences; they're the mono contract. If
+              you swap them, you've broken the system's semantic layer. Claude knows this
+              from <Code>DESIGN.md</Code> — if it generates the component correctly, it
+              applied the contract without being told.
+            </P>
+          </Step>
+
+          <Step
+            number={5}
+            title="Save context to a Claude Project"
+            caption={
+              <>
+                Create a Claude Project at claude.ai/projects. Paste the full contents
+                of <Code>CLAUDE.md</Code> into the project instructions, then append the
+                full contents of <Code>DESIGN.md</Code> below it.
+              </>
+            }
+          >
+            <P>
+              Every future conversation in that project starts with the complete
+              democrito context already loaded. No re-sharing URLs. No re-explaining the
+              surface hierarchy. No re-stating the mono contract. The project
+              instructions are the persistent context layer.
+            </P>
+            <P>
+              Steps 1–4 are for exploration and one-off tasks. The Project is the
+              correct long-term setup for any team building on democrito.
+            </P>
+          </Step>
         </div>
       </Section>
 
-      {/* Section 2 — Claude Design */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 2 — Claude Design                                           */}
+      {/* ------------------------------------------------------------------ */}
       <Section label="Claude Design">
-        <Text variant="muted">
-          Visual generation, on-brand from the first prompt. Import democrito's
-          three context files during Claude Design onboarding — every artifact it
-          generates follows your surface hierarchy, font rules, and accent constraints
-          automatically.
-        </Text>
 
-        <ChallengeCard>
-          Claude Design generates visual artifacts, not live React components. The
-          component library (<Code>StatCard</Code>, <Code>DataTable</Code>,{" "}
-          <Code>FilterBar</Code>) doesn't run inside Claude Design — wiring to those
-          components happens in the Claude Code handoff. Also: the theme import is
-          static. If you update token overrides in <Code>src/index.css</Code>,
-          re-run the design system import.
-        </ChallengeCard>
+        <Note label="What it is">
+          <P>
+            Claude Design generates visual artifacts — layouts, components, prototypes
+            — from natural language, rendered directly in your workspace. The difference
+            from Claude.ai is the output format and the context model: Claude.ai
+            produces code; Claude Design produces rendered visuals. Claude Design also
+            has a dedicated import mechanism for design system files — once imported,
+            the system's constraints apply to every generation in your workspace
+            without re-stating them.
+          </P>
+        </Note>
+
+        <Note label="What to know before starting">
+          <P>
+            Claude Design needs 3 files for different reasons.{" "}
+            <Code>src/index.css</Code> gives it the token values — the actual HSL
+            numbers it needs to resolve <Code>text-accent</Code>,{" "}
+            <Code>bg-card</Code>, and <Code>border-border</Code> to real colors.{" "}
+            <Code>DESIGN.md</Code> gives it the taste layer — the philosophy it uses
+            to resolve ambiguity when your prompt doesn't specify every detail.{" "}
+            <Code>src/DESIGN_SYSTEM.md</Code> gives it the vocabulary — the component
+            inventory, type scale, and usage rules. Import all 3. The token layer alone
+            produces output with the right colors but wrong judgment. The taste layer
+            alone produces thoughtful output in the wrong colors. Both are wrong.
+          </P>
+        </Note>
 
         <div className="space-y-6">
           <Step
             number={1}
-            title="Import your design system during Claude Design onboarding"
-            caption="These three files give Claude Design color roles, typography rules, surface hierarchy, and the do/don't list — stored for every project in your workspace."
+            title="Import the design system"
+            caption="During Claude Design onboarding, import these 3 files. The order matters: token layer first, then taste, then vocabulary."
             language="text"
-            code={`Import: DESIGN.md
-Import: src/index.css   (the @theme block — all CSS custom properties)
-Import: src/DESIGN_SYSTEM.md   (component inventory + usage rules)`}
+            code={`Import: src/index.css         — the @theme block, all CSS custom properties
+Import: DESIGN.md             — visual philosophy, the taste layer
+Import: src/DESIGN_SYSTEM.md  — component inventory and usage rules`}
           />
 
           <Step
             number={2}
             title="Verify the import"
-            caption="If the answer mentions terracotta and one-per-screen, the import worked. If it says blue or generic accent, re-import src/index.css."
+            caption="Before generating anything, confirm the import succeeded. The expected answer is specific."
             language="text"
-            code={`What is the accent color in this design system, and what is its role?`}
-          />
+            code={`What is the accent color in this design system — its name, its HSL value, and its usage rule?`}
+          >
+            <P>
+              Expected: terracotta, approximately HSL(18° 65% 55%), reserved for
+              primary CTAs and interactive links, 1 instance per screen maximum.
+            </P>
+            <P>
+              If you get blue, generic orange, or an answer that omits the scarcity
+              rule ("1 per screen maximum"), re-import <Code>src/index.css</Code>.
+              Claude Design may have parsed the <Code>DESIGN.md</Code> description of
+              the accent without extracting the actual CSS variable value. The{" "}
+              <Code>@theme</Code> block in <Code>src/index.css</Code> is the
+              authoritative source — if the import didn't reach it, the rendering will
+              be wrong.
+            </P>
+          </Step>
 
           <Step
             number={3}
-            title="Generate with token language, not visual descriptions"
+            title="Customize DESIGN.md for your brand"
+            caption={
+              <>
+                <Code>DESIGN.md</Code> is the taste layer. Before generating components
+                for a new brand, update it — otherwise every generation applies
+                democrito's reasoning, not yours. The structural rules (3-surface
+                hierarchy, mono contract, single accent) stay intact. The aesthetic
+                choices (accent color, font names, atmospheric description) change.
+              </>
+            }
             language="text"
-            code={`Create a dashboard metric card.
-- Container: bg-card, border-border, rounded-lg
-- Metric value: font-mono text-2xl font-bold text-foreground
-- Label: font-display text-sm font-medium text-muted-foreground
-- Trend badge: font-mono text-xs — text-success / text-error
-One accent element maximum. No shadows.`}
+            code={`I want to adapt this design system for a brand called [BrandName].
+Update DESIGN.md with these changes:
+
+- Brand name: [BrandName]
+- Accent: replace terracotta with [your color] — update the name, HSL value,
+  and every reference to terracotta throughout the file
+- Primary display font: replace Plus Jakarta Sans with [your font]
+- Brand aesthetic: [one sentence]
+
+Keep these rules unchanged: 3-surface hierarchy, font-mono for all data values
+and user-editable content, single accent per screen.
+
+Show me only the sections that change — not the full file.`}
+          >
+            <P>
+              3 things must survive any brand customization unchanged: the 3-surface
+              hierarchy, the mono contract, and the single-accent rule. These are
+              structural, not aesthetic. They define how the system reasons about depth,
+              data, and emphasis — they have nothing to do with which specific colors or
+              fonts you use.
+            </P>
+          </Step>
+
+          <Step
+            number={4}
+            title="Generate a visual component"
+            caption={
+              <>
+                Use token language, not visual descriptions. "A clean card with a
+                number" is ambiguous.{" "}
+                <Code>bg-card border-border font-mono text-2xl text-foreground</Code>{" "}
+                maps directly to what Claude Design extracted from your imported files
+                — it knows exactly which surface, which weight, which font. The
+                reference list in your prompt is not optional decoration — it's taste
+                triangulation. Naming what the system is not ("closer to Linear or
+                Raycast, not Stripe or Notion") gives Claude Design a vector to resolve
+                aesthetic ambiguity that tokens don't cover.
+              </>
+            }
+            language="text"
+            code={`Design a dashboard metric card for a SaaS analytics product.
+
+Layout: compact, data-dense. IDE-grade aesthetic — closer to Linear or Raycast
+than to Stripe or Notion.
+
+Token assignments:
+- Card container: bg-card, border-border, rounded-lg
+- Metric value: font-mono, text-2xl, text-foreground
+- Label below value: font-display, text-sm, text-muted-foreground
+- Trend indicator: font-mono text-xs — text-success for positive, text-error for negative
+- 1 accent element: a small indicator badge using text-accent
+
+Rules: no decorative colors. No gradients. Maximum 3 surfaces.`}
+          />
+        </div>
+      </Section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 3 — Cowork                                                  */}
+      {/* ------------------------------------------------------------------ */}
+      <Section label="Cowork">
+
+        <Note label="What it is">
+          <P>
+            Cowork is Anthropic's desktop tool for non-developers. It has persistent
+            file access to a connected folder on your machine, session memory across
+            conversations, and can read, edit, and write files without touching the
+            terminal. The democrito customization workflow — reading context files,
+            customizing them for a brand, generating a derived{" "}
+            <Code>DESIGN_SYSTEM.md</Code> — maps exactly to what Cowork does well.
+          </P>
+        </Note>
+
+        <Note label="What to know before starting">
+          <P>
+            Connect Cowork to the root of your democrito clone as the working folder.
+            The 3 files Cowork needs to read at the start of every session are{" "}
+            <Code>CLAUDE.md</Code>, <Code>DESIGN.md</Code>, and{" "}
+            <Code>src/index.css</Code>. The 2 files it may write back are{" "}
+            <Code>CLAUDE.md</Code> (product overrides) and{" "}
+            <Code>DESIGN_SYSTEM.md</Code> (generated from the customized context).
+            Never ask Cowork to edit <Code>src/index.css</Code> directly — token
+            changes belong in a code editor or Claude Code, where lint and
+            type-checking can catch errors.
+          </P>
+        </Note>
+
+        <div className="space-y-6">
+          <Step
+            number={1}
+            title="Connect and verify"
+            caption="Start every session by asking Cowork to read the context files and confirm the system. Don't skip this. File access is persistent, but session context is not — Cowork does not remember the previous session's answers."
+            language="text"
+            code={`I'm working with the democrito design system.
+
+Read CLAUDE.md and DESIGN.md from the connected folder, then confirm:
+- What are the 3 surface levels and when does each apply?
+- What is the accent color and its usage rule?
+- What content must always use font-mono, and why?`}
+          >
+            <P>
+              The 3 confirmation questions verify that Cowork loaded the reasoning
+              layer. If it answers why font-mono is required — not just which elements
+              use it, but the semantic signal it carries — it has the full{" "}
+              <Code>DESIGN.md</Code> context and will reason correctly for the rest of
+              the session.
+            </P>
+          </Step>
+
+          <Step
+            number={2}
+            title="Customize CLAUDE.md for your product"
+            caption={
+              <>
+                <Code>CLAUDE.md</Code> is the agent instruction file. Any AI tool that
+                reads it applies its rules automatically. democrito ships a complete set
+                of core rules. Add your product's overrides at the end, in a named
+                block, without touching the core rules above it.
+              </>
+            }
+            language="text"
+            code={`I'm forking democrito for a product called [ProductName].
+
+Add a product-specific block at the end of CLAUDE.md with these overrides:
+- Product: [ProductName] — [one-line description]
+- Accent: [your HSL value] — replaces terracotta. Update all references to terracotta
+  in this block.
+- Primary audience: [who uses this product]
+- Additional constraint: [any rule specific to your product]
+
+Keep all core democrito rules intact. Show me only the additions before writing.`}
+          >
+            <P>
+              The separation matters structurally. Core rules at the top. Product
+              overrides at the bottom, in a labeled block. When a new version of
+              democrito ships, you merge upstream changes into the top without touching
+              your product block. If you intermix them, future updates require manual
+              diffing.
+            </P>
+            <P>
+              Always review the proposed additions before Cowork writes them. The rules
+              are: core rules untouched, product block clearly labeled, accent
+              references consistent throughout.
+            </P>
+          </Step>
+
+          <Step
+            number={3}
+            title="Generate DESIGN_SYSTEM.md from your customized context"
+            caption={
+              <>
+                With <Code>CLAUDE.md</Code> and <Code>DESIGN.md</Code> customized for
+                your brand, ask Cowork to generate the full component and token
+                inventory. This is a derived document — generated from your 2 source
+                files, not hand-authored. Treat it as a build artifact: always
+                regenerable, never the source of truth.
+              </>
+            }
+            language="text"
+            code={`Using the customized CLAUDE.md and DESIGN.md for [ProductName] in the connected folder,
+generate a DESIGN_SYSTEM.md that includes:
+
+1. Token table — all CSS custom properties with their roles, grouped by category
+   (surfaces, typography, accent, semantic, status). Accent values should reflect
+   the [ProductName] brand, not the democrito defaults.
+2. Font assignments — display / body / mono with the correct font names for [ProductName]
+3. Component rules — inherited from the democrito core, with any product-specific
+   additions from the CLAUDE.md product block
+
+Format it as a markdown file. Save it to the root of the connected folder.`}
           />
 
           <Step
             number={4}
-            title="Hand off to Claude Code"
-            caption="Claude Code auto-reads CLAUDE.md — it already knows the atomic levels, token rules, and coding conventions."
+            title="Validate the generated output"
+            caption={
+              <>
+                Before committing, ask Cowork to cross-check the generated{" "}
+                <Code>DESIGN_SYSTEM.md</Code> against its source files.
+              </>
+            }
             language="text"
-            code={`Convert this Claude Design artifact to a democrito React component.
-Classify it: atom, molecule, organism, or template?
-Use existing atoms from src/components/atoms/ where possible.
-Replace any generic colors with democrito token classes.
-Ensure font-mono is applied to all data values.
-Rules are in CLAUDE.md.`}
-          />
+            code={`Compare the DESIGN_SYSTEM.md you just generated against CLAUDE.md and DESIGN.md.
+
+Flag any inconsistencies:
+- Token values in DESIGN_SYSTEM.md that don't match what's in CLAUDE.md or DESIGN.md
+- Font assignments that contradict the font system
+- Component rules that conflict with core democrito rules
+- Any reference to the old accent color that should have been updated`}
+          >
+            <P>
+              <Code>DESIGN_SYSTEM.md</Code> is a derivative. If the source files have
+              internal tension — a description in <Code>DESIGN.md</Code> that doesn't
+              match an override in your product block — the generated document will
+              surface it. Fix the source, regenerate.
+            </P>
+          </Step>
         </div>
       </Section>
 
-      {/* Section 3 — Cowork */}
-      <Section label="Cowork">
-        <Text variant="muted">
-          Structured prompts, file access, and project memory across sessions. The
-          democrito skill loads the full context once — every conversation has the
-          token reference, atomic rules, and debug prompts without any setup.
-        </Text>
-
-        <ChallengeCard>
-          Two violations appear in almost every AI-generated democrito component:{" "}
-          <Code>bg-card</Code> inside a <Code>bg-card</Code> modal (same surface stacks
-          instead of receding — use <Code>bg-surface</Code> inside{" "}
-          <Code>bg-card</Code>) and data fields rendered in <Code>font-body</Code>{" "}
-          instead of <Code>font-mono</Code>. Prompt 3 of the four-prompt workflow
-          catches both before code reaches the codebase.
-        </ChallengeCard>
-
-        <div className="space-y-6">
-          <Step
-            number={1}
-            title="Load the democrito skill"
-            caption="Skills persist across sessions — once loaded, every new conversation starts with the full democrito context."
-            language="text"
-            code={`Load the democrito skill.`}
-          />
-
-          <Step
-            number={2}
-            title="Prompt 1: token lookup (verify context)"
-            language="text"
-            code={`democrito token lookup:
-- What is the accent color and which five tokens share its hue?
-- What are the three surface levels?
-- What content must always use font-mono?`}
-          />
-
-          <Step
-            number={3}
-            title="Prompt 2: generate — then immediately audit"
-            caption="Run the audit in the same prompt turn. Don't accept output without checking surface and font violations first."
-            language="text"
-            code={`Create a [atom/molecule/organism] called [Name].
-[props and token assignments]
-No dark: prefixes. No hardcoded colors. No fourth surface.
-
-——— then immediately ———
-
-Audit for surface violations: flag any bg-card inside a bg-card container.
-Fix: use bg-surface inside bg-card.
-Audit for font violations: flag any data value, ID, or timestamp not
-using font-mono — including masked portions.`}
-          />
-        </div>
-      </Section>
-
-      {/* Section 4 — Claude Code */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 4 — Claude Code                                             */}
+      {/* ------------------------------------------------------------------ */}
       <Section label="Claude Code">
-        <Text variant="muted">
-          Direct filesystem access. <Code>CLAUDE.md</Code> auto-reads on launch from
-          the project root — zero context pasting required. Best for building
-          components on democrito itself, and for fork customization across multiple
-          files in one session.
-        </Text>
 
-        <ChallengeCard>
-          Claude Code reads <Code>CLAUDE.md</Code> from whichever directory it was
-          launched from. Launch from a different project already open in your terminal
-          and it loads the wrong rules — all token constraints come from the wrong
-          codebase. Always <Code>cd</Code> into the project root before typing{" "}
-          <Code>claude</Code>. If Claude Code is already running elsewhere, open a
-          new terminal tab.
-        </ChallengeCard>
+        <Note label="What it is">
+          <P>
+            Claude Code is Anthropic's terminal-based AI assistant. It reads your
+            entire local codebase, understands the file structure and import graph,
+            and can create or modify components across multiple files in a single
+            session.
+          </P>
+        </Note>
+
+        <Note label="Why CLAUDE.md matters more here than anywhere else">
+          <P>
+            Claude Code auto-reads <Code>CLAUDE.md</Code> from the directory it's
+            launched from. No context pasting. No URL sharing. No re-explaining the
+            surface hierarchy at the start of every session. If <Code>CLAUDE.md</Code>{" "}
+            is correct and you launch from the right directory, every session starts
+            with the full system context already loaded. If you launch from the wrong
+            directory, you get no context — and Claude Code will generate code that
+            ignores every rule in the system.
+          </P>
+        </Note>
 
         <div className="space-y-6">
           <Step
             number={1}
-            title="Launch from the project root"
-            caption="The launch directory is what Claude Code auto-reads. This step is the most common failure point — do not skip the cd."
+            title="Install Claude Code"
+            caption="Claude Code runs in your terminal. It requires Node.js 18 or higher. Install it globally; authenticate on first run."
             language="bash"
-            code={`cd your-democrito-project
-claude    # auto-reads CLAUDE.md from this directory`}
+            code={`npm install -g @anthropic-ai/claude-code
+claude   # opens the authentication flow on first run`}
           />
 
           <Step
             number={2}
-            title="Verify context, then build"
-            language="text"
-            code={`[verify] What is the accent color and the three surface levels?
-
-[build] Create an atom called StatusBadge.
-Props: status ("draft" | "testing" | "production" | "archived").
-- Container: font-mono text-xs rounded-full px-2 py-0.5
-- draft: bg-status-draft/10 text-status-draft
-- testing: bg-status-testing/10 text-status-testing
-- production: bg-status-production/10 text-status-production
-- archived: bg-status-archived/10 text-status-archived
-Export from src/components/atoms/index.ts. Run lint after.`}
-          />
+            title="Fork, clone, and install"
+            caption="Fork the repository on GitHub before cloning — you need your own copy to customize. Then clone your fork and install dependencies."
+            language="bash"
+            code={`# Fork on GitHub first, then:
+git clone https://github.com/your-username/democrito.git
+cd democrito/app-democrito
+npm install`}
+          >
+            <P>
+              The working directory for all component work is{" "}
+              <Code>app-democrito/</Code>. This is where <Code>CLAUDE.md</Code> lives,
+              where the component tree lives, and where Claude Code must be launched.
+              The repo root contains documentation and configuration — not components.
+            </P>
+          </Step>
 
           <Step
             number={3}
-            title="Customize a fork for your brand"
-            caption="When forking, Claude Code can update all context files in one session. Start with the token layer — context files follow."
-            language="text"
-            code={`I am customizing this fork for a brand called [Name].
-Accent: HSL [H S% L%].
+            title="Start the dev server"
+            caption="Open a terminal tab for the dev server and leave it running for the entire session. It hot-reloads on every save."
+            language="bash"
+            code={`npm run dev
+# Component gallery, token viewer, and theme switcher at http://localhost:5173`}
+          >
+            <P>
+              The showcase at <Code>localhost:5173</Code> is the ground truth for
+              visual output. Every component you generate or modify will appear there
+              immediately. Keep it open alongside Claude Code.
+            </P>
+          </Step>
 
-A — Update src/index.css :root. Replace the five accent tokens in sync:
-    --accent, --accent-muted, --ring, --sidebar-primary, --sidebar-ring.
-
-B — Update fonts in src/index.css: replace @import URLs at the top,
-    update --font-display and --font-body in the @theme block.
-    System fonts (e.g. Inter) need no @import line.
-
-C — Update CLAUDE.md, DESIGN_SYSTEM.md, and DESIGN.md with the new
-    accent name, font names, and brand name throughout.
-
-Run lint after each step.`}
+          <Step
+            number={4}
+            title="Launch Claude Code from the correct directory"
+            caption={
+              <>
+                Open a second terminal tab. <Code>cd</Code> into{" "}
+                <Code>app-democrito</Code> before running <Code>claude</Code>. The
+                launch directory is what determines which <Code>CLAUDE.md</Code> Claude
+                Code reads. This is the single most common error — launching from the
+                repo root instead of <Code>app-democrito/</Code> means Claude Code gets
+                no design system context.
+              </>
+            }
+            language="bash"
+            code={`# In a new terminal tab:
+cd democrito/app-democrito
+claude`}
           />
+
+          <Step
+            number={5}
+            title="Verify context, then build"
+            caption="Every session starts with a verification prompt. Claude Code reads CLAUDE.md automatically, but you confirm it loaded the right rules before generating anything. Include the verification and the build request in the same prompt — Claude Code will answer the verification first, then proceed to the build."
+            language="text"
+            code={`[verify] What is the accent color and its usage rule, the 3 surface levels,
+and which content must use font-mono in this design system?
+
+[build] Create an atom called PriceBadge.
+Props: price (string), currency ("USD" | "EUR" | "GBP"), variant ("default" | "accent").
+
+Token assignments:
+- Container: font-mono text-sm font-semibold rounded-full px-3 py-1
+- default: bg-muted text-foreground
+- accent: bg-accent/10 text-accent
+
+Export from src/components/atoms/index.ts. Run lint after.`}
+          >
+            <P>
+              If the verification answer is correct — terracotta, 3 surfaces in the
+              right order, mono contract stated — proceed. If it returns anything
+              inconsistent with what <Code>CLAUDE.md</Code> specifies, stop. Check
+              which directory you launched from. Relaunch from{" "}
+              <Code>app-democrito/</Code>.
+            </P>
+            <P>After any code changes, run the full check:</P>
+            <StepCode language="bash">{`npm run lint && npm run test`}</StepCode>
+            <P>Visual regression tests are available separately for UI changes:</P>
+            <StepCode language="bash">{`npm run test:visual
+# npm run test:visual:update   — to update snapshots after intentional changes`}</StepCode>
+            <P>
+              Run <Code>test:visual</Code> before opening any pull request that
+              modifies component output.
+            </P>
+            <P>
+              Never commit directly to <Code>main</Code>. Create a feature branch (
+              <Code>feat/</Code>, <Code>fix/</Code>, <Code>chore/</Code>), commit
+              there, then open a pull request.
+            </P>
+          </Step>
         </div>
       </Section>
     </div>
@@ -424,46 +734,6 @@ function GithubPage() {
         </Text>
       </div>
 
-      {/* InfoCards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <InfoCard title="The context files">
-          Four files make every AI tool produce on-brand output:{" "}
-          <Code>CLAUDE.md</Code> (agent rules and architecture),{" "}
-          <Code>DESIGN.md</Code> (taste layer and visual language),{" "}
-          <Code>DESIGN_SYSTEM.md</Code> (component inventory), and{" "}
-          <Code>src/index.css</Code> (all CSS custom properties across three themes).
-          Fork the repo and these files come with it — already wired for Claude Code,
-          Lovable, Stitch, and Replit.
-        </InfoCard>
-        <InfoCard title="Fork and customize">
-          democrito is built for zero-effort theming. Fork on GitHub, clone locally,
-          and override any token in <Code>src/index.css</Code> — no component code
-          changes needed. For a full rebrand (accent, fonts, brand name), update the
-          five accent tokens in sync and edit the <Code>@theme</Code> block for
-          fonts. <Code>CLAUDE.md</Code>, <Code>DESIGN.md</Code>, and{" "}
-          <Code>DESIGN_SYSTEM.md</Code> carry the updated values to every AI tool
-          automatically.
-        </InfoCard>
-        <InfoCard title="Contribute">
-          democrito accepts contributions across four layers: atoms, molecules,
-          organisms, and tokens. Every new component needs an atomic classification
-          before it's written, a TypeScript props interface, semantic token usage
-          only, and an entry in <Code>DESIGN_SYSTEM.md</Code>. The{" "}
-          <Code>CONTRIBUTING.md</Code> walks through the full checklist.
-        </InfoCard>
-      </div>
-
-      {/* ChallengeCard */}
-      <ChallengeCard>
-        Token changes require updating all three theme blocks —{" "}
-        <Code>:root</Code> (warm), <Code>.dark</Code>, and <Code>.light</Code> —
-        in <Code>src/index.css</Code>. Skip one and theme switching partially
-        breaks. The most common contributor error is updating only the warm theme.
-        The <Code>CONTRIBUTING.md</Code> walks through this, and Claude Code can
-        run the update across all three blocks in one prompt if you specify which
-        token to change.
-      </ChallengeCard>
-
       <Separator />
 
       {/* Implementation Guide */}
@@ -485,7 +755,7 @@ function GithubPage() {
           language="bash"
           code={`# Fork on GitHub first, then:
 git clone https://github.com/your-username/democrito.git
-cd democrito
+cd democrito/app-democrito
 npm install
 npm run dev     # opens showcase at localhost:5173`}
         />
@@ -504,7 +774,7 @@ src/index.css        — CSS custom properties, @theme block, all three themes`}
         <Step
           number={4}
           title="Customize for your brand"
-          caption="Five accent tokens must update in sync. Fonts require three changes in src/index.css (not just CLAUDE.md). See the Theming guide for full examples."
+          caption="Five accent tokens must update in sync. Fonts require three changes in src/index.css. See the Theming guide for full examples."
           language="bash"
           code={`# In src/index.css, update the five accent tokens in :root:
 # --accent, --accent-muted, --ring, --sidebar-primary, --sidebar-ring
@@ -552,31 +822,6 @@ function VibeCodingPage() {
         </Text>
       </div>
 
-      {/* Page-level InfoCards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <InfoCard title="DESIGN.md as the common layer">
-          democrito ships <Code>DESIGN.md</Code> following Google's open-source
-          format — a plain-text design brief that all three tools read natively. It
-          carries the visual language: surface hierarchy, font roles, accent
-          constraints, and the do/don't list. Import it once per tool and every
-          generation follows the same rules.
-        </InfoCard>
-        <InfoCard title="Token mapping is always required">
-          Lovable, Stitch, and Replit generate code with generic Tailwind classes
-          (<Code>bg-neutral-900</Code>, <Code>text-orange-500</Code>) — not
-          democrito's semantic tokens. Visual output will be on-system. Code output
-          always needs a token mapping pass. Skip it and AI-generated components
-          revert to hardcoded values on the next edit.
-        </InfoCard>
-        <InfoCard title="Workspace vs project knowledge">
-          Each tool has a way to set rules once for all projects: Lovable uses
-          Workspace Knowledge, Stitch uses project-level <Code>DESIGN.md</Code>,
-          Replit uses <Code>replit.md</Code> in a template. Put democrito's universal
-          rules there. Put product-specific overrides in the per-project layer. Never
-          duplicate content across both layers.
-        </InfoCard>
-      </div>
-
       {/* Section 1 — Lovable */}
       <Section label="Lovable">
         <Text variant="muted">
@@ -584,15 +829,6 @@ function VibeCodingPage() {
           connected — no pasting needed. Two-tier knowledge separates global
           democrito rules from per-product overrides.
         </Text>
-
-        <ChallengeCard>
-          When GitHub is connected, <Code>CLAUDE.md</Code> and Workspace Knowledge
-          can overlap. Without a clear split, rules duplicate and waste context
-          budget. The rule: coding conventions and file structure in{" "}
-          <Code>CLAUDE.md</Code>; token quick-reference and three non-negotiables
-          in Workspace Knowledge; product-specific overrides in Project Knowledge.
-          Never put the same content in two places.
-        </ChallengeCard>
 
         <div className="space-y-6">
           <Step
@@ -650,15 +886,6 @@ Export from the molecules index.`}
           after export.
         </Text>
 
-        <ChallengeCard>
-          Stitch's Tailwind CSS export uses generic class names —{" "}
-          <Code>bg-neutral-900</Code>, <Code>text-orange-500</Code> — not
-          democrito's semantic tokens (<Code>bg-card</Code>,{" "}
-          <Code>text-accent</Code>). The visual output from Stitch will be
-          on-system. The code output always needs a token mapping pass. Skip it and
-          AI-generated components revert to hardcoded values on the next edit.
-        </ChallengeCard>
-
         <div className="space-y-6">
           <Step
             number={1}
@@ -695,13 +922,13 @@ IDE-grade, not consumer-grade. Dense and purposeful.
             caption="Replace Stitch's generic Tailwind classes with democrito semantic tokens. This step is always required — the visual intent is right, the class names are not."
             language="text"
             code={`Replace in exported code:
-bg-neutral-*    → bg-background / bg-surface / bg-card  (match by visual role)
+bg-neutral-*     → bg-background / bg-surface / bg-card  (match by visual role)
 border-neutral-* → border-border
-text-neutral-*  → text-foreground / text-muted-foreground / text-foreground-subtle
-text-white      → text-foreground
-text-orange-*   → text-accent
-bg-orange-*     → bg-accent / bg-accent/10
-font-sans       → font-display (headings) or font-body (prose)`}
+text-neutral-*   → text-foreground / text-muted-foreground / text-foreground-subtle
+text-white       → text-foreground
+text-orange-*    → text-accent
+bg-orange-*      → bg-accent / bg-accent/10
+font-sans        → font-display (headings) or font-body (prose)`}
           />
         </div>
       </Section>
@@ -714,15 +941,6 @@ font-sans       → font-display (headings) or font-body (prose)`}
           <Code>DESIGN.md</Code> by URL in plan mode and it ingests democrito's
           visual language before writing a single line of code.
         </Text>
-
-        <ChallengeCard>
-          Replit Agent won't automatically detect files outside the project root or
-          in subdirectories — <Code>replit.md</Code> must be at root. For design
-          system context, the most reliable method across all Replit plans is
-          pointing Agent at the public <Code>DESIGN.md</Code> URL in plan mode.
-          Full design system integration (tokens pre-installed, component library
-          wired) is available on the Enterprise plan only.
-        </ChallengeCard>
 
         <div className="space-y-6">
           <Step
@@ -767,11 +985,11 @@ https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md`}
             caption="Replit Agent may output generic Tailwind classes even after reading DESIGN.md. Apply the same mapping pass as Stitch."
             language="text"
             code={`Review all className values. Replace generic Tailwind colors:
-bg-neutral-*  → bg-surface or bg-card
+bg-neutral-*   → bg-surface or bg-card
 text-neutral-* → text-foreground or text-muted-foreground
-text-green-*  → text-success
-text-red-*    → text-error
-text-orange-* → text-accent`}
+text-green-*   → text-success
+text-red-*     → text-error
+text-orange-*  → text-accent`}
           />
         </div>
       </Section>
