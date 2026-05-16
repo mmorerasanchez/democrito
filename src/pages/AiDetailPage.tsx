@@ -812,184 +812,428 @@ function VibeCodingPage() {
   return (
     <div className="space-y-10">
       {/* Page header */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Badge variant="outline" className="font-mono text-xs">Vibe Coding</Badge>
         <Heading level="h1">Using democrito with Vibe Coding Tools</Heading>
-        <Text variant="muted">
-          Lovable, Google Stitch, and Replit. Visual-first builders that generate
-          full apps from prompts — democrito's context files keep every generation
-          on-system.
-        </Text>
+        <P>
+          Lovable, Google Stitch, and Replit are visual-first builders that generate
+          full applications from natural-language prompts. The workflow for integrating
+          democrito into each one follows the same logic: load the taste layer (
+          <Code>DESIGN.md</Code>) so the tool reasons correctly, load the token layer
+          (<Code>src/index.css</Code>) so it renders correctly, and do a token mapping
+          pass after any export — because all 3 tools generate generic Tailwind classes,
+          not democrito's semantic tokens.
+        </P>
       </div>
 
-      {/* Section 1 — Lovable */}
+      {/* Preamble — 3 points that apply to every tool */}
+      <div className="space-y-4 rounded-md border border-border bg-surface p-5">
+        <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">
+          Applies to every tool in this section
+        </p>
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <p className="font-display text-sm font-semibold">
+              DESIGN.md is the common layer
+            </p>
+            <P>
+              democrito ships <Code>DESIGN.md</Code> following Google's open-source
+              format — a plain-text design brief that Lovable, Stitch, and Replit all
+              read natively. It carries the visual reasoning: surface hierarchy, font
+              roles, accent constraints, and the do/don't list. It tells the tool{" "}
+              <em>why</em> the system looks the way it does, not just what the values are.
+            </P>
+          </div>
+          <div className="space-y-1">
+            <p className="font-display text-sm font-semibold">
+              Token mapping is always required
+            </p>
+            <P>
+              Lovable, Stitch, and Replit generate code with generic Tailwind classes (
+              <Code>bg-neutral-900</Code>, <Code>text-orange-500</Code>) — not
+              democrito's semantic tokens. The visual output will be on-system. The code
+              output always needs a mapping pass. Skip it and AI-generated components
+              revert to hardcoded values on the next edit.
+            </P>
+          </div>
+          <div className="space-y-1">
+            <p className="font-display text-sm font-semibold">
+              Each tool has a persistent knowledge layer
+            </p>
+            <P>
+              Set democrito's universal rules there once. Put product-specific overrides
+              in the per-project layer. Never duplicate content across both.
+            </P>
+          </div>
+        </div>
+      </div>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 1 — Lovable                                                 */}
+      {/* ------------------------------------------------------------------ */}
       <Section label="Lovable">
-        <Text variant="muted">
-          Direct GitHub sync. <Code>CLAUDE.md</Code> reads automatically when
-          connected — no pasting needed. Two-tier knowledge separates global
-          democrito rules from per-product overrides.
-        </Text>
+
+        <Note label="What it is">
+          <P>
+            Lovable is a prompt-driven app builder with GitHub sync. It reads instruction
+            files from your connected repository automatically — no pasting required once
+            the repo is connected.
+          </P>
+        </Note>
+
+        <Note label="What to know before starting">
+          <P>
+            Lovable has a 2-tier persistent knowledge system: Workspace Knowledge for
+            rules that apply to every project in your workspace, and Project Knowledge
+            for overrides specific to a single project. Each supports up to 10,000
+            characters. When they conflict, Project Knowledge wins — it's more specific,
+            so it takes precedence.
+          </P>
+          <P>
+            On the instruction file side: both <Code>AGENTS.md</Code> and{" "}
+            <Code>CLAUDE.md</Code> are read from the project root when GitHub is
+            connected. The distinction matters in practice: <Code>AGENTS.md</Code> is
+            guaranteed to be read regardless of conversation length. In very long
+            sessions, <Code>CLAUDE.md</Code> may not be consistently included. Use{" "}
+            <Code>AGENTS.md</Code> as your primary instruction file for Lovable.
+          </P>
+          <P>
+            Workspace Knowledge is for rules you want across every project — the
+            3-surface hierarchy, the mono contract, the single-accent rule. The
+            instruction file (<Code>AGENTS.md</Code>) is for project-specific structure:
+            file paths, component naming, import conventions. Product-specific overrides
+            go in Project Knowledge.
+          </P>
+        </Note>
 
         <div className="space-y-6">
           <Step
             number={1}
-            title="Connect GitHub"
-            caption="Settings → GitHub → Connect. Every prompt can now reference existing components by their actual file path."
+            title="Connect GitHub and set up AGENTS.md"
+            caption={
+              <>
+                Connect your democrito fork via Settings → GitHub. Then create an{" "}
+                <Code>AGENTS.md</Code> file at the repo root. This is what Lovable reads
+                to understand the project's file structure and naming conventions.
+              </>
+            }
+            language="markdown"
+            code={`# democrito — agent instructions
+
+ARCHITECTURE: Atomic Design. Before creating any component, check
+src/components/atoms/, molecules/, organisms/, and ui/ for existing implementations.
+
+NAMING: PascalCase filenames. One component per file. Barrel exports via index.ts at each level.
+
+TOKENS: Always use semantic Tailwind classes. Never hardcode colors, spacing, or radii.
+- Surfaces: bg-background → bg-surface → bg-card (never a 4th level)
+- Text: text-foreground / text-muted-foreground / text-foreground-subtle / text-accent
+- Never: bg-gray-*, text-white, dark: overrides
+
+FONTS: font-display (headings, buttons, nav), font-body (descriptions, labels),
+font-mono (ALL data values, inputs, IDs, variables, user-editable content).
+
+LINT: Run after every change.`}
           />
 
           <Step
             number={2}
-            title="Add Workspace Knowledge — democrito's global rules"
-            caption="Settings → Workspace → Knowledge. Paste once and forget it — applies to every project you build on democrito."
+            title="Add Workspace Knowledge — democrito's universal rules"
+            caption="Settings → Knowledge. Paste once. Applies to every project you build on democrito, not just this one."
             language="text"
-            code={`democrito design system — global rules:
+            code={`democrito design system — universal rules
 
-ARCHITECTURE: Atomic Design. Before any new component, check
-src/components/atoms/, molecules/, ui/.
+SURFACES
+3-surface hierarchy only: bg-background → bg-surface → bg-card.
+Never a 4th level. Shadows reserved for floating elements (dropdowns, tooltips).
 
-SURFACES: bg-background → bg-surface → bg-card. Never four.
-FONTS: font-display (headings/buttons), font-body (descriptions),
-font-mono (ALL data values, inputs, IDs, user-editable content).
-Never hardcode colors. Never dark: overrides.`}
+TYPOGRAPHY
+font-display: headings, buttons, nav labels — signals structure.
+font-body: descriptions, labels, body copy — signals narrative.
+font-mono: ALL data values, inputs, variables, identifiers, timestamps,
+token counts, KPI numbers, user-editable content — signals "this is data."
+The font-mono rule is a semantic contract, not a style choice. Never break it.
+
+ACCENT
+Single accent color per screen. Marks the one most important action.
+Use bg-accent / text-accent only for primary CTAs and interactive links.
+bg-accent-muted for hover states and badges. bg-accent-subtle for active
+tabs, code blocks, selected rows.
+
+ANTI-PATTERNS
+Never hardcode colors. Never use dark: prefixes. Never exceed 3 surfaces.
+Never use font-mono on structural labels (buttons, nav items).
+Never use font-display on data values (inputs, badges, table data).`}
           />
 
           <Step
             number={3}
             title="Add Project Knowledge — product overrides only"
-            caption="Project settings → Knowledge. Only what changes for this product."
+            caption="Project settings → Knowledge. Only what changes for this specific product. If it applies across all your projects, it belongs in Workspace Knowledge, not here."
             language="text"
-            code={`Accent: [hsl value] instead of terracotta.
-Theme: [dark-first / warm default].
-All other democrito rules apply unchanged.`}
+            code={`Product: [ProductName] — [one-line description]
+Accent: hsl([value]) replaces terracotta (hsl 18 65% 55%).
+Theme: [dark-first / warm default / light].
+Primary font: [font name] replaces Plus Jakarta Sans for font-display.
+
+All other democrito rules from Workspace Knowledge apply unchanged.`}
           />
 
           <Step
             number={4}
             title="Reference components by file path"
-            caption="Lovable reads your source files — use file paths to anchor generations to existing patterns rather than describing them from scratch."
+            caption="Lovable reads your connected repository. Use actual file paths to anchor generations to existing patterns — this produces more consistent output than open-ended descriptions."
             language="text"
             code={`Create a molecule called RunRow.
 Follow the pattern in src/components/molecules/StatCard.tsx.
-Props: label (string), value (string), status ("running"|"done"|"error").
-status badge: font-mono text-xs using --status-* tokens.
-Export from the molecules index.`}
-          />
+
+Props: label (string), value (string), status ("running" | "done" | "error").
+
+Token assignments:
+- Container: bg-card border-border rounded-lg px-4 py-3
+- label: font-display text-sm font-medium text-muted-foreground
+- value: font-mono text-sm text-foreground
+- status badge: font-mono text-xs using text-success / text-error / text-muted-foreground
+
+Export from src/components/molecules/index.ts. Run lint after.`}
+          >
+            <P>
+              The <Code>value</Code> field uses <Code>font-mono</Code> because it's a
+              data value the user reads and references. The <Code>label</Code> uses{" "}
+              <Code>font-display</Code> because it's structural navigation. Swapping them
+              breaks the mono contract — Lovable knows this from the Workspace Knowledge
+              and will enforce it if the knowledge was set correctly.
+            </P>
+          </Step>
         </div>
       </Section>
 
-      {/* Section 2 — Google Stitch */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 2 — Google Stitch                                           */}
+      {/* ------------------------------------------------------------------ */}
       <Section label="Google Stitch">
-        <Text variant="muted">
-          <Code>DESIGN.md</Code> speaks Stitch's language natively — it follows
-          Google's open-source format. Import it and every screen Stitch generates
-          follows democrito's visual rules. A token mapping pass is always required
-          after export.
-        </Text>
+
+        <Note label="What it is">
+          <P>
+            Stitch is Google Labs' AI-native UI design tool. It generates screens and
+            components from natural-language prompts, powered by Gemini. Its primary
+            output format is Figma-compatible screens and exported Tailwind/React code.
+          </P>
+        </Note>
+
+        <Note label="What to know before starting">
+          <P>
+            <Code>DESIGN.md</Code> is Google's contribution to the vibe coding
+            ecosystem — an open-source format for encoding design systems as
+            agent-readable plain text. democrito's <Code>DESIGN.md</Code> follows this
+            format exactly. Stitch reads it natively as project context: when you import
+            it, every screen Stitch generates applies democrito's visual rules without
+            you specifying them per prompt.
+          </P>
+          <P>
+            Two things to hold in mind. First: Stitch can also generate a{" "}
+            <Code>DESIGN.md</Code> for you — either from a URL or from scratch. If
+            you've already customized democrito for a brand, you can push your
+            customized version back into Stitch as the project's design context. Second:
+            Stitch's export uses generic Tailwind classes. The visual output will be
+            correct; the code always needs a token mapping pass.
+          </P>
+        </Note>
 
         <div className="space-y-6">
           <Step
             number={1}
-            title="Import DESIGN.md into your Stitch project"
-            caption="Paste the file contents directly, or point Stitch at the raw GitHub URL. If you've customized tokens, use your fork's URL — not the upstream default."
+            title="Import DESIGN.md"
+            caption="Paste the raw file contents directly into the Stitch project, or point it at the raw GitHub URL. If you've customized democrito for a specific brand, use your fork's URL — not the upstream default."
             language="url"
             code={`https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md`}
-          />
+          >
+            <P>If you've forked and customized:</P>
+            <StepCode language="url">{`https://raw.githubusercontent.com/[your-username]/democrito/main/DESIGN.md`}</StepCode>
+          </Step>
 
           <Step
             number={2}
             title="Verify the import"
-            caption="Expected: terracotta (hsl 18°), used for primary CTAs and links, one per screen maximum. If Stitch says blue or generic, re-paste DESIGN.md."
+            caption="Before generating anything, confirm Stitch loaded the reasoning layer, not just the values."
             language="text"
-            code={`What is the accent color in this design system, and what is its role?`}
-          />
+            code={`What is the accent color in this design system, its HSL value, and its usage rule?`}
+          >
+            <P>
+              Expected: terracotta, approximately HSL(18° 65% 55%), reserved for primary
+              CTAs and interactive links, 1 instance per screen maximum.
+            </P>
+            <P>
+              If Stitch returns a generic color or omits the scarcity rule, re-paste the
+              full <Code>DESIGN.md</Code> contents directly rather than using the URL.
+              Some Stitch project configurations fetch the URL at generation time rather
+              than on import — pasting the contents directly is more reliable.
+            </P>
+          </Step>
 
           <Step
             number={3}
-            title="Generate screens with token language"
+            title="Generate with token language"
+            caption="Use token names in your prompts, not visual descriptions. Reference list descriptions are not decoration — they're taste vectors that resolve ambiguity the token language doesn't cover. Include both."
             language="text"
             code={`Design a data table layout for a log viewer.
 IDE-grade, not consumer-grade. Dense and purposeful.
-- Table headers: font-mono uppercase tracking-widest text-muted-foreground, bg-surface
+Closer to Linear or Raycast than to Stripe or Notion.
+
+- Table container: bg-surface
+- Table headers: font-mono text-xs uppercase tracking-widest text-muted-foreground, bg-surface
 - Table cells: font-mono text-sm text-foreground
 - Row hover: bg-accent-subtle
-- Horizontal dividers only. No vertical column lines.
-- Timestamp column: text-foreground-subtle`}
+- Horizontal dividers only — no vertical column lines
+- Timestamp column: text-foreground-subtle
+- Selected row: bg-accent-subtle border-l-2 border-accent`}
           />
 
           <Step
             number={4}
             title="Token mapping pass after export"
-            caption="Replace Stitch's generic Tailwind classes with democrito semantic tokens. This step is always required — the visual intent is right, the class names are not."
+            caption="Stitch's export uses generic Tailwind utility classes. The visual rendering from Stitch is correct — the class names in the exported code are not. Apply this mapping pass to every export before the code enters your project."
             language="text"
             code={`Replace in exported code:
-bg-neutral-*     → bg-background / bg-surface / bg-card  (match by visual role)
+
+bg-neutral-*    → bg-background / bg-surface / bg-card  (match by visual role)
 border-neutral-* → border-border
-text-neutral-*   → text-foreground / text-muted-foreground / text-foreground-subtle
-text-white       → text-foreground
-text-orange-*    → text-accent
-bg-orange-*      → bg-accent / bg-accent/10
-font-sans        → font-display (headings) or font-body (prose)`}
-          />
+text-neutral-*  → text-foreground / text-muted-foreground / text-foreground-subtle
+text-white      → text-foreground
+text-orange-*   → text-accent
+bg-orange-*     → bg-accent or bg-accent/10
+font-sans       → font-display (headings) or font-body (prose)
+font-mono       → font-mono (keep — already correct)`}
+          >
+            <P>
+              This step is not optional. Skip it and every component that gets edited or
+              regenerated later will revert to generic values, breaking the semantic layer
+              progressively.
+            </P>
+          </Step>
         </div>
       </Section>
 
-      {/* Section 3 — Replit */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 3 — Replit                                                  */}
+      {/* ------------------------------------------------------------------ */}
       <Section label="Replit">
-        <Text variant="muted">
-          Replit Agent reads <Code>replit.md</Code> in the project root —
-          democrito's equivalent of <Code>CLAUDE.md</Code>. Point the Agent at{" "}
-          <Code>DESIGN.md</Code> by URL in plan mode and it ingests democrito's
-          visual language before writing a single line of code.
-        </Text>
+
+        <Note label="What it is">
+          <P>
+            Replit Agent is a full-stack app builder that runs entirely in the browser —
+            no local setup, no CLI. Agent 4 handles planning, design, and code generation
+            from natural-language descriptions, including parallel build execution and
+            in-browser testing.
+          </P>
+        </Note>
+
+        <Note label="What to know before starting">
+          <P>
+            <Code>replit.md</Code> is Agent's instruction file — the equivalent of{" "}
+            <Code>CLAUDE.md</Code> in a local repo. Agent auto-creates it when you start
+            a new project, populating it with project type conventions it inferred from
+            your prompt. You can edit it at any time. Agent also updates it
+            automatically as the project evolves, so review it periodically if your rules
+            need to stay fixed.
+          </P>
+          <P>
+            <Code>replit.md</Code> must live at the project root. Agent won't detect it
+            in subdirectories. There's no strict character limit, but keep it focused —
+            very large files may not be fully processed.
+          </P>
+          <P>
+            On design system tiers: Themes (colors, fonts, UI properties applied
+            globally) are available to all plans. Figma design system import and
+            package/library import are currently Enterprise Beta. For democrito
+            integration, <Code>replit.md</Code> plus the <Code>DESIGN.md</Code> URL
+            reference is the approach that works on all plans.
+          </P>
+        </Note>
 
         <div className="space-y-6">
           <Step
             number={1}
-            title="Add replit.md to your project root"
-            caption="This is Replit's equivalent of CLAUDE.md. Agent reads it automatically at the start of every session. Must be at root — not in a subdirectory."
-            language="text"
-            code={`# democrito design system
+            title="Set up replit.md at the project root"
+            caption="When Agent auto-creates replit.md, it includes project structure and tech stack. Append the democrito design rules as a dedicated section. If you're creating the project manually, include the full block below."
+            language="markdown"
+            code={`# [ProjectName] — Agent Instructions
 
-Design system reference: https://democrito.design
+## Project context
+[Brief description of what the app does and who uses it.]
+
+## Tech stack
+React + TypeScript + Tailwind CSS + shadcn/ui
+
+## Design system
+democrito v3 — reference: https://democrito.design
 DESIGN.md: https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md
 
-SURFACES: bg-background → bg-surface → bg-card (never a fourth level)
-FONTS: font-display (headings), font-body (prose), font-mono (all data values)
-COLORS: semantic tokens only — never text-green-*, bg-gray-*, or dark: overrides`}
+Before generating any UI, read the DESIGN.md at the URL above and confirm:
+- The 3 surface levels and when each applies
+- The accent color and its usage constraint (1 per screen maximum)
+- Which content must use font-mono and why
+
+## Token rules
+- Surfaces: bg-background → bg-surface → bg-card (never a 4th level)
+- Fonts: font-display (headings), font-body (prose), font-mono (ALL data values)
+- Colors: semantic tokens only — never bg-gray-*, text-green-*, or dark: prefixes
+- Never hardcode hex or rgb values
+
+## Component rules
+- Check for existing components before creating new ones
+- PascalCase filenames, one component per file
+- Always run lint after changes`}
           />
 
           <Step
             number={2}
-            title="Point Agent at DESIGN.md in plan mode"
-            caption="Before building anything, tell Agent to read the design system. Works on all plans — no Enterprise required."
+            title="Confirm context before building"
+            caption="At the start of each session, ask Agent to confirm it read the design system. Agent reads replit.md on session start, but the DESIGN.md URL reference requires it to fetch external content — that step only happens if you confirm it."
             language="text"
-            code={`Before you build anything, read the design system at this URL and confirm
-you understand the surface hierarchy, font rules, and accent constraints:
-https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md`}
-          />
+            code={`Before we start building: read the DESIGN.md at the URL in replit.md and confirm
+the 3 surface levels, the accent color and its rule, and which content must use font-mono.`}
+          >
+            <P>
+              If Agent confirms with the correct answers — terracotta, 3 surfaces in the
+              right order, mono contract for data values — proceed. If it returns generic
+              answers, paste the raw <Code>DESIGN.md</Code> content directly into the
+              chat instead of relying on the URL fetch.
+            </P>
+          </Step>
 
           <Step
             number={3}
             title="Generate with token language"
             language="text"
             code={`Create a card component for a SaaS metrics dashboard.
+
+Token assignments:
 - Container: bg-card border border-border rounded-lg p-4
 - Metric value: font-mono text-2xl font-bold text-foreground
-- Label: font-display text-sm font-medium text-muted-foreground
-- No hardcoded colors. No dark: prefixes.`}
+- Label below the metric: font-display text-sm font-medium text-muted-foreground
+- Trend indicator: font-mono text-xs — text-success for positive, text-error for negative
+
+Rules: no hardcoded colors. No dark: prefixes. Maximum 3 surfaces.`}
           />
 
           <Step
             number={4}
             title="Token mapping pass after generation"
-            caption="Replit Agent may output generic Tailwind classes even after reading DESIGN.md. Apply the same mapping pass as Stitch."
+            caption="Agent may output generic Tailwind classes even after reading DESIGN.md, particularly for colors. Apply the same mapping pass as Stitch."
             language="text"
-            code={`Review all className values. Replace generic Tailwind colors:
-bg-neutral-*   → bg-surface or bg-card
+            code={`Review all className values in the component you just generated.
+Replace generic Tailwind colors with democrito semantic tokens:
+
+bg-neutral-*   → bg-surface or bg-card (match by visual depth)
 text-neutral-* → text-foreground or text-muted-foreground
 text-green-*   → text-success
 text-red-*     → text-error
-text-orange-*  → text-accent`}
+text-orange-*  → text-accent
+bg-orange-*    → bg-accent or bg-accent/10
+font-sans      → font-display (headings) or font-body (prose)
+
+Flag any remaining hardcoded hex or rgb values.`}
           />
         </div>
       </Section>
