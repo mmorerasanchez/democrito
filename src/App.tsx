@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { ShowcaseLayout } from "@/components/ShowcaseLayout";
 import OverviewPage from "@/pages/OverviewPage";
@@ -22,9 +23,10 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -36,8 +38,8 @@ const App = () => (
               <Route path="/atoms" element={<AtomsPage />} />
               <Route path="/molecules" element={<MoleculesPage />} />
               <Route path="/organisms" element={<OrganismsPage />} />
-              <Route path="/pages" element={<TemplatesPage />} />
-              <Route path="/templates" element={<Navigate to="/pages" replace />} />
+              <Route path="/templates" element={<TemplatesPage />} />
+              <Route path="/pages" element={<Navigate to="/templates" replace />} />
               <Route path="/ai" element={<AiPage />} />
               <Route path="/ai/:platform" element={<AiDetailPage />} />
               <Route path="/manifesto" element={<ManifiestoPage />} />
@@ -48,9 +50,10 @@ const App = () => (
         </BrowserRouter>
         <Analytics />
         <SpeedInsights />
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

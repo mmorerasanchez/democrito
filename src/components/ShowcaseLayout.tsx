@@ -30,12 +30,19 @@ function ScrollToTop() {
   return null;
 }
 
-function FaviconSync() {
+function ThemeSync() {
   const { theme } = useTheme();
   useEffect(() => {
     const link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
     if (link) {
       link.href = theme === "dark" ? "/favicon-dark.png" : "/favicon-light-warm.png";
+    }
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) {
+      const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue("--background")
+        .trim();
+      if (raw) meta.content = `hsl(${raw})`;
     }
   }, [theme]);
   return null;
@@ -82,7 +89,7 @@ export function ShowcaseLayout() {
   return (
     <SidebarProvider>
       <CloseMobileSidebarOnNav />
-      <FaviconSync />
+      <ThemeSync />
       <ScrollToTop />
       <div className="flex min-h-screen w-full">
         <AppSidebar />
