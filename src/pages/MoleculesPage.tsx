@@ -1,3 +1,5 @@
+import { PageMeta } from "@/components/PageMeta";
+import { Heading } from "@/components/atoms";
 import { useState } from "react";
 import { FormField } from "@/components/molecules/FormField";
 import { SearchBar } from "@/components/molecules/SearchBar";
@@ -25,7 +27,7 @@ function Section({ id, title, description, composedOf, children }: { id: string;
   return (
     <section id={id} className="space-y-4">
       <div>
-        <h2 className="font-display text-lg font-medium tracking-tight">{title}</h2>
+        <Heading level="h2">{title}</Heading>
         <p className="font-body text-sm text-muted-foreground">{description}</p>
         {composedOf && (
           <p className="mt-1 font-mono text-2xs text-accent">Composed of: {composedOf}</p>
@@ -82,8 +84,13 @@ export default function MoleculesPage() {
 
   return (
     <div className="space-y-12">
+      <PageMeta
+        title="Molecules"
+        description="18 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, and more."
+        path="/molecules"
+      />
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight">Molecules</h1>
+        <Heading level="h1">Molecules</Heading>
         <p className="mt-1 font-body text-base text-muted-foreground">
           Composite components built from atoms. Each molecule combines 2+ atoms into a reusable pattern.
         </p>

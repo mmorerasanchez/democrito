@@ -1,3 +1,5 @@
+import { PageMeta } from "@/components/PageMeta";
+import { Heading } from "@/components/atoms";
 import { TemplatePreview } from "@/components/templates/TemplatePreview";
 import { EditorLayout } from "@/components/templates/EditorLayout";
 import { LibraryLayout } from "@/components/templates/LibraryLayout";
@@ -28,8 +30,13 @@ function Placeholder({ label }: { label: string }) {
 export default function TemplatesPage() {
   return (
     <div className="space-y-12">
+      <PageMeta
+        title="Templates"
+        description="7 full-page layouts — App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth."
+        path="/templates"
+      />
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight">Layouts</h1>
+        <Heading level="h1">Templates</Heading>
         <p className="mt-1 font-body text-base text-muted-foreground">
           Page layout templates that define content zones and responsive behavior. Templates compose organisms into full-page structures.
         </p>

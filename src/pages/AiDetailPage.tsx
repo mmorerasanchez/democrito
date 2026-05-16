@@ -1,3 +1,4 @@
+import { PageMeta } from "@/components/PageMeta";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -108,6 +109,11 @@ function Section({ label, children }: { label: string; children: React.ReactNode
 function ClaudePage() {
   return (
     <div className="space-y-10">
+      <PageMeta
+        title="Using democrito with Claude"
+        description="Workflow for Claude.ai, Claude Code, Cowork, and Claude Design — three-file context layer for every Claude surface."
+        path="/ai/claude"
+      />
       {/* Page header */}
       <div className="space-y-3">
         <Badge variant="outline" className="font-mono text-xs">Anthropic</Badge>
@@ -723,6 +729,11 @@ Export from src/components/atoms/index.ts. Run lint after.`}
 function GithubPage() {
   return (
     <div className="space-y-10">
+      <PageMeta
+        title="democrito on GitHub"
+        description="Fork, customise, contribute. Instruction file ecosystem — CLAUDE.md, AGENTS.md, GEMINI.md — and the design context layer."
+        path="/ai/github"
+      />
       {/* Page header */}
       <div className="space-y-3">
         <Badge variant="outline" className="font-mono text-xs">Open Source</Badge>
@@ -1055,6 +1066,11 @@ Run after every change: \`npm run lint && npm run test\``}</StepCode>
 function VibeCodingPage() {
   return (
     <div className="space-y-10">
+      <PageMeta
+        title="Using democrito with Vibe Coding Tools"
+        description="Drop-in context files for Lovable, Google Stitch, and Replit. DESIGN.md, AGENTS.md, and token mapping for every platform."
+        path="/ai/vibe-coding"
+      />
       {/* Page header */}
       <div className="space-y-3">
         <Badge variant="outline" className="font-mono text-xs">Vibe Coding</Badge>
