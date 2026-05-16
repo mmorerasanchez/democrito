@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-# Sitemap: not yet generated — add when sitemap.xml is available
+Sitemap: https://democrito.design/sitemap.xml
