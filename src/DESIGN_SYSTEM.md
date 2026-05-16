@@ -212,34 +212,49 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 
 ## 7. Component Inventory
 
-### Atoms (22)
+### Atoms
+
+> **Two counts, different scopes:**
+> - **Custom atoms** (`src/components/atoms/`) — 10 hand-crafted single-purpose components. These are the "democrito atoms" referenced in OverviewPage stats and CLAUDE.md.
+> - **shadcn/ui primitives** (`src/components/ui/`) — 11 form/interactive atoms sourced from shadcn/ui and extended via CVA. Counted separately; extend them but never rebuild from scratch.
+> - **Total atom-level components: 21** (10 custom + 11 shadcn/ui)
+
+#### Custom atoms (10)
 
 | Name | Base | Status |
 |---|---|---|
-| Button | shadcn/ui Button + CVA | Ready |
-| Input | shadcn/ui Input | Ready |
-| Textarea | shadcn/ui Textarea | Ready |
-| Select | shadcn/ui Select | Ready |
-| Checkbox | shadcn/ui Checkbox | Ready |
-| RadioGroup | shadcn/ui RadioGroup | Ready |
-| Switch | shadcn/ui Switch | Ready |
-| Slider | shadcn/ui Slider | Ready |
-| Badge | shadcn/ui Badge + CVA | Ready |
-| Tag | custom | Ready |
-| Avatar | shadcn/ui Avatar | Ready |
-| Heading | custom | Ready |
-| Text | custom | Ready |
-| Label | shadcn/ui Label | Ready |
-| Link | custom | Ready |
 | Code | custom | Ready |
+| CodeBlock | custom | Ready |
+| Heading | custom | Ready |
+| Kbd | custom | Ready |
+| Link | custom | Ready |
+| Logo | custom | Ready |
+| Spinner / ThinkingDots | custom | Ready |
+| StatusBadge | custom | Ready |
+| Tag | custom | Ready |
+| Text | custom | Ready |
+
+#### shadcn/ui atoms (11)
+
+| Name | Base | Status |
+|---|---|---|
+| Avatar | shadcn/ui Avatar | Ready |
+| Badge | shadcn/ui Badge + CVA | Ready |
+| Button | shadcn/ui Button + CVA | Ready |
+| Checkbox | shadcn/ui Checkbox | Ready |
+| Input | shadcn/ui Input | Ready |
+| Label | shadcn/ui Label | Ready |
+| Progress | shadcn/ui Progress | Ready |
+| RadioGroup | shadcn/ui RadioGroup | Ready |
+| Select | shadcn/ui Select | Ready |
 | Separator | shadcn/ui Separator | Ready |
 | Skeleton | shadcn/ui Skeleton | Ready |
-| Spinner | custom | Ready |
+| Slider | shadcn/ui Slider | Ready |
+| Switch | shadcn/ui Switch | Ready |
+| Textarea | shadcn/ui Textarea | Ready |
 | Tooltip | shadcn/ui Tooltip | Ready |
-| Progress | shadcn/ui Progress | Ready |
-| Kbd | custom | Ready |
 
-### Molecules (16)
+### Molecules (17)
 
 | Name | Base | Status | Notes |
 |---|---|---|---|
@@ -259,6 +274,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | ActivityFeedItem | custom | Ready | Activity row with user, action badge, target, timestamp |
 | VariableEditorRow | custom | Ready | Name/value input pair with delete and highlight state |
 | RunHistoryItem | custom | Ready | Run entry with model, status, tokens, latency |
+| TokenReferenceCard | custom | Ready | Inline token swatch + name + value for token docs pages |
 
 > **Pagination** is a shadcn/ui primitive at `src/components/ui/pagination.tsx`, not a custom democrito molecule.
 
@@ -304,135 +320,22 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 
 ---
 
-## 8. Application Pages
+## 8. Showcase Pages
 
-### 8.1 Dashboard (`/app`)
+The democrito repo is a self-contained design system showcase — no application routes. All pages live in `src/pages/` and are routed via `src/App.tsx` inside `ShowcaseLayout`.
 
-**Template:** DashboardLayout  
-**Key organisms:** DashboardStats, TabNav, PromptConfigFields, EvalConfirmModal, EvaluationResultsView, ActivityFeed
-
-| Section | Width | Content |
-|---|---|---|
-| PageHeader | full | H1 "Dashboard" + muted subtitle |
-| KPI Row | full | 4× StatCard (Total Prompts, Evaluations, Avg Score, Active Users) |
-| AI Designer | full | TabNav (Generator / Evaluator) + "Open designer" link |
-| Generator tab | full | Compact PromptConfigFields with typing animation + Generate button |
-| Evaluator tab | full | Compact PromptConfigFields + Evaluate button → EvalConfirmModal → EvaluationResultsView |
-| Activity Feed | full | Recent activity list |
-
-### 8.2 Prompt Store (`/app/library`)
-
-**Template:** DashboardLayout  
-**Key organisms:** StatCard, FilterBar, PromptCard, BulkActionsBar, CreatePromptDialog
-
-| Section | Width | Content |
-|---|---|---|
-| PageHeader | full | H1 "Prompt Store" + "New Prompt" button |
-| KPI Row | full | 4× StatCard (Total, Production, Avg Tokens, This Week) |
-| Toolbar | full | FilterBar with search, status chips, sort, grid/list toggle |
-| Content | full | Grid (1/2/3-col responsive) or list table view |
-| Bulk Actions | sticky bottom | Conditional bar when items selected |
-
-**Grid/list toggle:** `viewMode` state switches between card grid and data table.
-
-### 8.3 AI Designer (`/app/ai-designer`)
-
-**Template:** DashboardLayout  
-**Key organisms:** StatCard, TabNav, PromptConfigFields, EvalConfirmModal, EvaluationResultsView, RunHistory, TestDatasetManager
-
-| Tab | Layout | Content |
-|---|---|---|
-| Generator | 50/50 split (lg) | Left: Full PromptConfigFields + Generate button. Right: Output area |
-| Evaluator | stacked | Full PromptConfigFields + Evaluate button → EvalConfirmModal → EvaluationResultsView. Below: 2/3 TestDatasetManager + 1/3 RunHistory |
-
-### 8.4 Prompt Detail — Saved View (`/app/library/:id`)
-
-**Template:** DetailLayout  
-**Key organisms:** BreadcrumbNav, StatusLifecycleBar, StatCard, AnatomyFieldCard, CompiledPreview, EvalConfirmModal, EvaluationResultsView
-
-| Section | Width | Content |
-|---|---|---|
-| Breadcrumb | full | Library → Prompt Name |
-| Title bar | full | H1 + version badge + History/Run/Edit buttons |
-| Status bar | full | StatusLifecycleBar (Draft → Testing → Production → Archived) |
-| KPI Row | full | 4× StatCard |
-| Content | 50/50 split | Left: Fields (compact cards), Settings grid, Variables list. Right: Sticky CompiledPreview |
-
-**Run action:** Run button opens EvalConfirmModal (with compiled prompt as instruction) → transitions to full-page EvaluationResultsView.  
-**Navigation:** Edit button uses `useNavigate()` (not `asChild`) to avoid React `Slot` crash.
-
-### 8.5 Prompt Editor (`/app/library/:id/edit`)
-
-**Template:** EditorLayout (split-pane)  
-**Key organisms:** BreadcrumbNav, TabNav, AnatomyFieldCard, CompiledPreview, VariableManager, VersionTimeline, VersionComparison, PromptConfigFields, EvalConfirmModal, EvaluationResultsView
-
-| Tab | Content |
-|---|---|
-| Fields | 9 AnatomyFieldCards (expanded variant) with token counts |
-| Settings | PromptConfigFields in `settings` mode (flat, no anatomy) |
-| Variables | VariableManager with add/edit/delete |
-| Versions | 1/3 VersionTimeline + 2/3 VersionComparison side-by-side |
-| Variations | Disabled, "soon" badge |
-
-**Run action:** Run button opens EvalConfirmModal (with compiled prompt as instruction) → transitions to full-page EvaluationResultsView.  
-**Navigation:** Back button uses `useNavigate()`.
-
-### 8.6 Settings (`/app/settings`)
-
-**Template:** DashboardLayout  
-**Key organisms:** SettingsNav, APIKeyManager, IntegrationCard, APIDocPanel, PresetCard, PresetDetailPanel, OrganizationManager, GlobalVariableManager, DataManager, StatCard
-
-| Tab | Content |
-|---|---|
-| Profile | Personal info form + Editor Defaults (merged from Preferences) |
-| Billing | Plan card with usage meters + credit usage bar chart + billing history |
-| API Keys | APIKeyManager (BYOK) + APIDocPanel + Integrations grid |
-| Presets | Model Presets (system + user CRUD) + Prompt Presets (system + user CRUD) with PresetDetailPanel |
-| Organization | OrganizationManager (Tabs + Tags sections with create/edit modals) |
-| Variables | GlobalVariableManager (table + add form + sync note) |
-| Data | DataManager (Export checkboxes + Import drop zone + Danger Zone) |
-| Team | Coming soon placeholder (disabled) |
-
-### 8.7 Onboarding (`/app/welcome`)
-
-**Template:** Centered (no app shell)  
-**Key organisms:** OnboardingWizard, PromptConfigFields, ScoreBreakdown, TokenCounter
-
-5-step guided wizard:
-
-| Step | Title | Content | Interaction |
+| Route | Page Component | Sidebar Label | Notes |
 |---|---|---|---|
-| 1 | Select Model & Platform | Model dropdown (grouped by provider) + Platform dropdown | Manual advance |
-| 2 | Configure Parameters | Reasoning framework, Complexity buttons, Temperature/MaxTokens sliders | Manual advance |
-| 3 | Provide Instructions | Toggle: Plain Text (textarea) / Anatomy Fields (borderless cards with textareas) | Manual advance |
-| 4 | Generating Your Prompt | Phase indicators with ai-pulse animation (no icon) | Auto-advance after ~3.2s |
-| 5 | Your Improved Prompt | Compiled output preview + TokenCounter + ScoreBreakdown (modal) + Save/Edit buttons | Save → Dashboard |
-
-**Key details:**
-- Step 3 anatomy field cards have NO borders (plain `bg-card` with rounded corners only)
-- Step 4 has NO icon above the phase indicators
-- ScoreBreakdown opens as a centered Dialog (not a Popover) with close button
-
----
-
-## 9. Sidebar Navigation
-
-### SidebarNav Component
-
-3-section sidebar with equal `space-y-6` vertical spacing between sections:
-
-| Section | Expanded | Collapsed |
-|---|---|---|
-| **Hubs** | Icon + label (Store, Designer, Settings) | Icon only |
-| **Projects** | Hash icon + label + count badge + "Add" button | Hash icon + small count badge overlay (positioned `-top-1.5 -right-1.5`) |
-| **Coming Soon** | Icon + label + "soon" badge (disabled) | Icon only (disabled) |
-
-**Key behaviors:**
-- Collapsed width: `64px` (`w-sidebar-collapsed`)
-- Expanded width: `240px` (`w-sidebar-w`)
-- Projects section remains visible when collapsed (count badges shown as small overlays on hash icons)
-- User footer with avatar, name, and email
-- Mobile: sidebar becomes overlay drawer triggered by hamburger menu
+| `/` | `OverviewPage` | README | Hero, Why/How/What, stats, design principles |
+| `/tokens` | `TokensPage` | Tokens | Full token reference + TokenReferenceCard |
+| `/atoms` | `AtomsPage` | Atoms | Custom atoms + shadcn/ui atoms showcase |
+| `/molecules` | `MoleculesPage` | Molecules | All 17 molecules |
+| `/organisms` | `OrganismsPage` | Organisms | All 19 public organisms |
+| `/pages` | `TemplatesPage` | Layouts | All 7 layout templates |
+| `/ai` | `AiPage` | AI | Install + FileArchitecture + Distribution cards |
+| `/ai/:platform` | `AiDetailPage` | — | Per-platform deep-dive (claude, vibe-coding, github, …) |
+| `/manifesto` | `ManifiestoPage` | MANIFIESTO | Editorial manifesto |
+| `/test/tokens` | `TokenSmokeTest` | — | Dev-only smoke test, not linked in nav |
 
 ---
 
@@ -533,68 +436,8 @@ All form components (Input, Textarea, SelectTrigger) must align visually with st
 
 ---
 
-## 15. Build Sequence
-
-1. ~~**Verify tokens**~~ ✅ Font imports, feedback opacity, duration tokens
-2. ~~**Build atoms**~~ ✅ All 22 atoms built and showcased
-3. ~~**Build molecules**~~ ✅ All 17 molecules + ScoreBreakdown built and showcased
-4. ~~**Build organisms**~~ ✅ All 36+ organisms built and showcased
-5. ~~**Build democrito patterns**~~ ✅ All pattern organisms built and showcased
-6. ~~**Build templates**~~ ✅ All 8 templates built and showcased
-7. ~~**Assemble pages**~~ ✅ Dashboard, Library, AI Designer, Detail, Editor, Settings, Onboarding
-
 ---
 
-## 16. Recent Changes Log
+*10 custom atoms + 15 shadcn/ui atoms · 17 molecules · 19 organisms · 7 templates · 3 themes · WCAG 2.1 AA*
 
-| Date | Change | Files Affected |
-|---|---|---|
-| 2026-02-18 | Cross-Theme Color Audit: 28 token changes + 3 new tokens (`accent-muted`, `accent-subtle`, `warm-dark`). Fixed collapsed surface hierarchy, cold light theme, theme-blind semantics, dark input/card collision. Semantic colors now theme-adaptive. | `index.css`, `tailwind.config.ts`, `TokenSmokeTest.tsx`, `DESIGN_SYSTEM.md` |
-| 2026-02-17 | Settings Panel Overhaul: restructured from 6→8 tabs, merged Preferences→Profile, consolidated Integrations→API Keys, added Presets/Organization/Variables/Data tabs | `SettingsPage.tsx`, `APIDocPanel.tsx`, `PresetCard.tsx`, `PresetDetailPanel.tsx`, `OrganizationManager.tsx`, `GlobalVariableManager.tsx`, `DataManager.tsx` |
-| 2026-02-12 | Unified evaluator flow: all 4 entry points (Dashboard, Designer, Detail, Editor) use EvalConfirmModal → EvaluationResultsView | `DashboardPage.tsx`, `AIDesignerPage.tsx`, `PromptDetailPage.tsx`, `PromptEditorPage.tsx` |
-| 2026-02-12 | Added CLEARScorePanel: collapsible CLEAR framework scores with dimension breakdown + Insights placeholder | `CLEARScorePanel.tsx` |
-| 2026-02-12 | Added ImprovedPromptPanel: tabbed view (Full Version / Anatomy Fields) with copy, save, re-evaluate actions | `ImprovedPromptPanel.tsx` |
-| 2026-02-12 | Added EvalConfirmModal: configuration summary dialog before running evaluations | `EvalConfirmModal.tsx` |
-| 2026-02-12 | Added EvaluationResultsView: full-page results with Improved Prompt, KPIs, CLEAR Score | `EvaluationResultsView.tsx` |
-| 2026-02-12 | Deprecated TestRunnerModal in favor of EvalConfirmModal + EvaluationResultsView workflow | `TestRunnerModal.tsx` |
-| 2026-02-12 | CLEARScorePanel: consolidated Strengths/Improvements/Suggestions into single "Insights" section with "soon" badge | `CLEARScorePanel.tsx` |
-| 2026-02-10 | ScoreBreakdown: Converted from Popover to centered Dialog (modal) | `ScoreBreakdown.tsx` |
-| 2026-02-10 | Onboarding step 3: Removed borders from anatomy field cards | `OnboardingPage.tsx` |
-| 2026-02-10 | Onboarding step 4: Removed Sparkles icon above generation phases | `OnboardingPage.tsx` |
-| 2026-02-10 | SidebarNav: Equal `space-y-6` spacing between all 3 sections | `SidebarNav.tsx` |
-| 2026-02-10 | SidebarNav: Projects visible in collapsed mode with count badge overlays | `SidebarNav.tsx`, `NavItem.tsx` |
-| 2026-02-10 | NavItem: Added collapsed count badge (positioned `-top-1.5 -right-1.5`) | `NavItem.tsx` |
-| 2026-02-10 | Edit/Back buttons: Switched from `asChild > Link` to `useNavigate()` onClick | `PromptDetailPage.tsx`, `PromptEditorPage.tsx` |
-| 2026-02-10 | PagesPage: Updated to reflect all 7 current app pages with accurate descriptions | `PagesPage.tsx` |
-
----
-
-## 17. Evaluator Workflow Architecture
-
-All 4 entry points share the same evaluator workflow:
-
-```
-[Configure] → [EvalConfirmModal] → [1.8s simulation] → [EvaluationResultsView]
-```
-
-| Entry Point | Instruction Source | Back Navigation |
-|---|---|---|
-| Dashboard (`/app`) | User-typed in evaluator textarea | Returns to Dashboard evaluator tab |
-| AI Designer (`/app/ai-designer`) | User-typed in evaluator config | Returns to Designer evaluator tab |
-| Prompt Detail (`/app/library/:id`) | Compiled prompt from anatomy fields | Returns to Detail page |
-| Prompt Editor (`/app/library/:id/edit`) | Compiled prompt from anatomy fields | Returns to Editor page |
-
-### EvaluationResultsView Layout
-
-| Section | Component | Description |
-|---|---|---|
-| Back + Header | Button + Heading | "Back to Evaluator" + "Evaluation Results" |
-| Improved Prompt | ImprovedPromptPanel | Tabbed: Full Version (monospace preview) / Anatomy Fields (editable cards). Actions: Copy, Save to Store, Re-evaluate |
-| KPI Row | 4× StatCard | Tokens, Latency, Est. Cost, CLEAR Score |
-| CLEAR Score | CLEARScorePanel | Collapsible: overall score, 5 dimension bars (C/L/E/A/R), Insights placeholder |
-
----
-
-*80+ components · 3 themes · 9 anatomy fields · 7 app pages · WCAG 2.1 AA*
-
-<!-- CHECKSUM: Atoms(22) + Molecules(16) + Organisms(19 showcase) + Templates(7) = 64 showcase -->
+<!-- CHECKSUM: Custom Atoms(10) + Molecules(17) + Organisms(19) + Templates(7) = 53 custom components; 48+ shadcn/ui primitives in ui/ -->

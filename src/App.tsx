@@ -16,8 +16,6 @@ import TokenSmokeTest from "@/pages/TokenSmokeTest";
 import AiPage from "@/pages/AiPage";
 import AiDetailPage from "@/pages/AiDetailPage";
 import ManifiestoPage from "@/pages/ManifiestoPage";
-import UseCasesPage from "@/pages/UseCasesPage";
-import UseCaseDetailPage from "@/pages/UseCaseDetailPage";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -43,8 +41,6 @@ const App = () => (
               <Route path="/ai" element={<AiPage />} />
               <Route path="/ai/:platform" element={<AiDetailPage />} />
               <Route path="/manifesto" element={<ManifiestoPage />} />
-              <Route path="/use-cases" element={<UseCasesPage />} />
-              <Route path="/use-cases/:persona" element={<UseCaseDetailPage />} />
             </Route>
             <Route path="/test/tokens" element={<TokenSmokeTest />} />
             <Route path="*" element={<NotFound />} />

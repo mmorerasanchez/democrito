@@ -19,7 +19,7 @@ You don't need to clone the repo. Install democrito's **design tokens and visual
 The fastest way to get democrito's tokens, fonts, and CSS custom properties working.
 
 ```bash
-npx shadcn@latest add https://democrito.design/r/democrito.json democrito
+npx shadcn@latest add https://democrito.design/r/democrito.json
 ```
 
 **What this installs:**
@@ -94,17 +94,21 @@ Available tokens: `bg-surface`, `text-foreground`, `text-muted-foreground`, `bor
 
 ---
 
-### Option C: Claude Code / Claude Skill (AI-Assisted Development)
+### Option C: Claude Code / Cursor (AI-Assisted Development)
 
-If you're using **Claude Code**, **Cursor**, or **Claude Code in your IDE**, point the AI agent to democrito for instant on-system code generation.
+If you're using **Claude Code**, **Cursor**, or **Windsurf**, point the AI agent to democrito for instant on-system code generation. These tools auto-read `CLAUDE.md` from the project root on startup — no extra setup needed once the file is present.
 
 **Claude Code setup:**
 
+Clone the repo and start Claude Code from the project directory so it auto-loads `CLAUDE.md`:
+
 ```bash
-claude add democrito
+git clone https://github.com/mmorerasanchez/democrito.git
+cd democrito
+claude
 ```
 
-Or manually reference the CLAUDE.md file in your prompts:
+Or, if adopting democrito into an existing project, copy `CLAUDE.md` into your repo root and reference it in your prompts:
 
 ```
 @CLAUDE.md
@@ -113,7 +117,7 @@ Use CSS custom properties (--background, --surface, --card, --foreground).
 All user-editable content uses font-mono. Button labels use font-display.
 ```
 
-**Cursor setup:**
+**Cursor / Windsurf setup:**
 
 In your `.cursorrules` file or in a prompt:
 
@@ -147,7 +151,7 @@ The agent will read democrito's token definitions and generate components that i
 | **Next.js** | Full support via shadcn registry | Works with App and Pages Router |
 | **Astro** | Full support | Use Option A or manual copy |
 | **Vue / Svelte** | Token-level support | Use Option B (manual copy) |
-| **Lovable / v0 / Bolt** | Reference in AI prompts | Paste design token reference + live demo URL |
+| **Lovable / Stitch / Replit** | Reference in AI prompts | Paste design token reference + live demo URL |
 | **Claude Code / Cursor** | Full support via CLAUDE.md | AI agents read token context automatically |
 | **GitHub Copilot** | Token reference via comments | Include semantic class names in prompts |
 
@@ -232,7 +236,7 @@ For a complete theming guide with real-world examples, see [Theming](./theming.m
 
 ### For Contributors & System Explorers
 
-Clone the repository and run the interactive showcase locally. Browse all 47 components, tokens, and themes. Contribute components, tokens, or documentation.
+Clone the repository and run the interactive showcase locally. Browse all 80+ components, tokens, and themes. Contribute components, tokens, or documentation.
 
 ```bash
 git clone https://github.com/mmorerasanchez/democrito.git
@@ -244,10 +248,10 @@ npm run dev
 Opens the showcase at `http://localhost:5173` with hot-reload. You'll see:
 
 - **Tokens** — Interactive color, typography, and spacing reference
-- **Atoms** — 7 smallest building blocks (Heading, Tag, Spinner, Code, Kbd, Link, Text)
-- **Molecules** — 18 composed components (FormField, SearchBar, StatCard, TabNav, FilterBar)
-- **Organisms** — 15 major UI sections (DataTable, TopBar, PromptCard, SidebarNav)
-- **Templates** — 7 layout shells (AppShell, EditorLayout, DashboardLayout)
+- **Atoms** — 10 custom building blocks (Heading, Tag, Spinner, Code, CodeBlock, Kbd, Link, Logo, StatusBadge, Text) + shadcn/ui primitives (Button, Input, Badge, etc.)
+- **Molecules** — 17 composed components (FormField, SearchBar, StatCard, TabNav, TokenCounter, EmptyState, ...)
+- **Organisms** — 19 major UI sections (DataTable, TopBar, FilterBar, SidebarNav, AuthForm, ...)
+- **Layouts** — 7 page shells (AppShell, EditorLayout, DashboardLayout, LibraryLayout, DetailLayout, ...)
 
 ### Available Scripts
 

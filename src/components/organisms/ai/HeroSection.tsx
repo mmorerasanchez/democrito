@@ -10,7 +10,12 @@ import { INSTALL_COMMAND } from "./install-command";
  */
 export function HeroSection() {
   return (
-    <section className="space-y-2">
+    <section className="space-y-4">
+      <h2 className="font-display text-lg font-medium tracking-tight">Install</h2>
+      <p className="font-body text-sm text-muted-foreground max-w-2xl">
+        Add democrito to your project in one command — tokens, fonts, and CSS custom
+        properties across three themes, ready to use.
+      </p>
       <div className="relative">
         <CodeBlock
           code={INSTALL_COMMAND}

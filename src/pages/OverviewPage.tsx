@@ -10,7 +10,7 @@ const stats = [
   { label: "Atoms",         count: "10"  },
   { label: "Molecules",     count: "18"  },
   { label: "Organisms",     count: "19"  },
-  { label: "Templates",     count: "7"   },
+  { label: "Layouts",        count: "7"   },
   { label: "UI Primitives", count: "40+" },
 ];
 
@@ -28,7 +28,7 @@ const sections = [
   { name: "Atoms",      path: "/atoms",     icon: Box,        desc: "Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link, ..." },
   { name: "Molecules",  path: "/molecules", icon: Layers,     desc: "Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, ..." },
   { name: "Organisms",  path: "/organisms", icon: LayoutGrid, desc: "Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, ..." },
-  { name: "Pages",      path: "/pages",     icon: Layout,     desc: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ..." },
+  { name: "Layouts",    path: "/pages",     icon: Layout,     desc: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ..." },
 ];
 
 const REPO_URL = "https://github.com/mmorerasanchez/democrito";
@@ -54,8 +54,13 @@ export default function OverviewPage() {
             <Star className="h-4 w-4" />
             Star on GitHub
           </Button>
+          <Button variant="outline" onClick={() => navigate("/atoms")}>
+            <Box className="h-4 w-4" />
+            Components
+          </Button>
           <Button variant="outline" onClick={() => navigate("/tokens")}>
-            Explore Components
+            <Palette className="h-4 w-4" />
+            Tokens
           </Button>
         </div>
         <Text mono size="xs" variant="muted">
@@ -67,8 +72,9 @@ export default function OverviewPage() {
       <div className="space-y-2">
         <Heading level="h2">Why</Heading>
         <Text variant="muted" size="sm" className="max-w-prose">
-          democrito is the visual foundation of prompt-x.io, open-sourced for the community
-          to create custom, consistent atomic design systems with taste.
+          AI tools produce what you give them. democrito gives them a complete visual language —
+          90+ design tokens, structured components, and AI context files — so every assistant,
+          from Claude to Lovable, produces on-brand output from the first prompt.
         </Text>
       </div>
 
@@ -86,7 +92,9 @@ export default function OverviewPage() {
         <div className="space-y-2">
           <Heading level="h2">What</Heading>
           <Text variant="muted" size="sm" className="max-w-prose">
-            Hand-crafted design system for new gen applications, AI-ready.
+            From design tokens to full-page layouts, every piece is documented, themed across
+            three surfaces, and structured for AI consumption. Adopt the whole system or extract
+            only what your product needs.
           </Text>
         </div>
 
