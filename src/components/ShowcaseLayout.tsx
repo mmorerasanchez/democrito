@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -30,22 +30,66 @@ function ScrollToTop() {
   return null;
 }
 
-function FaviconSync() {
+function ThemeSync() {
   const { theme } = useTheme();
   useEffect(() => {
     const link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
     if (link) {
       link.href = theme === "dark" ? "/favicon-dark.png" : "/favicon-light-warm.png";
     }
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) {
+      const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue("--background")
+        .trim();
+      if (raw) meta.content = `hsl(${raw})`;
+    }
   }, [theme]);
   return null;
+}
+
+function TopbarWordmark() {
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    const sentinel = document.getElementById("hero-sentinel");
+    if (!sentinel) {
+      setHidden(false);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setHidden(entry.isIntersecting),
+      { rootMargin: "-56px 0px 0px 0px" },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="flex min-w-0 items-center gap-2">
+      <h1
+        className={`truncate font-mono text-lg font-semibold tracking-tight lowercase transition-opacity duration-200 ${
+          hidden ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        aria-hidden={hidden}
+      >
+        democrito
+      </h1>
+      <span
+        className={`font-mono text-2xs text-muted-foreground transition-opacity duration-200 ${
+          hidden ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        v3
+      </span>
+    </div>
+  );
 }
 
 export function ShowcaseLayout() {
   return (
     <SidebarProvider>
       <CloseMobileSidebarOnNav />
-      <FaviconSync />
+      <ThemeSync />
       <ScrollToTop />
       <div className="flex min-h-screen w-full">
         <AppSidebar />
@@ -54,10 +98,7 @@ export function ShowcaseLayout() {
             <div className="flex min-w-0 items-center gap-2 sm:gap-3">
               <SidebarTrigger className="lg:hidden" />
               <Logo size={24} />
-              <h1 className="truncate font-mono text-lg font-semibold tracking-tight lowercase">
-                democrito
-              </h1>
-              <span className="font-mono text-2xs text-muted-foreground">v3</span>
+              <TopbarWordmark />
             </div>
             <ThemeToggle />
           </header>

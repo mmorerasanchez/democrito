@@ -1,3 +1,4 @@
+import { PageMeta } from "@/components/PageMeta";
 import { Separator } from "@/components/ui/separator";
 
 const L = ({
@@ -20,6 +21,11 @@ const L = ({
 export default function ManifiestoPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-14 py-4">
+      <PageMeta
+        title="Manifesto"
+        description="You can only be as good as your taste — why design systems still matter in the age of generation."
+        path="/manifesto"
+      />
 
       {/* Header */}
       <div className="space-y-4">

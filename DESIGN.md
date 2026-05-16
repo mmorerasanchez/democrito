@@ -157,9 +157,10 @@ Mono text without edit/save/copy affordances is a broken contract.
 
 | Element | Font | Size | Weight |
 |---------|------|------|--------|
-| Page titles | `font-display` | `text-xl` | `font-semibold` |
-| Section headers | `font-display` | `text-lg` | `font-medium` |
-| Card titles | `font-display` | `text-md` | `font-medium` |
+| Page titles (h1) | `font-display` | `text-2xl` | `font-semibold` |
+| Section headers (h2) | `font-display` | `text-xl` | `font-medium` |
+| Card titles (h3) | `font-display` | `text-md` | `font-medium` |
+| Kicker labels (h4) | `font-display` | `text-sm` | `font-medium uppercase tracking-widest` |
 | Button labels | `font-display` | — | `font-medium` |
 | Nav items | `font-display` | `text-sm` | `font-medium` |
 | Body text | `font-body` | `text-base` | normal |
@@ -171,6 +172,18 @@ Mono text without edit/save/copy affordances is a broken contract.
 | Table data | `font-mono` | `text-sm` | normal |
 | KPI values | `font-mono` | `text-2xl` | `font-bold` |
 | Metadata | `font-mono` | `text-2xs` | normal |
+
+### The wordmark exception
+
+The brand wordmark `democrito` is rendered in `font-mono` lowercase as a deliberate brand decision — the only place in the system where `font-mono` is permitted for non-data content. The rationale: democrito treats user content as code, and the brand identity carries that signal.
+
+Concrete spec:
+
+- Hero (Overview page): `font-mono text-3xl font-bold tracking-tight lowercase`
+- Topbar (all pages): `font-mono text-lg font-semibold tracking-tight lowercase`
+- Favicon, OG image, and any external surface: same lockup — lowercase mono with the `v3` badge in `text-2xs text-muted-foreground`.
+
+This is the only documented exception to the `font-mono` rule. New content surfaces must use the standard three-font assignments without inventing additional exceptions.
 
 ### Font Loading
 

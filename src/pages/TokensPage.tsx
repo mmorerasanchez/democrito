@@ -1,3 +1,5 @@
+import { PageMeta } from "@/components/PageMeta";
+import { Heading } from "@/components/atoms";
 import { useEffect, useMemo, useState } from "react";
 import { Check, Copy, Download, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -119,7 +121,7 @@ function Swatch({ token, label }: { token: string; label?: string }) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-4">
-      <h2 className="font-display text-lg font-medium tracking-tight">{title}</h2>
+      <Heading level="h2">{title}</Heading>
       {children}
     </section>
   );
@@ -256,11 +258,12 @@ const COLOR_GROUPS: { title: string; tokens: ColorToken[] }[] = [
 ];
 
 const TYPE_SCALE = [
+  { label: "Wordmark", classes: "text-3xl font-bold font-mono tracking-tight lowercase", text: "democrito" },
   { label: "Display / Hero", classes: "text-3xl font-bold font-display tracking-tight", text: "Display Heading" },
-  { label: "H1 (Page Title)", classes: "text-xl font-semibold font-display tracking-tight", text: "Page Title" },
-  { label: "H2 (Section)", classes: "text-lg font-medium font-display", text: "Section Heading" },
+  { label: "H1 (Page Title)", classes: "text-2xl font-semibold font-display tracking-tight", text: "Page Title" },
+  { label: "H2 (Section)", classes: "text-xl font-medium font-display tracking-tight", text: "Section Heading" },
   { label: "H3 (Card Title)", classes: "text-md font-medium font-display", text: "Card Title" },
-  { label: "H4 (Subsection)", classes: "text-base font-medium font-display", text: "Subsection" },
+  { label: "H4 (Kicker)", classes: "text-sm font-medium font-display uppercase tracking-widest text-muted-foreground", text: "KICKER LABEL" },
   { label: "Body", classes: "text-base font-normal font-body", text: "Body text for descriptions, paragraphs, and general content. Optimized for readability at 14px." },
   { label: "Body Small", classes: "text-sm font-normal font-body", text: "Smaller body text for labels and helpers" },
   { label: "Caption", classes: "text-xs font-normal font-body", text: "Caption text for metadata" },
@@ -454,9 +457,14 @@ export default function TokensPage() {
 
   return (
     <div className="space-y-12">
+      <PageMeta
+        title="Design Tokens"
+        description="90+ design tokens — colours, typography, spacing, radius, shadows. Search, copy as HSL/HEX, export as JSON."
+        path="/tokens"
+      />
       {/* Page header */}
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight">Design Tokens</h1>
+        <Heading level="h1">Design Tokens</Heading>
         <p className="mt-1 font-body text-base text-muted-foreground">
           The complete token reference for this design system.
         </p>
@@ -650,9 +658,7 @@ export default function TokensPage() {
       {/* Token Quick Reference */}
       {!trimmedQuery && (
         <section className="space-y-4">
-          <h2 className="font-display text-lg font-medium tracking-tight">
-            Quick Reference
-          </h2>
+          <Heading level="h2">Quick Reference</Heading>
           <TokenReferenceCard />
         </section>
       )}

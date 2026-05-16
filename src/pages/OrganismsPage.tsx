@@ -1,3 +1,5 @@
+import { PageMeta } from "@/components/PageMeta";
+import { Heading } from "@/components/atoms";
 import { useState } from "react";
 import { TopBar } from "@/components/organisms/TopBar";
 import { SidebarNav } from "@/components/organisms/SidebarNav";
@@ -24,7 +26,7 @@ function CategoryHeader({ id, title, description, count }: { id: string; title: 
   return (
     <div id={id} className="scroll-mt-6 border-t border-border pt-8">
       <div className="flex items-baseline gap-3">
-        <h2 className="font-display text-lg font-semibold tracking-tight">{title}</h2>
+        <Heading level="h2">{title}</Heading>
         <span className="font-mono text-2xs text-muted-foreground">{count} components</span>
       </div>
       <p className="mt-0.5 font-body text-sm text-muted-foreground">{description}</p>
@@ -80,8 +82,13 @@ export default function OrganismsPage() {
 
   return (
     <div className="space-y-12">
+      <PageMeta
+        title="Organisms"
+        description="19 complex UI sections — Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, and more."
+        path="/organisms"
+      />
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight">Organisms</h1>
+        <Heading level="h1">Organisms</Heading>
         <p className="mt-1 font-body text-base text-muted-foreground">
           Complex components composed of molecules and atoms. These form the major UI sections.
         </p>
