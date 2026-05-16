@@ -82,7 +82,9 @@ export default function OverviewPage() {
       <div className="space-y-3">
         <Heading level="h2">How</Heading>
         <Text variant="muted" size="sm" className="max-w-prose">
-          Install democrito in your preferred mode, AI-ready.
+          Three paths: install via the shadcn registry in one command, copy the token
+          layer manually for any non-React stack, or drop CLAUDE.md into your repo root
+          to give any AI agent immediate design context — no build step required.
         </Text>
         <QuickStartSection showHeading={false} />
       </div>

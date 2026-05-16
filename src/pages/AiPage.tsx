@@ -57,7 +57,7 @@ export default function AiPage() {
         </h1>
         <p className="max-w-2xl font-body text-base text-muted-foreground">
           The first open-source design system with structured AI context files.
-          Drop three files into your project and every AI assistant produces on-brand output.
+          3-file architecture, vibe coding and LLM plugs, and open-sourced, fully customizable.
         </p>
       </div>
 
