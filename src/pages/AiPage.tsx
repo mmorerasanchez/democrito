@@ -1,3 +1,5 @@
+import { PageMeta } from "@/components/PageMeta";
+import { Heading } from "@/components/atoms";
 import { Link } from "react-router-dom";
 import { ArrowRight, Github, Heart } from "lucide-react";
 import {
@@ -51,10 +53,13 @@ const platforms = [
 export default function AiPage() {
   return (
     <div className="space-y-12">
+      <PageMeta
+        title="AI Integration"
+        description="Three-file architecture for Claude, Lovable, GitHub, and any LLM. Drop in democrito and every AI agent renders on-brand."
+        path="/ai"
+      />
       <div className="space-y-4">
-        <h1 className="font-display text-xl font-semibold tracking-tight">
-          AI Integration
-        </h1>
+        <Heading level="h1">AI Integration</Heading>
         <p className="max-w-2xl font-body text-base text-muted-foreground">
           The first open-source design system with structured AI context files.
           3-file architecture, vibe coding and LLM plugs, and open-sourced, fully customizable.
@@ -66,9 +71,7 @@ export default function AiPage() {
 
       {/* Distribution */}
       <section className="space-y-4">
-        <h2 className="font-display text-lg font-medium tracking-tight">
-          Distribution
-        </h2>
+        <Heading level="h2">Distribution</Heading>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {platforms.map((item) => (
             <Link

@@ -1,3 +1,4 @@
+import { PageMeta } from "@/components/PageMeta";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,7 +29,7 @@ function Section({ id, title, description, children }: { id: string; title: stri
   return (
     <section id={id} className="space-y-4">
       <div>
-        <h2 className="font-display text-lg font-medium tracking-tight">{title}</h2>
+        <Heading level="h2">{title}</Heading>
         <p className="font-body text-sm text-muted-foreground">{description}</p>
       </div>
       <div className="overflow-hidden rounded-lg border border-border bg-card p-6 space-y-6">{children}</div>
@@ -60,8 +61,13 @@ export default function AtomsPage() {
 
   return (
     <div className="space-y-12">
+      <PageMeta
+        title="Atoms"
+        description="10 base components — Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link. Variants, sizes, states, and copy-ready API."
+        path="/atoms"
+      />
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight">Atoms</h1>
+        <Heading level="h1">Atoms</Heading>
         <p className="mt-1 font-body text-base text-muted-foreground">
           Base-level components — the building blocks of the design system.
         </p>
