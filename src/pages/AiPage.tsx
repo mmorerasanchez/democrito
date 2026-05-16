@@ -64,10 +64,10 @@ export default function AiPage() {
       <HeroSection />
       <FileArchitectureSection />
 
-      {/* Three Ways to Interact */}
+      {/* Distribution */}
       <section className="space-y-4">
         <h2 className="font-display text-lg font-medium tracking-tight">
-          Three Ways to Interact
+          Distribution
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {platforms.map((item) => (

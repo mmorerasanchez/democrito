@@ -29,7 +29,7 @@ export default function TemplatesPage() {
   return (
     <div className="space-y-12">
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight">Pages</h1>
+        <h1 className="font-display text-xl font-semibold tracking-tight">Layouts</h1>
         <p className="mt-1 font-body text-base text-muted-foreground">
           Page layout templates that define content zones and responsive behavior. Templates compose organisms into full-page structures.
         </p>

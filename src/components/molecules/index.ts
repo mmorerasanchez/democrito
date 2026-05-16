@@ -14,3 +14,4 @@ export { DiffLine } from "./DiffLine";
 export { ActivityFeedItem } from "./ActivityFeedItem";
 export { VariableEditorRow } from "./VariableEditorRow";
 export { RunHistoryItem } from "./RunHistoryItem";
+export { TokenReferenceCard } from "./TokenReferenceCard";

@@ -20,11 +20,11 @@ The component library follows **Atomic Design** methodology with five levels:
 
 | Level | Directory | Description | Examples |
 |---|---|---|---|
-| **Atoms** | `src/components/atoms/` | Smallest building blocks — single-purpose, no child components | `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text` |
+| **Atoms** | `src/components/atoms/` | Smallest building blocks — single-purpose, no child components | `Heading`, `Tag`, `Spinner`, `Code`, `CodeBlock`, `Kbd`, `Link`, `Logo`, `StatusBadge`, `Text` |
 | **Molecules** | `src/components/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState` |
 | **Organisms** | `src/components/organisms/` | Major UI sections, may include molecules | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm`, `SidebarNav`, `UserMenu` |
 | **Templates** | `src/components/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout`, `DashboardLayout` |
-| **Pages** | `src/pages/` | Route-level components that compose templates + organisms | `DashboardPage`, `LibraryPage`, `SettingsPage` |
+| **Pages** | `src/pages/` | Route-level components that compose templates + organisms | `OverviewPage`, `AtomsPage`, `MoleculesPage`, `TokensPage`, `AiPage`, `ManifiestoPage` |
 
 **UI Primitives** (`src/components/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 

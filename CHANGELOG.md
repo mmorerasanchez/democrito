@@ -7,31 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [3.4.0] — 2026-05-13
-### Changed
-- OverviewPage: restructured with Why / How / What narrative arc. Why replaces the
-  old Summary position (new tagline copy). How introduces the QuickStartSection
-  organism (three install paths). What wraps the stats grid (renamed Summary, h3),
-  sections grid (renamed from Explore to Sections, h3), and Design Principles (h3).
-  KPIs corrected: Molecules 16→18, Pages→Templates, UI Primitives 48→40+.
-- AiPage: replaced Integrations section with Three Ways to Interact (slug/role/
-  description cards, FileArchitectureSection card style). Removed QuickStartSection
-  and ComparisonSection (How It Works). Removed Token Quick Reference. Added Getting
-  Started block (moved from OverviewPage).
-- TokensPage: Token Quick Reference (TokenReferenceCard) added at the bottom,
-  guarded by search-filter state.
-### Removed
-- OverviewPage: Use Cases section removed (dedicated pages remain accessible).
-- OverviewPage: Getting Started section moved to AiPage.
-- AiPage: QuickStartSection moved to OverviewPage.
-- AiPage: ComparisonSection (How It Works) removed.
-- AiPage: Token Quick Reference moved to TokensPage.
-- Public repo: internal working documents removed from docs/ (change requests,
-  testing session notes, build prompts, proposition files).
-
----
-
-## [3.3.0] — 2026-05-07
+## [3.3.0] — 2026-05-13
 
 ### Fixed
 - EcosystemSection: Claude Skill badge changed from "coming-soon" to "live"; added link to raw SKILL.md URL (#16)

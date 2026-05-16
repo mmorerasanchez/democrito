@@ -4,6 +4,11 @@
 > the right context. democrito ships a structured AI context layer — `CLAUDE.md`,
 > `DESIGN.md`, and a Claude Skill — so setup is usually one step, not a paste session.
 
+> **Live reference:** The [AI Integration page](https://democrito.design/ai) on the
+> design system site groups tools into three audiences — **Claude** (chat, Design,
+> Cowork, Code), **Vibe Coding Tools** (Lovable, Stitch, Replit), and **GitHub**
+> (fork, contribute). The sections below provide deeper per-tool detail for each.
+
 ---
 
 ## The AI context layer
@@ -21,9 +26,148 @@ manual context (v0, Bolt, ChatGPT, etc.).
 
 ---
 
-## 1. Lovable
+## Claude
 
-Lovable is the primary development environment for democrito. It has direct access
+---
+
+## 1. Claude Code
+
+Claude Code is democrito's primary terminal environment. Run it from the project
+root — it auto-reads `CLAUDE.md` on startup, giving it the full architecture
+reference and coding rules before you type a word.
+
+### Setup
+
+```bash
+# Clone and enter the project
+git clone https://github.com/mmorerasanchez/democrito.git
+cd democrito
+
+# Start Claude Code — CLAUDE.md loads automatically
+claude
+```
+
+### Install the democrito Skill
+
+The skill gives Claude Code on-demand access to the full token reference, component
+inventory, and principles — without embedding everything in CLAUDE.md:
+
+```
+/skills add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md
+```
+
+Invoke in session: `Use the democrito skill` or reference it directly in prompts.
+
+### Context budget awareness
+
+Claude Code follows ~150–200 instructions before compliance drops (its own system
+prompt uses ~50 slots). Keep `CLAUDE.md` lean — use pointers to files, not embedded
+content. Use `/clear` between unrelated tasks to reset accumulated context while
+keeping `CLAUDE.md`.
+
+**Per-repo vs global:** `CLAUDE.md` is per-project. For rules that apply across
+all your products built on democrito, add a global `~/.claude/CLAUDE.md`. Put
+democrito's universal rules there; keep product-specific overrides in the repo's
+`CLAUDE.md`.
+
+### Example prompts
+
+```
+Create a new atom called Avatar in src/components/atoms/.
+Use rounded-full, bg-muted for fallback, font-display text-xs for initials.
+Export from the atoms index.
+```
+
+```
+Build a PromptRunCard molecule. Props: prompt name (font-display text-base),
+model badge (font-mono text-xs), latency (text-muted-foreground), status dot
+using --status-* tokens. Follow the StatCard pattern.
+```
+
+```
+Refactor TopBar to add a global search input.
+Use the SearchBar molecule. Input: bg-surface, border-border, font-mono.
+Refer to the existing TopBar.tsx for layout pattern.
+```
+
+### Tips
+
+- Reference specific files: "check `src/components/atoms/` before creating."
+- Mention atomic level: "this is a molecule — it composes atoms."
+- Use the democrito skill for token lookups mid-session.
+
+---
+
+## 2. Claude Design
+
+Claude Design (Anthropic Labs) generates visual artifacts — designs, prototypes,
+React components, HTML layouts — using your team's design system.
+
+democrito's `DESIGN.md` and `src/index.css` are exactly what Claude Design's
+onboarding reads to learn your system.
+
+> **Full guide:** [`docs/claude-design.md`](./claude-design.md)
+
+### Quick setup
+
+1. Open [claude.ai/design](https://claude.ai/design)
+2. During onboarding, import: `DESIGN.md`, `src/index.css`, and `src/DESIGN_SYSTEM.md`
+3. Claude Design stores your system and applies it to every project automatically
+
+### Handoff to Claude Code
+
+Once a design is validated, hand it off to Claude Code:
+
+```
+Convert this Claude Design artifact to a democrito React component.
+Classify it (atom / molecule / organism / template), use existing atoms where
+possible, replace any generic colors with democrito token classes, and ensure
+font-mono is used for all data values. Rules are in CLAUDE.md.
+```
+
+---
+
+## 3. Cowork (Claude desktop)
+
+Cowork is Claude's desktop planning tool. It reads project instructions and has
+access to local files. Its role in a democrito workflow is **project-level
+intelligence** — audits, planning, doc writing — not code generation.
+
+### Setup
+
+In your Cowork project instructions, include a brief democrito context block:
+
+```
+This project is democrito — a React + TypeScript + Tailwind v4 atomic design
+system. Source is at ~/Desktop/apps/democrito/app-democrito.
+Key files: CLAUDE.md (coding rules), DESIGN.md (visual philosophy),
+docs/ (documentation), src/DESIGN_SYSTEM.md (component inventory).
+The democrito skill is available — use it for token lookups and component
+inventory checks.
+```
+
+### What Cowork is good for with democrito
+
+- Auditing the component inventory against the 10/18/19/7 atomic split
+- Planning Claude Code sessions (what to build, in what order)
+- Writing and reviewing documentation (docs/ updates, Notion mirrors)
+- Token consistency checks across themes
+- Reviewing DESIGN.md for accuracy after a refactor
+
+### What to use instead
+
+Cowork doesn't run builds or generate React components. For code generation,
+use Claude Code. For visual generation, use Claude Design.
+
+---
+
+## Vibe Coding Tools
+
+---
+
+## 4. Lovable
+
+Lovable is a primary visual development environment for democrito. It has direct access
 to your GitHub repo and can read component patterns, `CLAUDE.md`, and all source files.
 
 ### Knowledge architecture
@@ -118,141 +262,6 @@ Follow the spacing pattern from the existing SettingsPage.
 
 ---
 
-## 2. Claude Code
-
-Claude Code is democrito's primary terminal environment. Run it from the project
-root — it auto-reads `CLAUDE.md` on startup, giving it the full architecture
-reference and coding rules before you type a word.
-
-> **Full guide:** For detailed workflow, skill install, and context budget advice,
-> see the dedicated [Claude Code setup guide](./claude-code.md) (coming soon) or
-> use the reference below.
-
-### Setup
-
-```bash
-# Clone and enter the project
-git clone https://github.com/mmorerasanchez/democrito.git
-cd democrito
-
-# Start Claude Code — CLAUDE.md loads automatically
-claude
-```
-
-### Install the democrito Skill
-
-The skill gives Claude Code on-demand access to the full token reference, component
-inventory, and principles — without embedding everything in CLAUDE.md:
-
-```
-/skills add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md
-```
-
-Invoke in session: `Use the democrito skill` or reference it directly in prompts.
-
-### Context budget awareness
-
-Claude Code follows ~150–200 instructions before compliance drops (its own system
-prompt uses ~50 slots). Keep `CLAUDE.md` lean — use pointers to files, not embedded
-content. Use `/clear` between unrelated tasks to reset accumulated context while
-keeping `CLAUDE.md`.
-
-**Per-repo vs global:** `CLAUDE.md` is per-project. For rules that apply across
-all your products built on democrito, add a global `~/.claude/CLAUDE.md`. Put
-democrito's universal rules there; keep product-specific overrides in the repo's
-`CLAUDE.md`.
-
-### Example prompts
-
-```
-Create a new atom called Avatar in src/components/atoms/.
-Use rounded-full, bg-muted for fallback, font-display text-xs for initials.
-Export from the atoms index.
-```
-
-```
-Build a PromptRunCard molecule. Props: prompt name (font-display text-base),
-model badge (font-mono text-xs), latency (text-muted-foreground), status dot
-using --status-* tokens. Follow the StatCard pattern.
-```
-
-```
-Refactor TopBar to add a global search input.
-Use the SearchBar molecule. Input: bg-surface, border-border, font-mono.
-Refer to the existing TopBar.tsx for layout pattern.
-```
-
-### Tips
-
-- Reference specific files: "check `src/components/atoms/` before creating."
-- Mention atomic level: "this is a molecule — it composes atoms."
-- Use the democrito skill for token lookups mid-session.
-
----
-
-## 3. Claude Design
-
-Claude Design (Anthropic Labs) generates visual artifacts — designs, prototypes,
-React components, HTML layouts — using your team's design system.
-
-democrito's `DESIGN.md` and `src/index.css` are exactly what Claude Design's
-onboarding reads to learn your system.
-
-> **Full guide:** [`docs/claude-design.md`](./claude-design.md)
-
-### Quick setup
-
-1. Open [claude.ai/design](https://claude.ai/design)
-2. During onboarding, import: `DESIGN.md`, `src/index.css`, and `src/DESIGN_SYSTEM.md`
-3. Claude Design stores your system and applies it to every project automatically
-
-### Handoff to Claude Code
-
-Once a design is validated, hand it off to Claude Code:
-
-```
-Convert this Claude Design artifact to a democrito React component.
-Classify it (atom / molecule / organism / template), use existing atoms where
-possible, replace any generic colors with democrito token classes, and ensure
-font-mono is used for all data values. Rules are in CLAUDE.md.
-```
-
----
-
-## 4. Cowork (Claude desktop)
-
-Cowork is Claude's desktop planning tool. It reads project instructions and has
-access to local files. Its role in a democrito workflow is **project-level
-intelligence** — audits, planning, doc writing — not code generation.
-
-### Setup
-
-In your Cowork project instructions, include a brief democrito context block:
-
-```
-This project is democrito — a React + TypeScript + Tailwind v4 atomic design
-system. Source is at ~/Desktop/apps/democrito/app-democrito.
-Key files: CLAUDE.md (coding rules), DESIGN.md (visual philosophy),
-docs/ (documentation), src/DESIGN_SYSTEM.md (component inventory).
-The democrito skill is available — use it for token lookups and component
-inventory checks.
-```
-
-### What Cowork is good for with democrito
-
-- Auditing the component inventory against the 10/18/19/7 atomic split
-- Planning Claude Code sessions (what to build, in what order)
-- Writing and reviewing documentation (docs/ updates, Notion mirrors)
-- Token consistency checks across themes
-- Reviewing DESIGN.md for accuracy after a refactor
-
-### What to use instead
-
-Cowork doesn't run builds or generate React components. For code generation,
-use Claude Code. For visual generation, use Claude Design.
-
----
-
 ## 5. Google Stitch
 
 democrito's `DESIGN.md` follows the Stitch open-source format. Import it into
@@ -287,7 +296,35 @@ export. See the full guide.
 
 ---
 
-## 6. Cursor / Other IDE agents
+## 6. Replit
+
+Paste the compact token reference (below) into your Replit AI agent's context,
+then include the live demo URL for visual reference. Replit agents don't have
+filesystem access to read `CLAUDE.md`, so the compact block is your primary context source.
+
+### Example prompt structure
+
+```
+[Paste compact token reference here]
+
+Using the design system context above, create a React component called MetricCard.
+It's a molecule (composition of atoms). Props: label (string), value (string),
+change (number), trend ("up" | "down").
+
+Requirements:
+- font-display for the label, font-mono for the value
+- text-success for positive change, text-error for negative
+- bg-card border border-border rounded-lg p-4
+- Never hardcode hex, RGB, or HSL values
+```
+
+---
+
+## Other Tools
+
+---
+
+## 7. Cursor / Windsurf / IDE agents
 
 Cursor, Windsurf, and similar agents auto-read `CLAUDE.md` at the project root.
 
@@ -310,7 +347,7 @@ git clone https://github.com/mmorerasanchez/democrito.git
 
 ---
 
-## 7. v0, Bolt, and other web-based tools
+## 8. v0, Bolt, and other web-based tools
 
 These tools don't have filesystem access. Paste the compact token reference (below)
 into your first prompt, then write your request.
@@ -333,27 +370,6 @@ Requirements:
 
 ---
 
-## 8. GitHub Copilot
-
-Copilot infers patterns from surrounding code. Keep democrito's component files
-open in adjacent tabs — Copilot reads them as context.
-
-### Tips
-
-- **Open related files** — when writing a molecule, open an existing molecule
-  in an adjacent tab.
-- **Write the TypeScript interface first** — Copilot follows your type hints.
-- **Use comments as prompts:**
-
-```tsx
-// Molecule: version history entry for a prompt
-// Uses: font-mono for version number, text-muted-foreground for timestamp
-// Pattern: same as RunHistoryItem
-interface VersionEntryProps {
-```
-
----
-
 ## Compact Token Reference
 
 Copy-paste this block into any AI tool's context window for on-system results.
@@ -363,7 +379,7 @@ Copy-paste this block into any AI tool's context window for on-system results.
 (General-purpose atomic design system for data-dense, IDE-inspired applications)
 
 ARCHITECTURE: Atomic Design (atoms → molecules → organisms → templates → pages)
-- atoms/: single-purpose, no child components (Heading, Tag, Spinner, Code, Kbd, Link, Text)
+- atoms/: single-purpose, no child components — 10 custom (Heading, Tag, Spinner, Code, CodeBlock, Kbd, Link, Logo, StatusBadge, Text) + shadcn/ui primitives in ui/
 - molecules/: compose 2+ atoms (FormField, SearchBar, StatCard, TokenCounter, TabNav)
 - organisms/: major UI sections (TopBar, DataTable, FilterBar, DashboardStats, AuthForm)
 - templates/: layout shells, no logic (AppShell, EditorLayout, LibraryLayout, DetailLayout)
