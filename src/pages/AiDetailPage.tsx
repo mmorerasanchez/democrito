@@ -812,27 +812,27 @@ npm run dev   # component showcase at localhost:5173`}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  <tr className="bg-background">
+                  <tr className="bg-card">
                     <td className="px-4 py-2.5 text-accent"><Code>CLAUDE.md</Code></td>
                     <td className="px-4 py-2.5 text-muted-foreground">Claude Code (primary)</td>
                     <td className="px-4 py-2.5 text-muted-foreground">Project root, <Code>~/.claude/</Code>, any subdirectory</td>
                   </tr>
-                  <tr className="bg-background">
+                  <tr className="bg-card">
                     <td className="px-4 py-2.5 text-accent"><Code>AGENTS.md</Code></td>
                     <td className="px-4 py-2.5 text-muted-foreground">Universal — Codex CLI, Cursor, Gemini CLI, Windsurf, Aider, goose, Devin, Jules, Junie, and 20+ more</td>
                     <td className="px-4 py-2.5 text-muted-foreground">Project root + subdirectories (nearest wins)</td>
                   </tr>
-                  <tr className="bg-background">
+                  <tr className="bg-card">
                     <td className="px-4 py-2.5 text-accent"><Code>GEMINI.md</Code></td>
                     <td className="px-4 py-2.5 text-muted-foreground">Gemini CLI (primary)</td>
                     <td className="px-4 py-2.5 text-muted-foreground">Project root, <Code>~/.gemini/</Code></td>
                   </tr>
-                  <tr className="bg-background">
+                  <tr className="bg-card">
                     <td className="px-4 py-2.5 text-accent"><Code>.github/copilot-instructions.md</Code></td>
                     <td className="px-4 py-2.5 text-muted-foreground">GitHub Copilot</td>
                     <td className="px-4 py-2.5 text-muted-foreground"><Code>.github/</Code> directory</td>
                   </tr>
-                  <tr className="bg-background">
+                  <tr className="bg-card">
                     <td className="px-4 py-2.5 text-accent"><Code>.cursor/rules/*.mdc</Code></td>
                     <td className="px-4 py-2.5 text-muted-foreground">Cursor (current format)</td>
                     <td className="px-4 py-2.5 text-muted-foreground"><Code>.cursor/rules/</Code> directory</td>
