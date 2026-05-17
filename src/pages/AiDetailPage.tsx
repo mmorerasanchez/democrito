@@ -618,11 +618,20 @@ Flag any inconsistencies:
           <Step
             number={1}
             title="Install Claude Code"
-            caption="Claude Code runs in your terminal. It requires Node.js 18 or higher. Install it globally; authenticate on first run."
-            language="bash"
-            code={`npm install -g @anthropic-ai/claude-code
-claude   # opens the authentication flow on first run`}
-          />
+            caption="Claude Code runs in your terminal. Install it globally; authenticate on first run."
+          >
+            <div className="space-y-3">
+              <div className="space-y-1.5">
+                <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">Recommended — native installer</p>
+                <StepCode language="bash">{`curl -fsSL https://claude.ai/install.sh | bash`}</StepCode>
+              </div>
+              <div className="space-y-1.5">
+                <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">Alternative — npm (requires Node.js 18+)</p>
+                <StepCode language="bash">{`npm install -g @anthropic-ai/claude-code
+claude   # opens the authentication flow on first run`}</StepCode>
+              </div>
+            </div>
+          </Step>
 
           <Step
             number={2}
