@@ -30,38 +30,70 @@ This predictability is essential for a design system built to be consumed by AI-
 ```
 src/components/
 ├── atoms/           # Level 1 — Foundational building blocks
-│   ├── Heading.tsx
-│   ├── Tag.tsx
-│   ├── Spinner.tsx
 │   ├── Code.tsx
+│   ├── CodeBlock.tsx
+│   ├── CopyButton.tsx
+│   ├── Heading.tsx
 │   ├── Kbd.tsx
 │   ├── Link.tsx
+│   ├── Logo.tsx
+│   ├── Spinner.tsx
+│   ├── StatusBadge.tsx
+│   ├── Tag.tsx
 │   ├── Text.tsx
 │   └── index.ts     # Barrel export
 │
 ├── molecules/       # Level 2 — Compositions of 2+ atoms
+│   ├── ActivityFeedItem.tsx
+│   ├── AvatarGroup.tsx
+│   ├── BreadcrumbNav.tsx
+│   ├── DiffLine.tsx
+│   ├── EmptyState.tsx
+│   ├── FieldHeader.tsx
 │   ├── FormField.tsx
+│   ├── NavItem.tsx
+│   ├── ParameterControl.tsx
+│   ├── RunHistoryItem.tsx
 │   ├── SearchBar.tsx
 │   ├── StatCard.tsx
-│   ├── TokenCounter.tsx
 │   ├── TabNav.tsx
-│   ├── EmptyState.tsx
+│   ├── TokenCounter.tsx
+│   ├── TokenReferenceCard.tsx
+│   ├── VariableEditorRow.tsx
+│   ├── VariableHighlight.tsx
 │   └── index.ts
 │
 ├── organisms/       # Level 3 — Major UI sections
-│   ├── TopBar.tsx
-│   ├── DataTable.tsx
-│   ├── PromptCard.tsx
-│   ├── FilterBar.tsx
+│   ├── APIDocPanel.tsx
+│   ├── APIKeyManager.tsx
+│   ├── ActivityFeed.tsx
+│   ├── AuthForm.tsx
+│   ├── BulkActionsBar.tsx
 │   ├── DashboardStats.tsx
+│   ├── DataManager.tsx
+│   ├── DataTable.tsx
+│   ├── ExportMenu.tsx
+│   ├── FilterBar.tsx
+│   ├── ImportDialog.tsx
+│   ├── IntegrationCard.tsx
+│   ├── OnboardingWizard.tsx
+│   ├── OrganizationManager.tsx
+│   ├── RunHistory.tsx
+│   ├── SettingsNav.tsx
+│   ├── SidebarNav.tsx
+│   ├── TopBar.tsx
+│   ├── UserMenu.tsx
+│   ├── ai/          # AI showcase organisms (5)
 │   └── index.ts
 │
 ├── templates/       # Level 4 — Page layout shells (no business logic)
 │   ├── AppShell.tsx
+│   ├── ComparisonLayout.tsx
+│   ├── DashboardLayout.tsx
+│   ├── DetailLayout.tsx
 │   ├── EditorLayout.tsx
 │   ├── LibraryLayout.tsx
-│   ├── DetailLayout.tsx
-│   ├── DashboardLayout.tsx
+│   ├── TemplatePreview.tsx
 │   └── index.ts
 │
 ├── ui/              # shadcn/ui base primitives (see below)
@@ -71,9 +103,15 @@ src/components/
 │   └── ...
 │
 src/pages/           # Level 5 — Route-level components
-    ├── DashboardPage.tsx
-    ├── LibraryPage.tsx
-    ├── PromptEditorPage.tsx
+    ├── AiPage.tsx
+    ├── AiDetailPage.tsx
+    ├── AtomsPage.tsx
+    ├── ManifiestoPage.tsx
+    ├── MoleculesPage.tsx
+    ├── OrganismsPage.tsx
+    ├── TemplatesPage.tsx
+    ├── TokensPage.tsx
+    ├── NotFound.tsx
     └── ...
 ```
 

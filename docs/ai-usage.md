@@ -148,7 +148,7 @@ inventory checks.
 
 ### What Cowork is good for with democrito
 
-- Auditing the component inventory against the 10/18/19/7 atomic split
+- Auditing the component inventory against the 11/17/19/7 atomic split
 - Planning Claude Code sessions (what to build, in what order)
 - Writing and reviewing documentation (docs/ updates, Notion mirrors)
 - Token consistency checks across themes
@@ -244,9 +244,9 @@ Use the same font-mono text-xs pattern as the Badge component there.
 ### Example prompts
 
 ```
-Create a new molecule called CopyButton that uses the Tag atom and a copy icon.
-Follow the existing pattern in src/components/molecules/SearchBar.tsx.
-Use font-mono for the code text and text-accent for the copy icon hover state.
+Create a new molecule called NotificationBanner that composes the StatusBadge and Text atoms.
+Follow the existing pattern in src/components/molecules/StatCard.tsx.
+Use font-body for the message text and text-accent for the icon color.
 ```
 
 ```
@@ -379,7 +379,7 @@ Copy-paste this block into any AI tool's context window for on-system results.
 (General-purpose atomic design system for data-dense, IDE-inspired applications)
 
 ARCHITECTURE: Atomic Design (atoms → molecules → organisms → templates → pages)
-- atoms/: single-purpose, no child components — 10 custom (Heading, Tag, Spinner, Code, CodeBlock, Kbd, Link, Logo, StatusBadge, Text) + shadcn/ui primitives in ui/
+- atoms/: single-purpose, no child components — 11 custom (CopyButton, Heading, Tag, Spinner, Code, CodeBlock, Kbd, Link, Logo, StatusBadge, Text) + shadcn/ui primitives in ui/
 - molecules/: compose 2+ atoms (FormField, SearchBar, StatCard, TokenCounter, TabNav)
 - organisms/: major UI sections (TopBar, DataTable, FilterBar, DashboardStats, AuthForm)
 - templates/: layout shells, no logic (AppShell, EditorLayout, LibraryLayout, DetailLayout)
