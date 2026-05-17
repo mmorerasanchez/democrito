@@ -1,6 +1,6 @@
-# democrito Design System v2.3
+# democrito Design System v3.3
 
-> Single Source of Truth · Last updated: 2026-05-05
+> Single Source of Truth · Last updated: 2026-05-17
 > democrito is a general-purpose, themeable Atomic Design System for data-dense, IDE-inspired applications.
 
 ---
@@ -215,16 +215,17 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 ### Atoms
 
 > **Two counts, different scopes:**
-> - **Custom atoms** (`src/components/atoms/`) — 10 hand-crafted single-purpose components. These are the "democrito atoms" referenced in OverviewPage stats and CLAUDE.md.
-> - **shadcn/ui primitives** (`src/components/ui/`) — 11 form/interactive atoms sourced from shadcn/ui and extended via CVA. Counted separately; extend them but never rebuild from scratch.
-> - **Total atom-level components: 21** (10 custom + 11 shadcn/ui)
+> - **Custom atoms** (`src/components/atoms/`) — 11 hand-crafted single-purpose components. These are the "democrito atoms" referenced in OverviewPage stats and CLAUDE.md.
+> - **shadcn/ui primitives** (`src/components/ui/`) — 15 form/interactive atoms sourced from shadcn/ui and extended via CVA. Counted separately; extend them but never rebuild from scratch.
+> - **Total atom-level components: 26** (11 custom + 15 shadcn/ui)
 
-#### Custom atoms (10)
+#### Custom atoms (11)
 
 | Name | Base | Status |
 |---|---|---|
 | Code | custom | Ready |
 | CodeBlock | custom | Ready |
+| CopyButton | custom | Ready |
 | Heading | custom | Ready |
 | Kbd | custom | Ready |
 | Link | custom | Ready |
@@ -234,7 +235,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | Tag | custom | Ready |
 | Text | custom | Ready |
 
-#### shadcn/ui atoms (11)
+#### shadcn/ui atoms (15)
 
 | Name | Base | Status |
 |---|---|---|
@@ -339,6 +340,12 @@ The democrito repo is a self-contained design system showcase — no application
 
 ---
 
+## 9. Changelog
+
+See [CHANGELOG.md](../CHANGELOG.md) for the full version history.
+
+---
+
 ## 10. Accessibility Requirements
 
 | Requirement | Standard |
@@ -438,6 +445,6 @@ All form components (Input, Textarea, SelectTrigger) must align visually with st
 
 ---
 
-*10 custom atoms + 15 shadcn/ui atoms · 17 molecules · 19 organisms · 7 templates · 3 themes · WCAG 2.1 AA*
+*11 custom atoms + 15 shadcn/ui atoms · 17 molecules · 19 organisms · 7 templates · 3 themes · WCAG 2.1 AA*
 
-<!-- CHECKSUM: Custom Atoms(10) + Molecules(17) + Organisms(19) + Templates(7) = 53 custom components; 48+ shadcn/ui primitives in ui/ -->
+<!-- CHECKSUM: Custom Atoms(11) + Molecules(17) + Organisms(19) + Templates(7) = 54 custom components; 48+ shadcn/ui primitives in ui/ -->
