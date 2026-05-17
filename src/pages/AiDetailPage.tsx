@@ -756,8 +756,9 @@ function GithubPage() {
       </div>
 
       {/* Steps */}
-      <div className="space-y-8">
+      <div className="space-y-10">
 
+        <Section label="Setup">
         {/* ---------------------------------------------------------------- */}
         {/* Step 1 — Fork and clone                                          */}
         {/* ---------------------------------------------------------------- */}
@@ -787,7 +788,9 @@ npm run dev   # component showcase at localhost:5173`}
             the changelog before updating. Major releases signal breaking changes.
           </P>
         </Step>
+        </Section>
 
+        <Section label="The instruction layer">
         {/* ---------------------------------------------------------------- */}
         {/* Step 2 — Instruction file ecosystem                              */}
         {/* ---------------------------------------------------------------- */}
@@ -975,7 +978,9 @@ Run after every change: \`npm run lint && npm run test\``}</StepCode>
             files above, is the fastest way to understand the whole system.
           </P>
         </Step>
+        </Section>
 
+        <Section label="Brand and contribution">
         {/* ---------------------------------------------------------------- */}
         {/* Step 4 — Customize for your brand                                */}
         {/* ---------------------------------------------------------------- */}
@@ -1053,6 +1058,7 @@ Run after every change: \`npm run lint && npm run test\``}</StepCode>
             <Code>src/index.css</Code>" rather than editing manually.
           </P>
         </Step>
+        </Section>
 
       </div>
     </div>
@@ -1087,10 +1093,7 @@ function VibeCodingPage() {
       </div>
 
       {/* Preamble — 3 points that apply to every tool */}
-      <div className="space-y-4 rounded-md border border-border bg-surface p-5">
-        <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">
-          Applies to every tool in this section
-        </p>
+      <Note label="Applies to every tool in this section">
         <div className="space-y-4">
           <div className="space-y-1">
             <p className="font-display text-sm font-semibold">
@@ -1126,7 +1129,7 @@ function VibeCodingPage() {
             </P>
           </div>
         </div>
-      </div>
+      </Note>
 
       {/* ------------------------------------------------------------------ */}
       {/* Section 1 — Lovable                                                 */}
