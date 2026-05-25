@@ -2,23 +2,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "@/hooks/use-theme";
-import { ShowcaseLayout } from "@/components/ShowcaseLayout";
-import OverviewPage from "@/pages/OverviewPage";
-import TokensPage from "@/pages/TokensPage";
-import AtomsPage from "@/pages/AtomsPage";
-import MoleculesPage from "@/pages/MoleculesPage";
-import OrganismsPage from "@/pages/OrganismsPage";
-import TemplatesPage from "@/pages/TemplatesPage";
-import NotFound from "@/pages/NotFound";
-import TokenSmokeTest from "@/pages/TokenSmokeTest";
-import AiPage from "@/pages/AiPage";
-import AiDetailPage from "@/pages/AiDetailPage";
-import ManifiestoPage from "@/pages/ManifiestoPage";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import AppRoutes from "./AppRoutes";
 
 const queryClient = new QueryClient();
 
@@ -27,29 +16,13 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Design system showcase */}
-            <Route element={<ShowcaseLayout />}>
-              <Route path="/" element={<OverviewPage />} />
-              <Route path="/tokens" element={<TokensPage />} />
-              <Route path="/atoms" element={<AtomsPage />} />
-              <Route path="/molecules" element={<MoleculesPage />} />
-              <Route path="/organisms" element={<OrganismsPage />} />
-              <Route path="/templates" element={<TemplatesPage />} />
-              <Route path="/pages" element={<Navigate to="/templates" replace />} />
-              <Route path="/ai" element={<AiPage />} />
-              <Route path="/ai/:platform" element={<AiDetailPage />} />
-              <Route path="/manifesto" element={<ManifiestoPage />} />
-            </Route>
-            <Route path="/test/tokens" element={<TokenSmokeTest />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-        <Analytics />
-        <SpeedInsights />
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+          <Analytics />
+          <SpeedInsights />
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

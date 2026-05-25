@@ -7,11 +7,13 @@ interface PageMetaProps {
   description: string;
   /** Canonical path including leading slash. */
   path: string;
+  /** Optional Schema.org JSON-LD structured data object. */
+  jsonLd?: Record<string, unknown>;
 }
 
 const SITE_URL = "https://democrito.design";
 
-export function PageMeta({ title, description, path }: PageMetaProps) {
+export function PageMeta({ title, description, path, jsonLd }: PageMetaProps) {
   const fullTitle = title.includes("democrito") ? title : `${title} · democrito`;
   const url = `${SITE_URL}${path}`;
   return (
@@ -24,6 +26,9 @@ export function PageMeta({ title, description, path }: PageMetaProps) {
       <meta property="og:url" content={url} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
+      {jsonLd && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      )}
     </Helmet>
   );
 }

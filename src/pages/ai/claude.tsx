@@ -10,6 +10,14 @@ export default function ClaudePage() {
         title="Use democrito with Claude"
         description="Natural language theming workflow — attach design-tokens.json as context, describe your brand, and let Claude generate a new theme. No terminal needed."
         path="/ai/claude"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Use democrito with Claude",
+          "description": "Natural language theming workflow — attach design-tokens.json as context, describe your brand, and let Claude generate a new theme. No terminal needed.",
+          "url": "https://democrito.design/ai/claude",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
 
       <div className="space-y-3">

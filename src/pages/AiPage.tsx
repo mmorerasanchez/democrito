@@ -57,6 +57,14 @@ export default function AiPage() {
         title="AI Integration"
         description="Three-file architecture for Claude, Lovable, GitHub, and any LLM. Drop in democrito and every AI agent renders on-brand."
         path="/ai"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "AI Integration · democrito",
+          "description": "Three-file architecture for Claude, Lovable, GitHub, and any LLM. Drop in democrito and every AI agent renders on-brand.",
+          "url": "https://democrito.design/ai",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
       <div className="space-y-4">
         <Heading level="h1">AI Integration</Heading>

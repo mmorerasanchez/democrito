@@ -88,6 +88,14 @@ export default function MoleculesPage() {
         title="Molecules"
         description="18 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, and more."
         path="/molecules"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Molecules · democrito",
+          "description": "18 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, and more.",
+          "url": "https://democrito.design/molecules",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
       <div>
         <Heading level="h1">Molecules</Heading>

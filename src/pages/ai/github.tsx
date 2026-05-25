@@ -10,6 +10,14 @@ export default function GithubPage() {
         title="Use democrito with Terminal & IDEs"
         description="Repository-native workflow — CLAUDE.md is auto-read by Claude Code and Cursor, giving every agent session full design system context without any manual setup."
         path="/ai/github"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Use democrito with Terminal & IDEs",
+          "description": "Repository-native workflow — CLAUDE.md is auto-read by Claude Code and Cursor, giving every agent session full design system context without any manual setup.",
+          "url": "https://democrito.design/ai/github",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
 
       <div className="space-y-3">

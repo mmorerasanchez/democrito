@@ -10,6 +10,14 @@ export default function VibeCodingPage() {
         title="Use democrito with Lovable, Replit & Google Stitch"
         description="Declarative theming — fork the repo in your vibe-coding tool of choice and prompt your visual direction. No repository setup required."
         path="/ai/vibe-coding"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Use democrito with Lovable, Replit & Google Stitch",
+          "description": "Declarative theming — fork the repo in your vibe-coding tool of choice and prompt your visual direction. No repository setup required.",
+          "url": "https://democrito.design/ai/vibe-coding",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
 
       <div className="space-y-3">

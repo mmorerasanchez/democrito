@@ -65,6 +65,14 @@ export default function AtomsPage() {
         title="Atoms"
         description="10 base components — Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link. Variants, sizes, states, and copy-ready API."
         path="/atoms"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Atoms · democrito",
+          "description": "10 base components — Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link. Variants, sizes, states, and copy-ready API.",
+          "url": "https://democrito.design/atoms",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
       <div>
         <Heading level="h1">Atoms</Heading>

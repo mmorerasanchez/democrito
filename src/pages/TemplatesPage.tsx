@@ -34,6 +34,14 @@ export default function TemplatesPage() {
         title="Templates"
         description="7 full-page layouts — App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth."
         path="/templates"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Templates · democrito",
+          "description": "7 full-page layouts — App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth.",
+          "url": "https://democrito.design/templates",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
       <div>
         <Heading level="h1">Templates</Heading>
