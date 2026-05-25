@@ -42,3 +42,4 @@ docs/**/proposition-*.md
 docs/**/session-*.md
 docs/**/draft-*.md
 .lovable/
+.claude/
