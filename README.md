@@ -6,9 +6,11 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.2+-06B6D4?logo=tailwindcss&logoColor=white)
 ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-latest-000000?logo=shadcnui&logoColor=white)
 
-**A production-ready, themeable atomic design system for data-dense, IDE-inspired applications.** Built on React, Tailwind CSS, and Radix UI with structured tokens, accessible components, and three-theme support.
+democrito is a general-purpose, themeable atomic design system for AI-native applications — built to be the visual foundation of any product, not just one.
 
-Ship dashboards, editors, workspaces, and data-heavy tools with a consistent visual language that works for both humans and AI agents.
+Born from the design system behind prompt-x.io, democrito was extracted and made fully agnostic so any designer or developer can fork it, retheme it — through natural language with Claude (Chat, Design, Cowork, Code), declaratively in vibe coding tools like Lovable or Replit, or directly in the terminal — and ship a consistent, tasteful AI product faster.
+
+Whether you're building a prompt engineering tool, an analytics dashboard, a developer workspace, or an AI chat interface, democrito gives you a structured token architecture, accessible components, and a three-theme foundation to start from — and AI-friendly documentation to keep it consistent as you build.
 
 [🌐 Live Demo](https://democrito.design) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
 
@@ -69,6 +71,18 @@ ln -s "$(pwd)/skill/democrito" ~/.claude/skills/democrito
 ```
 
 The skill bundles four knowledge files — `principles.md`, `tokens.md`, `components.md`, and `agent-usage.md` — so Claude can read each on demand. See [`skill/democrito/SKILL.md`](skill/democrito/SKILL.md) for the full definition and triggering rules.
+
+---
+
+## For Designers — Retheme Without Code
+
+democrito is designed to be fully customizable through natural language. The entire visual identity lives in CSS custom properties in `src/index.css` and font definitions in `tailwind.config.ts` — which means any AI tool can read and rewrite them from a plain description of your brand.
+
+Three paths to make it yours:
+
+- **With Claude:** Attach `design-tokens.json` and `src/index.css` as context, describe your brand direction, and ask Claude to generate a new theme. See the [Claude guide](https://democrito.design/ai/claude) →
+- **With Lovable or Replit:** Fork the repo and prompt your visual direction declaratively — no terminal needed. See the [vibe-coding guide](https://democrito.design/ai/vibe-coding) →
+- **In the terminal:** Edit `src/index.css` token values directly. Two variables (`--accent` and `--radius`) change the whole personality of the system.
 
 ---
 
