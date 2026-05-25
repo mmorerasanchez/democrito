@@ -80,6 +80,14 @@ The `filter: saturate(0)` removes all color from the region, making it unambiguo
 
 ---
 
+## Scope — decision rule and hard constraint
+
+**Decision rule:** if the disabled element is a single interactive primitive (Button, Input, Checkbox, Select, etc.), use the native `disabled` prop — the component handles ARIA, `pointer-events`, and `disabled:opacity-50` automatically. If the disabled state spans a *group* of elements, apply `opacity: 0.4 + filter: saturate(0) + pointer-events: none` to the container.
+
+**Never apply both.** Do not apply the container CSS filter to a wrapper that also contains natively-disabled primitives. Pick one scope and apply it consistently.
+
+---
+
 ## Antipatterns
 
 - ❌ **Disabling with color** — a dimmed orange button still reads as a call to action. Saturation must go to zero at the container level.
