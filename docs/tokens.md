@@ -69,7 +69,7 @@ Three themes are supported: **Warm** (default, `:root`), **Dark** (`.dark`), and
 
 | Token | Tailwind Class | Dark | Light | Warm | Purpose |
 |---|---|---|---|---|---|
-| `--accent` | `bg-accent` / `text-accent` | `hsl(18 65% 55%)` · #D47639 | `hsl(18 65% 55%)` · #D47639 | `hsl(18 60% 45%)` · #B8622E | Primary CTA, links, highlights |
+| `--accent` | `bg-accent` / `text-accent` | `hsl(18 65% 55%)` · #D47639 | `hsl(18 65% 50%)` · #D25E2D | `hsl(18 60% 45%)` · #B8622E | Primary CTA, links, highlights |
 | `--accent-foreground` | `text-accent-foreground` | `hsl(60 9% 98%)` · #FAFAF8 | `hsl(40 6% 99%)` · #FDFCFB | `hsl(30 25% 97%)` · #FAF6F1 | Text on accent backgrounds |
 | `--accent-muted` | `text-accent-muted` | `hsl(18 40% 30%)` · #6B4429 | `hsl(18 35% 65%)` · #C49A7E | `hsl(18 38% 55%)` · #C17A50 | Hover states, disabled badges |
 | `--accent-subtle` | `bg-accent-subtle` | `hsl(20 15% 10%)` · #1D1916 | `hsl(30 12% 94%)` · #F2EFEC | `hsl(30 15% 92%)` · #EEE8E0 | Code block backgrounds, active tabs |
@@ -96,7 +96,7 @@ Three themes are supported: **Warm** (default, `:root`), **Dark** (`.dark`), and
 |---|---|---|---|---|
 | `--border` | `hsl(25 8% 25%)` · #453E38 | `hsl(25 8% 89%)` · #E5E1DD | `hsl(28 14% 81%)` · #D5CBC0 | All borders |
 | `--input` | `hsl(20 8% 17%)` · #2E2A27 | `hsl(25 8% 89%)` · #E5E1DD | `hsl(28 14% 81%)` · #D5CBC0 | Input backgrounds |
-| `--ring` | `hsl(18 65% 55%)` · #D47639 | `hsl(18 65% 55%)` · #D47639 | `hsl(18 60% 45%)` · #B8622E | Focus rings |
+| `--ring` | `hsl(18 65% 55%)` · #D47639 | `hsl(18 65% 50%)` · #D25E2D | `hsl(18 60% 45%)` · #B8622E | Focus rings |
 
 ### Destructive
 
