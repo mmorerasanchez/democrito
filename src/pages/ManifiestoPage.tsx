@@ -24,13 +24,13 @@ export default function ManifiestoPage() {
     <div className="mx-auto max-w-2xl space-y-14 py-4">
       <PageMeta
         title="Manifesto"
-        description="You can only be as good as your taste — why design systems still matter in the age of generation."
+        description="Why design systems still matter in the age of AI generation."
         path="/manifesto"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Article",
           "name": "Manifesto · democrito",
-          "description": "You can only be as good as your taste — why design systems still matter in the age of generation.",
+          "description": "Why design systems still matter in the age of AI generation.",
           "url": "https://democrito.design/manifesto",
           "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
         }}
@@ -44,16 +44,8 @@ export default function ManifiestoPage() {
         </p>
       </div>
 
-      {/* Opening: pull quote + intro paragraph */}
+      {/* Opening: intro paragraph */}
       <div className="space-y-4">
-        <blockquote className="border-l-2 border-accent pl-5 py-1">
-          <p className="font-display text-2xl font-bold text-accent">
-            "You can only be as good as your taste."
-          </p>
-          <cite className="mt-2 block font-mono text-xs text-muted-foreground not-italic">
-            — Mariano Morera, founder
-          </cite>
-        </blockquote>
         <p className="font-body text-base leading-relaxed text-muted-foreground">
           Every few months, a new headline declares something dead. Design has had its share.
           The line travels every feed — half provocation, half prophecy, full misreading.
@@ -70,7 +62,7 @@ export default function ManifiestoPage() {
           The Evidence
         </p>
         <div className="space-y-4">
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             <L href="https://www.mckinsey.com/capabilities/mckinsey-design/our-insights/the-business-value-of-design">
               McKinsey tracked 300+ public companies
             </L>{" "}
@@ -78,7 +70,7 @@ export default function ManifiestoPage() {
             quartile of design maturity outperformed peers by 32 points in revenue growth
             and 56 points in shareholder returns.
           </p>
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             The{" "}
             <L href="https://www.dmi.org/page/DesignValue">
               Design Management Institute's Design Value Index
@@ -86,7 +78,7 @@ export default function ManifiestoPage() {
             shows design-driven companies outperforming the S&P 500 by more than 200%
             over rolling ten-year windows.
           </p>
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             The same pattern holds in government. The countries ranking highest on digital
             service delivery — Denmark, Estonia, Singapore — invested in open, documented
             design systems:{" "}
@@ -100,7 +92,7 @@ export default function ManifiestoPage() {
             </L>{" "}
             now spans dozens of countries.
           </p>
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             Design maturity is one of the most consistently rewarded competitive advantages
             of the modern era.
           </p>
@@ -113,7 +105,7 @@ export default function ManifiestoPage() {
           The Last Twelve Months
         </p>
         <div className="space-y-4">
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             <L href="https://airbnb.design/">Airbnb invented a file format</L> because
             existing formats weren't expressive enough.{" "}
             <L href="https://developer.apple.com/design/">
@@ -132,10 +124,10 @@ export default function ManifiestoPage() {
             </L>, a tool whose entire pitch is the preservation of design systems and brand
             consistency. Lovable launched Aesthetics to give designers more expressive tools.
           </p>
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             Figma grew 41%. Adobe 11.5%. Canva 35% — adding 85 million users in a single year.
           </p>
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             These are not the numbers of a discipline in decline.
           </p>
         </div>
@@ -148,7 +140,7 @@ export default function ManifiestoPage() {
         <p className="font-mono text-2xs uppercase tracking-widest text-accent">
           The Gap AI Hasn't Closed
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           AI raises the floor. A model can generate a UI in thirty seconds, a brand system
           from a URL, a component from a prompt. But Joel Lewenstein, Anthropic's head of
           product design and the person who built Claude Design, confirmed the limit directly
@@ -156,7 +148,7 @@ export default function ManifiestoPage() {
         </p>
         {/* Blockquote */}
         <blockquote className="border-l-2 border-accent pl-5 py-1">
-          <p className="font-body text-base leading-relaxed text-foreground">
+          <p className="font-body text-base leading-relaxed text-muted-foreground">
             "Claude Design doesn't yet address that last mile craft and delight that
             differentiates the best products from the OK ones."
           </p>
@@ -164,10 +156,10 @@ export default function ManifiestoPage() {
             — Joel Lewenstein, Head of Product Design, Anthropic
           </p>
         </blockquote>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           The company that built the tool everyone fears most is the one naming the gap.
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           The 80% is automated. The 20% — why this surface, not that one; why this typeface
           for data and that one for prose; why one accent, not three — is still brain work.
           That is the craft difference that defines taste.
@@ -181,20 +173,20 @@ export default function ManifiestoPage() {
         <p className="font-mono text-2xs uppercase tracking-widest text-accent">
           democrito
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           democrito exists in that 20%.
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           Three surfaces. One accent. Three fonts, each with a specific semantic role.
           Every decision deliberate and documented, from the Sanzo Wada earth-tone palette
           to the JetBrains Mono.
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           democrito ships DESIGN.md — the layer that carries reasoning, not just tokens —
           along with CLAUDE.md, specific Claude instructions. When Claude, Lovable, or any
           AI agent reads it, it doesn't just know what to render. It knows why.
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           That is what separates a design system from a stylesheet. And what separates a
           product with taste from one without.
         </p>
@@ -204,7 +196,7 @@ export default function ManifiestoPage() {
 
       {/* Closing */}
       <div className="space-y-6">
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           "X is dead" is an old rhetorical move: a modern echo of the German
           post-Reformation philosophical tradition, where Nietzsche's "God is dead"
           announced the collapse of a shared moral frame. Used for design, the phrase
@@ -212,7 +204,7 @@ export default function ManifiestoPage() {
           its accuracy. It becomes a kind of hallucination: dramatic in sound, empty
           in diagnosis.
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           What is actually happening is the opposite of decline. We are entering the
           greatest creative expansion of our time. Tools are improving, velocity is
           compounding, and the bar is rising alongside competition. In that environment,
@@ -221,7 +213,7 @@ export default function ManifiestoPage() {
           code), and deeper into judgment (choosing the right references, sensing the
           true signal, and shaping it into coherent craft).
         </p>
-        <p className="font-body text-base leading-relaxed text-foreground">
+        <p className="font-body text-base leading-relaxed text-muted-foreground">
           When generation becomes cheap, the advantage moves to what cannot be inferred
           automatically: intention, restraint, and the ability to make the right choices
           under constraint. That is where taste lives — and why design is not dying,
