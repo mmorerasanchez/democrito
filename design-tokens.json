@@ -78,7 +78,7 @@
     "accent": {
       "$description": "Primary CTA — terracotta orange",
       "warm":  { "$value": "hsl(18 60% 45%)" },
-      "light": { "$value": "hsl(18 65% 55%)" },
+      "light": { "$value": "hsl(18 65% 41%)" },
       "dark":  { "$value": "hsl(18 65% 55%)" }
     },
     "accent-foreground": {
@@ -89,7 +89,7 @@
     "accent-muted": {
       "$description": "Soft terracotta — hover states, disabled badges",
       "warm":  { "$value": "hsl(18 38% 55%)" },
-      "light": { "$value": "hsl(18 35% 65%)" },
+      "light": { "$value": "hsl(18 35% 51%)" },
       "dark":  { "$value": "hsl(18 40% 30%)" }
     },
     "accent-subtle": {
@@ -128,7 +128,7 @@
     },
     "ring": {
       "warm":  { "$value": "hsl(18 60% 45%)" },
-      "light": { "$value": "hsl(18 65% 55%)" },
+      "light": { "$value": "hsl(18 65% 41%)" },
       "dark":  { "$value": "hsl(18 65% 55%)" }
     },
 
@@ -204,7 +204,7 @@
       },
       "primary": {
         "warm":  { "$value": "hsl(18 60% 45%)" },
-        "light": { "$value": "hsl(18 65% 55%)" },
+        "light": { "$value": "hsl(18 65% 41%)" },
         "dark":  { "$value": "hsl(18 65% 55%)" }
       },
       "accent": {
