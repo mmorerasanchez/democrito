@@ -22,7 +22,7 @@ Via git clone:
 
 - CLAUDE.md             — coding rules and architecture summary
 - DESIGN.md             — visual philosophy and taste layer
-- src/DESIGN_SYSTEM.md  — full component inventory and specification
+- docs/design-system.md  — full component inventory and specification
 - /.well-known/mcp.json — AI agent discovery manifest
 
 ## Design principles
