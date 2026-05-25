@@ -168,7 +168,7 @@ export default function OverviewPage() {
           </Text>
         </div>
         <QuickStartSection showHeading={false} />
-        <div className="space-y-3">
+        <div className="space-y-4">
           <h3 className="font-display text-base font-medium">Customize with your brand</h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {paths.map((item) => (

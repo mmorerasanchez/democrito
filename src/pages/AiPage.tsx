@@ -3,10 +3,7 @@ import { Heading } from "@/components/atoms";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, Github, Heart } from "lucide-react";
-import {
-  FileArchitectureSection,
-  HeroSection,
-} from "@/components/organisms/ai";
+import { FileArchitectureSection } from "@/components/organisms/ai";
 
 function ClaudeIcon({ className }: { className?: string }) {
   return (
@@ -71,17 +68,20 @@ export default function AiPage() {
         <Badge variant="outline" className="font-mono text-xs">AI Integration</Badge>
         <Heading level="h1">AI Integration</Heading>
         <p className="max-w-2xl font-body text-base text-muted-foreground">
-          The first open-source design system with structured AI context files.
-          3-file architecture, vibe coding and LLM plugs, and open-sourced, fully customizable.
+          The first open-source design system with structured AI context files: 3-file
+          architecture to plug in your favorite vibe coding tool and LLM — fully customizable.
         </p>
       </div>
 
-      <HeroSection />
       <FileArchitectureSection />
 
       {/* Distribution */}
       <section className="space-y-4">
         <Heading level="h2">Distribution</Heading>
+        <p className="font-body text-base text-muted-foreground max-w-2xl">
+          Claude, vibe coding platforms, and terminal workflows — each
+          path fits a different setup.
+        </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {platforms.map((item) => (
             <Link
