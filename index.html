@@ -23,6 +23,26 @@
     <meta name="twitter:description" content="Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications." />
     <meta name="twitter:image" content="https://democrito.design/og-image.png" />
 
+    <!-- Speculation Rules: prerender likely next navigations -->
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "eagerness": "moderate",
+          "urls": [
+            "/atoms",
+            "/molecules",
+            "/organisms",
+            "/templates",
+            "/tokens",
+            "/ai",
+            "/manifesto"
+          ]
+        }
+      ]
+    }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>

@@ -277,6 +277,13 @@
     --ai-thinking-duration: 1.4s;
     --ai-cursor-width: 2px;
     --ai-cursor-blink: 1s;
+
+    /* Browser chrome */
+    color-scheme: light;
+    /* Scrollbar */
+    --scrollbar-thumb: hsl(28 14% 76%);
+    --scrollbar-track: transparent;
+    --scrollbar-width: thin;
   }
 
   /* Dark theme */
@@ -394,6 +401,13 @@
     --sidebar-accent-foreground: 60 9% 98%;
     --sidebar-border: 30 6% 25%;
     --sidebar-ring: 18 65% 55%;
+
+    /* Browser chrome */
+    color-scheme: dark;
+    /* Scrollbar */
+    --scrollbar-thumb: hsl(25 8% 30%);
+    --scrollbar-track: transparent;
+    --scrollbar-width: thin;
   }
 
   /* Light theme */
@@ -457,6 +471,13 @@
     --sidebar-accent-foreground: 24 10% 10%;
     --sidebar-border: 25 8% 89%;
     --sidebar-ring: 18 65% 41%;
+
+    /* Browser chrome */
+    color-scheme: light;
+    /* Scrollbar */
+    --scrollbar-thumb: hsl(25 8% 82%);
+    --scrollbar-track: transparent;
+    --scrollbar-width: thin;
   }
 
 }
@@ -468,6 +489,11 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+  }
+
+  * {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: var(--scrollbar-width);
   }
 }
 
