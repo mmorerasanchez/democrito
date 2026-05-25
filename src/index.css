@@ -398,10 +398,10 @@
 
   /* Light theme */
   .light {
-    --background: 30 5% 96%;
+    --background: 30 6% 93%;
     --foreground: 24 10% 10%;
 
-    --card: 40 8% 99%;
+    --card: 0 0% 100%;
     --card-foreground: 24 10% 10%;
 
     --popover: 40 8% 99%;
@@ -426,7 +426,7 @@
     --input: 25 8% 89%;
     --ring: 18 65% 55%;
 
-    --surface: 40 6% 97%;
+    --surface: 40 8% 97%;
     --foreground-muted: 20 6% 41%;
     --foreground-subtle: 20 3% 55%;
 

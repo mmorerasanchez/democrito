@@ -164,9 +164,9 @@ All tokens are defined as HSL in `src/index.css`. Hex approximations below for q
 
 | Token | Warm (Default) | Dark | Light |
 | --- | --- | --- | --- |
-| `--background` | `hsl(30 18% 91%)` · `#EDE8E2` | `hsl(20 14% 4%)` · `#0E0C0B` | `hsl(30 5% 96%)` · `#F5F4F3` |
-| `--surface` | `hsl(40 15% 94%)` · `#F3F0EB` | `hsl(20 8% 8%)` · `#161413` | `hsl(40 6% 97%)` · `#F8F7F6` |
-| `--card` | `hsl(30 25% 97%)` · `#FAF8F5` | `hsl(12 6% 15%)` · `#282423` | `hsl(40 8% 99%)` · `#FDFCFB` |
+| `--background` | `hsl(30 18% 91%)` · `#EDE8E2` | `hsl(20 14% 4%)` · `#0E0C0B` | `hsl(30 6% 93%)` · `#EDEBE8` |
+| `--surface` | `hsl(40 15% 94%)` · `#F3F0EB` | `hsl(20 8% 8%)` · `#161413` | `hsl(40 8% 97%)` · `#F8F7F5` |
+| `--card` | `hsl(30 25% 97%)` · `#FAF8F5` | `hsl(12 6% 15%)` · `#282423` | `hsl(0 0% 100%)` · `#FFFFFF` |
 | `--foreground` | `hsl(12 6% 15%)` · `#282423` | `hsl(60 9% 98%)` · `#FAFAF9` | `hsl(24 10% 10%)` · `#1C1917` |
 | `--accent` | `hsl(18 60% 45%)` · `#B85C33` | `hsl(18 65% 55%)` · `#D4734A` | `hsl(18 65% 55%)` · `#D4734A` |
 
