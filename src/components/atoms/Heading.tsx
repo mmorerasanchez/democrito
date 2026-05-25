@@ -9,8 +9,8 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const headingStyles: Record<HeadingLevel, string> = {
-  h1: "text-2xl font-semibold font-display tracking-tight",
-  h2: "text-xl font-medium font-display tracking-tight",
+  h1: "text-2xl font-semibold font-display tracking-tight text-wrap-balance",
+  h2: "text-xl font-medium font-display tracking-tight text-wrap-balance",
   h3: "text-md font-medium font-display",
   h4: "text-sm font-medium font-display uppercase tracking-widest text-muted-foreground",
 };

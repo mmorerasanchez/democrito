@@ -14,6 +14,12 @@
 
 ---
 
+## Browser Baseline Target
+
+This project targets Baseline 2024 (features interoperable across all major engines since January 2024). When suggesting APIs, CSS properties, or browser features, default to Baseline 2024 Widely Available or Newly Available. Flag anything Limited Availability explicitly before using it.
+
+---
+
 ## Documentation Reading Order
 
 Before working on any component, token, or layout task, read [`docs/ai-context.md`](docs/ai-context.md).
