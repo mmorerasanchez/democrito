@@ -10,6 +10,44 @@
 All colors are defined as CSS custom properties in HSL format (without the `hsl()` wrapper).
 Three themes are supported: **Warm** (default, `:root`), **Dark** (`.dark`), and **Light** (`.light`).
 
+### Accessibility Target
+
+**Accessibility target:** democrito targets WCAG 2.1 AA conformance for all text and interactive components. AA requires 4.5:1 for normal text, 3:1 for large text and UI components.
+
+#### Contrast Reference — Warm Theme (default)
+
+| Pair | Ratio | AA Normal (4.5:1) | AA Large (3:1) |
+|---|---|---|---|
+| `--foreground` on `--background` | 12.48:1 | ✅ Pass | ✅ Pass |
+| `--foreground` on `--surface` | 13.41:1 | ✅ Pass | ✅ Pass |
+| `--foreground` on `--card` | 14.27:1 | ✅ Pass | ✅ Pass |
+| `--foreground-muted` on `--background` | 4.57:1 | ✅ Pass (tight) | ✅ Pass |
+| `--accent` on `--background` | 3.89:1 | ⚠️ Passes for UI components — not safe for body text | ✅ Pass |
+
+#### Contrast Reference — Dark Theme
+
+| Pair | Ratio | AA Normal (4.5:1) | AA Large (3:1) |
+|---|---|---|---|
+| `--foreground` on `--background` | 19.01:1 | ✅ Pass | ✅ Pass |
+| `--foreground` on `--surface` | 17.65:1 | ✅ Pass | ✅ Pass |
+| `--foreground` on `--card` | 14.61:1 | ✅ Pass | ✅ Pass |
+| `--foreground-muted` on `--background` | 7.87:1 | ✅ Pass | ✅ Pass |
+| `--accent` on `--background` | 5.85:1 | ⚠️ Passes for UI components — not safe for body text | ✅ Pass |
+
+#### Contrast Reference — Light Theme
+
+| Pair | Ratio | AA Normal (4.5:1) | AA Large (3:1) |
+|---|---|---|---|
+| `--foreground` on `--background` | 14.98:1 | ✅ Pass | ✅ Pass |
+| `--foreground` on `--surface` | 16.41:1 | ✅ Pass | ✅ Pass |
+| `--foreground` on `--card` | 17.49:1 | ✅ Pass | ✅ Pass |
+| `--foreground-muted` on `--background` | 4.77:1 | ✅ Pass (tight) | ✅ Pass |
+| `--accent` on `--background` | 3.33:1 | ⚠️ Passes for UI components — not safe for body text | ✅ Pass |
+
+**Usage guidance:**
+✅ Do: Use `--foreground-muted` for secondary text on `--surface` (verify your theme's ratio first — warm and light are tight at ~4.5:1)
+❌ Don't: Never use `--accent` on `--card` background for body text — accent is not guaranteed to pass AA for text use
+
 ### Core Surfaces (3-Layer Hierarchy)
 
 | Token | Tailwind Class | Dark | Light | Warm | Purpose |

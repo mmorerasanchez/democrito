@@ -266,3 +266,49 @@ Interactive wireframe preview with viewport switcher (desktop / tablet / mobile)
 | `EditorLayout` | Panes stacked; resizer hidden | `md+`: side-by-side; resizer visible |
 | `ComparisonLayout` | Panels stacked | `md+`: panels side-by-side |
 | `TemplatePreview` | 320px max-width preview | 580px (tablet) · 100% (desktop) |
+
+---
+
+## Spacing reference
+
+All values are derived from actual Tailwind classes in source files. No value is assumed or invented.
+
+### App chrome (TopBar + Sidebar)
+
+| Region | Measurement | Tailwind class | px / rem | CSS Token | Source |
+|---|---|---|---|---|---|
+| TopBar | Height | `h-header` | 56px / 3.5rem | `--header-height` | `TopBar.tsx:16` |
+| TopBar | Horizontal padding | `px-4` | 16px | — | `TopBar.tsx:16` |
+| Sidebar (expanded) | Width | `w-sidebar-w` | 240px / 15rem | `--sidebar-width` | `SidebarNav.tsx:46` |
+| Sidebar (collapsed) | Width | `w-sidebar-collapsed` | 64px / 4rem | `--sidebar-collapsed` | `SidebarNav.tsx:46` |
+| Sidebar nav | Inner padding (sides / top) | `p-2 pt-4` | 8px sides · 16px top | — | `SidebarNav.tsx:62` |
+| Sidebar nav | Gap between section groups | `space-y-6` | 24px | — | `SidebarNav.tsx:62` |
+
+### Content area padding
+
+All templates use the same responsive content padding unless noted.
+
+| Breakpoint | Tailwind class | px | Template |
+|---|---|---|---|
+| Mobile (default) | `p-4` | 16px | All content layouts |
+| Tablet (`md+`) | `md:p-6` | 24px | All content layouts |
+| Desktop (`lg+`) | `lg:p-8` | 32px | `DashboardLayout` only |
+
+Sources: `DashboardLayout.tsx:20`, `LibraryLayout.tsx:30`, `DetailLayout.tsx:38`
+
+### DetailLayout header sub-regions
+
+The header region uses tighter vertical padding to keep breadcrumb → title → status → tabs compact.
+
+| Sub-region | Tailwind class | Source |
+|---|---|---|
+| Breadcrumb | `px-4 pt-3 md:px-6` | `DetailLayout.tsx:28` |
+| Title bar | `px-4 py-3 md:px-6` | `DetailLayout.tsx:30` |
+| Status bar | `px-4 pb-3 md:px-6` | `DetailLayout.tsx:32` |
+| Tabs | `px-4 md:px-6` | `DetailLayout.tsx:34` |
+
+### LibraryLayout card grid
+
+| Measurement | Tailwind class | px | Source |
+|---|---|---|---|
+| Gap between cards | `gap-4` | 16px | `LibraryLayout.tsx:31` |
