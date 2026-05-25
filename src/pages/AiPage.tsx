@@ -27,21 +27,21 @@ const platforms = [
     icon: ClaudeIcon,
     name: "Claude",
     badge: "Anthropic",
-    desc: "Four tools — chat, design, Cowork, and terminal — with a single context layer. CLAUDE.md, DESIGN.md, and the compact token block keep every Claude surface on-brand from the first prompt.",
+    desc: "Attach design-tokens.json as context and describe your brand. Claude generates a complete new theme in natural language.",
   },
   {
     path: "/ai/vibe-coding",
     icon: Heart,
     name: "Vibe Coding Tools",
     badge: "Lovable · Stitch · Replit",
-    desc: "Visual-first builders that generate full apps from prompts. democrito's context files — DESIGN.md, CLAUDE.md, and the token block — wire into each platform's knowledge layer.",
+    desc: "Fork the repo and prompt your visual direction. No terminal needed.",
   },
   {
     path: "/ai/github",
     icon: Github,
     name: "GitHub",
     badge: "Open Source",
-    desc: "Fork it, star it, contribute back. The repo ships with structured context files for every AI tool — browse the source, customize your setup, or propose a new component.",
+    desc: "Edit src/index.css directly. Two variables change the whole personality.",
   },
 ];
 
