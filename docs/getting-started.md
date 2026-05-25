@@ -331,7 +331,7 @@ Read [CONTRIBUTING.md](../CONTRIBUTING.md) for:
 | [AI Usage](./ai-usage.md) | Prompting strategies for Lovable, Cursor, Claude Code, v0 |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | Development setup, commit conventions, component creation |
 | [CLAUDE.md](../CLAUDE.md) | AI agent context — auto-read by Claude Code, Cursor |
-| [DESIGN_SYSTEM.md](../src/DESIGN_SYSTEM.md) | Complete spec — component inventory, tokens, rules |
+| [DESIGN_SYSTEM.md](../docs/design-system.md) | Complete spec — component inventory, tokens, rules |
 
 ---
 

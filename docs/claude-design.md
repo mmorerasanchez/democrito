@@ -24,7 +24,7 @@ democrito ships exactly what Claude Design needs:
 |---|---|
 | `DESIGN.md` | Visual philosophy, surface hierarchy, typography rules, do/don't list |
 | `src/index.css` (`@theme` block) | Every CSS custom property — colors, radii, spacing, fonts |
-| `src/DESIGN_SYSTEM.md` | Component inventory, usage rules, font matrix |
+| `docs/design-system.md` | Component inventory, usage rules, font matrix |
 
 The result: Claude Design knows to use `bg-surface` not `bg-gray-800`, `font-mono`
 for all data values, terracotta not generic blue, and never a fourth surface level.
@@ -42,7 +42,7 @@ your codebase. Point it at these three files:
 2. **`src/index.css`** — the token layer. The `@theme` block contains all CSS
    custom properties. Claude Design extracts color roles, radii, spacing tokens,
    and font stack from here.
-3. **`src/DESIGN_SYSTEM.md`** — the vocabulary. Component inventory, font usage
+3. **`docs/design-system.md`** — the vocabulary. Component inventory, font usage
    matrix, and the principles summary.
 
 **If you've customized democrito for your product** (overridden tokens in `:root`),

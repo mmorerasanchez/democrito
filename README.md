@@ -267,7 +267,7 @@ IDE-inspired, clean, distraction-free aesthetic.
 | --- | --- |
 | [Live Design System](https://democrito.design) | Interactive component gallery, token reference, and theme playground |
 | [`docs/theming.md`](docs/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
-| [`src/DESIGN_SYSTEM.md`](src/DESIGN_SYSTEM.md) | Complete design system specification — component inventory, token reference, usage rules |
+| [`docs/design-system.md`](docs/design-system.md) | Complete design system specification — component inventory, token reference, usage rules |
 | [`src/index.css`](src/index.css) | CSS custom properties + Tailwind v4 `@theme` — source of truth for all tokens |
 | [`design-tokens.json`](design-tokens.json) | W3C DTCG–format tokens for tooling interoperability (Figma, Style Dictionary) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contribution guidelines, commit conventions, and component creation workflow |

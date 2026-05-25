@@ -29,7 +29,7 @@ const FILES: FileCardData[] = [
     role: "Token Inventory",
     description:
       "Complete reference of CSS custom properties, component inventory, variant specifications. The machine-readable specification.",
-    githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/src/DESIGN_SYSTEM.md",
+    githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/docs/design-system.md",
   },
 ];
 

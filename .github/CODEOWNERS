@@ -15,7 +15,7 @@ README.md                       @mmorerasanchez
 CONTRIBUTING.md                 @mmorerasanchez
 CHANGELOG.md                    @mmorerasanchez
 CLAUDE.md                       @mmorerasanchez
-src/DESIGN_SYSTEM.md            @mmorerasanchez
+docs/design-system.md            @mmorerasanchez
 
 # CI / Tooling
 .github/                        @mmorerasanchez
