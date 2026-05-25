@@ -112,6 +112,93 @@ Usage pattern:
 |---|---|---|---|---|
 | `--warm-dark` | `hsl(20 8% 72%)` · #BAB2AA | `hsl(20 12% 36%)` · #665749 | `hsl(20 14% 30%)` · #574536 | High-contrast emphasis on warm surfaces |
 
+### Semantic Token Usage
+
+Usage descriptions for every semantic token — what UI element it applies to and how it differs from the nearest sibling.
+
+#### Core surfaces & text
+
+| Token | Usage description |
+|---|---|
+| `--background` | Page canvas and top-level app shell. The lowest surface in the hierarchy. Use for the body background and full-bleed regions. |
+| `--surface` | Panels, sidebars, and section containers that sit above the page canvas. One step raised from background. |
+| `--card` | Individual content units — cards, modals, drawers, and any element that needs to appear distinct from its surrounding surface. Highest surface level. |
+| `--foreground` | Primary text. All body copy, headings, and labels that need maximum legibility. |
+| `--foreground-muted` | Secondary text. Metadata, captions, helper text, placeholder values. Never for primary labels. |
+| `--foreground-subtle` | Tertiary text. Disabled states, decorative labels, watermarks. Lower priority than `--foreground-muted`. |
+| `--accent` | Brand color only. CTAs, active states, selected indicators, focus rings. Never for status (use semantic colors instead). |
+| `--accent-foreground` | Text rendered on top of an `--accent` background (e.g. inside a filled CTA button). |
+| `--accent-muted` | Hover and disabled states for accent-colored elements. One step softer than `--accent`. |
+| `--accent-subtle` | Low-emphasis accent tint — active tab fills, inline code blocks, highlighted row backgrounds. |
+| `--border` | Interactive components on a flat background — inputs, buttons with outline variant, selectable cards. |
+| `--border-subtle` | Decorative dividers between sections. Never on interactive components. |
+| `--radius` | Border radius for all components. Change this one value to shift the personality of the entire system. |
+
+#### Primary, secondary & muted
+
+| Token | Usage description |
+|---|---|
+| `--primary` | Standard button fill (default variant). Distinct from `--accent` which is reserved for brand CTAs. |
+| `--primary-foreground` | Text on top of a `--primary` background. |
+| `--secondary` | Secondary surface backgrounds — softer than `--card`, used for secondary button fills and grouped content areas. |
+| `--secondary-foreground` | Text on `--secondary` backgrounds. |
+| `--muted` | Muted surface backgrounds for tags, badges, and secondary buttons. |
+| `--muted-foreground` | Text on muted backgrounds. Equivalent role to `--foreground-muted` but paired with `--muted` surfaces. |
+
+#### Inputs & focus
+
+| Token | Usage description |
+|---|---|
+| `--input` | Background of text input fields. Visually distinct from `--surface` to signal editability. |
+| `--ring` | Focus ring color for keyboard navigation. Always matches the element's interactive color. |
+
+#### Destructive & popover
+
+| Token | Usage description |
+|---|---|
+| `--destructive` | Error and danger actions — delete buttons, validation failure highlights. |
+| `--destructive-foreground` | Text on `--destructive` backgrounds. |
+| `--popover` | Background for floating layers (dropdowns, tooltips, menus) that sit above `--card`. |
+| `--popover-foreground` | Text inside popover/dropdown layers. |
+
+#### Semantic feedback
+
+| Token | Usage description |
+|---|---|
+| `--success` | Positive confirmation states — saved indicators, passing validation, completion badges. |
+| `--error` | Inline validation errors and field-level failure states. Equivalent role to `--destructive` but used for form feedback rather than actions. |
+| `--warning` | Cautionary states — rate limit warnings, non-blocking issues, degraded service notices. |
+| `--info` | Neutral informational callouts. No urgency implied. |
+
+#### Sidebar
+
+| Token | Usage description |
+|---|---|
+| `--sidebar-background` | Background of the app sidebar shell (shadcn sidebar primitive). |
+| `--sidebar-foreground` | Primary text inside the sidebar. |
+| `--sidebar-primary` | Active nav item fill inside the sidebar — mirrors `--primary` in the sidebar context. |
+| `--sidebar-primary-foreground` | Text on active `--sidebar-primary` nav items. |
+| `--sidebar-accent` | Active/hovered nav item highlight within the sidebar. |
+| `--sidebar-accent-foreground` | Text on `--sidebar-accent` nav item backgrounds. |
+| `--sidebar-border` | Separator between the sidebar and main content area. |
+| `--sidebar-ring` | Focus ring for keyboard navigation within the sidebar. |
+
+### Border philosophy
+
+Content blocks that live on a different surface need no border — the surface difference is the signal. Interactive components on flat backgrounds need a border — the border communicates affordance.
+
+**Rule:** Does the component need to communicate "I am interactive"? → use `--border`. Does the element live on a different surface? → no border, or `--border-subtle` only.
+
+### Token naming convention
+
+Pattern: `{category}-{role}-{variant}`
+
+**Rules for AI-generated tokens:**
+- Always start with semantic category (`background` / `surface` / `foreground` / `border` / `accent`)
+- Add role modifier only to distinguish from base (`muted` / `subtle` / `strong`)
+- Never create component-scoped tokens (`--button-bg` is wrong — democrito uses semantic tokens only)
+- Never create a new accent hue without a design decision
+
 ---
 
 ## Typography

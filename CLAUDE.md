@@ -14,6 +14,13 @@
 
 ---
 
+## Documentation Reading Order
+
+Before working on any component, token, or layout task, read [`docs/ai-context.md`](docs/ai-context.md).
+It defines the reading order, decision hierarchy, and known AI bias patterns for this system.
+
+---
+
 ## Architecture — Atomic Design
 
 The component library follows **Atomic Design** methodology with five levels:
