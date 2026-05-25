@@ -1,5 +1,6 @@
 import { PageMeta } from "@/components/PageMeta";
 import { Heading } from "@/components/atoms";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, Github, Heart } from "lucide-react";
 import {
@@ -33,7 +34,7 @@ const platforms = [
     path: "/ai/vibe-coding",
     icon: Heart,
     name: "Vibe Coding Tools",
-    badge: "Lovable · Stitch · Replit",
+    badge: "Lovable · Google Stitch · Replit",
     desc: "Fork the repo and prompt your visual direction. No terminal needed.",
   },
   {
@@ -67,6 +68,7 @@ export default function AiPage() {
         }}
       />
       <div className="space-y-4">
+        <Badge variant="outline" className="font-mono text-xs">AI Integration</Badge>
         <Heading level="h1">AI Integration</Heading>
         <p className="max-w-2xl font-body text-base text-muted-foreground">
           The first open-source design system with structured AI context files.

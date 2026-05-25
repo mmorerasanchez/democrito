@@ -24,12 +24,24 @@ import {
 } from "@/components/ui/select";
 import { Settings, Plus, Trash2, Search, Copy, ArrowRight, Loader2 } from "lucide-react";
 
+function CategoryHeader({ id, title, description, count }: { id: string; title: string; description: string; count: number }) {
+  return (
+    <div id={id} className="scroll-mt-6 border-t border-border pt-8">
+      <div className="flex items-baseline gap-3">
+        <Heading level="h2">{title}</Heading>
+        <span className="font-mono text-2xs text-muted-foreground">{count} components</span>
+      </div>
+      <p className="mt-0.5 font-body text-sm text-muted-foreground">{description}</p>
+    </div>
+  );
+}
+
 /* ── Section wrapper ── */
 function Section({ id, title, description, children }: { id: string; title: string; description: string; children: React.ReactNode }) {
   return (
     <section id={id} className="space-y-4">
       <div>
-        <Heading level="h2">{title}</Heading>
+        <Heading level="h3">{title}</Heading>
         <p className="font-body text-sm text-muted-foreground">{description}</p>
       </div>
       <div className="overflow-hidden rounded-lg border border-border bg-card p-6 space-y-6">{children}</div>
@@ -40,7 +52,7 @@ function Section({ id, title, description, children }: { id: string; title: stri
 function SubSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="space-y-3">
-      <h3 className="font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">{title}</h3>
+      <h3 className="font-mono text-2xs font-medium uppercase tracking-widest text-muted-foreground">{title}</h3>
       {children}
     </div>
   );
@@ -80,6 +92,11 @@ export default function AtomsPage() {
           Base-level components — the building blocks of the design system.
         </p>
       </div>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Form & Input                                      */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-form" title="Form & Input" description="Interactive controls and data entry components." count={4} />
 
       {/* ── BUTTONS ── */}
       <Section id="button" title="Button" description="Primary interactive element. Extends shadcn/ui Button with design system token styling, loading state, and theme-inverted primary.">
@@ -143,6 +160,62 @@ export default function AtomsPage() {
         </SubSection>
         <CodeBlock>{`<Textarea placeholder="..." error={boolean} />`}</CodeBlock>
       </Section>
+
+      {/* ── FORM ELEMENTS ── */}
+      <Section id="form-elements" title="Form Elements" description="Checkbox, Radio (via Select), Switch, Select, Slider — all using shadcn/ui base with design tokens.">
+        <SubSection title="Checkbox">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <Checkbox id="check-1" checked={checked} onCheckedChange={(c) => setChecked(c === true)} />
+              <Label htmlFor="check-1" className="font-body text-sm">Checked: {checked ? "yes" : "no"}</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox id="check-2" disabled />
+              <Label htmlFor="check-2" className="font-body text-sm text-muted-foreground">Disabled</Label>
+            </div>
+          </div>
+        </SubSection>
+        <SubSection title="Switch">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <Switch checked={switchOn} onCheckedChange={setSwitchOn} id="switch-1" />
+              <Label htmlFor="switch-1" className="font-body text-sm">{switchOn ? "On" : "Off"}</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Switch disabled id="switch-2" />
+              <Label htmlFor="switch-2" className="font-body text-sm text-muted-foreground">Disabled</Label>
+            </div>
+          </div>
+        </SubSection>
+        <SubSection title="Select">
+          <div className="max-w-xs">
+            <Select>
+              <SelectTrigger className="font-mono">
+                <SelectValue placeholder="Select a model…" />
+              </SelectTrigger>
+              <SelectContent className="bg-popover border-border">
+                <SelectItem value="claude">claude-3.5-sonnet</SelectItem>
+                <SelectItem value="gpt4">gpt-4-turbo</SelectItem>
+                <SelectItem value="gemini">gemini-1.5-pro</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </SubSection>
+        <SubSection title="Slider">
+          <div className="max-w-sm space-y-2">
+            <div className="flex items-center justify-between">
+              <Label className="font-body text-sm">Temperature</Label>
+              <span className="font-mono text-xs text-muted-foreground">{(sliderValue[0] / 100).toFixed(2)}</span>
+            </div>
+            <Slider value={sliderValue} onValueChange={setSliderValue} max={100} step={1} />
+          </div>
+        </SubSection>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Labels & Typography                               */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-labels" title="Labels & Typography" description="Badges, tags, and typographic display components." count={4} />
 
       {/* ── BADGE ── */}
       <Section id="badge" title="Badge" description="Pill-shaped labels using font-mono. Status, semantic, and count variants.">
@@ -265,56 +338,10 @@ export default function AtomsPage() {
         <CodeBlock>{`<Avatar size="xs | sm | md | lg"><AvatarFallback>MR</AvatarFallback><AvatarStatus status="online" /></Avatar>`}</CodeBlock>
       </Section>
 
-      {/* ── FORM ELEMENTS ── */}
-      <Section id="form-elements" title="Form Elements" description="Checkbox, Radio (via Select), Switch, Select, Slider — all using shadcn/ui base with design tokens.">
-        <SubSection title="Checkbox">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Checkbox id="check-1" checked={checked} onCheckedChange={(c) => setChecked(c === true)} />
-              <Label htmlFor="check-1" className="font-body text-sm">Checked: {checked ? "yes" : "no"}</Label>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox id="check-2" disabled />
-              <Label htmlFor="check-2" className="font-body text-sm text-muted-foreground">Disabled</Label>
-            </div>
-          </div>
-        </SubSection>
-        <SubSection title="Switch">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Switch checked={switchOn} onCheckedChange={setSwitchOn} id="switch-1" />
-              <Label htmlFor="switch-1" className="font-body text-sm">{switchOn ? "On" : "Off"}</Label>
-            </div>
-            <div className="flex items-center gap-2">
-              <Switch disabled id="switch-2" />
-              <Label htmlFor="switch-2" className="font-body text-sm text-muted-foreground">Disabled</Label>
-            </div>
-          </div>
-        </SubSection>
-        <SubSection title="Select">
-          <div className="max-w-xs">
-            <Select>
-              <SelectTrigger className="font-mono">
-                <SelectValue placeholder="Select a model…" />
-              </SelectTrigger>
-              <SelectContent className="bg-popover border-border">
-                <SelectItem value="claude">claude-3.5-sonnet</SelectItem>
-                <SelectItem value="gpt4">gpt-4-turbo</SelectItem>
-                <SelectItem value="gemini">gemini-1.5-pro</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </SubSection>
-        <SubSection title="Slider">
-          <div className="max-w-sm space-y-2">
-            <div className="flex items-center justify-between">
-              <Label className="font-body text-sm">Temperature</Label>
-              <span className="font-mono text-xs text-muted-foreground">{(sliderValue[0] / 100).toFixed(2)}</span>
-            </div>
-            <Slider value={sliderValue} onValueChange={setSliderValue} max={100} step={1} />
-          </div>
-        </SubSection>
-      </Section>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Feedback & State                                  */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-feedback" title="Feedback & State" description="Loading states, overlays, and interaction feedback." count={4} />
 
       {/* ── SEPARATOR ── */}
       <Section id="separator" title="Separator" description="1px border color line. Horizontal or vertical.">
@@ -381,6 +408,11 @@ export default function AtomsPage() {
           </Tooltip>
         </div>
       </Section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Utilities                                         */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-utility" title="Utilities" description="Progress indicators, links, and form labels." count={3} />
 
       {/* ── PROGRESS ── */}
       <Section id="progress" title="Progress Bar" description="4px height, accent fill, rounded-full. Semantic color variants. Determinate + indeterminate.">

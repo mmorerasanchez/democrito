@@ -1,4 +1,5 @@
 import { PageMeta } from "@/components/PageMeta";
+import { Heading } from "@/components/atoms";
 import { Separator } from "@/components/ui/separator";
 
 const L = ({
@@ -36,13 +37,23 @@ export default function ManifiestoPage() {
       />
 
       {/* Header */}
-      <div className="space-y-4">
-        <p className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">
-          Manifiesto
+      <div>
+        <Heading level="h1">Manifesto</Heading>
+        <p className="mt-1 font-body text-base text-muted-foreground">
+          Why design systems still matter in the age of AI generation.
         </p>
-        <h1 className="font-display text-3xl font-bold tracking-tight">
-          You can only be as good as your taste.
-        </h1>
+      </div>
+
+      {/* Opening: pull quote + intro paragraph */}
+      <div className="space-y-4">
+        <blockquote className="border-l-2 border-accent pl-5 py-1">
+          <p className="font-display text-2xl font-bold text-accent">
+            "You can only be as good as your taste."
+          </p>
+          <cite className="mt-2 block font-mono text-xs text-muted-foreground not-italic">
+            — Mariano Morera, founder
+          </cite>
+        </blockquote>
         <p className="font-body text-base leading-relaxed text-muted-foreground">
           Every few months, a new headline declares something dead. Design has had its share.
           The line travels every feed — half provocation, half prophecy, full misreading.
@@ -216,12 +227,14 @@ export default function ManifiestoPage() {
           under constraint. That is where taste lives — and why design is not dying,
           but concentrating into its most essential work.
         </p>
-        <p className="font-display text-xl font-semibold tracking-tight text-foreground">
-          You can only be as good as your taste.
-        </p>
-        <p className="font-mono text-sm text-muted-foreground">
-          — Mariano Morera, founder
-        </p>
+        <blockquote className="border-l-2 border-accent pl-5 py-1">
+          <p className="font-display text-2xl font-bold text-accent">
+            You can only be as good as your taste.
+          </p>
+          <cite className="mt-2 block font-mono text-xs text-muted-foreground not-italic">
+            — Mariano Morera, founder
+          </cite>
+        </blockquote>
       </div>
 
     </div>

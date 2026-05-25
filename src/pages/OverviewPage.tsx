@@ -59,7 +59,7 @@ const paths = [
     to: "/ai/vibe-coding",
     icon: Heart,
     name: "Vibe Coding Tools",
-    badge: "Lovable · Stitch · Replit",
+    badge: "Lovable · Google Stitch · Replit",
     desc: "Fork the repo and prompt your visual direction. No terminal needed.",
   },
   {
