@@ -32,6 +32,8 @@
 | Document | Description |
 |---|---|
 | [Disable State](./patterns/disable-state.md) | When and how to apply disabled, read-only, and hidden states — atom vs container scope |
+| [Form](./patterns/form.md) | Spacing rules for label → field → submit — field gaps, section gaps, inline error spacing |
+| [Card](./patterns/card.md) | Spacing rules for card padding, header → body gap, compact stat card variant |
 
 ## Claude Skill (Portable AI Context)
 
