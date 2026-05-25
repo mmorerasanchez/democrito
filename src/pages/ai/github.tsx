@@ -46,7 +46,121 @@ claude`}</StepCode>
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 2 — The three-file context bundle                           */}
+      {/* Section 2 — The instruction file ecosystem                          */}
+      {/* ------------------------------------------------------------------ */}
+      <Section label="The instruction file ecosystem">
+        <P>
+          <Code>CLAUDE.md</Code> is democrito's primary instruction file for Claude
+          Code. But the AI tooling landscape has consolidated around a small set of
+          instruction file formats, and a repository built for AI-native development
+          should ship — or at minimum document — the right file for each tool.
+        </P>
+        <div className="rounded-md border border-border overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-surface">
+                <th className="px-4 py-2 text-left font-mono text-xs text-muted-foreground uppercase tracking-widest">File</th>
+                <th className="px-4 py-2 text-left font-mono text-xs text-muted-foreground uppercase tracking-widest">Tool(s)</th>
+                <th className="px-4 py-2 text-left font-mono text-xs text-muted-foreground uppercase tracking-widest">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>CLAUDE.md</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">Claude Code (primary)</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root, ~/.claude/, any subdirectory</td>
+              </tr>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>AGENTS.md</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">Codex CLI, Cursor, Gemini CLI, Windsurf, Aider, goose, Devin, Jules, Junie, and 20+ more</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root + subdirectories (nearest wins)</td>
+              </tr>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>GEMINI.md</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">Gemini CLI (primary)</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root, ~/.gemini/</td>
+              </tr>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>.github/copilot-instructions.md</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">GitHub Copilot</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">.github/ directory</td>
+              </tr>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>.cursor/rules/*.mdc</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">Cursor (current format)</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">.cursor/rules/ directory</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <P>
+          <Code>AGENTS.md</Code> is the closest thing to a universal standard —
+          originated by OpenAI Codex and now stewarded by the Linux Foundation's
+          Agentic AI Foundation alongside Anthropic's MCP. It's in 60,000+
+          open-source repositories and natively supported by every tool listed above.
+        </P>
+        <P>
+          Claude Code reads <Code>CLAUDE.md</Code> as its primary file and falls back
+          to <Code>AGENTS.md</Code> if no <Code>CLAUDE.md</Code> exists in the
+          directory. The practical approach: <Code>CLAUDE.md</Code> for
+          Claude-specific additions, <Code>AGENTS.md</Code> as the single source of
+          truth for the shared core rules every other tool needs.
+        </P>
+      </Section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 3 — AGENTS.md template                                      */}
+      {/* ------------------------------------------------------------------ */}
+      <Section label="AGENTS.md — minimal template for a democrito fork">
+        <P>
+          If you use tools beyond Claude Code, add <Code>AGENTS.md</Code> at the repo
+          root. Copy the template below, add it to your fork, and every tool in the
+          ecosystem above will pick up democrito's core rules automatically.
+        </P>
+        <StepCode language="markdown">{`# AGENTS.md — democrito
+Design system reference: https://democrito.design
+
+## Setup
+- Install: \`cd app-democrito && npm install\`
+- Dev server: \`npm run dev\` (localhost:5173)
+- Lint + test: \`npm run lint && npm run test\`
+
+## Architecture
+Atomic Design — 5 levels:
+- atoms: src/components/atoms/
+- molecules: src/components/molecules/
+- organisms: src/components/organisms/
+- templates: src/components/templates/
+- ui primitives: src/components/ui/ (shadcn — extend via CVA, never modify directly)
+Before creating any component, check all 5 directories for existing implementations.
+
+## Token rules
+- Surfaces: bg-background → bg-surface → bg-card (never a 4th level)
+- Fonts: font-display (headings/buttons), font-body (prose/labels),
+  font-mono (ALL data values, inputs, identifiers, user-editable content)
+- Colors: semantic tokens only — never bg-gray-*, text-white, dark: overrides,
+  or hardcoded hex/rgb
+- Every new token must be defined in all 3 themes: :root (warm), .dark, .light
+
+## Conventions
+- PascalCase filenames, one component per file
+- Named exports only, barrel index.ts at each atomic level
+- TypeScript strict mode, explicit props interface with JSDoc on every component
+- Never commit directly to main — feature branches (feat/, fix/, chore/) + PR
+
+## Verification
+Run after every change: \`npm run lint && npm run test\``}</StepCode>
+        <P>
+          For local-only overrides you don't want committed — personal tool paths,
+          experiment flags, machine-specific settings — use{" "}
+          <Code>AGENTS.override.md</Code> in the same directory and add it to{" "}
+          <Code>.gitignore</Code>:{" "}
+          <Code>echo 'AGENTS.override.md' &gt;&gt; .gitignore</Code>
+        </P>
+      </Section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 4 — The three-file context bundle                           */}
       {/* ------------------------------------------------------------------ */}
       <Section label="The three-file context bundle">
         <div className="space-y-4">
