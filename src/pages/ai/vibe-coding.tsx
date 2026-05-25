@@ -1,7 +1,7 @@
 import { PageMeta } from "@/components/PageMeta";
 import { Badge } from "@/components/ui/badge";
 import { Heading, Code } from "@/components/atoms";
-import { Section, P, StepCode } from "./_shared";
+import { Section, Note, P, StepCode } from "./_shared";
 
 export default function VibeCodingPage() {
   return (
@@ -41,7 +41,76 @@ for all visual decisions. Key rules:
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 2 — Replit system prompt snippet                            */}
+      {/* Section 2 — Google Stitch                                           */}
+      {/* ------------------------------------------------------------------ */}
+      <Section label="Google Stitch">
+        <Note label="What it is">
+          <P>
+            Stitch is Google Labs' AI-native UI design tool, powered by Gemini. It
+            generates screens and components from natural-language prompts with
+            Figma-compatible output and exported Tailwind/React code.
+          </P>
+        </Note>
+        <Note label="What to know before starting">
+          <P>
+            <Code>DESIGN.md</Code> is Google's open-source format for encoding design
+            systems as agent-readable plain text — democrito's{" "}
+            <Code>DESIGN.md</Code> follows this format exactly. Stitch reads it
+            natively as project context: import it once and every screen Stitch
+            generates applies democrito's visual rules without you specifying them per
+            prompt. Important: Stitch's export uses generic Tailwind classes. The
+            visual output will be correct; the code always needs a token mapping pass.
+          </P>
+        </Note>
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <p className="font-display text-sm font-semibold">Step 1 — Import DESIGN.md</p>
+            <P>
+              Point Stitch at the raw GitHub URL for <Code>DESIGN.md</Code>. If
+              you've customized democrito for a brand, use your fork's URL — not the
+              upstream default.
+            </P>
+            <StepCode language="bash">{`https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md`}</StepCode>
+            <P>If you've forked and customized:</P>
+            <StepCode language="bash">{`https://raw.githubusercontent.com/[your-username]/democrito/main/DESIGN.md`}</StepCode>
+          </div>
+          <div className="space-y-1">
+            <p className="font-display text-sm font-semibold">Step 2 — Verify the import</p>
+            <P>
+              Before generating anything, confirm Stitch loaded the reasoning layer:
+            </P>
+            <StepCode language="prompt">{`What is the accent color in this design system, its HSL value, and its usage rule?`}</StepCode>
+            <P>
+              Expected: terracotta, approximately HSL(18° 65% 55%), reserved for
+              primary CTAs and interactive links, 1 instance per screen maximum. If
+              Stitch returns a generic color or omits the scarcity rule, re-paste the
+              full <Code>DESIGN.md</Code> contents directly rather than using the URL
+              — some configurations fetch at generation time rather than on import.
+            </P>
+          </div>
+          <div className="space-y-1">
+            <p className="font-display text-sm font-semibold">Step 3 — Generate with token language</p>
+            <P>
+              Use token names in your prompts, not visual descriptions. Reference list
+              descriptions resolve aesthetic ambiguity that token language doesn't
+              cover — include both.
+            </P>
+            <StepCode language="prompt">{`Design a data table layout for a log viewer.
+IDE-grade, not consumer-grade. Dense and purposeful.
+Closer to Linear or Raycast than to Stripe or Notion.
+
+- Table container: bg-surface
+- Table headers: font-mono text-xs uppercase tracking-widest text-muted-foreground
+- Table cells: font-mono text-sm text-foreground
+- Row hover: bg-accent-subtle
+- Horizontal dividers only — no vertical column lines
+- Selected row: bg-accent-subtle border-l-2 border-accent`}</StepCode>
+          </div>
+        </div>
+      </Section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 3 — Replit system prompt snippet                            */}
       {/* ------------------------------------------------------------------ */}
       <Section label="Replit system prompt snippet">
         <P>
@@ -58,7 +127,7 @@ No decorative colors. Every color has a specific semantic function.`}</StepCode>
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 3 — The reference-by-URL pattern                            */}
+      {/* Section 4 — The reference-by-URL pattern                            */}
       {/* ------------------------------------------------------------------ */}
       <Section label="The reference-by-URL pattern">
         <P>
@@ -69,6 +138,35 @@ No decorative colors. Every color has a specific semantic function.`}</StepCode>
         </P>
         <StepCode language="prompt">{`Match the visual style at https://democrito.design — clean,
 data-dense, monochromatic with a single accent color.`}</StepCode>
+      </Section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 5 — Token mapping pass                                      */}
+      {/* ------------------------------------------------------------------ */}
+      <Section label="Token mapping pass — required after every generation">
+        <P>
+          Lovable, Stitch, and Replit all generate code with generic Tailwind utility
+          classes — <Code>bg-neutral-900</Code>, <Code>text-orange-500</Code> — not
+          democrito's semantic tokens. The visual output will look correct in the
+          preview. The code always needs a mapping pass before it enters your project.
+        </P>
+        <P>
+          Skip it and every component that gets edited or regenerated later will
+          revert to generic values, breaking the semantic layer progressively. Apply
+          this find/replace to every generation before committing:
+        </P>
+        <StepCode language="bash">{`Replace in generated code:
+
+bg-neutral-*      → bg-background / bg-surface / bg-card  (match by visual depth)
+border-neutral-*  → border-border
+text-neutral-*    → text-foreground / text-muted-foreground
+text-white        → text-foreground
+text-orange-*     → text-accent
+bg-orange-*       → bg-accent or bg-accent/10
+font-sans         → font-display (headings) or font-body (prose)
+font-mono         → font-mono (keep — already correct)
+
+Flag any remaining hardcoded hex or rgb values.`}</StepCode>
       </Section>
     </div>
   );
