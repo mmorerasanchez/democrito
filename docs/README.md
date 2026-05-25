@@ -27,6 +27,12 @@
 | [Organisms](./components/organisms.md) | Organisms | Major UI sections — `TopBar`, `DataTable`, `PromptCard`, `FilterBar`, `DashboardStats` |
 | [Templates](./components/templates.md) | Templates | Page layout shells — `AppShell`, `EditorLayout`, `LibraryLayout`, `DashboardLayout` |
 
+## Patterns
+
+| Document | Description |
+|---|---|
+| [Disable State](./patterns/disable-state.md) | When and how to apply disabled, read-only, and hidden states — atom vs container scope |
+
 ## Claude Skill (Portable AI Context)
 
 The [`skill/democrito/`](../skill/democrito/SKILL.md) folder provides a self-contained set of design-system context files optimized for AI agents. It includes condensed versions of principles, tokens, components, and agent usage guides — ready to drop into any Claude Skill, MCP knowledge source, or AI tool context window.
