@@ -416,7 +416,7 @@
     --muted: 25 6% 91%;
     --muted-foreground: 20 6% 41%;
 
-    --accent: 18 65% 55%;
+    --accent: 18 65% 50%;
     --accent-foreground: 40 6% 99%;
 
     --destructive: 6 70% 52%;
@@ -424,7 +424,7 @@
 
     --border: 25 8% 89%;
     --input: 25 8% 89%;
-    --ring: 18 65% 55%;
+    --ring: 18 65% 50%;
 
     --surface: 40 8% 97%;
     --foreground-muted: 20 6% 41%;
