@@ -147,5 +147,5 @@ Classify a component before writing it. If you can't classify it, don't build it
 | `docs/ai-context.md` | Reading order + AI bias table (read first) |
 | `docs/tokens.md` | Full token reference |
 | `docs/theming.md` | How to customize for a specific brand |
-| `src/DESIGN_SYSTEM.md` | Full component inventory |
+| `docs/design-system.md` | Full component inventory |
 | `CONTRIBUTING.md` | Commit conventions, branch naming, component creation guide |

@@ -111,7 +111,7 @@ onboarding reads to learn your system.
 ### Quick setup
 
 1. Open [claude.ai/design](https://claude.ai/design)
-2. During onboarding, import: `DESIGN.md`, `src/index.css`, and `src/DESIGN_SYSTEM.md`
+2. During onboarding, import: `DESIGN.md`, `src/index.css`, and `docs/design-system.md`
 3. Claude Design stores your system and applies it to every project automatically
 
 ### Handoff to Claude Code
@@ -141,7 +141,7 @@ In your Cowork project instructions, include a brief democrito context block:
 This project is democrito — a React + TypeScript + Tailwind v4 atomic design
 system. Source is at ~/Desktop/apps/democrito/app-democrito.
 Key files: CLAUDE.md (coding rules), DESIGN.md (visual philosophy),
-docs/ (documentation), src/DESIGN_SYSTEM.md (component inventory).
+docs/ (documentation), docs/design-system.md (component inventory).
 The democrito skill is available — use it for token lookups and component
 inventory checks.
 ```

@@ -167,7 +167,7 @@ Design tokens are the foundation of the visual system. Changes to tokens affect 
 1. **Open an issue first** describing the token you want to add, modify, or remove — and why
 2. **Update `src/index.css`** with the new token in all three themes (`:root` dark, `.light`, `.warm`)
 3. **Update `tailwind.config.ts`** if the token needs a Tailwind utility class
-4. **Update `src/DESIGN_SYSTEM.md`** to document the new token
+4. **Update `docs/design-system.md`** to document the new token
 5. **Test visually** across all three themes using the theme toggle in the showcase (`/tokens`)
 6. Submit a PR with before/after screenshots showing all three themes
 

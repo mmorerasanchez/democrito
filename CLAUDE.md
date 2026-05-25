@@ -127,7 +127,7 @@ Available test commands:
 |---|---|
 | `src/index.css` | CSS custom properties + CSS-first `@theme` — source of truth for all design tokens and Tailwind integration |
 | `docs/theming.md` | How to customize the system for a specific brand or product |
-| `src/DESIGN_SYSTEM.md` | Full design system specification and component inventory |
+| `docs/design-system.md` | Full design system specification and component inventory |
 | `DESIGN.md` | Design philosophy and visual language — the "taste layer" for AI agents |
 | `CONTRIBUTING.md` | Development workflow, commit conventions, component creation guide |
 | `CHANGELOG.md` | Version history (Keep a Changelog format) |
