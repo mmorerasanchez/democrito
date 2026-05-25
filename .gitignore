@@ -41,5 +41,6 @@ docs/**/use-cases-*.md
 docs/**/proposition-*.md
 docs/**/session-*.md
 docs/**/draft-*.md
+docs/**/audits/
 .lovable/
 .claude/

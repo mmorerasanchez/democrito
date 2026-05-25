@@ -320,5 +320,6 @@ A friendly, spacious consumer product with a green accent.
 5. **Adjust semantics** — shift success/warning/error/info hues to harmonize with your palette temperature.
 6. **Test all three layers** — background, surface, and card should feel like a natural depth progression.
 7. **Verify contrast** — ensure `--foreground` on `--background` meets WCAG AA (4.5:1 for body text).
+8. **Set `color-scheme`** — add `color-scheme: light` or `color-scheme: dark` to each theme block so native browser controls (scrollbars, inputs, `<dialog>` backdrops) match the rest of the UI.
 
 No component files need to change. The system is designed so that **tokens are the only branding surface**.
