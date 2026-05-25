@@ -40,8 +40,8 @@ const platforms = [
   {
     path: "/ai/github",
     icon: Github,
-    name: "GitHub",
-    badge: "Open Source",
+    name: "Terminal",
+    badge: "GitHub",
     desc: "Edit src/index.css directly. Two variables change the whole personality.",
   },
 ];

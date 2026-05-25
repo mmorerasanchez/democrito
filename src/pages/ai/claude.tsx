@@ -21,7 +21,7 @@ export default function ClaudePage() {
       />
 
       <div className="space-y-3">
-        <Badge variant="outline" className="font-mono text-xs">Anthropic</Badge>
+        <Badge variant="outline" className="font-mono text-xs">Claude</Badge>
         <Heading level="h1">Use democrito with Claude</Heading>
         <P>
           Attach three files, describe your brand, and let Claude generate a new theme.
@@ -30,9 +30,9 @@ export default function ClaudePage() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 1 — Read the file, not the page                             */}
+      {/* Section 1 — Inspect context files                                   */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="Read the file, not the page">
+      <Section label="Inspect context files">
         <P>
           Claude can fetch the content of any public URL — but the GitHub page at{" "}
           <Code>github.com/mmorerasanchez/democrito</Code> returns HTML, not file
@@ -73,32 +73,12 @@ https://raw.githubusercontent.com/mmorerasanchez/democrito/main/src/index.css`}<
   but not on button labels or nav items?
 - What is the design philosophy behind using exactly 1 accent color per screen?
 - Why does the surface hierarchy stop at 3 levels? What would a 4th surface create?`}</StepCode>
-        <P>
-          These questions have specific answers in <Code>DESIGN.md</Code>. The{" "}
-          <Code>font-mono</Code> answer is the mono contract: everything a user can
-          edit, copy, or reference carries mono — it's a semantic signal, not a style
-          choice.
-        </P>
-        <P>
-          The accent answer is scarcity as meaning: one accent per screen means the
-          accent always marks the single most important action.
-        </P>
-        <P>
-          The 3-surface answer is depth without complexity: background → surface →
-          card covers every real layout need, and a 4th level creates ambiguity about
-          hierarchy.
-        </P>
-        <P>
-          If Claude's answers mention those concepts, it loaded correctly and will
-          reason correctly for the rest of the session. If it returns generic answers,
-          re-send the raw URLs — it likely fetched the HTML page instead.
-        </P>
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 3 — What to attach as context                               */}
+      {/* Section 3 — Install the context in your project                     */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="What to attach as context">
+      <Section label="Install the context in your project">
         <div className="space-y-4">
           <div className="space-y-1">
             <p className="font-display text-sm font-semibold">
@@ -133,10 +113,19 @@ https://raw.githubusercontent.com/mmorerasanchez/democrito/main/src/index.css`}<
         </div>
       </Section>
 
+      <Note label="Files to add to Project knowledge">
+        <P>
+          Add <Code>CLAUDE.md</Code>, <Code>DESIGN.md</Code>, and{" "}
+          <Code>design-tokens.json</Code> to the Project files. For the deepest
+          context, also add the <Code>docs/</Code> folder — it contains the theming
+          guide, token reference, and component rules as separate readable documents.
+        </P>
+      </Note>
+
       {/* ------------------------------------------------------------------ */}
-      {/* Section 2 — System prompt pattern for theming                       */}
+      {/* Section 4 — Customize with your brand                               */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="System prompt pattern for theming">
+      <Section label="Customize with your brand">
         <P>
           Use this pattern when asking Claude to generate a new theme. Attach the two
           CSS files first, then describe your brand direction.
@@ -148,35 +137,23 @@ Output only the changed CSS custom property values.`}</StepCode>
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 3 — Claude Projects setup                                   */}
+      {/* Section 5 — Play with your taste                                    */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="Claude Projects setup">
-        <P>
-          Create a Claude Project at claude.ai/projects and add the democrito context
-          files as Project knowledge. Every conversation in that project starts with
-          the full design system context already loaded — no re-attaching files, no
-          re-explaining the surface hierarchy.
-        </P>
-        <Note label="Files to add to Project knowledge">
-          <P>
-            Add <Code>CLAUDE.md</Code>, <Code>DESIGN.md</Code>, and{" "}
-            <Code>design-tokens.json</Code> to the Project files. For the deepest
-            context, also add the <Code>docs/</Code> folder — it contains the theming
-            guide, token reference, and component rules as separate readable documents.
-          </P>
-        </Note>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
-      {/* Section 4 — Example prompt                                          */}
-      {/* ------------------------------------------------------------------ */}
-      <Section label="Example prompt">
+      <Section label="Play with your taste">
         <P>
           Concrete, specific prompts produce precise output. Name the token you want
           to change, give the direction, and constrain what must stay the same.
         </P>
         <StepCode language="prompt">{`Change the accent to electric blue, keep the warm theme earth tones,
 increase border radius to 0.75rem`}</StepCode>
+        <P>Shift only the accent and keep everything else intact:</P>
+        <StepCode language="prompt">{`Shift the accent from terracotta to forest green.
+Keep the 3-surface hierarchy, monochromatic grays, and font roles unchanged.
+Output only the CSS custom property values that change.`}</StepCode>
+        <P>Explore contrast and density:</P>
+        <StepCode language="prompt">{`Increase visual contrast: darken the muted-foreground token,
+raise border opacity, and tighten spacing on the card surface.
+Stay within the warm theme — no hue changes.`}</StepCode>
       </Section>
     </div>
   );

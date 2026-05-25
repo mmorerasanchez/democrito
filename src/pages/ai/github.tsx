@@ -31,37 +31,13 @@ export default function GithubPage() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 1 — How CLAUDE.md works                                     */}
-      {/* ------------------------------------------------------------------ */}
-      <Section label="How CLAUDE.md works">
-        <P>
-          <Code>CLAUDE.md</Code> sits at the repo root. Claude Code and Cursor both
-          scan for it on session start and load its contents as persistent context. It
-          contains the atomic design architecture, design token rules, naming
-          conventions, the 3-font and 3-surface constraints, git workflow, and
-          verification commands.
-        </P>
-        <Note label="Always launch from the project directory">
-          <P>
-            The auto-read only fires when you launch the agent from the directory that
-            contains <Code>CLAUDE.md</Code>. For democrito, that is{" "}
-            <Code>app-democrito/</Code>. Launching from the repo root skips the file
-            and the session starts with no design system context.
-          </P>
-          <StepCode language="bash">{`cd democrito/app-democrito
-claude`}</StepCode>
-        </Note>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
       {/* Section 2 — The instruction file ecosystem                          */}
       {/* ------------------------------------------------------------------ */}
       <Section label="The instruction file ecosystem">
         <P>
-          <Code>CLAUDE.md</Code> is democrito's primary instruction file for Claude
-          Code. But the AI tooling landscape has consolidated around a small set of
-          instruction file formats, and a repository built for AI-native development
-          should ship — or at minimum document — the right file for each tool.
+          The AI tooling landscape has consolidated around a small set of instruction
+          file formats. A repository built for AI-native development should ship the
+          right file for each tool — or at minimum document which ones to add.
         </P>
         <div className="rounded-md border border-border overflow-hidden">
           <table className="w-full text-sm">
@@ -86,17 +62,27 @@ claude`}</StepCode>
               <tr className="border-t border-border">
                 <td className="px-4 py-2"><Code>GEMINI.md</Code></td>
                 <td className="px-4 py-2 font-body text-sm text-foreground">Gemini CLI (primary)</td>
-                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root, ~/.gemini/</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root (add this file — not yet in repo)</td>
               </tr>
               <tr className="border-t border-border">
                 <td className="px-4 py-2"><Code>.github/copilot-instructions.md</Code></td>
                 <td className="px-4 py-2 font-body text-sm text-foreground">GitHub Copilot</td>
-                <td className="px-4 py-2 font-body text-sm text-muted-foreground">.github/ directory</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Not yet in repo</td>
               </tr>
               <tr className="border-t border-border">
                 <td className="px-4 py-2"><Code>.cursor/rules/*.mdc</Code></td>
                 <td className="px-4 py-2 font-body text-sm text-foreground">Cursor (current format)</td>
-                <td className="px-4 py-2 font-body text-sm text-muted-foreground">.cursor/rules/ directory</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Not yet in repo</td>
+              </tr>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>DESIGN.md</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">Google Stitch (native), any DESIGN.md-compatible tool</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root</td>
+              </tr>
+              <tr className="border-t border-border">
+                <td className="px-4 py-2"><Code>docs/design-system.md</Code></td>
+                <td className="px-4 py-2 font-body text-sm text-foreground">Any agent — full component inventory and usage rules</td>
+                <td className="px-4 py-2 font-body text-sm text-muted-foreground">docs/ directory</td>
               </tr>
             </tbody>
           </table>
@@ -119,7 +105,7 @@ claude`}</StepCode>
       {/* ------------------------------------------------------------------ */}
       {/* Section 3 — AGENTS.md template                                      */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="AGENTS.md — minimal template for a democrito fork">
+      <Section label="AGENTS.md">
         <P>
           If you use tools beyond Claude Code, add <Code>AGENTS.md</Code> at the repo
           root. Copy the template below, add it to your fork, and every tool in the
@@ -233,7 +219,7 @@ Add a new size variant "4xl" following the existing pattern.`}</StepCode>
       {/* ------------------------------------------------------------------ */}
       {/* Section 4 — Using docs/ as agent context                            */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="Using docs/ as agent context">
+      <Section label="Docs">
         <P>
           The <Code>docs/</Code> folder contains the complete reference documentation
           for the system. Reference specific files rather than the whole folder —
@@ -241,6 +227,17 @@ Add a new size variant "4xl" following the existing pattern.`}</StepCode>
         </P>
         <Note label="Key files in docs/">
           <div className="space-y-3">
+            <div className="space-y-1">
+              <p className="font-display text-sm font-semibold">
+                <Code>docs/design-system.md</Code>
+              </p>
+              <P>
+                Full component inventory across all atomic layers — atoms, molecules,
+                organisms, and templates — with usage rules and composition patterns.
+                Use this when an agent needs to find an existing component or understand
+                what's available before creating something new.
+              </P>
+            </div>
             <div className="space-y-1">
               <p className="font-display text-sm font-semibold">
                 <Code>docs/theming.md</Code>

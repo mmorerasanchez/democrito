@@ -30,9 +30,9 @@ export default function VibeCodingPage() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 1 — The Lovable prompt block                                */}
+      {/* Section 1 — Lovable                                                 */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="The Lovable prompt block">
+      <Section label="Lovable">
         <P>
           Point your Lovable project to the live design system URL and paste this block
           into Workspace Knowledge or your project prompt. It carries the visual rules
@@ -46,30 +46,31 @@ for all visual decisions. Key rules:
 - 3-surface hierarchy: Background → Surface → Card
 - Radix UI / shadcn/ui for all component primitives
 - Warm theme is default (\`:root\`). Support Dark (\`.dark\`) and Light (\`.light\`) themes.`}</StepCode>
+        <P>To push a specific brand direction:</P>
+        <StepCode language="prompt">{`Using the democrito design system, adjust the visual to feel more editorial:
+
+- Change accent to deep teal (HSL 182° 83% 25%)
+
+- Increase border radius on cards and inputs to 0.75rem
+
+- Keep the 3-surface hierarchy and font roles unchanged
+
+Output only the CSS custom property values that change.`}</StepCode>
       </Section>
 
       {/* ------------------------------------------------------------------ */}
       {/* Section 2 — Google Stitch                                           */}
       {/* ------------------------------------------------------------------ */}
       <Section label="Google Stitch">
-        <Note label="What it is">
-          <P>
-            Stitch is Google Labs' AI-native UI design tool, powered by Gemini. It
-            generates screens and components from natural-language prompts with
-            Figma-compatible output and exported Tailwind/React code.
-          </P>
-        </Note>
-        <Note label="What to know before starting">
-          <P>
-            <Code>DESIGN.md</Code> is Google's open-source format for encoding design
-            systems as agent-readable plain text — democrito's{" "}
-            <Code>DESIGN.md</Code> follows this format exactly. Stitch reads it
-            natively as project context: import it once and every screen Stitch
-            generates applies democrito's visual rules without you specifying them per
-            prompt. Important: Stitch's export uses generic Tailwind classes. The
-            visual output will be correct; the code always needs a token mapping pass.
-          </P>
-        </Note>
+        <P>
+          <Code>DESIGN.md</Code> is Google's open-source format for encoding design
+          systems as agent-readable plain text — democrito's{" "}
+          <Code>DESIGN.md</Code> follows this format exactly. Stitch reads it
+          natively as project context: import it once and every screen Stitch
+          generates applies democrito's visual rules without you specifying them per
+          prompt. Important: Stitch's export uses generic Tailwind classes. The
+          visual output will be correct; the code always needs a token mapping pass.
+        </P>
         <div className="space-y-4">
           <div className="space-y-1">
             <p className="font-display text-sm font-semibold">Step 1 — Import DESIGN.md</p>
@@ -88,13 +89,6 @@ for all visual decisions. Key rules:
               Before generating anything, confirm Stitch loaded the reasoning layer:
             </P>
             <StepCode language="prompt">{`What is the accent color in this design system, its HSL value, and its usage rule?`}</StepCode>
-            <P>
-              Expected: terracotta, approximately HSL(18° 65% 55%), reserved for
-              primary CTAs and interactive links, 1 instance per screen maximum. If
-              Stitch returns a generic color or omits the scarcity rule, re-paste the
-              full <Code>DESIGN.md</Code> contents directly rather than using the URL
-              — some configurations fetch at generation time rather than on import.
-            </P>
           </div>
           <div className="space-y-1">
             <p className="font-display text-sm font-semibold">Step 3 — Generate with token language</p>
@@ -118,9 +112,9 @@ Closer to Linear or Raycast than to Stripe or Notion.
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 3 — Replit system prompt snippet                            */}
+      {/* Section 3 — Replit                                                  */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="Replit system prompt snippet">
+      <Section label="Replit">
         <P>
           Distilled for Replit's shorter prompt format. Paste into{" "}
           <Code>replit.md</Code> under a Design system section or include directly in
@@ -132,12 +126,20 @@ Font roles: font-display for headings and buttons, font-body for prose,
 font-mono for ALL data values, inputs, and user-editable content.
 Copy uses sentence case throughout.
 No decorative colors. Every color has a specific semantic function.`}</StepCode>
+        <P>To customize the design specifications with natural language:</P>
+        <StepCode language="prompt">{`Using the design system rules above, adjust the visual to feel warmer:
+
+increase heading weight to 700, add 0.5rem more spacing between sections,
+
+and use a slightly more saturated surface background.
+
+Keep all token names — only describe the change direction.`}</StepCode>
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section 4 — The reference-by-URL pattern                            */}
+      {/* Section 4 — Other vibe coding platforms                             */}
       {/* ------------------------------------------------------------------ */}
-      <Section label="The reference-by-URL pattern">
+      <Section label="Other vibe coding platforms">
         <P>
           Any vibe-coding tool can use the live{" "}
           <Code>democrito.design</Code> showcase as a visual reference without file
@@ -146,12 +148,6 @@ No decorative colors. Every color has a specific semantic function.`}</StepCode>
         </P>
         <StepCode language="prompt">{`Match the visual style at https://democrito.design — clean,
 data-dense, monochromatic with a single accent color.`}</StepCode>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
-      {/* Section 5 — Token mapping pass                                      */}
-      {/* ------------------------------------------------------------------ */}
-      <Section label="Token mapping pass — required after every generation">
         <P>
           Lovable, Stitch, and Replit all generate code with generic Tailwind utility
           classes — <Code>bg-neutral-900</Code>, <Code>text-orange-500</Code> — not
