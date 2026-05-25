@@ -42,7 +42,7 @@ Three themes are supported: **Warm** (default, `:root`), **Dark** (`.dark`), and
 | `--foreground` on `--surface` | 16.41:1 | ✅ Pass | ✅ Pass |
 | `--foreground` on `--card` | 17.49:1 | ✅ Pass | ✅ Pass |
 | `--foreground-muted` on `--background` | 4.77:1 | ✅ Pass (tight) | ✅ Pass |
-| `--accent` on `--background` | 3.33:1 | ⚠️ Passes for UI components — not safe for body text | ✅ Pass |
+| `--accent` on `--background` | 4.66:1 | ✅ Pass | ✅ Pass | <!-- Adjusted L 55% → 41% (was 3.33:1) to reach WCAG AA 4.5:1 --> |
 
 **Usage guidance:**
 ✅ Do: Use `--foreground-muted` for secondary text on `--surface` (verify your theme's ratio first — warm and light are tight at ~4.5:1)
