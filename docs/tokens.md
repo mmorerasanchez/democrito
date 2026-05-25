@@ -326,6 +326,41 @@ Base unit: **4px**. All spacing uses Tailwind's default scale mapped to this gri
 
 ---
 
+## Browser Chrome
+
+Tokens that control how native browser UI (scrollbars, form controls, focus rings) adapts to the active theme. These use CSS properties directly — not the `hsl(var(--x))` pattern.
+
+### `color-scheme`
+
+Set on each theme block so native browser controls render in the correct light/dark mode:
+
+| Theme | Value |
+|---|---|
+| `:root, .warm` | `light` |
+| `.dark` | `dark` |
+| `.light` | `light` |
+
+Without `color-scheme`, native scrollbars, inputs, and `<dialog>` backdrops always render light-mode regardless of the active theme class.
+
+### Scrollbar Tokens
+
+| Token | Warm | Dark | Light | Purpose |
+|---|---|---|---|---|
+| `--scrollbar-thumb` | `hsl(28 14% 76%)` | `hsl(25 8% 30%)` | `hsl(25 8% 82%)` | Draggable thumb color |
+| `--scrollbar-track` | `transparent` | `transparent` | `transparent` | Track background |
+| `--scrollbar-width` | `thin` | `thin` | `thin` | Scrollbar thickness |
+
+Applied globally via the W3C `scrollbar-color` and `scrollbar-width` properties (Baseline Widely Available). No `::-webkit-scrollbar` overrides needed.
+
+```css
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: var(--scrollbar-width);
+}
+```
+
+---
+
 ## Border Radius
 
 Based on `--radius: 0.75rem` (12px):

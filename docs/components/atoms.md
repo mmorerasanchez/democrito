@@ -36,10 +36,10 @@ Semantic heading element with design-system typography.
 
 | Level | Classes Applied |
 |---|---|
-| `h1` | `text-xl font-semibold font-display tracking-tight` |
-| `h2` | `text-lg font-medium font-display` |
+| `h1` | `text-2xl font-semibold font-display tracking-tight text-wrap-balance` |
+| `h2` | `text-xl font-medium font-display tracking-tight text-wrap-balance` |
 | `h3` | `text-md font-medium font-display` |
-| `h4` | `text-base font-medium font-display` |
+| `h4` | `text-sm font-medium font-display uppercase tracking-widest text-muted-foreground` |
 
 ### Usage
 
@@ -52,7 +52,7 @@ import { Heading } from "@/components/atoms";
 
 ### Design Tokens
 
-`font-display`, `text-xl`/`text-lg`/`text-md`/`text-base`, `tracking-tight`
+`font-display`, `text-2xl`/`text-xl`/`text-md`/`text-sm`, `tracking-tight`, `text-wrap-balance` (h1/h2 only)
 
 ### Do/Don't
 
