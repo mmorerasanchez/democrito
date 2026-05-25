@@ -16,6 +16,7 @@
 | [AI Usage](./ai-usage.md) | How to use this design system with AI coding tools (Claude, Cursor, Copilot) |
 | [Migration](./migration.md) | How to consume tokens in a new project and migrate from MUI, Chakra, Bootstrap, or Tailwind UI |
 | [Content Guidelines](./content-guidelines.md) | Voice, button labels, empty states, error messages, and AI copy anti-patterns |
+| [AI Context](./ai-context.md) | Agent entry point — reading order, decision hierarchy, and AI bias suppression rules |
 
 ## Component Reference
 
