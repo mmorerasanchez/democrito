@@ -13,7 +13,11 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), tailwindcss(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(),
+    tailwindcss(),
+    mode === "development" && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -81,6 +81,16 @@ export default function OverviewPage() {
         title="democrito — Atomic Design System for AI-Native Development"
         description="Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications."
         path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "democrito",
+          "description": "Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications.",
+          "url": "https://democrito.design",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        }}
       />
       {/* Hero */}
       <div className="space-y-5">

@@ -25,6 +25,14 @@ export default function ManifiestoPage() {
         title="Manifesto"
         description="You can only be as good as your taste — why design systems still matter in the age of generation."
         path="/manifesto"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "name": "Manifesto · democrito",
+          "description": "You can only be as good as your taste — why design systems still matter in the age of generation.",
+          "url": "https://democrito.design/manifesto",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
 
       {/* Header */}

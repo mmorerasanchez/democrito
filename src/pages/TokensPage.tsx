@@ -399,7 +399,7 @@ function downloadTokensJson() {
 /* ── Tokens Page ── */
 export default function TokensPage() {
   const [, forceUpdate] = useState(0);
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [viewportWidth, setViewportWidth] = useState(() => typeof window !== "undefined" ? window.innerWidth : 1280);
   const [query, setQuery] = useState("");
 
   // Re-render on theme class change to pick up new computed values
@@ -461,6 +461,14 @@ export default function TokensPage() {
         title="Design Tokens"
         description="90+ design tokens — colours, typography, spacing, radius, shadows. Search, copy as HSL/HEX, export as JSON."
         path="/tokens"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Design Tokens · democrito",
+          "description": "90+ design tokens — colours, typography, spacing, radius, shadows. Search, copy as HSL/HEX, export as JSON.",
+          "url": "https://democrito.design/tokens",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
       {/* Page header */}
       <div>

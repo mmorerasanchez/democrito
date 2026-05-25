@@ -11,8 +11,12 @@ const ThemeContext = createContext<ThemeContextType>({ theme: "warm", setTheme: 
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem("democrito-theme") as Theme | null;
-    return stored || "warm";
+    try {
+      const stored = localStorage.getItem("democrito-theme") as Theme | null;
+      return stored || "warm";
+    } catch {
+      return "warm";
+    }
   });
 
   useEffect(() => {

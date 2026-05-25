@@ -86,6 +86,14 @@ export default function OrganismsPage() {
         title="Organisms"
         description="19 complex UI sections — Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, and more."
         path="/organisms"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          "name": "Organisms · democrito",
+          "description": "19 complex UI sections — Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, and more.",
+          "url": "https://democrito.design/organisms",
+          "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
+        }}
       />
       <div>
         <Heading level="h1">Organisms</Heading>
