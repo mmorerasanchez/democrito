@@ -60,21 +60,6 @@ export default function GithubPage() {
                 <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root + subdirectories (nearest wins)</td>
               </tr>
               <tr className="border-t border-border">
-                <td className="px-4 py-2"><Code>GEMINI.md</Code></td>
-                <td className="px-4 py-2 font-body text-sm text-foreground">Gemini CLI (primary)</td>
-                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root (add this file — not yet in repo)</td>
-              </tr>
-              <tr className="border-t border-border">
-                <td className="px-4 py-2"><Code>.github/copilot-instructions.md</Code></td>
-                <td className="px-4 py-2 font-body text-sm text-foreground">GitHub Copilot</td>
-                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Not yet in repo</td>
-              </tr>
-              <tr className="border-t border-border">
-                <td className="px-4 py-2"><Code>.cursor/rules/*.mdc</Code></td>
-                <td className="px-4 py-2 font-body text-sm text-foreground">Cursor (current format)</td>
-                <td className="px-4 py-2 font-body text-sm text-muted-foreground">Not yet in repo</td>
-              </tr>
-              <tr className="border-t border-border">
                 <td className="px-4 py-2"><Code>DESIGN.md</Code></td>
                 <td className="px-4 py-2 font-body text-sm text-foreground">Google Stitch (native), any DESIGN.md-compatible tool</td>
                 <td className="px-4 py-2 font-body text-sm text-muted-foreground">Project root</td>

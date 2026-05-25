@@ -1,5 +1,5 @@
 import { ExternalLink } from "lucide-react";
-import { Text } from "@/components/atoms";
+import { Heading, Text } from "@/components/atoms";
 import { Card } from "@/components/ui/card";
 
 interface FileCardData {
@@ -7,6 +7,7 @@ interface FileCardData {
   role: string;
   description: string;
   githubUrl: string;
+  rawUrl: string;
 }
 
 const FILES: FileCardData[] = [
@@ -16,6 +17,7 @@ const FILES: FileCardData[] = [
     description:
       "Project stack, code conventions, architecture rules, common mistakes. Loaded automatically by Claude Code on session start.",
     githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/CLAUDE.md",
+    rawUrl: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/CLAUDE.md",
   },
   {
     filename: "DESIGN.md",
@@ -23,6 +25,7 @@ const FILES: FileCardData[] = [
     description:
       "Visual principles, colour system rationale, typography rules, spacing philosophy. The \"taste\" layer that guides aesthetic decisions.",
     githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/DESIGN.md",
+    rawUrl: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/DESIGN.md",
   },
   {
     filename: "DESIGN_SYSTEM.md",
@@ -30,15 +33,14 @@ const FILES: FileCardData[] = [
     description:
       "Complete reference of CSS custom properties, component inventory, variant specifications. The machine-readable specification.",
     githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/docs/design-system.md",
+    rawUrl: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/docs/design-system.md",
   },
 ];
 
 export function FileArchitectureSection() {
   return (
     <section className="space-y-4">
-      <h2 className="font-display text-lg font-medium tracking-tight">
-        Three-File Architecture
-      </h2>
+      <Heading level="h2">Three-file architecture</Heading>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {FILES.map((file) => (
           <Card
@@ -61,6 +63,16 @@ export function FileArchitectureSection() {
             >
               <ExternalLink className="h-3 w-3" />
               View on GitHub
+            </a>
+            <a
+              href={file.rawUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 font-mono text-2xs text-muted-foreground hover:text-accent transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="h-3 w-3" />
+              View raw
             </a>
           </Card>
         ))}
