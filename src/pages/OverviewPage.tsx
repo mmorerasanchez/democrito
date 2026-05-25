@@ -21,12 +21,12 @@ function ClaudeIcon({ className }: { className?: string }) {
 }
 
 const stats = [
-  { label: "Design Tokens", count: "90+" },
+  { label: "Design tokens", count: "90+" },
   { label: "Atoms",         count: "10"  },
   { label: "Molecules",     count: "18"  },
   { label: "Organisms",     count: "19"  },
   { label: "Templates",      count: "7"   },
-  { label: "UI Primitives", count: "40+" },
+  { label: "UI primitives", count: "40+" },
 ];
 
 const principles = [
@@ -53,7 +53,7 @@ const paths = [
     icon: ClaudeIcon,
     name: "Claude",
     badge: "Anthropic",
-    desc: "Attach design-tokens.json as context and describe your brand. Claude generates a complete new theme in natural language.",
+    desc: "Attach context files and describe your brand to create a customized design system.",
   },
   {
     to: "/ai/vibe-coding",
@@ -65,9 +65,9 @@ const paths = [
   {
     to: "/ai/github",
     icon: Github,
-    name: "GitHub",
-    badge: "Open Source",
-    desc: "Edit src/index.css directly. Two variables change the whole personality.",
+    name: "Terminal",
+    badge: "GitHub",
+    desc: "Edit src/index.css directly, modify context files with your brand and get started with the baseline made.",
   },
 ];
 
@@ -101,9 +101,9 @@ export default function OverviewPage() {
           </h1>
           <Badge variant="outline">v3</Badge>
         </div>
-        <Text size="lg" variant="muted" className="max-w-prose">
-          Agnostic, hand-crafted atomic design system for AI-native apps. Three themes, structured tokens, accessible components. Retheme via Claude, Lovable, Replit, or terminal.
-        </Text>
+        <p className="font-body text-base text-muted-foreground max-w-prose">
+          Agnostic, hand-crafted atomic design system for AI-native apps: 3 themes, structured tokens, accessible components; adaptable via Claude, vibe coding platforms or terminal.
+        </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button onClick={() => window.open(REPO_URL, "_blank")}>
             <Star className="h-4 w-4" />
@@ -125,27 +125,35 @@ export default function OverviewPage() {
         <Text mono size="xs" variant="muted">
           Open source · MIT License · Built with React + Tailwind + shadcn/ui
         </Text>
+        <div id="hero-sentinel" aria-hidden="true" className="h-px" />
       </div>
-      <div id="hero-sentinel" aria-hidden="true" className="h-px" />
 
       {/* Why */}
       <div className="space-y-4">
         <Heading level="h2">Why</Heading>
         <Text variant="muted" size="sm" className="max-w-prose">
           Around 400 BC, Democritus proposed something radical: that all matter is made of
-          invisible, indivisible units he called <em>atomos</em> — the uncuttable. They can't be
-          simplified further. They combine to form everything.
+          invisible, indivisible units he called <em>atoms</em> that combine to form everything.
         </Text>
         <Text variant="muted" size="sm" className="max-w-prose">
-          Twenty-five centuries later, Brad Frost borrowed the metaphor for interfaces. Buttons
-          are atoms. Forms are molecules. Pages are built from organisms. The methodology is called
-          Atomic Design — and the connection back to Democritus is in the name.
+          Twenty-five centuries later, Brad Frost borrowed the concept for design interfaces:
+          buttons are atoms, forms are molecules, pages are built from organisms. The methodology
+          is called{" "}
+          <a
+            href="https://atomicdesign.bradfrost.com/chapter-2/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground underline decoration-border underline-offset-2 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            atomic design
+          </a>{" "}
+          — and the connection back to Democritus is in the name.
         </Text>
         <Text variant="muted" size="sm" className="max-w-prose">
-          democrito carries that thread forward, into the age of AI-assisted development. The atoms
-          are fixed. The combinations are what you build. And now the ones doing the composing
-          aren't just designers and developers — they're AI agents, vibe-coding tools, and language
-          models that need the rules written down to follow them.
+          democrito carries that thread forward into the age of AI-assisted development to allow
+          designers build consistent design systems with craft and taste — and besides them, there
+          are now AI agents, vibe-coding tools, and LLMs that need the rules to create delightful
+          AI products.
         </Text>
       </div>
 
@@ -154,14 +162,14 @@ export default function OverviewPage() {
         <div className="space-y-2">
           <Heading level="h2">How</Heading>
           <Text variant="muted" size="sm" className="max-w-prose">
-            Three paths: install via the shadcn registry in one command, copy the token
-            layer manually for any non-React stack, or drop CLAUDE.md into your repo root
+            Install via the shadcn registry in one command, copy the token layer manually for any
+            non-React stack, and customize via Claude, vibe coding platform, or your favorite LLM
             to give any AI agent immediate design context — no build step required.
           </Text>
         </div>
         <QuickStartSection showHeading={false} />
         <div className="space-y-3">
-          <Heading level="h3">Make it yours — three paths</Heading>
+          <h3 className="font-display text-base font-medium">Customize with your brand</h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {paths.map((item) => (
               <Link
@@ -203,8 +211,8 @@ export default function OverviewPage() {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {stats.map((s) => (
               <div key={s.label} className="rounded-md border border-border bg-card p-4 space-y-1">
-                <p className="font-mono text-xl font-medium text-foreground">{s.count}</p>
-                <p className="font-display text-xs font-medium text-muted-foreground uppercase tracking-widest">{s.label}</p>
+                <p className="font-mono text-xl font-medium text-accent">{s.count}</p>
+                <p className="font-display text-xs text-muted-foreground">{s.label}</p>
               </div>
             ))}
           </div>
@@ -227,7 +235,7 @@ export default function OverviewPage() {
                   <p className="font-display text-sm font-medium group-hover:text-accent transition-colors">{s.name}</p>
                   <p className="font-body text-xs text-muted-foreground line-clamp-2">{s.desc}</p>
                 </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-0.5" />
+                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity mt-0.5" />
               </Link>
             ))}
           </div>
@@ -235,7 +243,7 @@ export default function OverviewPage() {
 
         {/* Design Principles */}
         <div>
-          <Heading level="h3" className="mb-4">Design Principles</Heading>
+          <Heading level="h3" className="mb-4">Design principles</Heading>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {principles.map((p, i) => (
               <div key={p.name} className="flex gap-3 rounded-md border border-border bg-card p-4">
