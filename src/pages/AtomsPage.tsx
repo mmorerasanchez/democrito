@@ -71,6 +71,13 @@ export default function AtomsPage() {
   const [switchOn, setSwitchOn] = useState(false);
   const [checked, setChecked] = useState(false);
 
+  const categories = [
+    { id: "cat-form",     label: "Form & Input",        count: 4 },
+    { id: "cat-labels",   label: "Labels & typography",  count: 4 },
+    { id: "cat-feedback", label: "Feedback & state",     count: 4 },
+    { id: "cat-utility",  label: "Utilities",            count: 3 },
+  ];
+
   return (
     <div className="space-y-12">
       <PageMeta
@@ -91,7 +98,22 @@ export default function AtomsPage() {
         <p className="mt-1 font-body text-base text-muted-foreground">
           Base-level components — the building blocks of the design system.
         </p>
+        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">10 atoms · 4 categories</p>
       </div>
+
+      {/* ── CATEGORY JUMP NAV ── */}
+      <nav className="flex flex-wrap gap-2">
+        {categories.map((cat) => (
+          <a
+            key={cat.id}
+            href={`#${cat.id}`}
+            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-3 py-1.5 font-display text-xs font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            {cat.label}
+            <span className="font-mono text-2xs text-muted-foreground">{cat.count}</span>
+          </a>
+        ))}
+      </nav>
 
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Form & Input                                      */}

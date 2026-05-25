@@ -48,6 +48,7 @@ export default function TemplatesPage() {
         <p className="mt-1 font-body text-base text-muted-foreground">
           Page layout templates that define content zones and responsive behavior. Templates compose organisms into full-page structures.
         </p>
+        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">7 templates</p>
       </div>
 
       <TemplatePreview
