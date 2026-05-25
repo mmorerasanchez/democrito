@@ -5,6 +5,20 @@
 
 ---
 
+## Button
+
+> `src/components/ui/button.tsx` — shadcn/ui primitive used throughout the system.
+
+### Do/Don't
+
+✅ Do: Use `font-display` (Plus Jakarta Sans) for all button labels — it's the display font for all interactive controls.
+✅ Do: Use one `primary` variant per view maximum — primary draws the eye and must be the single dominant action.
+❌ Don't: Never place two primary buttons adjacent to each other — the visual weight creates ambiguity about which action is preferred.
+❌ Don't: Never use the `ghost` variant for destructive actions — use the `destructive` variant so the risk is visually communicated.
+❌ Don't: Never add an article to a button label — write "Save", not "Save the file"; labels must be imperative and minimal.
+
+---
+
 ## Heading
 
 Semantic heading element with design-system typography.
@@ -40,9 +54,12 @@ import { Heading } from "@/components/atoms";
 
 `font-display`, `text-xl`/`text-lg`/`text-md`/`text-base`, `tracking-tight`
 
-### Rules
+### Do/Don't
 
-- No icons inside headings — use `Text` or a wrapper instead.
+✅ Do: Use `font-display` (Plus Jakarta Sans) for all heading elements — every variant applies it automatically, so no extra class is needed.
+✅ Do: Use the `as` prop to decouple visual level from semantic HTML when SEO requires a different tag order.
+❌ Don't: Never use `h4` for visually prominent content — it renders as uppercase small-caps and is reserved for field labels and section subheadings.
+❌ Don't: Never place icons inside a `Heading` — wrap in a flex container using `Text` or a `div` instead.
 
 ---
 
@@ -84,6 +101,13 @@ import { Text } from "@/components/atoms";
 
 `font-body` (default), `font-mono` (when `mono`), `text-foreground`, `text-muted-foreground`, `text-foreground-subtle`, `text-accent`, `text-error`, `text-success`
 
+### Do/Don't
+
+✅ Do: Use the `mono` prop for any inline data values, version strings, or user-generated content mixed with body text — it switches to `font-mono` (JetBrains Mono).
+✅ Do: Use `variant="muted"` for secondary and supporting information — it renders `text-muted-foreground` which respects all three themes.
+❌ Don't: Never use `variant="accent"` for long-form readable text — accent is a brand highlight color, not a reading color; reserve it for short interactive or emphasized values.
+❌ Don't: Never hardcode color classes directly on a `Text` element — always use the `variant` prop so the value stays theme-consistent.
+
 ---
 
 ## Code
@@ -109,6 +133,13 @@ import { Code } from "@/components/atoms";
 
 `rounded-sm`, `border-border`, `bg-muted`, `font-mono`, `text-sm`, `text-accent`
 
+### Do/Don't
+
+✅ Do: Use `Code` for all inline code references, variable names, and `{{variable}}` tokens in prose — it applies the correct accent background and monospace styling.
+✅ Do: Use `Code` for single-line values only — it is an inline element and does not scroll.
+❌ Don't: Never substitute `<Text mono>` for `Code` — `Text mono` applies only the font; `Code` also adds the background, border, and accent color.
+❌ Don't: Never put multi-line content in `Code` — use `CodeBlock` for multi-line or copyable code.
+
 ---
 
 ## Kbd
@@ -133,6 +164,13 @@ import { Kbd } from "@/components/atoms";
 ### Design Tokens
 
 `border-border`, `bg-muted`, `font-mono`, `text-2xs`, `text-muted-foreground`, `shadow-[0_1px_0_1px_hsl(var(--border))]`
+
+### Do/Don't
+
+✅ Do: Use `Kbd` for all keyboard shortcut indicators in the UI — it applies the correct border-shadow that mimics a physical key.
+✅ Do: Wrap multi-key shortcuts in a flex container with `gap-0.5` as shown in the usage example.
+❌ Don't: Never use `Code` or `Tag` to represent keyboard shortcuts — only `Kbd` has the correct visual affordance.
+❌ Don't: Never put full words inside `Kbd` — use standard abbreviated key names (⌘, ⌃, ⇧, Esc, Enter, etc.).
 
 ---
 
@@ -178,6 +216,14 @@ import { Tag } from "@/components/atoms";
 
 `rounded-sm`, `font-mono`, `text-xs`, `border-border`, `bg-muted`, `text-accent`, all `anatomy-*` tokens
 
+### Do/Don't
+
+✅ Do: Use `font-mono` for tags that display user-inputted values or variables — it distinguishes data from prose.
+✅ Do: Use the `color` prop with anatomy field names (`"role"`, `"task"`, `"context"`, etc.) for prompt engineering contexts — it maps to the correct `category-*` token.
+✅ Do: Use `variant="removable"` when the user can delete a tag — it renders the ✕ button and wires the `onRemove` callback.
+❌ Don't: Never use tags as navigation controls — use `TabNav` molecule instead; tags are labels, not interactive selectors.
+❌ Don't: Never mix anatomy color-coded tags with default-styled tags in the same list — pick one visual system per container.
+
 ---
 
 ## Spinner
@@ -219,6 +265,14 @@ import { Spinner, ThinkingDots } from "@/components/atoms";
 
 `border-muted-foreground`, `border-t-accent`, `animate-spin` (Spinner); `bg-accent`, `animate-ai-pulse` (ThinkingDots)
 
+### Do/Don't
+
+✅ Do: Use `Spinner` for determinate loading states where a specific element is fetching data.
+✅ Do: Use `ThinkingDots` specifically for AI generation and streaming states — the three-dot pulse animation carries AI-processing semantics.
+✅ Do: Match `Spinner` size to its context: `"sm"` for inline use, `"md"` for panel-level loading, `"lg"` for full-screen skeleton replacement.
+❌ Don't: Never use `ThinkingDots` outside AI generation contexts — the animation implies model processing and will confuse users when used for generic loading.
+❌ Don't: Never render `Spinner` without surrounding context that indicates what is loading — the component provides `role="status"` but the parent must describe the state.
+
 ---
 
 ## Link
@@ -247,6 +301,13 @@ import { Link } from "@/components/atoms";
 
 `font-body`, `text-accent`, `hover:underline`
 
+### Do/Don't
+
+✅ Do: Always set `external={true}` for links pointing outside the application — it opens a new tab and adds the ↗ indicator that sets user expectations.
+✅ Do: Use `Link` for text-embedded navigation rather than a hand-styled `<a>` tag — it applies the correct `text-accent` and `hover:underline` tokens.
+❌ Don't: Never use `Link` as a button — when an action doesn't navigate to a URL, use `Button` instead.
+❌ Don't: Never omit the `external` prop on cross-origin links — the missing ↗ indicator misleads users who expect in-app navigation.
+
 ---
 
 ## Logo
@@ -268,6 +329,13 @@ import { Logo } from "@/components/atoms";
 
 <Logo size={32} />
 ```
+
+### Do/Don't
+
+✅ Do: Let `Logo` handle theme-awareness automatically — it selects `logo-dark.png` for the dark theme and `logo-light-warm.png` for warm/light without any extra logic.
+✅ Do: Use the `size` prop to control dimensions rather than adding `w-` or `h-` Tailwind classes.
+❌ Don't: Never import raw logo image files directly — always use the `Logo` atom to get correct theme-aware behavior across all three themes.
+❌ Don't: Never apply `filter`, `opacity`, or `mix-blend-mode` via `className` to adjust logo appearance — these break theme contrast guarantees.
 
 ---
 
@@ -298,6 +366,13 @@ import { CodeBlock } from "@/components/atoms";
 
 `bg-surface`, `font-mono`, `text-foreground-muted`
 
+### Do/Don't
+
+✅ Do: Use `bg-surface` (not `bg-card`) — it's baked into the component and must not be overridden; surface reads as content, not an elevated container.
+✅ Do: Provide a `language` label for every code block with a known language — it renders as a top-left label and improves scannability.
+❌ Don't: Never use `CodeBlock` for a single short inline value — use `Code` instead; `CodeBlock` is for multi-line or copyable content only.
+❌ Don't: Never override the horizontal scroll with `white-space: normal` or flex wrapping — code must scroll, not wrap.
+
 ---
 
 ## CopyButton
@@ -327,3 +402,44 @@ import { CopyButton } from "@/components/atoms";
 ### Design Tokens
 
 `bg-accent`, `text-accent-foreground` (primary); `text-foreground-muted` (ghost)
+
+### Do/Don't
+
+✅ Do: Use `ghost` variant when overlaying on a `CodeBlock` — it renders as an icon-only button that blends into the surface background.
+✅ Do: Use `primary` variant for standalone "Copy X" actions in prose, empty states, or action rows.
+❌ Don't: Never use the `primary` variant inside a `CodeBlock` — the accent background clashes with the `bg-surface` container and breaks visual hierarchy.
+❌ Don't: Never omit the `value` prop — it is the text that gets written to the clipboard; without it the button does nothing.
+
+---
+
+## StatusBadge
+
+Lifecycle status badge for the four prompt states: draft, testing, production, archived.
+
+### Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `status` | `"draft" \| "testing" \| "production" \| "archived"` | — | Lifecycle status |
+| `className` | `string` | — | Additional classes |
+
+### Usage
+
+```tsx
+import { StatusBadge } from "@/components/atoms";
+
+<StatusBadge status="production" />
+<StatusBadge status="draft" />
+```
+
+### Design Tokens
+
+`bg-status-draft/10`, `bg-status-testing/10`, `bg-status-production/10`, `bg-status-archived/10` and matching `text-status-*` tokens.
+
+### Do/Don't
+
+✅ Do: Use semantic `status-*` tokens only for lifecycle status — they map to the correct success/warning/error/info visual meaning per state.
+✅ Do: Use only the four defined lifecycle statuses (draft/testing/production/archived) — do not extend the `status` type ad-hoc.
+❌ Don't: Never use `--accent` for status badges — accent is a brand color, not a status color; it carries no semantic meaning about lifecycle state.
+❌ Don't: Never use more than one `StatusBadge` per list item — multiple status badges on one row create ambiguity.
+❌ Don't: Never substitute a `Tag` for `StatusBadge` when displaying lifecycle status — they use different token sets and `Tag` does not carry the correct semantic weight.
