@@ -11,20 +11,20 @@ interface InstallPath {
 
 const PATHS: InstallPath[] = [
   {
-    title: "shadcn Registry",
+    title: "shadcn registry",
     recommended: true,
     description: "Installs the component registry and drops the AI context files into your project root.",
     code: INSTALL_COMMAND,
     language: "bash",
   },
   {
-    title: "Git Clone",
+    title: "Git clone",
     description: "Clone the full repo — useful if you want to browse, fork, or contribute.",
     code: "git clone https://github.com/mmorerasanchez/democrito.git",
     language: "bash",
   },
   {
-    title: "Manual Download",
+    title: "Manual download",
     description: "Download CLAUDE.md and DESIGN.md from the repo and drop them into your project root.",
     code: "https://github.com/mmorerasanchez/democrito",
     language: "url",
@@ -60,6 +60,18 @@ export function QuickStartSection({ showHeading = true }: QuickStartSectionProps
               {path.description}
             </Text>
             <CodeBlock code={path.code} language={path.language} />
+            {path.recommended && (
+              <div className="flex justify-end">
+                <a
+                  href="https://democrito.design/r/democrito.json"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-2xs text-muted-foreground transition-colors hover:text-accent"
+                >
+                  registry.json ↗
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>

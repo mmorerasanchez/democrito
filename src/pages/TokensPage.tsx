@@ -476,6 +476,7 @@ export default function TokensPage() {
         <p className="mt-1 font-body text-base text-muted-foreground">
           The complete token reference for this design system.
         </p>
+        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">90+ tokens</p>
       </div>
 
       {/* Toolbar: search + export */}

@@ -40,7 +40,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
-      <SidebarContent className="pt-4">
+      <SidebarContent className="pt-6">
         {/* Documentation */}
         <SidebarGroup>
           <SidebarGroupLabel className="font-mono text-2xs uppercase tracking-widest text-muted-foreground">
