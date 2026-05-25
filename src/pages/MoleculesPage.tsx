@@ -23,11 +23,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Home, FileText, Settings, BarChart3, Users, Search, Lock, ChevronDown, ChevronUp } from "lucide-react";
 
+function CategoryHeader({ id, title, description, count }: { id: string; title: string; description: string; count: number }) {
+  return (
+    <div id={id} className="scroll-mt-6 border-t border-border pt-8">
+      <div className="flex items-baseline gap-3">
+        <Heading level="h2">{title}</Heading>
+        <span className="font-mono text-2xs text-muted-foreground">{count} components</span>
+      </div>
+      <p className="mt-0.5 font-body text-sm text-muted-foreground">{description}</p>
+    </div>
+  );
+}
+
 function Section({ id, title, description, composedOf, children }: { id: string; title: string; description: string; composedOf?: string; children: React.ReactNode }) {
   return (
     <section id={id} className="space-y-4">
       <div>
-        <Heading level="h2">{title}</Heading>
+        <Heading level="h3">{title}</Heading>
         <p className="font-body text-sm text-muted-foreground">{description}</p>
         {composedOf && (
           <p className="mt-1 font-mono text-2xs text-accent">Composed of: {composedOf}</p>
@@ -59,7 +71,7 @@ function TabNavDemo() {
 function SubSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="space-y-3">
-      <h3 className="font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">{title}</h3>
+      <h3 className="font-mono text-2xs font-medium uppercase tracking-widest text-muted-foreground">{title}</h3>
       {children}
     </div>
   );
@@ -104,6 +116,11 @@ export default function MoleculesPage() {
         </p>
       </div>
 
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Form & Input                                      */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-form" title="Form & Input" description="Data entry, search, and parameter controls." count={5} />
+
       {/* ── FORM FIELD ── */}
       <Section id="form-field" title="Form Field" description="Label + Input + Helper/Error text. Vertical layout with consistent spacing." composedOf="Label + Input/Textarea/Select + Helper/Error text">
         <SubSection title="Variants">
@@ -136,6 +153,42 @@ export default function MoleculesPage() {
         <CodeBlock>{`<SearchBar value={search} onChange={setSearch} placeholder="..." showShortcut />`}</CodeBlock>
       </Section>
 
+      {/* ── PARAMETER CONTROL ── */}
+      <Section id="parameter-control" title="Parameter Control" description="Labeled slider + numeric input for model parameters like temperature and top_p." composedOf="Label + Slider + Input">
+        <div className="max-w-sm space-y-4">
+          <ParameterControl label="Temperature" value={temperature} onChange={setTemperature} min={0} max={2} step={0.01} />
+          <ParameterControl label="Top P" value={topP} onChange={setTopP} min={0} max={1} step={0.01} />
+          <ParameterControl label="Max Tokens" value={2048} min={1} max={8192} step={1} unit="tok" />
+        </div>
+        <CodeBlock>{`<ParameterControl label="Temperature" value={0.7} onChange={fn} min={0} max={2} step={0.01} />`}</CodeBlock>
+      </Section>
+
+      {/* ── FIELD HEADER ── */}
+      <Section id="field-header" title="Field Header" description="Header bar for a labeled field section with colored dot, label, token count, and actions." composedOf="Dot + Label + TokenCounter + Actions slot">
+        <div className="space-y-2 max-w-lg">
+          <FieldHeader field="role" label="Role" tokenCount={120} required />
+          <FieldHeader field="task" label="Task" tokenCount={340} actions={<Button variant="ghost" size="sm">Edit</Button>} />
+          <FieldHeader field="constraints" label="Constraints" tokenCount={80} />
+          <FieldHeader field="examples" label="Examples" tokenCount={3800} tokenMax={4000} />
+        </div>
+        <CodeBlock>{`<FieldHeader field="role" label="Role" tokenCount={120} required actions={...} />`}</CodeBlock>
+      </Section>
+
+      {/* ── VARIABLE EDITOR ROW ── */}
+      <Section id="variable-editor-row" title="Variable Editor Row" description="Name/value input pair with delete button and highlight state for variable management." composedOf="Input (name) + Input (value) + Delete Button">
+        <div className="max-w-lg space-y-1">
+          <VariableEditorRow name={varName} value={varValue} onNameChange={setVarName} onValueChange={setVarValue} />
+          <VariableEditorRow name="company" value="Acme Corp" highlighted />
+          <VariableEditorRow name="role" value="" />
+        </div>
+        <CodeBlock>{`<VariableEditorRow name="user" value="John" highlighted onDelete={fn} />`}</CodeBlock>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Navigation                                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-navigation" title="Navigation" description="Sidebar items, breadcrumbs, and tab navigation." count={3} />
+
       {/* ── NAV ITEM ── */}
       <Section id="nav-item" title="Nav Item" description="Sidebar navigation item with icon, label, optional badge count." composedOf="Icon + Label + Badge count">
         <SubSection title="States">
@@ -155,29 +208,6 @@ export default function MoleculesPage() {
           </div>
         </SubSection>
         <CodeBlock>{`<NavItem icon={Home} label="Dashboard" active count={12} collapsed disabled />`}</CodeBlock>
-      </Section>
-
-      {/* ── STAT CARD ── */}
-      <Section id="stat-card" title="Stat Card" description="KPI display with label, mono value, and trend indicator." composedOf="Label + Value (font-mono) + Trend">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="Total Prompts" value="1,247" trend={{ direction: "up", value: "+12.5%" }} />
-          <StatCard label="Evaluations" value="384" trend={{ direction: "down", value: "-3.2%" }} />
-          <StatCard label="Avg Score" value="87.3" trend={{ direction: "neutral", value: "0.0%" }} />
-          <StatCard label="Active Users" value="23" trend={{ direction: "up", value: "+2" }} />
-        </div>
-        <CodeBlock>{`<StatCard label="Total Prompts" value="1,247" trend={{ direction: "up", value: "+12.5%" }} />`}</CodeBlock>
-      </Section>
-
-      {/* ── AVATAR GROUP ── */}
-      <Section id="avatar-group" title="Avatar Group" description="Avatar with name and optional role text." composedOf="Avatar + Name + Role text">
-        <SubSection title="Sizes">
-          <div className="space-y-4">
-            <AvatarGroup name="Mariano R." role="Designer" size="sm" status="online" />
-            <AvatarGroup name="Jane Doe" role="Engineer" size="md" status="busy" />
-            <AvatarGroup name="Alex Kim" role="Product Manager" size="lg" status="offline" />
-          </div>
-        </SubSection>
-        <CodeBlock>{`<AvatarGroup name="Mariano" role="Designer" size="md" status="online" />`}</CodeBlock>
       </Section>
 
       {/* ── BREADCRUMB ── */}
@@ -202,6 +232,40 @@ export default function MoleculesPage() {
         <CodeBlock>{`<BreadcrumbNav items={[{ label: "Library", href: "#" }, { label: "v3" }]} maxItems={4} />`}</CodeBlock>
       </Section>
 
+      {/* ── TAB NAV ── */}
+      <Section id="tab-nav" title="Tab Nav" description="Horizontal tab navigation bar with active state and optional disabled tabs. Used for settings, detail views, and section navigation." composedOf="Button-like tabs + active highlight">
+        <TabNavDemo />
+        <CodeBlock>{`<TabNav items={[{ label: "Profile", value: "profile" }, { label: "Variables", value: "vars", icon: Lock, disabled: true }]} value={active} onValueChange={setActive} />`}</CodeBlock>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Data & Display                                    */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-data" title="Data & Display" description="Stats, identity, tokens, variables, and diff views." count={5} />
+
+      {/* ── STAT CARD ── */}
+      <Section id="stat-card" title="Stat Card" description="KPI display with label, mono value, and trend indicator." composedOf="Label + Value (font-mono) + Trend">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard label="Total Prompts" value="1,247" trend={{ direction: "up", value: "+12.5%" }} />
+          <StatCard label="Evaluations" value="384" trend={{ direction: "down", value: "-3.2%" }} />
+          <StatCard label="Avg Score" value="87.3" trend={{ direction: "neutral", value: "0.0%" }} />
+          <StatCard label="Active Users" value="23" trend={{ direction: "up", value: "+2" }} />
+        </div>
+        <CodeBlock>{`<StatCard label="Total Prompts" value="1,247" trend={{ direction: "up", value: "+12.5%" }} />`}</CodeBlock>
+      </Section>
+
+      {/* ── AVATAR GROUP ── */}
+      <Section id="avatar-group" title="Avatar Group" description="Avatar with name and optional role text." composedOf="Avatar + Name + Role text">
+        <SubSection title="Sizes">
+          <div className="space-y-4">
+            <AvatarGroup name="Mariano R." role="Designer" size="sm" status="online" />
+            <AvatarGroup name="Jane Doe" role="Engineer" size="md" status="busy" />
+            <AvatarGroup name="Alex Kim" role="Product Manager" size="lg" status="offline" />
+          </div>
+        </SubSection>
+        <CodeBlock>{`<AvatarGroup name="Mariano" role="Designer" size="md" status="online" />`}</CodeBlock>
+      </Section>
+
       {/* ── TOKEN COUNTER ── */}
       <Section id="token-counter" title="Token Counter" description="Token count with thin progress bar. Color by threshold: safe/warning/danger." composedOf="Text (font-mono) + Progress (60px×3px)">
         <div className="flex flex-wrap items-center gap-8">
@@ -213,32 +277,6 @@ export default function MoleculesPage() {
         <CodeBlock>{`<TokenCounter current={1200} max={4000} compact />`}</CodeBlock>
       </Section>
 
-      {/* ── EMPTY STATE ── */}
-      <Section id="empty-state" title="Empty State" description="Centered placeholder for empty views with title, description, and CTA." composedOf="Title + Description + CTA Button">
-        <EmptyState
-          title="No items yet"
-          description="Create your first item to get started."
-          action={{ label: "Create Item", onClick: () => {} }}
-        />
-        <CodeBlock>{`<EmptyState title="..." description="..." action={{ label: "Create", onClick: fn }} />`}</CodeBlock>
-      </Section>
-
-      {/* ── TAB NAV ── */}
-      <Section id="tab-nav" title="Tab Nav" description="Horizontal tab navigation bar with active state and optional disabled tabs. Used for settings, detail views, and section navigation." composedOf="Button-like tabs + active highlight">
-        <TabNavDemo />
-        <CodeBlock>{`<TabNav items={[{ label: "Profile", value: "profile" }, { label: "Variables", value: "vars", icon: Lock, disabled: true }]} value={active} onValueChange={setActive} />`}</CodeBlock>
-      </Section>
-
-      {/* ── PARAMETER CONTROL ── */}
-      <Section id="parameter-control" title="Parameter Control" description="Labeled slider + numeric input for model parameters like temperature and top_p." composedOf="Label + Slider + Input">
-        <div className="max-w-sm space-y-4">
-          <ParameterControl label="Temperature" value={temperature} onChange={setTemperature} min={0} max={2} step={0.01} />
-          <ParameterControl label="Top P" value={topP} onChange={setTopP} min={0} max={1} step={0.01} />
-          <ParameterControl label="Max Tokens" value={2048} min={1} max={8192} step={1} unit="tok" />
-        </div>
-        <CodeBlock>{`<ParameterControl label="Temperature" value={0.7} onChange={fn} min={0} max={2} step={0.01} />`}</CodeBlock>
-      </Section>
-
       {/* ── VARIABLE HIGHLIGHT ── */}
       <Section id="variable-highlight" title="Variable Highlight" description="Inline styled {{variable}} token with click interaction and unresolved state." composedOf="Styled button with mono text">
         <div className="flex flex-wrap items-center gap-3">
@@ -248,17 +286,6 @@ export default function MoleculesPage() {
           <VariableHighlight name="clickable" onClick={(n) => alert(`Clicked: ${n}`)} />
         </div>
         <CodeBlock>{`<VariableHighlight name="user_name" resolvedValue="John" unresolved onClick={fn} />`}</CodeBlock>
-      </Section>
-
-      {/* ── FIELD HEADER ── */}
-      <Section id="field-header" title="Field Header" description="Header bar for a labeled field section with colored dot, label, token count, and actions." composedOf="Dot + Label + TokenCounter + Actions slot">
-        <div className="space-y-2 max-w-lg">
-          <FieldHeader field="role" label="Role" tokenCount={120} required />
-          <FieldHeader field="task" label="Task" tokenCount={340} actions={<Button variant="ghost" size="sm">Edit</Button>} />
-          <FieldHeader field="constraints" label="Constraints" tokenCount={80} />
-          <FieldHeader field="examples" label="Examples" tokenCount={3800} tokenMax={4000} />
-        </div>
-        <CodeBlock>{`<FieldHeader field="role" label="Role" tokenCount={120} required actions={...} />`}</CodeBlock>
       </Section>
 
       {/* ── DIFF LINE ── */}
@@ -273,6 +300,21 @@ export default function MoleculesPage() {
         <CodeBlock>{`<DiffLine lineNumber={1} type="added" text="New line content" />`}</CodeBlock>
       </Section>
 
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CATEGORY: Activity & Status                                 */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <CategoryHeader id="cat-activity" title="Activity & Status" description="Empty states, feed items, and run history." count={3} />
+
+      {/* ── EMPTY STATE ── */}
+      <Section id="empty-state" title="Empty State" description="Centered placeholder for empty views with title, description, and CTA." composedOf="Title + Description + CTA Button">
+        <EmptyState
+          title="No items yet"
+          description="Create your first item to get started."
+          action={{ label: "Create Item", onClick: () => {} }}
+        />
+        <CodeBlock>{`<EmptyState title="..." description="..." action={{ label: "Create", onClick: fn }} />`}</CodeBlock>
+      </Section>
+
       {/* ── ACTIVITY FEED ITEM ── */}
       <Section id="activity-feed-item" title="Activity Feed Item" description="A single row in an activity feed showing user, action, target, and timestamp." composedOf="Avatar + User + Badge + Target + Timestamp">
         <div className="max-w-lg">
@@ -283,16 +325,6 @@ export default function MoleculesPage() {
           <ActivityFeedItem user="Chris" type="commented" target="API Docs Generator" timestamp="5h ago" detail="Looks good, ready for production" />
         </div>
         <CodeBlock>{`<ActivityFeedItem user="Mariano" type="created" target="Bot" timestamp="2m ago" detail="..." />`}</CodeBlock>
-      </Section>
-
-      {/* ── VARIABLE EDITOR ROW ── */}
-      <Section id="variable-editor-row" title="Variable Editor Row" description="Name/value input pair with delete button and highlight state for variable management." composedOf="Input (name) + Input (value) + Delete Button">
-        <div className="max-w-lg space-y-1">
-          <VariableEditorRow name={varName} value={varValue} onNameChange={setVarName} onValueChange={setVarValue} />
-          <VariableEditorRow name="company" value="Acme Corp" highlighted />
-          <VariableEditorRow name="role" value="" />
-        </div>
-        <CodeBlock>{`<VariableEditorRow name="user" value="John" highlighted onDelete={fn} />`}</CodeBlock>
       </Section>
 
       {/* ── RUN HISTORY ITEM ── */}
