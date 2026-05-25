@@ -28,24 +28,28 @@ Full application shell with collapsible sidebar, top bar, and routed content are
 
 **Composes**: `SidebarNav` (organism), `TopBar` (organism), `ThemeToggle`, React Router `Outlet`
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| — | — | — | No props — reads route state from React Router |
+No external props — manages sidebar collapsed/expanded state internally and reads route state from React Router.
 
-**Behavior:**
-- Manages sidebar collapsed/expanded state
-- Mobile: sidebar renders as overlay drawer with backdrop
-- Reads `?project=` search param for active project highlighting
-- Maps route paths to sidebar nav items
-
-**When to use:** Wrap all authenticated `/app/*` routes.
+| Internal State | Type | Description |
+|---|---|---|
+| `collapsed` | `boolean` | Sidebar collapse; toggled via `SidebarNav` |
+| `mobileOpen` | `boolean` | Mobile drawer visibility; toggled via `TopBar` menu button |
 
 ```tsx
+// Used as a route layout element — no props
 <Route element={<AppShell />}>
   <Route path="library" element={<LibraryPage />} />
   <Route path="settings" element={<SettingsPage />} />
 </Route>
 ```
+
+**Responsive:** Mobile (`< lg`) — sidebar hidden, rendered as overlay drawer with `bg-background/80` backdrop. Desktop (`lg+`) — sidebar is `relative` and always visible (`lg:translate-x-0`).
+
+**Design Tokens:** `--sidebar-width`, `--sidebar-collapsed`, `--header-height`, `z-overlay`, `z-modal`
+
+**Rules:**
+- Wrap all authenticated `/app/*` routes with this template.
+- Do not pass children directly — page content renders via `<Outlet />`.
 
 ---
 
@@ -57,18 +61,14 @@ Reusable page structures for different content types.
 
 ## DashboardLayout
 
-Overview page template with optional header, stats row, and main content grid.
+Overview page template. Optional header → stats row → main content grid; constrained to `max-w-6xl` and centered.
 
-**Slots:**
-
-| Prop | Type | Required | Description |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `header` | `ReactNode` | No | Welcome section or page title |
-| `stats` | `ReactNode` | No | KPI stats row (e.g. `DashboardStats`) |
-| `children` | `ReactNode` | Yes | Main content grid |
-| `className` | `string` | No | Additional classes |
-
-**When to use:** Dashboard and overview pages with KPI summaries.
+| `children` | `ReactNode` | — | Main content grid |
+| `header` | `ReactNode` | — | Welcome section or page title |
+| `stats` | `ReactNode` | — | KPI stats row (e.g. `DashboardStats`) |
+| `className` | `string` | — | Additional classes |
 
 ```tsx
 <DashboardLayout
@@ -80,23 +80,21 @@ Overview page template with optional header, stats row, and main content grid.
 </DashboardLayout>
 ```
 
+**Responsive:** `p-4` mobile · `md:p-6` tablet · `lg:p-8` desktop. All sections stack vertically.
+
 ---
 
 ## LibraryLayout
 
-Filterable card grid template with pagination and bulk actions.
+Filterable card grid template. FilterBar on top → scrollable responsive grid → optional pagination footer. Optional bulk actions bar overlays from the bottom when rendered.
 
-**Slots:**
-
-| Prop | Type | Required | Description |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `filters` | `ReactNode` | Yes | FilterBar or search controls |
-| `children` | `ReactNode` | Yes | Card grid content (renders in 1/2/3-col responsive grid) |
-| `pagination` | `ReactNode` | No | Pagination controls |
-| `bulkActions` | `ReactNode` | No | BulkActionsBar (slides in from bottom) |
-| `className` | `string` | No | Additional classes |
-
-**When to use:** List/grid views — prompt library, template gallery, dataset browser.
+| `filters` | `ReactNode` | — | FilterBar or search controls |
+| `children` | `ReactNode` | — | Card grid content (1/2/3-col responsive grid) |
+| `pagination` | `ReactNode` | — | Pagination controls |
+| `bulkActions` | `ReactNode` | — | BulkActionsBar (animates in from bottom via `animate-bulk-bar-in`) |
+| `className` | `string` | — | Additional classes |
 
 ```tsx
 <LibraryLayout
@@ -108,24 +106,24 @@ Filterable card grid template with pagination and bulk actions.
 </LibraryLayout>
 ```
 
+**Responsive:** `grid-cols-1` mobile · `sm:grid-cols-2` small · `lg:grid-cols-3` desktop. Content padding: `p-4 md:p-6`.
+
+**Design Tokens:** `animate-bulk-bar-in`
+
 ---
 
 ## DetailLayout
 
-Full-width detail view with breadcrumb, title bar, status bar, and tabs.
+Full-width detail view with structured header and scrollable tab content. Breadcrumb → title bar → optional status lifecycle → optional tabs → content.
 
-**Slots:**
-
-| Prop | Type | Required | Description |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `breadcrumb` | `ReactNode` | No | Breadcrumb navigation |
-| `titleBar` | `ReactNode` | Yes | Title + action buttons |
-| `statusBar` | `ReactNode` | No | StatusLifecycleBar or similar |
-| `tabs` | `ReactNode` | No | Tab navigation |
-| `children` | `ReactNode` | Yes | Active tab content (scrollable) |
-| `className` | `string` | No | Additional classes |
-
-**When to use:** Single-item detail pages — prompt detail, version history, test results.
+| `titleBar` | `ReactNode` | — | Title + action buttons (required) |
+| `children` | `ReactNode` | — | Active tab content, scrollable (required) |
+| `breadcrumb` | `ReactNode` | — | Breadcrumb navigation above title |
+| `statusBar` | `ReactNode` | — | StatusLifecycleBar or similar |
+| `tabs` | `ReactNode` | — | Tab navigation; omit on saved/readonly views |
+| `className` | `string` | — | Additional classes |
 
 ```tsx
 <DetailLayout
@@ -138,26 +136,20 @@ Full-width detail view with breadcrumb, title bar, status bar, and tabs.
 </DetailLayout>
 ```
 
+**Responsive:** Header sections use `px-4 md:px-6`. Content area uses `p-4 md:p-6`.
+
 ---
 
 ## EditorLayout
 
-50/50 split-pane template with optional header. Left pane for editing, right pane for preview.
+50/50 split-pane template. Left editor pane + 4px visual resizer + right preview pane. Optional header bar above the split.
 
-**Slots:**
-
-| Prop | Type | Required | Description |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `editor` | `ReactNode` | Yes | Left pane content |
-| `preview` | `ReactNode` | Yes | Right pane content |
-| `header` | `ReactNode` | No | Header bar above the split |
-| `className` | `string` | No | Additional classes |
-
-**Behavior:**
-- Desktop: side-by-side with 4px visual resizer divider
-- Mobile: stacks vertically (editor on top, preview below)
-
-**When to use:** Editor pages — prompt editor, template builder, diff viewer.
+| `editor` | `ReactNode` | — | Left pane content |
+| `preview` | `ReactNode` | — | Right pane content |
+| `header` | `ReactNode` | — | Header bar above the split |
+| `className` | `string` | — | Additional classes |
 
 ```tsx
 <EditorLayout
@@ -167,26 +159,22 @@ Full-width detail view with breadcrumb, title bar, status bar, and tabs.
 />
 ```
 
+**Responsive:** Mobile (`< md`) — stacks `flex-col`; `border-b` separates panes; resizer hidden. Desktop (`md+`) — side-by-side `flex-row` with `border-r` on editor pane; 4px `cursor-col-resize` resizer visible (`md:block`).
+
+**Design Tokens:** `bg-border`, `accent/30` (resizer hover)
+
 ---
 
 ## ComparisonLayout
 
-Side-by-side 50/50 comparison template with toolbar.
+Side-by-side 50/50 comparison template. Toolbar on top, two equal scrollable panels below.
 
-**Slots:**
-
-| Prop | Type | Required | Description |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `toolbar` | `ReactNode` | Yes | Version selectors, sync toggle, close button |
-| `panelA` | `ReactNode` | Yes | Left version panel |
-| `panelB` | `ReactNode` | Yes | Right version panel |
-| `className` | `string` | No | Additional classes |
-
-**Behavior:**
-- Desktop: two equal panels separated by a 1px border
-- Mobile: stacks vertically
-
-**When to use:** Version comparison, A/B prompt testing, diff views.
+| `toolbar` | `ReactNode` | — | Version selectors, sync toggle, close button |
+| `panelA` | `ReactNode` | — | Left version panel |
+| `panelB` | `ReactNode` | — | Right version panel |
+| `className` | `string` | — | Additional classes |
 
 ```tsx
 <ComparisonLayout
@@ -195,6 +183,8 @@ Side-by-side 50/50 comparison template with toolbar.
   panelB={<VersionPanel version={versionB} />}
 />
 ```
+
+**Responsive:** Mobile (`< md`) — toolbar → panel A → panel B, stacked `flex-col`; `border-b` separates panels. Desktop (`md+`) — panels side-by-side `md:flex-row`; `md:border-r` divider; 1px `bg-border` spacer visible (`md:block`).
 
 ---
 
@@ -206,30 +196,73 @@ Components used in the design system showcase itself.
 
 ## TemplatePreview
 
-Interactive wireframe preview with viewport switcher (desktop/tablet/mobile).
+Interactive wireframe preview with viewport switcher (desktop / tablet / mobile). For use in showcase pages only.
 
-**Props:**
-
-| Prop | Type | Required | Description |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `string` | Yes | Template name |
-| `description` | `string` | Yes | Template description |
-| `responsive` | `string` | Yes | Responsive behavior summary |
-| `composedOf` | `string` | Yes | Components used |
-| `zones` | `ContentZone[]` | Yes | Named layout zones |
-| `layout` | `LayoutType` | Yes | Layout variant (see below) |
-| `className` | `string` | No | Additional classes |
+| `title` | `string` | — | Template name |
+| `description` | `string` | — | One-line description |
+| `responsive` | `string` | — | Responsive behavior summary |
+| `composedOf` | `string` | — | Comma-separated components used |
+| `zones` | `ContentZone[]` | — | Named layout zones for the wireframe |
+| `layout` | `LayoutType` | — | Layout variant (see below) |
+| `className` | `string` | — | Additional classes |
 
-**Layout variants:** `sidebar-main`, `centered`, `full-width`, `sidebar-settings`, `split-pane`, `sidebar-main-panel`, `modal-overlay`, `comparison`
+**`ContentZone`**: `{ label: string; className?: string }`
 
-**When to use:** Only in the design system showcase (`/templates` route) to demonstrate template structures.
+**Layout variants:**
+
+| Value | Wireframe structure |
+|---|---|
+| `"sidebar-main"` | Sidebar + header + main; mobile collapses sidebar to drawer label |
+| `"sidebar-main-panel"` | Sidebar + header + main + right panel; tablet hides right panel |
+| `"split-pane"` | Sidebar + header + editor (50%) + preview (50%); mobile stacks |
+| `"comparison"` | Sidebar + header + version A + version B; mobile stacks |
+| `"centered"` | Centered auth card on muted background |
+| `"modal-overlay"` | Modal with dimmed backdrop; scales by viewport |
+| `"full-width"` | Header + hero/content + footer |
+| `"sidebar-settings"` | Sidebar + header + settings nav + settings content |
+
+```tsx
+<TemplatePreview
+  title="EditorLayout"
+  description="50/50 split pane — editor left, preview right."
+  responsive="Stacks vertically on mobile (< md)"
+  composedOf="EditorToolbar, PromptEditorPanel, CompiledPreview"
+  layout="split-pane"
+  zones={[
+    { label: "Sidebar" },
+    { label: "Header" },
+    { label: "Editor" },
+    { label: "Preview" },
+  ]}
+/>
+```
+
+**Rules:**
+- Use only in showcase/documentation pages (`/templates` route), never in production views.
+- Viewport toggle buttons (desktop / tablet / mobile) are built in — do not wrap in another switcher.
 
 ---
 
-## Composition Rules
+## Composition rules
 
-1. **Templates hold no business logic** — they define spatial structure only. All data fetching, state management, and event handling belong in Pages.
+1. **Templates hold no business logic** — spatial structure only. Data fetching, state, and events belong in Pages.
 2. **One template per page** — each route page composes exactly one template.
 3. **Slots accept ReactNode** — templates are agnostic to what fills each slot.
-4. **AppShell wraps everything** — all authenticated routes nest inside `AppShell` via React Router's `<Outlet />`.
-5. **Responsive by default** — all templates handle mobile/tablet/desktop breakpoints internally.
+4. **AppShell wraps everything** — all authenticated routes nest inside `AppShell` via `<Outlet />`.
+5. **Responsive by default** — all templates handle breakpoints internally; do not override layout flex/grid in slot content.
+
+---
+
+## Responsive behavior summary
+
+| Template | Mobile | Tablet / Desktop |
+|---|---|---|
+| `AppShell` | Sidebar hidden; overlay drawer via menu button | `lg+`: sidebar always visible, `relative` |
+| `DashboardLayout` | `p-4` | `md:p-6` · `lg:p-8` |
+| `LibraryLayout` | 1-col grid · `p-4` | `sm`: 2-col · `lg`: 3-col · `md:p-6` |
+| `DetailLayout` | `px-4` header · `p-4` content | `md:px-6` header · `md:p-6` content |
+| `EditorLayout` | Panes stacked; resizer hidden | `md+`: side-by-side; resizer visible |
+| `ComparisonLayout` | Panels stacked | `md+`: panels side-by-side |
+| `TemplatePreview` | 320px max-width preview | 580px (tablet) · 100% (desktop) |
