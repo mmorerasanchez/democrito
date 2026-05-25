@@ -76,7 +76,7 @@ When generating or reviewing democrito code, apply this order:
 
 - React 18 + TypeScript 5
 - Vite 5
-- Tailwind CSS v3
+- Tailwind CSS v4
 - shadcn/ui (Radix primitives)
 - React Router v6
 
