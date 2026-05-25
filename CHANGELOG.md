@@ -170,7 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Live showcase URL migrated from `democrito-design-system.lovable.app` to `democrito.design` across `README.md` and `registry.json`.
+- Live showcase URL consolidated at `democrito.design` across `README.md` and `registry.json`.
 
 ---
 
