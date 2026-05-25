@@ -9,19 +9,19 @@
     "background": {
       "$description": "Page background — darkest surface layer",
       "warm":  { "$value": "hsl(30 18% 91%)" },
-      "light": { "$value": "hsl(30 5% 96%)" },
+      "light": { "$value": "hsl(30 6% 93%)" },
       "dark":  { "$value": "hsl(20 14% 4%)" }
     },
     "surface": {
       "$description": "Panels, sidebars, headers — mid-layer",
       "warm":  { "$value": "hsl(40 15% 94%)" },
-      "light": { "$value": "hsl(40 6% 97%)" },
+      "light": { "$value": "hsl(40 8% 97%)" },
       "dark":  { "$value": "hsl(20 8% 8%)" }
     },
     "card": {
       "$description": "Cards, dialogs, elevated content — top layer",
       "warm":  { "$value": "hsl(30 25% 97%)" },
-      "light": { "$value": "hsl(40 8% 99%)" },
+      "light": { "$value": "hsl(0 0% 100%)" },
       "dark":  { "$value": "hsl(12 6% 15%)" }
     },
     "foreground": {
