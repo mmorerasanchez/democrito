@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge, BadgeDot } from "@/components/ui/badge";
-import { Heading, Text, Code, Kbd, Tag, Link } from "@/components/atoms";
+import { Heading, Text, Code, CodeBlock, CopyButton, Kbd, Link, Logo, StatusBadge, Tag } from "@/components/atoms";
 import { Avatar, AvatarImage, AvatarFallback, AvatarStatus } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
@@ -58,7 +58,7 @@ function SubSection({ title, children }: { title: string; children: React.ReactN
   );
 }
 
-function CodeBlock({ children }: { children: string }) {
+function ApiSnippet({ children }: { children: string }) {
   return (
     <pre className="mt-2 rounded-md border border-border bg-muted p-3 font-mono text-2xs text-muted-foreground overflow-x-auto">
       {children}
@@ -72,9 +72,9 @@ export default function AtomsPage() {
   const [checked, setChecked] = useState(false);
 
   const categories = [
-    { id: "cat-form",     label: "Form & Input",        count: 4 },
-    { id: "cat-labels",   label: "Labels & typography",  count: 4 },
-    { id: "cat-feedback", label: "Feedback & state",     count: 4 },
+    { id: "cat-form",     label: "Form & Input",        count: 1 },
+    { id: "cat-labels",   label: "Labels & typography",  count: 6 },
+    { id: "cat-feedback", label: "Feedback & state",     count: 1 },
     { id: "cat-utility",  label: "Utilities",            count: 3 },
   ];
 
@@ -82,7 +82,7 @@ export default function AtomsPage() {
     <div className="space-y-12">
       <PageMeta
         title="Atoms"
-        description="10 base components — Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link. Variants, sizes, states, and copy-ready API."
+        description="11 custom atoms — Code, CodeBlock, CopyButton, Heading, Kbd, Link, Logo, Spinner, StatusBadge, Tag, Text — plus shadcn/ui primitives. Variants, sizes, states, and copy-ready API."
         path="/atoms"
         jsonLd={{
           "@context": "https://schema.org",
@@ -98,7 +98,7 @@ export default function AtomsPage() {
         <p className="mt-1 font-body text-base text-muted-foreground">
           Base-level components — the building blocks of the design system.
         </p>
-        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">10 atoms · 4 categories</p>
+        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">11 atoms · 4 categories</p>
       </div>
 
       {/* ── CATEGORY JUMP NAV ── */}
@@ -118,7 +118,7 @@ export default function AtomsPage() {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Form & Input                                      */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-form" title="Form & Input" description="Interactive controls and data entry components." count={4} />
+      <CategoryHeader id="cat-form" title="Form & Input" description="Interactive controls and data entry components." count={1} />
 
       {/* ── BUTTONS ── */}
       <Section id="button" title="Button" description="Primary interactive element. Extends shadcn/ui Button with design system token styling, loading state, and theme-inverted primary.">
@@ -155,7 +155,7 @@ export default function AtomsPage() {
             <Button loading>Loading</Button>
           </div>
         </SubSection>
-        <CodeBlock>{`<Button variant="default | secondary | destructive | outline | ghost | link" size="sm | default | lg | icon" loading={boolean} />`}</CodeBlock>
+        <ApiSnippet>{`<Button variant="default | secondary | destructive | outline | ghost | link" size="sm | default | lg | icon" loading={boolean} />`}</ApiSnippet>
       </Section>
 
       {/* ── INPUT ── */}
@@ -168,7 +168,7 @@ export default function AtomsPage() {
             <Input disabled placeholder="Disabled state" />
           </div>
         </SubSection>
-        <CodeBlock>{`<Input placeholder="..." error={boolean} disabled={boolean} />`}</CodeBlock>
+        <ApiSnippet>{`<Input placeholder="..." error={boolean} disabled={boolean} />`}</ApiSnippet>
       </Section>
 
       {/* ── TEXTAREA ── */}
@@ -180,7 +180,7 @@ export default function AtomsPage() {
             <Textarea disabled placeholder="Disabled" />
           </div>
         </SubSection>
-        <CodeBlock>{`<Textarea placeholder="..." error={boolean} />`}</CodeBlock>
+        <ApiSnippet>{`<Textarea placeholder="..." error={boolean} />`}</ApiSnippet>
       </Section>
 
       {/* ── FORM ELEMENTS ── */}
@@ -234,10 +234,21 @@ export default function AtomsPage() {
         </SubSection>
       </Section>
 
+      {/* ── COPY BUTTON ── */}
+      <Section id="copy-button" title="Copy Button" description="One-click clipboard copy. Primary: label + icon with accent background. Ghost: icon-only overlay, used inside CodeBlock.">
+        <SubSection title="Variants">
+          <div className="flex flex-wrap items-center gap-4">
+            <CopyButton variant="primary" value="npm install democrito" label="Copy install command" />
+            <CopyButton variant="ghost" value="npm install democrito" label="code snippet" />
+          </div>
+        </SubSection>
+        <ApiSnippet>{`<CopyButton variant="primary | ghost" value="text to copy" label="optional label" />`}</ApiSnippet>
+      </Section>
+
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Labels & Typography                               */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-labels" title="Labels & Typography" description="Badges, tags, and typographic display components." count={4} />
+      <CategoryHeader id="cat-labels" title="Labels & Typography" description="Badges, tags, and typographic display components." count={6} />
 
       {/* ── BADGE ── */}
       <Section id="badge" title="Badge" description="Pill-shaped labels using font-mono. Status, semantic, and count variants.">
@@ -280,7 +291,7 @@ export default function AtomsPage() {
             <Badge size="lg">Large</Badge>
           </div>
         </SubSection>
-        <CodeBlock>{`<Badge variant="default | draft | testing | production | archived | claude | gpt | gemini | lovable | success | warning | error | info | count" size="sm | default | lg" />`}</CodeBlock>
+        <ApiSnippet>{`<Badge variant="default | draft | testing | production | archived | claude | gpt | gemini | lovable | success | warning | error | info | count" size="sm | default | lg" />`}</ApiSnippet>
       </Section>
 
       {/* ── TAG ── */}
@@ -294,7 +305,20 @@ export default function AtomsPage() {
             <Tag variant="selectable" selected>selected</Tag>
           </div>
         </SubSection>
-        <CodeBlock>{`<Tag variant="default | removable | selectable" color="role" selected />`}</CodeBlock>
+        <ApiSnippet>{`<Tag variant="default | removable | selectable" color="role" selected />`}</ApiSnippet>
+      </Section>
+
+      {/* ── STATUS BADGE ── */}
+      <Section id="status-badge" title="Status Badge" description="Lifecycle status pill — draft, testing, production, archived. Semantic background tint with matching text color. Font-mono, text-xs.">
+        <SubSection title="All statuses">
+          <div className="flex flex-wrap items-center gap-2">
+            <StatusBadge status="draft" />
+            <StatusBadge status="testing" />
+            <StatusBadge status="production" />
+            <StatusBadge status="archived" />
+          </div>
+        </SubSection>
+        <ApiSnippet>{`<StatusBadge status="draft | testing | production | archived" />`}</ApiSnippet>
       </Section>
 
       {/* ── TYPOGRAPHY ── */}
@@ -324,10 +348,10 @@ export default function AtomsPage() {
             <span>Press <Kbd>⌘</Kbd> + <Kbd>K</Kbd> to search</span>
           </div>
         </SubSection>
-        <CodeBlock>{`<Heading level="h1 | h2 | h3 | h4" />
+        <ApiSnippet>{`<Heading level="h1 | h2 | h3 | h4" />
 <Text variant="default | muted | subtle | accent | error | success" size="xs | sm | base | lg" mono={boolean} />
 <Code>inline code</Code>
-<Kbd>⌘K</Kbd>`}</CodeBlock>
+<Kbd>⌘K</Kbd>`}</ApiSnippet>
       </Section>
 
       {/* ── AVATAR ── */}
@@ -357,13 +381,13 @@ export default function AtomsPage() {
             ))}
           </div>
         </SubSection>
-        <CodeBlock>{`<Avatar size="xs | sm | md | lg"><AvatarFallback>MR</AvatarFallback><AvatarStatus status="online" /></Avatar>`}</CodeBlock>
+        <ApiSnippet>{`<Avatar size="xs | sm | md | lg"><AvatarFallback>MR</AvatarFallback><AvatarStatus status="online" /></Avatar>`}</ApiSnippet>
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Feedback & State                                  */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-feedback" title="Feedback & State" description="Loading states, overlays, and interaction feedback." count={4} />
+      <CategoryHeader id="cat-feedback" title="Feedback & State" description="Loading states, overlays, and interaction feedback." count={1} />
 
       {/* ── SEPARATOR ── */}
       <Section id="separator" title="Separator" description="1px border color line. Horizontal or vertical.">
@@ -405,8 +429,8 @@ export default function AtomsPage() {
         <SubSection title="Thinking Dots">
           <ThinkingDots />
         </SubSection>
-        <CodeBlock>{`<Spinner size="sm | md | lg | inline" />
-<ThinkingDots />`}</CodeBlock>
+        <ApiSnippet>{`<Spinner size="sm | md | lg | inline" />
+<ThinkingDots />`}</ApiSnippet>
       </Section>
 
       {/* ── TOOLTIP ── */}
@@ -434,7 +458,7 @@ export default function AtomsPage() {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Utilities                                         */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-utility" title="Utilities" description="Progress indicators, links, and form labels." count={3} />
+      <CategoryHeader id="cat-utility" title="Utilities" description="Progress indicators, links, brand mark, and code display." count={3} />
 
       {/* ── PROGRESS ── */}
       <Section id="progress" title="Progress Bar" description="4px height, accent fill, rounded-full. Semantic color variants. Determinate + indeterminate.">
@@ -458,7 +482,7 @@ export default function AtomsPage() {
             </div>
           </div>
         </SubSection>
-        <CodeBlock>{`<Progress value={65} variant="default | success | warning | error | info" indeterminate={boolean} />`}</CodeBlock>
+        <ApiSnippet>{`<Progress value={65} variant="default | success | warning | error | info" indeterminate={boolean} />`}</ApiSnippet>
       </Section>
 
       {/* ── LINK ── */}
@@ -469,7 +493,31 @@ export default function AtomsPage() {
             <Link href="https://example.com" external>External link</Link>
           </div>
         </SubSection>
-        <CodeBlock>{`<Link href="#" external={boolean}>Link text</Link>`}</CodeBlock>
+        <ApiSnippet>{`<Link href="#" external={boolean}>Link text</Link>`}</ApiSnippet>
+      </Section>
+
+      {/* ── CODE BLOCK ── */}
+      <Section id="codeblock" title="Code Block" description="Multi-line code display on --surface. Optional language label, variable {{bracket}} highlighting, and hover-reveal copy button.">
+        <SubSection title="With language label">
+          <CodeBlock code={`import { CodeBlock } from "@/components/atoms";\n\n<CodeBlock code={snippet} language="tsx" />`} language="tsx" />
+        </SubSection>
+        <SubSection title="Plain (no label)">
+          <CodeBlock code={`npm install democrito`} />
+        </SubSection>
+        <ApiSnippet>{`<CodeBlock code="..." language="tsx" showCopy={boolean} />`}</ApiSnippet>
+      </Section>
+
+      {/* ── LOGO ── */}
+      <Section id="logo" title="Logo" description="Theme-aware brand mark. Renders logo-dark.png on dark theme, logo-light-warm.png on warm/light.">
+        <SubSection title="Sizes">
+          <div className="flex items-center gap-6">
+            <Logo size={16} />
+            <Logo size={24} />
+            <Logo size={32} />
+            <Logo size={48} />
+          </div>
+        </SubSection>
+        <ApiSnippet>{`<Logo size={28} />`}</ApiSnippet>
       </Section>
 
       {/* ── LABEL ── */}

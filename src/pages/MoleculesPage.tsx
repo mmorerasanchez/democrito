@@ -17,6 +17,7 @@ import { DiffLine } from "@/components/molecules/DiffLine";
 import { ActivityFeedItem } from "@/components/molecules/ActivityFeedItem";
 import { VariableEditorRow } from "@/components/molecules/VariableEditorRow";
 import { RunHistoryItem } from "@/components/molecules/RunHistoryItem";
+import { TokenReferenceCard } from "@/components/molecules/TokenReferenceCard";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -97,7 +98,7 @@ export default function MoleculesPage() {
   const categories = [
     { id: "cat-form",       label: "Form & input",       count: 5 },
     { id: "cat-navigation", label: "Navigation",          count: 3 },
-    { id: "cat-data",       label: "Data & display",      count: 5 },
+    { id: "cat-data",       label: "Data & display",      count: 6 },
     { id: "cat-activity",   label: "Activity & status",   count: 3 },
   ];
 
@@ -105,13 +106,13 @@ export default function MoleculesPage() {
     <div className="space-y-12">
       <PageMeta
         title="Molecules"
-        description="18 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, and more."
+        description="17 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, Token Reference Card, and more."
         path="/molecules"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "TechArticle",
           "name": "Molecules · democrito",
-          "description": "18 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, and more.",
+          "description": "17 composed components built from atoms — Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, Token Reference Card, and more.",
           "url": "https://democrito.design/molecules",
           "isPartOf": { "@type": "SoftwareApplication", "name": "democrito" },
         }}
@@ -121,7 +122,7 @@ export default function MoleculesPage() {
         <p className="mt-1 font-body text-base text-muted-foreground">
           Composite components built from atoms. Each molecule combines 2+ atoms into a reusable pattern.
         </p>
-        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">18 molecules · 4 categories</p>
+        <p className="mt-0.5 font-mono text-xs text-foreground-subtle">17 molecules · 4 categories</p>
       </div>
 
       {/* ── CATEGORY JUMP NAV ── */}
@@ -263,7 +264,7 @@ export default function MoleculesPage() {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* CATEGORY: Data & Display                                    */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <CategoryHeader id="cat-data" title="Data & Display" description="Stats, identity, tokens, variables, and diff views." count={5} />
+      <CategoryHeader id="cat-data" title="Data & Display" description="Stats, identity, tokens, variables, diff views, and token reference." count={6} />
 
       {/* ── STAT CARD ── */}
       <Section id="stat-card" title="Stat Card" description="KPI display with label, mono value, and trend indicator." composedOf="Label + Value (font-mono) + Trend">
@@ -320,6 +321,12 @@ export default function MoleculesPage() {
           <DiffLine lineNumber={5} type="added" text="Use markdown formatting when appropriate." />
         </div>
         <CodeBlock>{`<DiffLine lineNumber={1} type="added" text="New line content" />`}</CodeBlock>
+      </Section>
+
+      {/* ── TOKEN REFERENCE CARD ── */}
+      <Section id="token-reference-card" title="Token Reference Card" description="Collapsible token reference groups: surfaces, text, accent, and font utilities. Static grid on desktop, accordion on mobile." composedOf="Heading + Text + Card + ChevronDown">
+        <TokenReferenceCard />
+        <CodeBlock>{`<TokenReferenceCard />`}</CodeBlock>
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════ */}

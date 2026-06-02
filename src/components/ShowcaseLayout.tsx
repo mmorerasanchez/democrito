@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -23,10 +23,23 @@ function CloseMobileSidebarOnNav() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    document.getElementById("main-scroll")?.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
+  const location = useLocation();
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "instant" as ScrollBehavior });
+        return;
+      }
+    }
+    const scroller = document.getElementById("main-scroll");
+    if (scroller) {
+      scroller.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.search, location.hash, location.key]);
   return null;
 }
 

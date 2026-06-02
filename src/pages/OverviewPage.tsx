@@ -69,6 +69,13 @@ const paths = [
     badge: "GitHub",
     desc: "Edit src/index.css directly, modify context files with your brand and get started with the baseline made.",
   },
+  {
+    to: "/ai/examples",
+    icon: Layers,
+    name: "Examples",
+    badge: "Violet · Blue · Amber",
+    desc: "Three worked customizations — token overrides only, no component files touched.",
+  },
 ];
 
 const REPO_URL = "https://github.com/mmorerasanchez/democrito";
@@ -170,7 +177,7 @@ export default function OverviewPage() {
         <QuickStartSection showHeading={false} />
         <div className="space-y-4">
           <h3 className="font-display text-base font-medium">Customize with your brand</h3>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {paths.map((item) => (
               <Link
                 key={item.to}
@@ -210,7 +217,7 @@ export default function OverviewPage() {
           <Heading level="h3" className="mb-4">Summary</Heading>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {stats.map((s) => (
-              <div key={s.label} className="rounded-md border border-border bg-card p-4 space-y-1">
+              <div key={s.label} className="rounded-md border border-border bg-card p-5 space-y-1">
                 <p className="font-mono text-xl font-medium text-accent">{s.count}</p>
                 <p className="font-display text-xs text-muted-foreground">{s.label}</p>
               </div>
@@ -226,7 +233,7 @@ export default function OverviewPage() {
               <Link
                 key={s.path}
                 to={s.path}
-                className="group flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-all duration-150 hover:-translate-y-px hover:shadow-md hover:border-accent/30"
+                className="group flex items-start gap-3 rounded-lg border border-border bg-card p-5 transition-all duration-150 hover:-translate-y-px hover:shadow-md hover:border-accent/30"
               >
                 <div className="rounded-md bg-accent/10 p-2 text-accent">
                   <s.icon className="h-5 w-5" />
@@ -246,7 +253,7 @@ export default function OverviewPage() {
           <Heading level="h3" className="mb-4">Design principles</Heading>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {principles.map((p, i) => (
-              <div key={p.name} className="flex gap-3 rounded-md border border-border bg-card p-4">
+              <div key={p.name} className="flex gap-3 rounded-md border border-border bg-card p-5">
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10 font-mono text-2xs font-bold text-accent">
                   {i + 1}
                 </span>
