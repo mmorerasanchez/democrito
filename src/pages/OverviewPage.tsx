@@ -52,29 +52,21 @@ const paths = [
     to: "/ai/claude",
     icon: ClaudeIcon,
     name: "Claude",
-    badge: "Anthropic",
-    desc: "Attach context files and describe your brand to create a customized design system.",
   },
   {
     to: "/ai/vibe-coding",
     icon: Heart,
-    name: "Vibe Coding Tools",
-    badge: "Lovable · Google Stitch · Replit",
-    desc: "Fork the repo and prompt your visual direction. No terminal needed.",
+    name: "Vibe Coding",
   },
   {
     to: "/ai/github",
     icon: Github,
     name: "Terminal",
-    badge: "GitHub",
-    desc: "Edit src/index.css directly, modify context files with your brand and get started with the baseline made.",
   },
   {
     to: "/ai/examples",
     icon: Layers,
     name: "Examples",
-    badge: "Violet · Blue · Amber",
-    desc: "Three worked customizations — token overrides only, no component files touched.",
   },
 ];
 
@@ -188,13 +180,9 @@ export default function OverviewPage() {
                   <item.icon className="h-4 w-4 text-accent" />
                   <ArrowRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-accent transition-colors" />
                 </div>
-                <div>
-                  <p className="font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                    {item.name}
-                  </p>
-                  <p className="font-mono text-xs text-muted-foreground">{item.badge}</p>
-                </div>
-                <p className="font-body text-sm text-muted-foreground">{item.desc}</p>
+                <p className="font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                  {item.name}
+                </p>
               </Link>
             ))}
           </div>

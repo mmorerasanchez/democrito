@@ -109,13 +109,13 @@ export function ShowcaseLayout() {
         <div className="flex min-w-0 flex-1 flex-col">
           <header className="sticky top-0 z-sticky flex h-header items-center justify-between gap-2 border-b border-border bg-surface px-4">
             <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-              <SidebarTrigger className="lg:hidden" />
+              <SidebarTrigger className="xl:hidden" />
               <Logo size={24} />
               <TopbarWordmark />
             </div>
             <ThemeToggle />
           </header>
-          <main id="main-scroll" className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
+          <main id="main-scroll" className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 sm:py-8 xl:px-10">
             <div className="mx-auto w-full max-w-5xl">
               <Outlet />
             </div>
