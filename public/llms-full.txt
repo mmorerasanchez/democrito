@@ -21,6 +21,7 @@ Via git clone:
 ## Key files for AI agents
 
 - CLAUDE.md             — coding rules and architecture summary
+- AGENTS.md             — cross-tool agent context (Cursor, Copilot, Codex)
 - DESIGN.md             — visual philosophy and taste layer
 - docs/design-system.md  — full component inventory and specification
 - docs/tokens.md        — full token reference
@@ -32,12 +33,12 @@ Via git clone:
 
 | Level      | Directory                    | Count |
 |------------|------------------------------|-------|
-| Atoms      | src/components/atoms/        | 10    |
-| Molecules  | src/components/molecules/    | 18    |
+| Atoms      | src/components/atoms/        | 11    |
+| Molecules  | src/components/molecules/    | 17    |
 | Organisms  | src/components/organisms/    | 19    |
 | Templates  | src/components/templates/    | 7     |
 
-UI primitives in src/components/ui/ are shadcn/ui components — extend via CVA
+UI primitives in src/components/ui/ are 48 shadcn/ui components — extend via CVA
 variants, never modify directly. One component per file, PascalCase filenames,
 barrel index.ts per level.
 

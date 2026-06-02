@@ -23,6 +23,7 @@ const ROUTES = [
   "/ai/claude",
   "/ai/vibe-coding",
   "/ai/github",
+  "/ai/examples",
 ];
 
 // 1 — Build the SSR bundle
