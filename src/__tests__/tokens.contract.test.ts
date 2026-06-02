@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 
 /**
- * Token contract test — verifies that color, dimension, z-index, and motion tokens
+ * Token contract test — verifies that color, dimension, z-index, duration, and easing tokens
  * defined in design-tokens.json have corresponding CSS custom properties in index.css.
  *
  * Note: typography tokens (fontFamily, fontSize) are declared in the @theme block in
@@ -20,7 +20,7 @@ const indexCss = readFileSync(resolve(__dirname, "../index.css"), "utf-8");
 const CSS_VAR_GROUPS = ["color", "zIndex", "dimension", "duration", "cubicBezier"];
 
 // Groups whose name is dropped from the CSS variable path
-const TRANSPARENT_GROUPS = new Set(["color", "semantic", "motion", "dimension"]);
+const TRANSPARENT_GROUPS = new Set(["color", "semantic", "dimension"]);
 
 // Groups whose JSON key maps to a different CSS prefix
 const GROUP_RENAMES: Record<string, string> = { zIndex: "z", cubicBezier: "ease" };
