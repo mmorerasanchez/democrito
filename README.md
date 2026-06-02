@@ -97,11 +97,11 @@ src/
 ├── index.css                          # Design tokens (CSS custom properties), font imports, base resets
 │
 ├── components/
-│   ├── atoms/                         # Smallest building blocks (10 components)
-│   ├── molecules/                     # Compositions of atoms (18 components)
+│   ├── atoms/                         # Smallest building blocks (11 components)
+│   ├── molecules/                     # Compositions of atoms (17 components)
 │   ├── organisms/                     # Major UI sections (19 components)
 │   ├── templates/                     # Page layout shells (7 components)
-│   └── ui/                            # shadcn/ui primitives (40+ components)
+│   └── ui/                            # shadcn/ui primitives (48 components)
 │
 ├── pages/                             # Route pages (showcase + prototype)
 ├── hooks/                             # Custom React hooks
@@ -113,11 +113,11 @@ src/
 
 | Layer | Count | Description |
 | --- | --- | --- |
-| **Atoms** | 10 | Typography, code, tags, links, copy button, spinner |
-| **Molecules** | 18 | Form fields, nav items, stat cards, search, diff, variable editors |
+| **Atoms** | 11 | Typography, code, tags, links, copy button, spinner |
+| **Molecules** | 17 | Form fields, nav items, stat cards, search, diff, variable editors |
 | **Organisms** | 19 | Navigation, tables, auth, settings, data management, API tooling |
 | **Templates** | 7 | Page layout shells (app shell, editor, dashboard, comparison) |
-| **shadcn/ui primitives** | 40+ | Radix UI + shadcn base components |
+| **shadcn/ui primitives** | 48 | Radix UI + shadcn base components |
 
 > **Examples:** [`src/examples/prompt-x/`](src/examples/prompt-x/) contains 23 organisms + 2 molecules built for prompt-engineering UIs. They are not part of the public design system surface, but stand as fully-functional reference implementations of how to compose democrito atoms into a real product.
 

@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 
 import { CopyButton } from "@/components/atoms/CopyButton";
 import { cn } from "@/lib/utils";
+import { tokenizeBrackets } from "@/lib/tokenizeBrackets";
 
 interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   /** The code to render and optionally copy. Preserve whitespace exactly as written. */
@@ -46,7 +47,7 @@ const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(
           role="code"
           className="overflow-x-auto whitespace-pre font-mono text-sm text-foreground"
         >
-          {code}
+          {tokenizeBrackets(code)}
         </pre>
       </div>
     );

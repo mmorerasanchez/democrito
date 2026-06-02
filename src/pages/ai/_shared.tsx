@@ -1,4 +1,5 @@
 import { CopyButton } from "@/components/atoms/CopyButton";
+import { tokenizeBrackets } from "@/lib/tokenizeBrackets";
 
 export function StepCode({ language, children }: { language: string; children: string }) {
   return (
@@ -13,7 +14,9 @@ export function StepCode({ language, children }: { language: string; children: s
         />
       </div>
       <pre className="overflow-x-auto bg-muted p-4">
-        <code className="font-mono text-xs text-foreground whitespace-pre">{children}</code>
+        <code className="font-mono text-xs text-foreground whitespace-pre">
+          {tokenizeBrackets(children)}
+        </code>
       </pre>
     </div>
   );
