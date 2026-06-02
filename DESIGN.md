@@ -368,8 +368,8 @@ All depth comes from the surface hierarchy, not from shadows:
   size changes
 - **Honor the mono contract** — if it's editable, copyable, or
   referenceable, it's `font-mono`
-- **Define tokens before using them** — add to `src/index.css` first,
-  then map in `tailwind.config.ts`, then use in components
+- **Define tokens before using them** — add to `src/index.css` first
+  (both the CSS custom property and the `@theme` mapping), then use in components
 - **Test in all three themes** — Warm (default), Dark, and Light
 - **Use Radix UI / shadcn/ui primitives** for all interactive
   elements — extend via CVA variants, never rebuild
