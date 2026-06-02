@@ -174,7 +174,9 @@ export default function ManifiestoPage() {
           democrito
         </p>
         <p className="font-body text-base leading-relaxed text-muted-foreground">
-          democrito exists in that 20%.
+          democrito exists in that 20%. It began as the visual foundation and design
+          philosophy behind <L href="https://prompt-x.io">prompt-x.io</L> — then went
+          agnostic, so any product could build on the same reasoning.
         </p>
         <p className="font-body text-base leading-relaxed text-muted-foreground">
           Three surfaces. One accent. Three fonts, each with a specific semantic role.
