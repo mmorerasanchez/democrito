@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import ClaudePage from "./ai/claude";
 import GithubPage from "./ai/github";
 import VibeCodingPage from "./ai/vibe-coding";
+import ExamplesPage from "./ai/examples";
 
 // ---------------------------------------------------------------------------
 // Router — maps slug → platform page
@@ -12,6 +13,7 @@ const platformMap: Record<string, React.ComponentType> = {
   "claude": ClaudePage,
   "github": GithubPage,
   "vibe-coding": VibeCodingPage,
+  "examples": ExamplesPage,
 };
 
 export default function AiDetailPage() {
