@@ -21,6 +21,7 @@ Via git clone:
 ## Key files for AI agents
 
 - CLAUDE.md             — coding rules and architecture summary
+- AGENTS.md             — cross-tool agent context (Cursor, Copilot, Codex)
 - DESIGN.md             — visual philosophy and taste layer
 - docs/design-system.md  — full component inventory and specification
 - /.well-known/mcp.json — AI agent discovery manifest

@@ -16,6 +16,7 @@ const routes = [
   { path: "/ai/claude",      priority: "0.8", changefreq: "monthly" },
   { path: "/ai/vibe-coding", priority: "0.8", changefreq: "monthly" },
   { path: "/ai/github",      priority: "0.8", changefreq: "monthly" },
+  { path: "/ai/examples",   priority: "0.8", changefreq: "monthly" },
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
