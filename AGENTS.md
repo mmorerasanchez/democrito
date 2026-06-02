@@ -102,6 +102,29 @@ Compose ui/ primitives into atoms/molecules; never rebuild from scratch.
 
 ---
 
+## Commit Convention
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) with design system scopes. Full spec in `CONTRIBUTING.md`.
+
+```
+<type>(<scope>): <description>
+```
+
+Types: `feat` | `fix` | `docs` | `style` | `refactor` | `chore` | `perf` | `test`
+
+Scopes: `tokens` | `atoms` | `molecules` | `organisms` | `templates` | `ui` | `theme` | `deps` | `pages`
+
+Rules: lowercase, imperative mood, no period, under 72 characters. Describe **what changed**, not what you did.
+
+```
+feat(atoms): add Spinner component
+fix(organisms): correct table overflow on mobile
+chore(deps): bump vite from 4.5 to 5.0
+perf(theme): reduce CSS custom property count by 12
+```
+
+---
+
 ## Boundaries
 
 ### ✅ Always allowed
