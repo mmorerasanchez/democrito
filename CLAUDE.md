@@ -80,24 +80,7 @@ Follow `CONTRIBUTING.md` for commit conventions and branch naming.
 **Never commit directly to `main`.** Always create a feature branch (`feat/`, `fix/`, `chore/`),
 commit there, then create a PR.
 
-### Notion status sync
-
-Every change request in `changes @democrito` has a Status property that must stay
-in sync with development progress:
-
-1. **When you start work** on a change request — set its Status to **In progress**
-   via Notion MCP before writing any code.
-2. **When you create a PR** — set its Status to **Review** via Notion MCP immediately
-   after the PR is created.
-
-The same applies to `docs @democrito` when working directly on a doc.
-
-Do not skip these transitions. They are how the project owner tracks progress
-without asking.
-
----
-
-> Maintainers track work in a private Notion workspace. Internal access only.
+Commit message format: `<type>(<scope>): <description>` — see `CONTRIBUTING.md` for the full spec with types, scopes, and examples.
 
 ---
 

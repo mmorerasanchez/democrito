@@ -1,4 +1,4 @@
-# ⚛️ democrito
+# democrito
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript&logoColor=white)
@@ -76,7 +76,7 @@ The skill bundles four knowledge files — `principles.md`, `tokens.md`, `compon
 
 ## For Designers — Retheme Without Code
 
-democrito is designed to be fully customizable through natural language. The entire visual identity lives in CSS custom properties in `src/index.css` and font definitions in `tailwind.config.ts` — which means any AI tool can read and rewrite them from a plain description of your brand.
+democrito is designed to be fully customizable through natural language. The entire visual identity lives in CSS custom properties and font definitions inside `src/index.css` (the `@theme` block) — which means any AI tool can read and rewrite them from a plain description of your brand.
 
 Three paths to make it yours:
 
@@ -294,4 +294,4 @@ terms, attribution guidance, and the paid kit license summary.
 
 ---
 
-Built with ❤️ from 🇪🇸
+Made in Spain · MIT License · Maintained by [@mmorerasanchez](https://github.com/mmorerasanchez)
