@@ -39,7 +39,7 @@ const FILES: FileCardData[] = [
     filename: "AGENTS.md",
     role: "Cross-tool Agent Context",
     description:
-      "The tool-agnostic sibling of CLAUDE.md — same project rules and architecture, in the format Cursor, Copilot, and Codex auto-load. One repo, every agent on-system.",
+      "The tool-agnostic sibling of CLAUDE.md — same project rules and architecture, in the format Cursor, Codex and other tools auto-load.",
     githubUrl: "https://github.com/mmorerasanchez/democrito/blob/main/AGENTS.md",
     rawUrl: "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/AGENTS.md",
   },

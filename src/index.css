@@ -57,6 +57,7 @@
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-accent-muted: hsl(var(--accent-muted));
   --color-accent-subtle: hsl(var(--accent-subtle));
+  --color-link-highlight: var(--link-highlight);
 
   --color-warm-dark: hsl(var(--warm-dark));
 
@@ -202,6 +203,7 @@
     --accent-muted: 18 38% 55%;
     --accent-subtle: 30 15% 92%;
     --warm-dark: 20 14% 30%;
+    --link-highlight: hsl(18 60% 45% / 0.08);
 
     /* Semantic feedback — theme-adaptive */
     --success: 152 45% 38%;
@@ -327,6 +329,7 @@
     --accent-muted: 18 40% 30%;
     --accent-subtle: 20 15% 10%;
     --warm-dark: 20 8% 72%;
+    --link-highlight: hsl(18 65% 55% / 0.12);
 
     /* Semantic feedback */
     --success: 148 45% 50%;
@@ -448,6 +451,7 @@
     --accent-muted: 18 35% 51%;
     --accent-subtle: 30 12% 94%;
     --warm-dark: 20 12% 36%;
+    --link-highlight: hsl(18 65% 41% / 0.08);
 
     /* Semantic feedback — theme-adaptive */
     --success: 148 50% 42%;

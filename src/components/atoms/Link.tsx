@@ -11,7 +11,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       <a
         ref={ref}
         className={cn(
-          "font-body text-accent hover:underline transition-colors",
+          "font-body text-foreground bg-link-highlight px-0.5 rounded-sm transition-colors hover:text-accent",
           className,
         )}
         {...(external && { target: "_blank", rel: "noopener noreferrer" })}
