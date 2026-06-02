@@ -100,7 +100,7 @@ export default function OverviewPage() {
           </h1>
           <Badge variant="outline">v3</Badge>
         </div>
-        <p className="font-body text-base text-muted-foreground max-w-prose">
+        <p className="font-body text-base text-muted-foreground">
           Agnostic atomic design system for AI-native tools — structured tokens, accessible components, and three-theme support. React + Tailwind CSS + Radix UI. Adaptable via Claude, vibe coding platforms or terminal.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -130,11 +130,11 @@ export default function OverviewPage() {
       {/* Why */}
       <div className="space-y-4">
         <Heading level="h2">Why</Heading>
-        <Text variant="muted" size="sm" className="max-w-prose">
+        <Text variant="muted" size="sm">
           Around 400 BC, Democritus proposed something radical: that all matter is made of
           invisible, indivisible units he called <em>atoms</em> that combine to form everything.
         </Text>
-        <Text variant="muted" size="sm" className="max-w-prose">
+        <Text variant="muted" size="sm">
           Twenty-five centuries later, Brad Frost borrowed the concept for design interfaces:
           buttons are atoms, forms are molecules, pages are built from organisms. The methodology
           is called{" "}
@@ -148,7 +148,7 @@ export default function OverviewPage() {
           </a>{" "}
           — and the connection back to Democritus is in the name.
         </Text>
-        <Text variant="muted" size="sm" className="max-w-prose">
+        <Text variant="muted" size="sm">
           democrito carries that thread forward into the age of AI-assisted development to allow
           designers build consistent design systems with craft and taste — and besides them, there
           are now AI agents, vibe-coding tools, and LLMs that need the rules to create delightful
@@ -160,7 +160,7 @@ export default function OverviewPage() {
       <div className="space-y-6">
         <div className="space-y-2">
           <Heading level="h2">How</Heading>
-          <Text variant="muted" size="sm" className="max-w-prose">
+          <Text variant="muted" size="sm">
             Install via the shadcn registry in one command, copy the token layer manually for any
             non-React stack, and customize via Claude, vibe coding platform, or your favorite LLM
             to give any AI agent immediate design context — no build step required.
@@ -193,7 +193,7 @@ export default function OverviewPage() {
       <div className="space-y-12">
         <div className="space-y-2">
           <Heading level="h2">What</Heading>
-          <Text variant="muted" size="sm" className="max-w-prose">
+          <Text variant="muted" size="sm">
             From design tokens to full-page layouts, every piece is documented, themed across
             three surfaces, and structured for AI consumption. Adopt the whole system or extract
             only what your product needs.
