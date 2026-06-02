@@ -85,7 +85,7 @@ export default function OverviewPage() {
       <div className="space-y-6">
         <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <Logo size="md" />
+            <Logo size={40} />
             <Badge variant="outline" className="font-mono text-2xs">
               v1.0
             </Badge>
