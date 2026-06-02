@@ -1,23 +1,6 @@
 import { PageMeta } from "@/components/PageMeta";
-import { Heading } from "@/components/atoms";
+import { Heading, Link } from "@/components/atoms";
 import { Separator } from "@/components/ui/separator";
-
-const L = ({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-foreground underline decoration-border underline-offset-2 transition-colors hover:text-accent hover:decoration-accent"
-  >
-    {children}
-  </a>
-);
 
 export default function ManifiestoPage() {
   return (
@@ -63,18 +46,18 @@ export default function ManifiestoPage() {
         </p>
         <div className="space-y-4">
           <p className="font-body text-base leading-relaxed text-muted-foreground">
-            <L href="https://www.mckinsey.com/capabilities/mckinsey-design/our-insights/the-business-value-of-design">
+            <Link href="https://www.mckinsey.com/capabilities/mckinsey-design/our-insights/the-business-value-of-design" external>
               McKinsey tracked 300+ public companies
-            </L>{" "}
+            </Link>{" "}
             across five years and 2 million financial data points. Companies in the top
             quartile of design maturity outperformed peers by 32 points in revenue growth
             and 56 points in shareholder returns.
           </p>
           <p className="font-body text-base leading-relaxed text-muted-foreground">
             The{" "}
-            <L href="https://www.dmi.org/page/DesignValue">
+            <Link href="https://www.dmi.org/page/DesignValue" external>
               Design Management Institute's Design Value Index
-            </L>{" "}
+            </Link>{" "}
             shows design-driven companies outperforming the S&P 500 by more than 200%
             over rolling ten-year windows.
           </p>
@@ -82,14 +65,14 @@ export default function ManifiestoPage() {
             The same pattern holds in government. The countries ranking highest on digital
             service delivery — Denmark, Estonia, Singapore — invested in open, documented
             design systems:{" "}
-            <L href="https://design-system.service.gov.uk/">GOV.UK</L>,{" "}
-            <L href="https://www.designsystem.gov.sg/">SGDS</L>,{" "}
-            <L href="https://www.krds.go.kr/">KRDS</L>. Estonia delivers 99% of public
+            <Link href="https://design-system.service.gov.uk/" external>GOV.UK</Link>,{" "}
+            <Link href="https://www.designsystem.gov.sg/" external>SGDS</Link>,{" "}
+            <Link href="https://www.krds.go.kr/" external>KRDS</Link>. Estonia delivers 99% of public
             services online and produces unicorns at ten times the European per-capita rate.
             A{" "}
-            <L href="https://platformland.github.io/government-design-systems/">
+            <Link href="https://platformland.github.io/government-design-systems/" external>
               growing directory of government design systems
-            </L>{" "}
+            </Link>{" "}
             now spans dozens of countries.
           </p>
           <p className="font-body text-base leading-relaxed text-muted-foreground">
@@ -106,22 +89,22 @@ export default function ManifiestoPage() {
         </p>
         <div className="space-y-4">
           <p className="font-body text-base leading-relaxed text-muted-foreground">
-            <L href="https://airbnb.design/">Airbnb invented a file format</L> because
+            <Link href="https://airbnb.design/" external>Airbnb invented a file format</Link> because
             existing formats weren't expressive enough.{" "}
-            <L href="https://developer.apple.com/design/">
+            <Link href="https://developer.apple.com/design/" external>
               Apple rewrote its visual language
-            </L>{" "}
+            </Link>{" "}
             for the first time in twelve years.{" "}
-            <L href="https://www.whitehouse.gov/presidential-actions/2025/08/improving-our-nation-through-better-design/">
+            <Link href="https://www.whitehouse.gov/presidential-actions/2025/08/improving-our-nation-through-better-design/" external>
               The U.S. government created a National Design Studio by executive order
-            </L>{" "}
+            </Link>{" "}
             — the first dedicated federal design body in half a century.{" "}
-            <L href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/">
+            <Link href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/" external>
               DESIGN.md emerged as a portable design brief for AI agents
-            </L>.{" "}
-            <L href="https://www.anthropic.com/news/claude-design-anthropic-labs">
+            </Link>.{" "}
+            <Link href="https://www.anthropic.com/news/claude-design-anthropic-labs" external>
               Anthropic launched Claude Design
-            </L>, a tool whose entire pitch is the preservation of design systems and brand
+            </Link>, a tool whose entire pitch is the preservation of design systems and brand
             consistency. Lovable launched Aesthetics to give designers more expressive tools.
           </p>
           <p className="font-body text-base leading-relaxed text-muted-foreground">
@@ -175,7 +158,7 @@ export default function ManifiestoPage() {
         </p>
         <p className="font-body text-base leading-relaxed text-muted-foreground">
           democrito exists in that 20%. It began as the visual foundation and design
-          philosophy behind <L href="https://prompt-x.io">prompt-x.io</L> — then went
+          philosophy behind <Link href="https://prompt-x.io" external>prompt-x.io</Link> — then went
           agnostic, so any product could build on the same reasoning.
         </p>
         <p className="font-body text-base leading-relaxed text-muted-foreground">
@@ -222,7 +205,7 @@ export default function ManifiestoPage() {
           but concentrating into its most essential work.
         </p>
         <blockquote className="border-l-2 border-accent pl-5 py-1">
-          <p className="font-display text-2xl font-bold text-accent">
+          <p className="font-display text-2xl font-medium text-muted-foreground">
             You can only be as good as your taste.
           </p>
           <cite className="mt-2 block font-mono text-xs text-muted-foreground not-italic">

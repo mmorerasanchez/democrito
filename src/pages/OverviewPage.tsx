@@ -1,9 +1,9 @@
 import { PageMeta } from "@/components/PageMeta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heading, Text, Logo } from "@/components/atoms";
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Palette, Box, Layers, LayoutGrid, Layout, Star, Quote, Heart, Github } from "lucide-react";
+import { Heading, Text, Logo, Link } from "@/components/atoms";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { ArrowRight, Layers, Heart, Github } from "lucide-react";
 import { QuickStartSection } from "@/components/organisms/ai";
 
 function ClaudeIcon({ className }: { className?: string }) {
@@ -20,15 +20,6 @@ function ClaudeIcon({ className }: { className?: string }) {
   );
 }
 
-const stats = [
-  { label: "Design tokens", count: "90+" },
-  { label: "Atoms",         count: "11"  },
-  { label: "Molecules",     count: "17"  },
-  { label: "Organisms",     count: "19"  },
-  { label: "Templates",     count: "7"   },
-  { label: "UI primitives", count: "48"  },
-];
-
 const principles = [
   { name: "Monochromatic + Accent", desc: "95% warm stone grays, 4% terracotta orange accent, 1% semantic colors." },
   { name: "3-Surface Hierarchy", desc: "Background → Surface → Card creates depth without complexity." },
@@ -38,13 +29,13 @@ const principles = [
   { name: "IDE-Inspired", desc: "Clean, distraction-free workspace for data-dense work." },
 ];
 
-const sections = [
-  { name: "Tokens",     path: "/tokens",    icon: Palette,    desc: "Colors, Typography, Spacing, Radius, Shadows, Breakpoints" },
-  { name: "Atoms",      path: "/atoms",     icon: Box,        desc: "Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link, ..." },
-  { name: "Molecules",  path: "/molecules", icon: Layers,     desc: "Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, ..." },
-  { name: "Organisms",  path: "/organisms", icon: LayoutGrid, desc: "Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, ..." },
-  { name: "Templates",  path: "/templates", icon: Layout,     desc: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ..." },
-  { name: "Manifesto",  path: "/manifesto", icon: Quote,      desc: "Why design systems still matter — the taste argument." },
+const components = [
+  { count: "90+", title: "Tokens",        subtitle: "Colors, Typography, Spacing, Radius, Shadows, Breakpoints",                          path: "/tokens",     external: false },
+  { count: "11",  title: "Atoms",         subtitle: "Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link, ...", path: "/atoms",      external: false },
+  { count: "17",  title: "Molecules",     subtitle: "Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, ...",          path: "/molecules",  external: false },
+  { count: "19",  title: "Organisms",     subtitle: "Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, ...", path: "/organisms",  external: false },
+  { count: "7",   title: "Templates",     subtitle: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ...",             path: "/templates",  external: false },
+  { count: "48",  title: "UI primitives", subtitle: "Dialog, Dropdown, Popover, Sheet, Tabs, Toast, ...",                                  path: "https://democrito.design/r/democrito.json", external: true },
 ];
 
 const paths = [
@@ -78,53 +69,49 @@ export default function OverviewPage() {
     <div className="space-y-16">
       <PageMeta
         title="democrito — Atomic Design System for AI-Native Development"
-        description="Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications."
+        description="A general-purpose, themeable atomic design system for data-dense, IDE-inspired interfaces. Built for AI-native development."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
           "name": "democrito",
-          "description": "Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications.",
+          "description": "A general-purpose, themeable atomic design system for data-dense, IDE-inspired interfaces.",
           "url": "https://democrito.design",
           "applicationCategory": "DeveloperApplication",
-          "operatingSystem": "Web",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
         }}
       />
+
       {/* Hero */}
-      <div className="space-y-5">
-        <div className="flex items-center gap-3">
-          <Logo size={40} />
-          <h1 className="font-mono text-3xl font-bold tracking-tight lowercase">
-            democrito
-          </h1>
-          <Badge variant="outline">v3</Badge>
+      <div className="space-y-6">
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <Logo size="md" />
+            <Badge variant="outline" className="font-mono text-2xs">
+              v1.0
+            </Badge>
+          </div>
+          <Heading level="h1">democrito</Heading>
+          <Text variant="muted" size="sm" className="max-w-lg">
+            A general-purpose, themeable atomic design system for data-dense,
+            IDE-inspired interfaces. Install via the shadcn registry. Adapt with
+            your brand.
+          </Text>
         </div>
-        <p className="font-body text-base text-muted-foreground">
-          Agnostic atomic design system for AI-native tools — structured tokens, accessible components, and three-theme support. React + Tailwind CSS + Radix UI. Adaptable via Claude, vibe coding platforms or terminal.
-        </p>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Button onClick={() => window.open(REPO_URL, "_blank")}>
-            <Star className="h-4 w-4" />
-            Star on GitHub
-          </Button>
-          <Button variant="outline" onClick={() => navigate("/atoms")}>
-            <Box className="h-4 w-4" />
-            Browse components
-          </Button>
-          <button
-            type="button"
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            size="sm"
             onClick={() => navigate("/tokens")}
-            className="inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-accent sm:ml-1"
           >
             Explore tokens
-            <ArrowRight className="h-3.5 w-3.5" />
-          </button>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => window.open(REPO_URL, "_blank", "noopener noreferrer")}
+          >
+            GitHub
+          </Button>
         </div>
-        <Text mono size="xs" variant="muted">
-          Open source · MIT License · Built with React + Tailwind + shadcn/ui
-        </Text>
-        <div id="hero-sentinel" aria-hidden="true" className="h-px" />
       </div>
 
       {/* Why */}
@@ -138,14 +125,9 @@ export default function OverviewPage() {
           Twenty-five centuries later, Brad Frost borrowed the concept for design interfaces:
           buttons are atoms, forms are molecules, pages are built from organisms. The methodology
           is called{" "}
-          <a
-            href="https://atomicdesign.bradfrost.com/chapter-2/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground underline decoration-border underline-offset-2 transition-colors hover:text-accent hover:decoration-accent"
-          >
+          <Link href="https://atomicdesign.bradfrost.com/chapter-2/" external>
             atomic design
-          </a>{" "}
+          </Link>{" "}
           — and the connection back to Democritus is in the name.
         </Text>
         <Text variant="muted" size="sm">
@@ -171,7 +153,7 @@ export default function OverviewPage() {
           <h3 className="font-display text-base font-medium">Customize with your brand</h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {paths.map((item) => (
-              <Link
+              <RouterLink
                 key={item.to}
                 to={item.to}
                 className="group flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition-colors duration-150 hover:border-accent-subtle"
@@ -183,7 +165,7 @@ export default function OverviewPage() {
                 <p className="font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
                   {item.name}
                 </p>
-              </Link>
+              </RouterLink>
             ))}
           </div>
         </div>
@@ -198,42 +180,6 @@ export default function OverviewPage() {
             three surfaces, and structured for AI consumption. Adopt the whole system or extract
             only what your product needs.
           </Text>
-        </div>
-
-        {/* Summary */}
-        <div>
-          <Heading level="h3" className="mb-4">Summary</Heading>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {stats.map((s) => (
-              <div key={s.label} className="rounded-md border border-border bg-card p-5 space-y-1">
-                <p className="font-mono text-xl font-medium text-accent">{s.count}</p>
-                <p className="font-display text-xs text-muted-foreground">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Sections */}
-        <div>
-          <Heading level="h3" className="mb-4">Sections</Heading>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {sections.map((s) => (
-              <Link
-                key={s.path}
-                to={s.path}
-                className="group flex items-start gap-3 rounded-lg border border-border bg-card p-5 transition-all duration-150 hover:-translate-y-px hover:shadow-md hover:border-accent/30"
-              >
-                <div className="rounded-md bg-accent/10 p-2 text-accent">
-                  <s.icon className="h-5 w-5" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-display text-sm font-medium group-hover:text-accent transition-colors">{s.name}</p>
-                  <p className="font-body text-xs text-muted-foreground line-clamp-2">{s.desc}</p>
-                </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity mt-0.5" />
-              </Link>
-            ))}
-          </div>
         </div>
 
         {/* Design Principles */}
@@ -251,6 +197,36 @@ export default function OverviewPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Design components */}
+        <div>
+          <Heading level="h3" className="mb-4">Design components</Heading>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {components.map((c) => {
+              const inner = (
+                <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-5 transition-all duration-150 group-hover:-translate-y-px group-hover:shadow-md group-hover:border-accent/30">
+                  <div className="flex items-start justify-between">
+                    <p className="font-mono text-xl font-medium text-accent">{c.count}</p>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity mt-0.5" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <p className="font-display text-sm font-medium group-hover:text-accent transition-colors">{c.title}</p>
+                    <p className="font-body text-xs text-muted-foreground line-clamp-2">{c.subtitle}</p>
+                  </div>
+                </div>
+              );
+              return c.external ? (
+                <a key={c.title} href={c.path} target="_blank" rel="noopener noreferrer" className="group block">
+                  {inner}
+                </a>
+              ) : (
+                <RouterLink key={c.title} to={c.path} className="group block">
+                  {inner}
+                </RouterLink>
+              );
+            })}
           </div>
         </div>
       </div>
