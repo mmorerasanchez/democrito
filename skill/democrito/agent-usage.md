@@ -15,7 +15,7 @@ This guide covers setup and prompting strategies for four categories of tools.
 
 ## 1. Lovable
 
-Lovable is the primary development environment for democrito. It has full access to the codebase and can read component patterns directly.
+Claude Code is the primary development environment for democrito, with full terminal and multi-file access. Lovable is also supported and has full access to the codebase and can read component patterns directly.
 
 ### Setup
 

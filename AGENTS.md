@@ -138,7 +138,7 @@ perf(theme): reduce CSS custom property count by 12
 - Any change to `src/index.css` `@theme` block font families or accent hue
 
 ### 🚫 Never
-- Commit directly to `main` — always use a feature branch (`feat/`, `fix/`, `chore/`)
+- Commit directly to `main` — always branch as `<type>/<issue#>-<desc>`, open a PR, and wait for review (never self-merge)
 - Hardcode hex, rgb, or HSL values in components
 - Create `tailwind.config.ts`
 - Introduce a 4th theme or 2nd accent color

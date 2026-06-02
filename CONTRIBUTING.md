@@ -34,11 +34,13 @@ npm run dev
 npm test
 ```
 
-6. **Create a branch** for your changes:
+6. **Create a branch** for your changes, named `<type>/<issue#>-<short-desc>`:
 
 ```bash
-git checkout -b feat/your-feature-name
+git checkout -b feat/42-tooltip-atom
 ```
+
+  Every change starts from a GitHub issue; the branch references its number. Open a PR and wait for review — never merge your own PR or push to `main` directly.
 
 ---
 

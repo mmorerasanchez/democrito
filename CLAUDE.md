@@ -79,6 +79,7 @@ Follow `CONTRIBUTING.md` for commit conventions and branch naming.
 
 **Never commit directly to `main`.** Always create a feature branch (`feat/`, `fix/`, `chore/`),
 commit there, then create a PR.
+Branch naming: `<type>/<issue#>-<short-desc>` (e.g. `feat/42-tooltip-atom`). Every session works on its own issue-numbered branch, opens a PR, and waits for review — it never merges its own PR.
 
 Commit message format: `<type>(<scope>): <description>` — see `CONTRIBUTING.md` for the full spec with types, scopes, and examples.
 

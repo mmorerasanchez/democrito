@@ -167,7 +167,7 @@ use Claude Code. For visual generation, use Claude Design.
 
 ## 4. Lovable
 
-Lovable is a primary visual development environment for democrito. It has direct access
+Claude Code is the primary development environment for democrito. Lovable is also fully supported as a visual development environment — it has direct access
 to your GitHub repo and can read component patterns, `CLAUDE.md`, and all source files.
 
 ### Knowledge architecture
