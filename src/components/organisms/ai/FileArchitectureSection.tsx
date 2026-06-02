@@ -49,7 +49,7 @@ export function FileArchitectureSection() {
   return (
     <section className="space-y-4">
       <Heading level="h2">Agent context architecture</Heading>
-      <Text variant="muted" size="sm" className="max-w-2xl">
+      <Text variant="muted" size="sm">
         Four plain-text files give any AI agent the rules, the reasoning, and the inventory it needs to build on-system — loaded automatically by the tools that read them.
       </Text>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

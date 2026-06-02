@@ -66,7 +66,7 @@ export default function AiPage() {
       <div className="space-y-4">
         <Badge variant="outline" className="font-mono text-xs">AI Integration</Badge>
         <Heading level="h1">AI Integration</Heading>
-        <p className="max-w-2xl font-body text-base text-muted-foreground">
+        <p className="font-body text-base text-muted-foreground">
           The first open-source design system with structured AI context files: 3-file
           architecture to plug in your favorite vibe coding tool and LLM — fully customizable.
         </p>
@@ -77,7 +77,7 @@ export default function AiPage() {
       {/* Customization */}
       <section className="space-y-4">
         <Heading level="h2">Customization</Heading>
-        <p className="font-body text-base text-muted-foreground max-w-2xl">
+        <p className="font-body text-base text-muted-foreground">
           Claude, vibe coding platforms, and terminal workflows — each
           path fits a different setup, with examples.
         </p>
