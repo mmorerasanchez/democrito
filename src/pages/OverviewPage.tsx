@@ -22,11 +22,11 @@ function ClaudeIcon({ className }: { className?: string }) {
 
 const stats = [
   { label: "Design tokens", count: "90+" },
-  { label: "Atoms",         count: "10"  },
-  { label: "Molecules",     count: "18"  },
+  { label: "Atoms",         count: "11"  },
+  { label: "Molecules",     count: "17"  },
   { label: "Organisms",     count: "19"  },
-  { label: "Templates",      count: "7"   },
-  { label: "UI primitives", count: "40+" },
+  { label: "Templates",     count: "7"   },
+  { label: "UI primitives", count: "48"  },
 ];
 
 const principles = [
@@ -102,7 +102,7 @@ export default function OverviewPage() {
           <Badge variant="outline">v3</Badge>
         </div>
         <p className="font-body text-base text-muted-foreground max-w-prose">
-          Agnostic, hand-crafted atomic design system for AI-native apps: 3 themes, structured tokens, accessible components; adaptable via Claude, vibe coding platforms or terminal.
+          Agnostic atomic design system for AI-native tools — structured tokens, accessible components, and three-theme support. React + Tailwind CSS + Radix UI. Adaptable via Claude, vibe coding platforms or terminal.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button onClick={() => window.open(REPO_URL, "_blank")}>

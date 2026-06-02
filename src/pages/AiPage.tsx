@@ -2,7 +2,7 @@ import { PageMeta } from "@/components/PageMeta";
 import { Heading } from "@/components/atoms";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, Heart } from "lucide-react";
+import { ArrowRight, Github, Heart, Layers } from "lucide-react";
 import { FileArchitectureSection } from "@/components/organisms/ai";
 
 function ClaudeIcon({ className }: { className?: string }) {
@@ -24,22 +24,21 @@ const platforms = [
     path: "/ai/claude",
     icon: ClaudeIcon,
     name: "Claude",
-    badge: "Anthropic",
-    desc: "Attach design-tokens.json as context and describe your brand. Claude generates a complete new theme in natural language.",
   },
   {
     path: "/ai/vibe-coding",
     icon: Heart,
-    name: "Vibe Coding Tools",
-    badge: "Lovable · Google Stitch · Replit",
-    desc: "Fork the repo and prompt your visual direction. No terminal needed.",
+    name: "Vibe Coding",
   },
   {
     path: "/ai/github",
     icon: Github,
     name: "Terminal",
-    badge: "GitHub",
-    desc: "Edit src/index.css directly. Two variables change the whole personality.",
+  },
+  {
+    path: "/ai/examples",
+    icon: Layers,
+    name: "Examples",
   },
 ];
 
@@ -75,14 +74,14 @@ export default function AiPage() {
 
       <FileArchitectureSection />
 
-      {/* Distribution */}
+      {/* Customization */}
       <section className="space-y-4">
-        <Heading level="h2">Distribution</Heading>
+        <Heading level="h2">Customization</Heading>
         <p className="font-body text-base text-muted-foreground max-w-2xl">
           Claude, vibe coding platforms, and terminal workflows — each
-          path fits a different setup.
+          path fits a different setup, with examples.
         </p>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {platforms.map((item) => (
             <Link
               key={item.path}
@@ -93,14 +92,8 @@ export default function AiPage() {
                 <item.icon className="h-4 w-4 text-accent" />
                 <ArrowRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-accent transition-colors" />
               </div>
-              <div>
-                <p className="font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                  {item.name}
-                </p>
-                <p className="font-mono text-xs text-muted-foreground">{item.badge}</p>
-              </div>
-              <p className="font-body text-sm text-muted-foreground">
-                {item.desc}
+              <p className="font-display text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                {item.name}
               </p>
             </Link>
           ))}
