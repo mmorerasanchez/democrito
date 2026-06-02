@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heading, Text, Logo, Link } from "@/components/atoms";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { ArrowRight, Layers, Heart, Github } from "lucide-react";
+import { ArrowRight, Box, Star, Layers, Heart, Github } from "lucide-react";
 import { QuickStartSection } from "@/components/organisms/ai";
 
 function ClaudeIcon({ className }: { className?: string }) {
@@ -69,49 +69,54 @@ export default function OverviewPage() {
     <div className="space-y-16">
       <PageMeta
         title="democrito — Atomic Design System for AI-Native Development"
-        description="A general-purpose, themeable atomic design system for data-dense, IDE-inspired interfaces. Built for AI-native development."
+        description="Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
           "name": "democrito",
-          "description": "A general-purpose, themeable atomic design system for data-dense, IDE-inspired interfaces.",
+          "description": "Themeable atomic design system with warm industrial aesthetic, three-surface depth, and three-font semantic typography. Built for data-dense, IDE-inspired applications.",
           "url": "https://democrito.design",
           "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
         }}
       />
 
       {/* Hero */}
-      <div className="space-y-6">
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <Logo size="md" />
-            <Badge variant="outline" className="font-mono text-2xs">
-              v1.0
-            </Badge>
-          </div>
-          <Heading level="h1">democrito</Heading>
-          <Text variant="muted" size="sm" className="max-w-lg">
-            A general-purpose, themeable atomic design system for data-dense,
-            IDE-inspired interfaces. Install via the shadcn registry. Adapt with
-            your brand.
-          </Text>
+      <div className="space-y-5">
+        <div className="flex items-center gap-3">
+          <Logo size={40} />
+          <h1 className="font-mono text-3xl font-bold tracking-tight lowercase">
+            democrito
+          </h1>
+          <Badge variant="outline">v3</Badge>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <Button
-            size="sm"
+        <p className="font-body text-base text-muted-foreground">
+          Agnostic atomic design system for AI-native tools — structured tokens, accessible components, and three-theme support. React + Tailwind CSS + Radix UI. Adaptable via Claude, vibe coding platforms or terminal.
+        </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Button onClick={() => window.open(REPO_URL, "_blank")}>
+            <Star className="h-4 w-4" />
+            Star on GitHub
+          </Button>
+          <Button variant="outline" onClick={() => navigate("/atoms")}>
+            <Box className="h-4 w-4" />
+            Browse components
+          </Button>
+          <button
+            type="button"
             onClick={() => navigate("/tokens")}
+            className="inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-accent sm:ml-1"
           >
             Explore tokens
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => window.open(REPO_URL, "_blank", "noopener noreferrer")}
-          >
-            GitHub
-          </Button>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </button>
         </div>
+        <Text mono size="xs" variant="muted">
+          Open source · MIT License · Built with React + Tailwind + shadcn/ui
+        </Text>
+        <div id="hero-sentinel" aria-hidden="true" className="h-px" />
       </div>
 
       {/* Why */}
