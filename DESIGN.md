@@ -86,8 +86,10 @@ only depth system. Shadows are reserved for floating elements
 |------|-------|------|----------|
 | Primary | `--foreground` | `60 9% 98%` | `text-foreground` |
 | Secondary | `--muted-foreground` | `24 5% 64%` | `text-muted-foreground` |
-| Tertiary | `--foreground-subtle` | `24 5% 45%` | `text-foreground-subtle` |
+| Tertiary ⚠️ | `--foreground-subtle` | `24 5% 45%` | `text-foreground-subtle` |
 | Accent | `--accent` | `18 65% 55%` | `text-accent` |
+
+⚠️ `foreground-subtle` does not meet WCAG AA for body text in any theme, and fails AA-large on Warm and Light backgrounds. Use it only for non-text UI (decorative separators, disabled states) or very large (18px+) tertiary labels. Use `text-muted-foreground` for any readable secondary text.
 
 ### Accent: Terracotta Orange
 
@@ -124,6 +126,14 @@ optimal contrast on its surfaces.
 - **No decorative colors, ever.** Every color has a documented
   functional role. If you can't name its role, it doesn't belong.
 
+### A note on theme identity
+
+Warm is the code default (`:root`) and the system's conceptual baseline.
+Dark is the theme most associated with democrito's visual identity in
+screenshots — the default in code is not the default in people's heads.
+When generating UI for democrito, default to Dark for demonstrations
+unless the context specifies otherwise.
+
 ---
 
 ## 3. Typography Rules
@@ -155,23 +165,37 @@ Mono text without edit/save/copy affordances is a broken contract.
 
 ### Type Scale
 
-| Element | Font | Size | Weight |
-|---------|------|------|--------|
-| Page titles (h1) | `font-display` | `text-2xl` | `font-semibold` |
-| Section headers (h2) | `font-display` | `text-xl` | `font-medium` |
-| Card titles (h3) | `font-display` | `text-md` | `font-medium` |
-| Kicker labels (h4) | `font-display` | `text-sm` | `font-medium uppercase tracking-widest` |
-| Button labels | `font-display` | — | `font-medium` |
-| Nav items | `font-display` | `text-sm` | `font-medium` |
-| Body text | `font-body` | `text-base` | normal |
-| Form labels | `font-body` | `text-sm` | `font-medium` |
-| Descriptions | `font-body` | `text-sm` | normal |
-| All inputs | `font-mono` | `text-base` | normal |
-| Badges | `font-mono` | `text-xs` | `font-medium` |
-| Table headers | `font-mono` | `text-xs` | `uppercase tracking-widest` |
-| Table data | `font-mono` | `text-sm` | normal |
-| KPI values | `font-mono` | `text-2xl` | `font-bold` |
-| Metadata | `font-mono` | `text-2xs` | normal |
+These are **CUSTOM sizes redefined in `@theme`** — NOT stock Tailwind values. Always resolve via `src/index.css`. `text-md` (16px) is a democrito-only step between `text-base` (14px) and `text-lg` (18px).
+
+| Class | rem | px |
+|-------|-----|----|
+| `text-2xs` | 0.625rem | 10px |
+| `text-xs` | 0.75rem | 12px |
+| `text-sm` | 0.8125rem | 13px |
+| `text-base` | 0.875rem | 14px |
+| `text-md` | 1rem | 16px |
+| `text-lg` | 1.125rem | 18px |
+| `text-xl` | 1.375rem | 22px |
+| `text-2xl` | 1.5rem | 24px |
+| `text-3xl` | 2.25rem | 36px |
+
+| Element | Font | Size | Resolved | Weight |
+|---------|------|------|----------|--------|
+| Page titles (h1) | `font-display` | `text-2xl` | 24px | `font-semibold` |
+| Section headers (h2) | `font-display` | `text-xl` | 22px | `font-medium` |
+| Card titles (h3) | `font-display` | `text-md` | 16px | `font-medium` |
+| Kicker labels (h4) | `font-display` | `text-sm` | 13px | `font-medium uppercase tracking-widest` |
+| Button labels | `font-display` | — | — | `font-medium` |
+| Nav items | `font-display` | `text-sm` | 13px | `font-medium` |
+| Body text | `font-body` | `text-base` | 14px | normal |
+| Form labels | `font-body` | `text-sm` | 13px | `font-medium` |
+| Descriptions | `font-body` | `text-sm` | 13px | normal |
+| All inputs | `font-mono` | `text-base` | 14px | normal |
+| Badges | `font-mono` | `text-xs` | 12px | `font-medium` |
+| Table headers | `font-mono` | `text-xs` | 12px | `uppercase tracking-widest` |
+| Table data | `font-mono` | `text-sm` | 13px | normal |
+| KPI values | `font-mono` | `text-2xl` | 24px | `font-bold` |
+| Metadata | `font-mono` | `text-2xs` | 10px | normal |
 
 ### The wordmark exception
 
@@ -400,6 +424,11 @@ All depth comes from the surface hierarchy, not from shadows:
   single most important action
 - **Don't hide important information behind hover** — if it matters,
   it's visible or one click away
+- **Don't use `text-foreground-subtle` for body-size text** — it is
+  reserved for non-text UI and large tertiary labels only. It does not
+  meet WCAG AA contrast for body copy and fails AA-large on Warm and
+  Light page backgrounds. For readable secondary text use
+  `text-muted-foreground`.
 
 ---
 
@@ -407,15 +436,25 @@ All depth comes from the surface hierarchy, not from shadows:
 
 ### Breakpoints
 
-democrito uses Tailwind's default breakpoint system:
+| Breakpoint | Width | Note |
+|------------|-------|------|
+| `sm` | **480px** | **CUSTOM** — overridden in `@theme` (Tailwind default is 640px) |
+| `md` | 768px | Tailwind v4 default |
+| `lg` | 1024px | Tailwind v4 default |
+| `xl` | 1280px | Tailwind v4 default |
+| `2xl` | 1536px | Tailwind v4 default |
 
-| Breakpoint | Width | Behavior |
-|------------|-------|----------|
-| `sm` | 640px | Stack sidebar below content |
-| `md` | 768px | Collapse sidebar to icon-only |
-| `lg` | 1024px | Show full sidebar + content |
-| `xl` | 1280px | Show sidebar + content + right panel |
-| `2xl` | 1536px | Max content width with side margins |
+Only `sm` is overridden in the `@theme` block (480px instead of 640px); all other breakpoints inherit Tailwind v4 defaults. Verify against `src/index.css` line 10.
+
+### Responsive Behavior at each breakpoint
+
+| Breakpoint | Behavior |
+|------------|----------|
+| `sm` (480px) | Stack sidebar below content |
+| `md` (768px) | Collapse sidebar to icon-only |
+| `lg` (1024px) | Show full sidebar + content |
+| `xl` (1280px) | Show sidebar + content + right panel |
+| `2xl` (1536px) | Max content width with side margins |
 
 ### Responsive Patterns
 
@@ -480,8 +519,9 @@ SPACING: 4px base. Scale: 4·8·12·16·24·32·48·64px
 RADIUS: sm=4px, md=8px, lg=12px, full=avatars only
 MOTION: 150ms ease-out default. Respect prefers-reduced-motion.
 
-THEMES: Dark (:root), Light (.light), Warm (.warm)
-  Toggle via class on <html> element.
+THEMES: Warm (:root, default), Dark (.dark), Light (.light)
+  (.warm is a backwards-compat alias for :root — do not use for new code)
+  Toggle Dark/Light via class on <html> element.
 ```
 
 ### Prompt Patterns for Agents

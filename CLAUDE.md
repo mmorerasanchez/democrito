@@ -75,13 +75,15 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 
 ## Git Workflow
 
-Follow `CONTRIBUTING.md` for commit conventions and branch naming.
+**Internal changes commit directly to `main`.** No feature branches, no PRs.
 
-**Never commit directly to `main`.** Always create a feature branch (`feat/`, `fix/`, `chore/`),
-commit there, then create a PR.
-Branch naming: `<type>/<issue#>-<short-desc>` (e.g. `feat/42-tooltip-atom`). Every session works on its own issue-numbered branch, opens a PR, and waits for review — it never merges its own PR.
+Commit message format: `<type>(<scope>): <description>` — lowercase, imperative mood, no trailing period, ≤72 chars.
 
-Commit message format: `<type>(<scope>): <description>` — see `CONTRIBUTING.md` for the full spec with types, scopes, and examples.
+Types: `feat fix docs style refactor chore perf test`
+
+Scopes map to layers: `tokens atoms molecules organisms templates ui theme deps pages`
+
+External contributors follow `CONTRIBUTING.md` (feature branches → PR → review).
 
 ---
 
