@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Outlet, useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { SidebarNav } from "@/components/organisms/SidebarNav";
 import { TopBar } from "@/components/organisms/TopBar";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@/components/app/ThemeToggle";
 
 const routeMap: Record<string, string> = {
   store: "/app/library",

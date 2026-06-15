@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ShowcaseLayout } from "@/components/ShowcaseLayout";
+import { ShowcaseLayout } from "@/components/app/ShowcaseLayout";
 import OverviewPage from "@/pages/OverviewPage";
 import TokensPage from "@/pages/TokensPage";
 import AtomsPage from "@/pages/AtomsPage";

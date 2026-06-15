@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Heading } from "@/components/atoms";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";

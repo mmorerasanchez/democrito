@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Heading } from "@/components/atoms";
 import { TemplatePreview } from "@/components/templates/TemplatePreview";
 import { EditorLayout } from "@/components/templates/EditorLayout";

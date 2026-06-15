@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heading, Text, Logo, Link } from "@/components/atoms";

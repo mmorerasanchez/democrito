@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Heading } from "@/components/atoms";
 import { useState } from "react";
 import { FormField } from "@/components/molecules/FormField";

@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Badge } from "@/components/ui/badge";
 import { Heading, Code } from "@/components/atoms";
 import { Section, Step, StepCode, P } from "./_shared";

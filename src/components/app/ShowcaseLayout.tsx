@@ -1,10 +1,10 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/AppSidebar";
-import { ContactCreator } from "@/components/ContactCreator";
-import { Footer } from "@/components/Footer";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { AppSidebar } from "@/components/app/AppSidebar";
+import { ContactCreator } from "@/components/app/ContactCreator";
+import { Footer } from "@/components/app/Footer";
+import { ThemeToggle } from "@/components/app/ThemeToggle";
 import { Logo } from "@/components/atoms";
 import { Outlet } from "react-router-dom";
 import { useTheme } from "@/hooks/use-theme";

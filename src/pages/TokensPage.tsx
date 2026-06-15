@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Heading } from "@/components/atoms";
 import { useEffect, useMemo, useState } from "react";
 import { Check, Copy, Download, Search, X } from "lucide-react";

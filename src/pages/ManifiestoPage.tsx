@@ -1,4 +1,4 @@
-import { PageMeta } from "@/components/PageMeta";
+import { PageMeta } from "@/components/app/PageMeta";
 import { Heading, Link } from "@/components/atoms";
 import { Separator } from "@/components/ui/separator";
 

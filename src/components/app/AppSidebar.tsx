@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "@/components/NavLink";
+import { NavLink } from "@/components/app/NavLink";
 import {
   Sidebar,
   SidebarContent,
