@@ -3,7 +3,7 @@ import { Heading } from "@/components/atoms";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, Github, Heart, Layers } from "lucide-react";
-import { FileArchitectureSection } from "@/components/organisms/ai";
+import { FileArchitectureSection } from "@/components/sections";
 
 function ClaudeIcon({ className }: { className?: string }) {
   return (

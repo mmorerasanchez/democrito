@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Heading, Text, Logo, Link } from "@/components/atoms";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { ArrowRight, Box, Star, Layers, Heart, Github } from "lucide-react";
-import { QuickStartSection } from "@/components/organisms/ai";
+import { QuickStartSection } from "@/components/sections";
 
 function ClaudeIcon({ className }: { className?: string }) {
   return (
