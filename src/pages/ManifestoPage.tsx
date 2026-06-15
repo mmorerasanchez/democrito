@@ -2,7 +2,7 @@ import { PageMeta } from "@/components/app/PageMeta";
 import { Heading, Link } from "@/components/atoms";
 import { Separator } from "@/components/ui/separator";
 
-export default function ManifiestoPage() {
+export default function ManifestoPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-14 py-4">
       <PageMeta

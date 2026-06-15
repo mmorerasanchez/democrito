@@ -10,7 +10,7 @@ import NotFound from "@/pages/NotFound";
 import TokenSmokeTest from "@/pages/TokenSmokeTest";
 import AiPage from "@/pages/AiPage";
 import AiDetailPage from "@/pages/AiDetailPage";
-import ManifiestoPage from "@/pages/ManifiestoPage";
+import ManifestoPage from "@/pages/ManifestoPage";
 
 export default function AppRoutes() {
   return (
@@ -25,7 +25,7 @@ export default function AppRoutes() {
         <Route path="/pages" element={<Navigate to="/templates" replace />} />
         <Route path="/ai" element={<AiPage />} />
         <Route path="/ai/:platform" element={<AiDetailPage />} />
-        <Route path="/manifesto" element={<ManifiestoPage />} />
+        <Route path="/manifesto" element={<ManifestoPage />} />
       </Route>
       <Route path="/test/tokens" element={<TokenSmokeTest />} />
       <Route path="*" element={<NotFound />} />
