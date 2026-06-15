@@ -190,4 +190,4 @@ This is the closest migration path since the system is built on Tailwind + Radix
 - 📖 **[Theming Guide](./theming.md)** — full rebranding walkthrough with examples
 - 🎨 **[Tokens Reference](./tokens.md)** — complete token inventory
 - 🧱 **[Component Docs](./components/)** — atoms, molecules, organisms API reference
-- 🤖 **[AI Usage Guide](./ai-usage.md)** — optimized prompts for Lovable, Cursor, Claude Code
+- 🤖 **[AI Usage Guide](./ai/ai-usage.md)** — optimized prompts for Lovable, Cursor, Claude Code

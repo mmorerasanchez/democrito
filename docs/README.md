@@ -8,15 +8,15 @@
 
 | Document | Description |
 |---|---|
-| [Getting Started](./getting-started.md) | Installation, dev setup, and first steps |
+| [Getting Started](./guides/getting-started.md) | Installation, dev setup, and first steps |
 | [Design Principles](./principles.md) | The 6 foundational beliefs behind every design decision |
 | [Architecture](./architecture.md) | Atomic Design decisions and rationale |
 | [Design Tokens](./tokens.md) | Complete tokens reference — colors, typography, spacing, radii, motion |
 | [Theming](./theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
-| [AI Usage](./ai-usage.md) | How to use this design system with AI coding tools (Claude, Cursor, Copilot) |
+| [AI Usage](./ai/ai-usage.md) | How to use this design system with AI coding tools (Claude, Cursor, Copilot) |
 | [Migration](./migration.md) | How to consume tokens in a new project and migrate from MUI, Chakra, Bootstrap, or Tailwind UI |
-| [Content Guidelines](./content-guidelines.md) | Voice, button labels, empty states, error messages, and AI copy anti-patterns |
-| [AI Context](./ai-context.md) | Agent entry point — reading order, decision hierarchy, and AI bias suppression rules |
+| [Content Guidelines](./guides/content-guidelines.md) | Voice, button labels, empty states, error messages, and AI copy anti-patterns |
+| [AI Context](./ai/ai-context.md) | Agent entry point — reading order, decision hierarchy, and AI bias suppression rules |
 
 ## Component Reference
 

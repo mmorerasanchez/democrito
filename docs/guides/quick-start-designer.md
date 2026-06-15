@@ -356,7 +356,7 @@ This remaps to a deep navy palette. Adjust the HSL values for any color.
 | [Theming guide](./theming.md) | Brand customization with real palette examples |
 | [Architecture](./architecture.md) | Atomic Design — how atoms combine into components |
 | [Live demo](https://democrito.design/) | Browse all components with the theme switcher |
-| [AI usage guide](./ai-usage.md) | How to use democrito with Claude Code, Cursor, Lovable |
+| [AI usage guide](../ai/ai-usage.md) | How to use democrito with Claude Code, Cursor, Lovable |
 
 ---
 

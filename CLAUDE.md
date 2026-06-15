@@ -22,7 +22,7 @@ This project targets Baseline 2024 (features interoperable across all major engi
 
 ## Documentation Reading Order
 
-Before working on any component, token, or layout task, read [`docs/ai-context.md`](docs/ai-context.md).
+Before working on any component, token, or layout task, read [`docs/ai/ai-context.md`](docs/ai/ai-context.md).
 It defines the reading order, decision hierarchy, and known AI bias patterns for this system.
 
 ---

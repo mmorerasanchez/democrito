@@ -34,7 +34,7 @@ Never place an organism inside another organism.
   in `docs/patterns/` for specific element-to-element distances
 
 **Step 5 — Apply content rules**
-All copy follows `docs/content-guidelines.md`. Sentence case. Action verbs. No decorative language.
+All copy follows `docs/guides/content-guidelines.md`. Sentence case. Action verbs. No decorative language.
 
 **Step 6 — Verify constraints**
 Before finalizing: check do/don't rules for every component used.
