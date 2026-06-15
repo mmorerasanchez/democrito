@@ -91,7 +91,7 @@ export default function OverviewPage() {
           <h1 className="font-mono text-3xl font-bold tracking-tight lowercase">
             democrito
           </h1>
-          <Badge variant="outline">v3</Badge>
+          <Badge variant="outline">beta</Badge>
         </div>
         <p className="font-body text-base text-muted-foreground">
           Agnostic atomic design system for AI-native tools — structured tokens, accessible components, and three-theme support. React + Tailwind CSS + Radix UI. Adaptable via Claude, vibe coding platforms or terminal.
