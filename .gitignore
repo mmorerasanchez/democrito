@@ -43,5 +43,7 @@ docs/**/proposition-*.md
 docs/**/session-*.md
 docs/**/draft-*.md
 docs/**/audits/
+docs/**/*-prompts-*.md
+docs/claude-code-prompts-*.md
 .lovable/
 .claude/
