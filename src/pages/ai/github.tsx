@@ -100,7 +100,7 @@ export default function GithubPage() {
 Design system reference: https://democrito.design
 
 ## Setup
-- Install: \`cd app-democrito && npm install\`
+- Install: \`cd democrito && npm install\`
 - Dev server: \`npm run dev\` (localhost:5173)
 - Lint + test: \`npm run lint && npm run test\`
 

@@ -139,7 +139,7 @@ In your Cowork project instructions, include a brief democrito context block:
 
 ```
 This project is democrito — a React + TypeScript + Tailwind v4 atomic design
-system. Source is at ~/Desktop/apps/democrito/app-democrito.
+system. Source is at the repo root (democrito/).
 Key files: CLAUDE.md (coding rules), DESIGN.md (visual philosophy),
 docs/ (documentation), docs/design-system.md (component inventory).
 The democrito skill is available — use it for token lookups and component
