@@ -1,7 +1,7 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "democrito",
   "private": true,
-  "version": "3.3.0",
+  "version": "3.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

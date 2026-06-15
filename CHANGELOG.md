@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.5.0] — 2026-06-15
+
+### Changed
+- Package renamed from `vite_react_shadcn_ts` to `democrito` in package.json (private, no registry impact)
+- Version reconciled to 3.5.0; CHANGELOG now includes the missing 3.4.0 entry
+
+### Refactored
+- **S3** — Moved `/ai` page-section components (ComparisonSection, EcosystemSection, FileArchitectureSection, HeroSection, QuickStartSection + helpers) from `src/components/organisms/ai/` to new `src/components/sections/`; organism count stays at 19
+- **S4** — Grouped 7 loose app-shell components (AppSidebar, ContactCreator, Footer, NavLink, PageMeta, ShowcaseLayout, ThemeToggle) into new `src/components/app/`
+- **S5** — Removed unused `src/data/evaluator-analytics-mock.ts` and empty `src/data/` directory
+- **S2** — Consolidated three test directories (`src/test/`, `src/tests/`, `src/__tests__/`) into `src/__tests__/` and `src/test-setup.ts`; deleted stub test; vitest setupFiles updated
+- **S6** — Regrouped `docs/` into `docs/ai/` (ai-context, ai-usage, claude-design, stitch) and `docs/guides/` (getting-started, quick-start-designer, customization-guides, content-guidelines); all cross-links updated including CLAUDE.md and AGENTS.md
+- **S8** — Renamed `ManifiestoPage` → `ManifestoPage` (file, export, route registration)
+
+### Fixed
+- **S9** — Corrected `cd app-democrito` → `cd democrito` in /ai/github quick-start snippet; removed local machine path from docs/ai/ai-usage.md
+
+### Added
+- **S10** — Generated-artifact pipeline: `scripts/generate-counts.mjs` → `src/generated/counts.ts`; `scripts/generate-tokens.mjs` → `design-tokens.json` (W3C DTCG, de-drifted); `scripts/stamp-design-date.mjs` → auto-stamps DESIGN.md last-updated; all wired into `prebuild`
+- OverviewPage tier counts (atoms/molecules/organisms/templates/ui/tokens) now imported from generated `src/generated/counts.ts` instead of hardcoded strings
+
+### Chore
+- **S7** — Untracked `docs/claude-code-prompts-frontend-fixes.md`; added `docs/**/*-prompts-*.md` and `docs/claude-code-prompts-*.md` to .gitignore
+
+---
+
+## [3.4.0] — 2026-05-25
+
+### Added
+- AGENTS.md — cross-tool agent context file for Codex and other AI agents
+- Static pre-rendering via SSR `renderToString` for all routes (build output now includes pre-rendered HTML)
+- `/ai` pages: calibration step, token mapping table, Google Stitch integration, AGENTS.md ecosystem overview
+- Modern web guidance tokens: `color-scheme`, scrollbar tokens, `text-wrap-balance`, Speculation Rules API docs
+
+### Changed
+- Homepage: surfaced Democritus narrative, repositioned hero, added three-path cards for the AI workflow section
+- Link atom: darker text color + persistent `--link-highlight` token defined across all three themes
+
+### Fixed
+- Light theme `--accent` adjusted to pass WCAG AA 4.5:1 (text) and 3:1 (large/UI) contrast thresholds
+- Block UI consistency audit (tasks UI-B/C/K/L/N/O)
+- Docs: disable state pattern, form/card/template spacing patterns, WCAG contrast ratio reference, do/don't rules in component docs
+
+---
+
 ## [3.3.0] — 2026-05-13
 
 ### Fixed
