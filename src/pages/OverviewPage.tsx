@@ -5,6 +5,7 @@ import { Heading, Text, Logo, Link } from "@/components/atoms";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { ArrowRight, Box, Star, Layers, Heart, Github } from "lucide-react";
 import { QuickStartSection } from "@/components/sections";
+import { ATOMS, MOLECULES, ORGANISMS, TEMPLATES, UI, TOKENS } from "@/generated/counts";
 
 function ClaudeIcon({ className }: { className?: string }) {
   return (
@@ -30,12 +31,12 @@ const principles = [
 ];
 
 const components = [
-  { count: "90+", title: "Tokens",        subtitle: "Colors, Typography, Spacing, Radius, Shadows, Breakpoints",                          path: "/tokens",     external: false },
-  { count: "11",  title: "Atoms",         subtitle: "Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link, ...", path: "/atoms",      external: false },
-  { count: "17",  title: "Molecules",     subtitle: "Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, ...",          path: "/molecules",  external: false },
-  { count: "19",  title: "Organisms",     subtitle: "Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, ...", path: "/organisms",  external: false },
-  { count: "7",   title: "Templates",     subtitle: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ...",             path: "/templates",  external: false },
-  { count: "48",  title: "UI primitives", subtitle: "Dialog, Dropdown, Popover, Sheet, Tabs, Toast, ...",                                  path: "https://democrito.design/r/democrito.json", external: true },
+  { count: TOKENS, title: "Tokens",        subtitle: "Colors, Typography, Spacing, Radius, Shadows, Breakpoints",                          path: "/tokens",     external: false },
+  { count: ATOMS,  title: "Atoms",         subtitle: "Button, Input, Textarea, Badge, Tag, Typography, Avatar, Spinner, Tooltip, Link, ...", path: "/atoms",      external: false },
+  { count: MOLECULES, title: "Molecules",  subtitle: "Form Field, Search Bar, Stat Card, Tab Nav, Empty State, Avatar Group, ...",          path: "/molecules",  external: false },
+  { count: ORGANISMS, title: "Organisms",  subtitle: "Top Bar, Filter Bar, Data Table, Activity Feed, Onboarding Wizard, Settings Nav, ...", path: "/organisms",  external: false },
+  { count: TEMPLATES, title: "Templates",  subtitle: "App Shell, Dashboard, Editor, Library, Detail View, Settings, Auth, ...",             path: "/templates",  external: false },
+  { count: UI,     title: "UI primitives", subtitle: "Dialog, Dropdown, Popover, Sheet, Tabs, Toast, ...",                                  path: "https://democrito.design/r/democrito.json", external: true },
 ];
 
 const paths = [

@@ -90,7 +90,7 @@ Three paths to make it yours:
 
 The design system follows **Atomic Design** methodology — Atoms → Molecules → Organisms → Templates — with design tokens defined as CSS custom properties in `src/index.css` and defined in the CSS-first `@theme` block in `src/index.css`.
 
-> **Token formats:** The source of truth is CSS custom properties in `src/index.css`. A [`design-tokens.json`](design-tokens.json) file in [W3C DTCG format](https://design-tokens.github.io/community-group/format/) is also provided for tooling interoperability (Figma Token Studio, Style Dictionary, Specify, etc.). See [`docs/tokens.md`](docs/tokens.md) for the full reference.
+> **Token formats:** The source of truth is CSS custom properties in `src/index.css`. A [`design-tokens.json`](design-tokens.json) file in [W3C DTCG format](https://design-tokens.github.io/community-group/format/) is also provided for tooling interoperability (Figma Token Studio, Style Dictionary, Specify, etc.). See [`docs/tokens.md`](docs/tokens.md) for the full reference. Edit `src/index.css`; `design-tokens.json` is generated from it — never edit the JSON by hand.
 
 ```
 src/

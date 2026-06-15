@@ -2,6 +2,7 @@
 
 > Complete inventory of every design token in the **democrito** design system.
 > This document is the reference for implementing the system without reading source code.
+> Edit `src/index.css`; `design-tokens.json` is generated from it — never edit the JSON by hand.
 
 ---
 

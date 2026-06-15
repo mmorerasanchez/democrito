@@ -2,73 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://democrito.design/</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://democrito.design/manifesto</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://democrito.design/tokens</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://democrito.design/atoms</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://democrito.design/molecules</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://democrito.design/organisms</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://democrito.design/templates</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://democrito.design/ai</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://democrito.design/ai/claude</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://democrito.design/ai/vibe-coding</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://democrito.design/ai/github</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://democrito.design/ai/examples</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
