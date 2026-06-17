@@ -5,16 +5,16 @@
   "description": "All atomic components from democrito",
   "author": "mmorerasanchez",
   "registryDependencies": [
-    "code",
-    "code-block",
-    "copy-button",
-    "heading",
-    "kbd",
-    "link",
-    "logo",
-    "spinner",
-    "status-badge",
-    "tag",
-    "text"
+    "https://democrito.design/r/code.json",
+    "https://democrito.design/r/code-block.json",
+    "https://democrito.design/r/copy-button.json",
+    "https://democrito.design/r/heading.json",
+    "https://democrito.design/r/kbd.json",
+    "https://democrito.design/r/link.json",
+    "https://democrito.design/r/logo.json",
+    "https://democrito.design/r/spinner.json",
+    "https://democrito.design/r/status-badge.json",
+    "https://democrito.design/r/tag.json",
+    "https://democrito.design/r/text.json"
   ]
 }

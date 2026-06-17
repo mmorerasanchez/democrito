@@ -16,7 +16,7 @@
   ],
   "registryDependencies": [
     "card",
-    "heading",
-    "text"
+    "https://democrito.design/r/heading.json",
+    "https://democrito.design/r/text.json"
   ]
 }

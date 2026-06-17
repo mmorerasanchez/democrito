@@ -17,6 +17,6 @@
     }
   ],
   "registryDependencies": [
-    "copy-button"
+    "https://democrito.design/r/copy-button.json"
   ]
 }

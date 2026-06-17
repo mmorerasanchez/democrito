@@ -15,8 +15,8 @@
     "react-router-dom"
   ],
   "registryDependencies": [
-    "sidebar-nav",
-    "theme-toggle",
-    "top-bar"
+    "https://democrito.design/r/sidebar-nav.json",
+    "https://democrito.design/r/theme-toggle.json",
+    "https://democrito.design/r/top-bar.json"
   ]
 }

@@ -5,12 +5,12 @@
   "description": "All template components from democrito",
   "author": "mmorerasanchez",
   "registryDependencies": [
-    "app-shell",
-    "comparison-layout",
-    "dashboard-layout",
-    "detail-layout",
-    "editor-layout",
-    "library-layout",
-    "template-preview"
+    "https://democrito.design/r/app-shell.json",
+    "https://democrito.design/r/comparison-layout.json",
+    "https://democrito.design/r/dashboard-layout.json",
+    "https://democrito.design/r/detail-layout.json",
+    "https://democrito.design/r/editor-layout.json",
+    "https://democrito.design/r/library-layout.json",
+    "https://democrito.design/r/template-preview.json"
   ]
 }

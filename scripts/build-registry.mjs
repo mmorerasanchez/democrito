@@ -312,12 +312,21 @@ const customComponentNames = new Set([
 ]);
 
 if (REGISTRY_URL) {
+  // Individual components: only URL-ify custom (non-ui) deps; ui cross-refs stay bare
   const addUrl = (dep) =>
     customComponentNames.has(dep) ? `${REGISTRY_URL}/${dep}.json` : dep;
 
-  for (const item of [...componentItems, ...tierBundleItems]) {
+  // Tier bundles: ALL deps are democrito-served — always URL-ify
+  const addBundleUrl = (dep) => `${REGISTRY_URL}/${dep}.json`;
+
+  for (const item of componentItems) {
     if (item.registryDependencies) {
       item.registryDependencies = item.registryDependencies.map(addUrl);
+    }
+  }
+  for (const item of tierBundleItems) {
+    if (item.registryDependencies) {
+      item.registryDependencies = item.registryDependencies.map(addBundleUrl);
     }
   }
   console.log(`\nRegistry URL: ${REGISTRY_URL}`);

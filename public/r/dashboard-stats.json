@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "stat-card"
+    "https://democrito.design/r/stat-card.json"
   ]
 }
