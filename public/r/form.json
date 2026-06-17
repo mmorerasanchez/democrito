@@ -17,6 +17,6 @@
     "react-hook-form"
   ],
   "registryDependencies": [
-    "label"
+    "https://democrito.design/r/label.json"
   ]
 }

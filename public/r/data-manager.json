@@ -15,9 +15,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "button",
-    "checkbox",
-    "dialog",
-    "label"
+    "https://democrito.design/r/button.json",
+    "https://democrito.design/r/checkbox.json",
+    "https://democrito.design/r/dialog.json",
+    "https://democrito.design/r/label.json"
   ]
 }

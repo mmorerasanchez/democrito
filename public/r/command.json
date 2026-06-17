@@ -17,6 +17,6 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "dialog"
+    "https://democrito.design/r/dialog.json"
   ]
 }

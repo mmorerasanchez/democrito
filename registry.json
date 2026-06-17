@@ -555,7 +555,7 @@
         }
       ],
       "registryDependencies": [
-        "copy-button"
+        "https://democrito.design/r/copy-button.json"
       ]
     },
     {
@@ -706,7 +706,7 @@
         }
       ],
       "registryDependencies": [
-        "badge"
+        "https://democrito.design/r/badge.json"
       ]
     },
     {
@@ -723,7 +723,7 @@
         }
       ],
       "registryDependencies": [
-        "avatar"
+        "https://democrito.design/r/avatar.json"
       ]
     },
     {
@@ -771,7 +771,7 @@
         }
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -788,7 +788,7 @@
         }
       ],
       "registryDependencies": [
-        "token-counter"
+        "https://democrito.design/r/token-counter.json"
       ]
     },
     {
@@ -808,7 +808,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "label"
+        "https://democrito.design/r/label.json"
       ]
     },
     {
@@ -828,7 +828,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge"
+        "https://democrito.design/r/badge.json"
       ]
     },
     {
@@ -845,9 +845,9 @@
         }
       ],
       "registryDependencies": [
-        "input",
-        "label",
-        "slider"
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/label.json",
+        "https://democrito.design/r/slider.json"
       ]
     },
     {
@@ -864,7 +864,7 @@
         }
       ],
       "registryDependencies": [
-        "badge"
+        "https://democrito.design/r/badge.json"
       ]
     },
     {
@@ -884,9 +884,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "input",
-        "kbd"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/kbd.json"
       ]
     },
     {
@@ -942,7 +942,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -959,7 +959,7 @@
         }
       ],
       "registryDependencies": [
-        "progress"
+        "https://democrito.design/r/progress.json"
       ]
     },
     {
@@ -979,9 +979,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card",
-        "heading",
-        "text"
+        "https://democrito.design/r/card.json",
+        "https://democrito.design/r/heading.json",
+        "https://democrito.design/r/text.json"
       ]
     },
     {
@@ -1001,8 +1001,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "input"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/input.json"
       ]
     },
     {
@@ -1036,8 +1036,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1057,9 +1057,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button",
-        "input"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/input.json"
       ]
     },
     {
@@ -1076,9 +1076,9 @@
         }
       ],
       "registryDependencies": [
-        "avatar",
-        "code",
-        "text"
+        "https://democrito.design/r/avatar.json",
+        "https://democrito.design/r/code.json",
+        "https://democrito.design/r/text.json"
       ]
     },
     {
@@ -1095,13 +1095,13 @@
         }
       ],
       "registryDependencies": [
-        "button",
-        "form-field",
-        "heading",
-        "input",
-        "logo",
-        "separator",
-        "text"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/form-field.json",
+        "https://democrito.design/r/heading.json",
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/logo.json",
+        "https://democrito.design/r/separator.json",
+        "https://democrito.design/r/text.json"
       ]
     },
     {
@@ -1121,8 +1121,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1139,7 +1139,7 @@
         }
       ],
       "registryDependencies": [
-        "stat-card"
+        "https://democrito.design/r/stat-card.json"
       ]
     },
     {
@@ -1159,10 +1159,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "checkbox",
-        "dialog",
-        "label"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/checkbox.json",
+        "https://democrito.design/r/dialog.json",
+        "https://democrito.design/r/label.json"
       ]
     },
     {
@@ -1182,7 +1182,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1202,7 +1202,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1222,10 +1222,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button",
-        "search-bar",
-        "select"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/search-bar.json",
+        "https://democrito.design/r/select.json"
       ]
     },
     {
@@ -1245,9 +1245,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "input",
-        "textarea"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/textarea.json"
       ]
     },
     {
@@ -1264,8 +1264,8 @@
         }
       ],
       "registryDependencies": [
-        "badge",
-        "button"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1285,7 +1285,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1305,12 +1305,12 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button",
-        "dialog",
-        "input",
-        "label",
-        "radio-group"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/dialog.json",
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/label.json",
+        "https://democrito.design/r/radio-group.json"
       ]
     },
     {
@@ -1327,8 +1327,8 @@
         }
       ],
       "registryDependencies": [
-        "badge",
-        "run-history-item"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/run-history-item.json"
       ]
     },
     {
@@ -1345,7 +1345,7 @@
         }
       ],
       "registryDependencies": [
-        "tab-nav"
+        "https://democrito.design/r/tab-nav.json"
       ]
     },
     {
@@ -1365,11 +1365,11 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "avatar",
-        "badge",
-        "button",
-        "logo",
-        "nav-item"
+        "https://democrito.design/r/avatar.json",
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/logo.json",
+        "https://democrito.design/r/nav-item.json"
       ]
     },
     {
@@ -1389,8 +1389,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "kbd"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/kbd.json"
       ]
     },
     {
@@ -1410,8 +1410,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button"
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1431,9 +1431,9 @@
         "react-router-dom"
       ],
       "registryDependencies": [
-        "sidebar-nav",
-        "theme-toggle",
-        "top-bar"
+        "https://democrito.design/r/sidebar-nav.json",
+        "https://democrito.design/r/theme-toggle.json",
+        "https://democrito.design/r/top-bar.json"
       ]
     },
     {
@@ -1523,7 +1523,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1561,7 +1561,7 @@
         "@radix-ui/react-alert-dialog"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1687,7 +1687,7 @@
         "react-day-picker"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1722,7 +1722,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -1796,7 +1796,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "dialog"
+        "https://democrito.design/r/dialog.json"
       ]
     },
     {
@@ -1889,7 +1889,7 @@
         "react-hook-form"
       ],
       "registryDependencies": [
-        "label"
+        "https://democrito.design/r/label.json"
       ]
     },
     {
@@ -2013,7 +2013,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "https://democrito.design/r/button.json"
       ]
     },
     {
@@ -2182,12 +2182,12 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "input",
-        "separator",
-        "sheet",
-        "skeleton",
-        "tooltip"
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/separator.json",
+        "https://democrito.design/r/sheet.json",
+        "https://democrito.design/r/skeleton.json",
+        "https://democrito.design/r/tooltip.json"
       ]
     },
     {
@@ -2339,7 +2339,7 @@
         }
       ],
       "registryDependencies": [
-        "toast"
+        "https://democrito.design/r/toast.json"
       ]
     },
     {
@@ -2360,7 +2360,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "toggle"
+        "https://democrito.design/r/toggle.json"
       ]
     },
     {
@@ -2405,17 +2405,17 @@
       "description": "All atomic components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "code",
-        "code-block",
-        "copy-button",
-        "heading",
-        "kbd",
-        "link",
-        "logo",
-        "spinner",
-        "status-badge",
-        "tag",
-        "text"
+        "https://democrito.design/r/code.json",
+        "https://democrito.design/r/code-block.json",
+        "https://democrito.design/r/copy-button.json",
+        "https://democrito.design/r/heading.json",
+        "https://democrito.design/r/kbd.json",
+        "https://democrito.design/r/link.json",
+        "https://democrito.design/r/logo.json",
+        "https://democrito.design/r/spinner.json",
+        "https://democrito.design/r/status-badge.json",
+        "https://democrito.design/r/tag.json",
+        "https://democrito.design/r/text.json"
       ]
     },
     {
@@ -2425,24 +2425,24 @@
       "description": "All molecule components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "activity-feed-item",
-        "avatar-group",
-        "breadcrumb-nav",
-        "diff-line",
-        "empty-state",
-        "field-header",
-        "form-field",
-        "nav-item",
-        "parameter-control",
-        "run-history-item",
-        "search-bar",
-        "stat-card",
-        "tab-nav",
-        "theme-toggle",
-        "token-counter",
-        "token-reference-card",
-        "variable-editor-row",
-        "variable-highlight"
+        "https://democrito.design/r/activity-feed-item.json",
+        "https://democrito.design/r/avatar-group.json",
+        "https://democrito.design/r/breadcrumb-nav.json",
+        "https://democrito.design/r/diff-line.json",
+        "https://democrito.design/r/empty-state.json",
+        "https://democrito.design/r/field-header.json",
+        "https://democrito.design/r/form-field.json",
+        "https://democrito.design/r/nav-item.json",
+        "https://democrito.design/r/parameter-control.json",
+        "https://democrito.design/r/run-history-item.json",
+        "https://democrito.design/r/search-bar.json",
+        "https://democrito.design/r/stat-card.json",
+        "https://democrito.design/r/tab-nav.json",
+        "https://democrito.design/r/theme-toggle.json",
+        "https://democrito.design/r/token-counter.json",
+        "https://democrito.design/r/token-reference-card.json",
+        "https://democrito.design/r/variable-editor-row.json",
+        "https://democrito.design/r/variable-highlight.json"
       ]
     },
     {
@@ -2452,25 +2452,25 @@
       "description": "All organism components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "apidoc-panel",
-        "apikey-manager",
-        "activity-feed",
-        "auth-form",
-        "bulk-actions-bar",
-        "dashboard-stats",
-        "data-manager",
-        "data-table",
-        "export-menu",
-        "filter-bar",
-        "import-dialog",
-        "integration-card",
-        "onboarding-wizard",
-        "organization-manager",
-        "run-history",
-        "settings-nav",
-        "sidebar-nav",
-        "top-bar",
-        "user-menu"
+        "https://democrito.design/r/apidoc-panel.json",
+        "https://democrito.design/r/apikey-manager.json",
+        "https://democrito.design/r/activity-feed.json",
+        "https://democrito.design/r/auth-form.json",
+        "https://democrito.design/r/bulk-actions-bar.json",
+        "https://democrito.design/r/dashboard-stats.json",
+        "https://democrito.design/r/data-manager.json",
+        "https://democrito.design/r/data-table.json",
+        "https://democrito.design/r/export-menu.json",
+        "https://democrito.design/r/filter-bar.json",
+        "https://democrito.design/r/import-dialog.json",
+        "https://democrito.design/r/integration-card.json",
+        "https://democrito.design/r/onboarding-wizard.json",
+        "https://democrito.design/r/organization-manager.json",
+        "https://democrito.design/r/run-history.json",
+        "https://democrito.design/r/settings-nav.json",
+        "https://democrito.design/r/sidebar-nav.json",
+        "https://democrito.design/r/top-bar.json",
+        "https://democrito.design/r/user-menu.json"
       ]
     },
     {
@@ -2480,13 +2480,13 @@
       "description": "All template components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "app-shell",
-        "comparison-layout",
-        "dashboard-layout",
-        "detail-layout",
-        "editor-layout",
-        "library-layout",
-        "template-preview"
+        "https://democrito.design/r/app-shell.json",
+        "https://democrito.design/r/comparison-layout.json",
+        "https://democrito.design/r/dashboard-layout.json",
+        "https://democrito.design/r/detail-layout.json",
+        "https://democrito.design/r/editor-layout.json",
+        "https://democrito.design/r/library-layout.json",
+        "https://democrito.design/r/template-preview.json"
       ]
     },
     {
@@ -2496,54 +2496,54 @@
       "description": "All UI primitive components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "accordion",
-        "alert-dialog",
-        "alert",
-        "aspect-ratio",
-        "avatar",
-        "badge",
-        "breadcrumb",
-        "button",
-        "calendar",
-        "card",
-        "carousel",
-        "chart",
-        "checkbox",
-        "collapsible",
-        "command",
-        "context-menu",
-        "dialog",
-        "drawer",
-        "dropdown-menu",
-        "form",
-        "hover-card",
-        "input-otp",
-        "input",
-        "label",
-        "menubar",
-        "navigation-menu",
-        "pagination",
-        "popover",
-        "progress",
-        "radio-group",
-        "resizable",
-        "scroll-area",
-        "select",
-        "separator",
-        "sheet",
-        "sidebar",
-        "skeleton",
-        "slider",
-        "sonner",
-        "switch",
-        "table",
-        "tabs",
-        "textarea",
-        "toast",
-        "toaster",
-        "toggle-group",
-        "toggle",
-        "tooltip"
+        "https://democrito.design/r/accordion.json",
+        "https://democrito.design/r/alert-dialog.json",
+        "https://democrito.design/r/alert.json",
+        "https://democrito.design/r/aspect-ratio.json",
+        "https://democrito.design/r/avatar.json",
+        "https://democrito.design/r/badge.json",
+        "https://democrito.design/r/breadcrumb.json",
+        "https://democrito.design/r/button.json",
+        "https://democrito.design/r/calendar.json",
+        "https://democrito.design/r/card.json",
+        "https://democrito.design/r/carousel.json",
+        "https://democrito.design/r/chart.json",
+        "https://democrito.design/r/checkbox.json",
+        "https://democrito.design/r/collapsible.json",
+        "https://democrito.design/r/command.json",
+        "https://democrito.design/r/context-menu.json",
+        "https://democrito.design/r/dialog.json",
+        "https://democrito.design/r/drawer.json",
+        "https://democrito.design/r/dropdown-menu.json",
+        "https://democrito.design/r/form.json",
+        "https://democrito.design/r/hover-card.json",
+        "https://democrito.design/r/input-otp.json",
+        "https://democrito.design/r/input.json",
+        "https://democrito.design/r/label.json",
+        "https://democrito.design/r/menubar.json",
+        "https://democrito.design/r/navigation-menu.json",
+        "https://democrito.design/r/pagination.json",
+        "https://democrito.design/r/popover.json",
+        "https://democrito.design/r/progress.json",
+        "https://democrito.design/r/radio-group.json",
+        "https://democrito.design/r/resizable.json",
+        "https://democrito.design/r/scroll-area.json",
+        "https://democrito.design/r/select.json",
+        "https://democrito.design/r/separator.json",
+        "https://democrito.design/r/sheet.json",
+        "https://democrito.design/r/sidebar.json",
+        "https://democrito.design/r/skeleton.json",
+        "https://democrito.design/r/slider.json",
+        "https://democrito.design/r/sonner.json",
+        "https://democrito.design/r/switch.json",
+        "https://democrito.design/r/table.json",
+        "https://democrito.design/r/tabs.json",
+        "https://democrito.design/r/textarea.json",
+        "https://democrito.design/r/toast.json",
+        "https://democrito.design/r/toaster.json",
+        "https://democrito.design/r/toggle-group.json",
+        "https://democrito.design/r/toggle.json",
+        "https://democrito.design/r/tooltip.json"
       ]
     }
   ]

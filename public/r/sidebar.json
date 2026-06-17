@@ -22,11 +22,11 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "button",
-    "input",
-    "separator",
-    "sheet",
-    "skeleton",
-    "tooltip"
+    "https://democrito.design/r/button.json",
+    "https://democrito.design/r/input.json",
+    "https://democrito.design/r/separator.json",
+    "https://democrito.design/r/sheet.json",
+    "https://democrito.design/r/skeleton.json",
+    "https://democrito.design/r/tooltip.json"
   ]
 }

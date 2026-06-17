@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "progress"
+    "https://democrito.design/r/progress.json"
   ]
 }

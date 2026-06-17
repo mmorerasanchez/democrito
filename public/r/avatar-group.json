@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "avatar"
+    "https://democrito.design/r/avatar.json"
   ]
 }
