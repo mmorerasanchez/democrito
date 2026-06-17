@@ -6,10 +6,10 @@
     "llms_txt":      "https://democrito.design/llms.txt",
     "llms_full_txt": "https://democrito.design/llms-full.txt",
     "claude_skill":  "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md",
-    "claude_md":     "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/app-democrito/CLAUDE.md"
+    "claude_md":     "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/CLAUDE.md"
   },
   "distribution": {
-    "shadcn_registry": "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/app-democrito/registry.json",
+    "shadcn_registry": "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json",
     "github":          "https://github.com/mmorerasanchez/democrito",
     "npm":             null
   }
