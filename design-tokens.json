@@ -1,6 +1,6 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
-  "$description": "Atomic Design System — W3C DTCG format. Auto-generated 2026-06-15 from src/index.css.",
+  "$description": "Atomic Design System — W3C DTCG format. Auto-generated 2026-06-17 from src/index.css.",
   "$version": "1.0.0",
   "color": {
     "$type": "color",
