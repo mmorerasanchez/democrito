@@ -13,11 +13,11 @@
   ],
   "registryDependencies": [
     "button",
-    "form-field",
-    "heading",
+    "https://democrito.design/r/form-field.json",
+    "https://democrito.design/r/heading.json",
     "input",
-    "logo",
+    "https://democrito.design/r/logo.json",
     "separator",
-    "text"
+    "https://democrito.design/r/text.json"
   ]
 }

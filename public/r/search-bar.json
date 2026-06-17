@@ -17,6 +17,6 @@
   "registryDependencies": [
     "button",
     "input",
-    "kbd"
+    "https://democrito.design/r/kbd.json"
   ]
 }

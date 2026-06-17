@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "tab-nav"
+    "https://democrito.design/r/tab-nav.json"
   ]
 }

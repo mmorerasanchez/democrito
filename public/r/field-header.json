@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "token-counter"
+    "https://democrito.design/r/token-counter.json"
   ]
 }

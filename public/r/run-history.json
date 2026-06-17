@@ -13,6 +13,6 @@
   ],
   "registryDependencies": [
     "badge",
-    "run-history-item"
+    "https://democrito.design/r/run-history-item.json"
   ]
 }

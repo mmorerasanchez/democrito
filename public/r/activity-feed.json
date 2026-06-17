@@ -13,7 +13,7 @@
   ],
   "registryDependencies": [
     "avatar",
-    "code",
-    "text"
+    "https://democrito.design/r/code.json",
+    "https://democrito.design/r/text.json"
   ]
 }

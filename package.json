@@ -5,10 +5,10 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/generate-counts.mjs && node scripts/generate-tokens.mjs && node scripts/stamp-design-date.mjs && node scripts/build-registry.mjs",
+    "build": "node scripts/generate-counts.mjs && node scripts/generate-tokens.mjs && node scripts/stamp-design-date.mjs && REGISTRY_URL=https://democrito.design/r node scripts/build-registry.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "registry": "node scripts/build-registry.mjs"
+    "registry": "REGISTRY_URL=https://democrito.design/r node scripts/build-registry.mjs"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.0",
