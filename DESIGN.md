@@ -58,7 +58,7 @@ small, well-defined visual atoms compose into larger structures.
 
 ## 2. Color Palette & Roles
 
-All colors are HSL CSS custom properties defined in `src/index.css`.
+All colors are HSL CSS custom properties defined in `tokens/index.css`.
 The default palette is **Warm** — a Sanzo Wada–derived earth-tone system
 anchored in stone gray with a terracotta orange accent. **Dark** and
 **Light** variants are available via `.dark` and `.light` class toggles
@@ -165,7 +165,7 @@ Mono text without edit/save/copy affordances is a broken contract.
 
 ### Type Scale
 
-These are **CUSTOM sizes redefined in `@theme`** — NOT stock Tailwind values. Always resolve via `src/index.css`. `text-md` (16px) is a democrito-only step between `text-base` (14px) and `text-lg` (18px).
+These are **CUSTOM sizes redefined in `@theme`** — NOT stock Tailwind values. Always resolve via `tokens/index.css`. `text-md` (16px) is a democrito-only step between `text-base` (14px) and `text-lg` (18px).
 
 | Class | rem | px |
 |-------|-----|----|
@@ -392,7 +392,7 @@ All depth comes from the surface hierarchy, not from shadows:
   size changes
 - **Honor the mono contract** — if it's editable, copyable, or
   referenceable, it's `font-mono`
-- **Define tokens before using them** — add to `src/index.css` first
+- **Define tokens before using them** — add to `tokens/index.css` first
   (both the CSS custom property and the `@theme` mapping), then use in components
 - **Test in all three themes** — Warm (default), Dark, and Light
 - **Use Radix UI / shadcn/ui primitives** for all interactive
@@ -444,7 +444,7 @@ All depth comes from the surface hierarchy, not from shadows:
 | `xl` | 1280px | Tailwind v4 default |
 | `2xl` | 1536px | Tailwind v4 default |
 
-Only `sm` is overridden in the `@theme` block (480px instead of 640px); all other breakpoints inherit Tailwind v4 defaults. Verify against `src/index.css` line 10.
+Only `sm` is overridden in the `@theme` block (480px instead of 640px); all other breakpoints inherit Tailwind v4 defaults. Verify against `tokens/index.css`.
 
 ### Responsive Behavior at each breakpoint
 
@@ -584,7 +584,7 @@ and tools. This is how they relate:
 
 **Resolution order when sources conflict:**
 
-1. `src/index.css` — token values (the source of truth)
+1. `tokens/index.css` — token values (the source of truth)
 2. `DESIGN.md` — philosophy wins on intent questions
 3. `docs/design-system.md` — spec wins on component details
 4. `CLAUDE.md` — rules win on coding conventions

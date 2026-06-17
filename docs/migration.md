@@ -8,17 +8,17 @@
 
 ### Option A: CSS Custom Properties (recommended)
 
-Copy `src/index.css` into your project. This gives you all design tokens as CSS variables with three-theme support (Dark, Light, Warm).
+Copy `tokens/index.css` into your project. This gives you all design tokens as CSS variables with three-theme support (Dark, Light, Warm).
 
 ```bash
 # 1. Copy the token source file
-cp src/index.css your-project/src/index.css
+cp tokens/index.css your-project/src/index.css
 
 # 2. Install required dependencies
 npm install tailwindcss tailwind-merge class-variance-authority clsx tailwindcss-animate
 ```
 
-democrito uses Tailwind v4 CSS-first config — all token mappings live in `src/index.css`. Copy the `@theme { }` block into your project's CSS.
+democrito uses Tailwind v4 CSS-first config — all token mappings live in `tokens/index.css`. Copy the `@theme { }` block into your project's CSS.
 
 Then ensure your `main.tsx` (or equivalent entry) imports the CSS:
 
@@ -66,7 +66,7 @@ The [`design-tokens.json`](../design-tokens.json) file follows the [W3C Design T
 
 ### Option C: Cherry-Pick Tokens
 
-If you only need a subset (e.g., just colors), copy the relevant `:root` block and `@theme` entries from `src/index.css`.
+If you only need a subset (e.g., just colors), copy the relevant `:root` block and `@theme` entries from `tokens/index.css`.
 
 Minimum viable setup — just the 3-surface hierarchy and accent:
 
@@ -145,7 +145,7 @@ This is the closest migration path since the system is built on Tailwind + Radix
 
 ### Phase 1: Foundation (Day 1)
 
-- [ ] Copy `src/index.css` into your project (contains both tokens and `@theme` mappings)
+- [ ] Copy `tokens/index.css` into your project (contains both tokens and `@theme` mappings)
 - [ ] Add font `@import` statements (Plus Jakarta Sans, Satoshi, JetBrains Mono)
 - [ ] Verify the three themes render correctly (add `.light` or `.warm` class to `<html>`)
 - [ ] Install shadcn/ui: `npx shadcn@latest init`

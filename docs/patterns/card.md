@@ -10,8 +10,8 @@ Two card variants are in use. Choose based on content density.
 
 | Variant | Use case | Source |
 |---|---|---|
-| **Standard Card** (`ui/card.tsx`) | General content containers, dialogs, elevated sections | `src/components/ui/card.tsx` |
-| **StatCard** (`molecules/StatCard.tsx`) | Compact KPI / metric display | `src/components/molecules/StatCard.tsx` |
+| **Standard Card** (`ui/card.tsx`) | General content containers, dialogs, elevated sections | `registry/ui/card.tsx` |
+| **StatCard** (`molecules/StatCard.tsx`) | Compact KPI / metric display | `registry/molecules/StatCard.tsx` |
 
 ---
 
@@ -48,7 +48,7 @@ Built from shadcn/ui primitives: `Card`, `CardHeader`, `CardContent`, `CardFoote
 
 ### Source
 
-`src/components/ui/card.tsx`:
+`registry/ui/card.tsx`:
 ```tsx
 // CardHeader
 <div className={cn("flex flex-col space-y-1.5 p-6", className)} />
@@ -75,7 +75,7 @@ Used in metric grids and KPI dashboards. Smaller padding, tighter internal spaci
 
 ### Source
 
-`src/components/molecules/StatCard.tsx`:
+`registry/molecules/StatCard.tsx`:
 ```tsx
 <div className={cn("rounded-md border border-border bg-card p-4 space-y-1", className)}>
   <p className="font-body text-xs text-muted-foreground">{label}</p>

@@ -38,7 +38,7 @@ These are the most common agent errors in this codebase — read before writing 
 when the project migrated to Tailwind CSS 4.2's CSS-first configuration.
 
 All theme tokens — colors, fonts, spacing, radii — live as CSS custom properties in
-`src/index.css` inside the `@theme` block. Add tokens there, not in a config file.
+`tokens/index.css` inside the `@theme` block. Add tokens there, not in a config file.
 
 ### Three-font rule (most-broken rule)
 
@@ -56,7 +56,7 @@ it is the signal that content is user-controlled or data-derived.
 Depth comes from three surface levels only: `--background` → `--surface` → `--card`.
 Never introduce a 4th surface. Never use custom shadows to fake depth.
 
-### CSS cascade order in `src/index.css`
+### CSS cascade order in `tokens/index.css`
 
 Theme blocks must appear in this order inside `@layer base`:
 1. `:root, .warm` (default — warm earth tone palette)
@@ -77,11 +77,11 @@ Use semantic token classes: `bg-surface`, `text-accent`, `border-border`,
 There is one accent color: **terracotta**. Do not introduce a second accent hue.
 There are three themes: warm (default), dark, light. Do not create a fourth.
 
-Every new color token must be defined in all three theme blocks in `src/index.css`.
+Every new color token must be defined in all three theme blocks in `tokens/index.css`.
 
 ### shadcn/ui primitives
 
-All interactive primitives come from `src/components/ui/` (shadcn/ui).
+All interactive primitives come from `registry/ui/` (shadcn/ui).
 **Never modify `ui/` files directly** — extend via CVA variants.
 Compose ui/ primitives into atoms/molecules; never rebuild from scratch.
 
@@ -130,19 +130,19 @@ perf(theme): reduce CSS custom property count by 12
 ### ✅ Always allowed
 - Read files, search, list directories
 - Run lint, typecheck, test commands
-- Add tokens to `src/index.css` (all three theme blocks)
+- Add tokens to `tokens/index.css` (all three theme blocks)
 
 ### ⚠️ Ask before doing
 - Installing or removing npm packages
-- Creating new components (verify inventory first — `src/components/atoms/`, `molecules/`, `ui/`)
-- Any change to `src/index.css` `@theme` block font families or accent hue
+- Creating new components (verify inventory first — `registry/atoms/`, `registry/molecules/`, `registry/ui/`)
+- Any change to `tokens/index.css` `@theme` block font families or accent hue
 
 ### 🚫 Never
 - Commit directly to `main` — always branch as `<type>/<issue#>-<desc>`, open a PR, and wait for review (never self-merge)
 - Hardcode hex, rgb, or HSL values in components
 - Create `tailwind.config.ts`
 - Introduce a 4th theme or 2nd accent color
-- Modify `src/components/ui/` files directly
+- Modify `registry/ui/` files directly
 - Skip the three-font rule
 
 ---
@@ -151,10 +151,10 @@ perf(theme): reduce CSS custom property count by 12
 
 | Level | Directory | Rule |
 |---|---|---|
-| Atoms | `src/components/atoms/` | Single-purpose, no child components |
-| Molecules | `src/components/molecules/` | Compositions of 2+ atoms |
-| Organisms | `src/components/organisms/` | Major UI sections — never nest organisms |
-| Templates | `src/components/templates/` | Layout shells — no business logic |
+| Atoms | `registry/atoms/` | Single-purpose, no child components |
+| Molecules | `registry/molecules/` | Compositions of 2+ atoms |
+| Organisms | `registry/organisms/` | Major UI sections — never nest organisms |
+| Templates | `registry/templates/` | Layout shells — no business logic |
 | Pages | `src/pages/` | Route-level, composes templates + organisms |
 
 Classify a component before writing it. If you can't classify it, don't build it yet.
@@ -165,7 +165,7 @@ Classify a component before writing it. If you can't classify it, don't build it
 
 | File | Purpose |
 |---|---|
-| `src/index.css` | All design tokens — CSS custom properties + Tailwind `@theme` block |
+| `tokens/index.css` | All design tokens — CSS custom properties + Tailwind `@theme` block |
 | `CLAUDE.md` | Full AI agent context (Claude Code) |
 | `docs/ai/ai-context.md` | Reading order + AI bias table (read first) |
 | `docs/tokens.md` | Full token reference |

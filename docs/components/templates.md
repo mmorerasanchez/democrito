@@ -1,7 +1,7 @@
 # Templates — Component Reference
 
 > Page layout shells that define spatial structure without business logic.
-> Directory: `src/components/templates/`
+> Directory: `registry/templates/`
 > **7 components · 3 categories**
 
 ---

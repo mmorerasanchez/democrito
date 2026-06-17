@@ -1,7 +1,7 @@
 # Molecules — Component Reference
 
 > Compositions of 2+ atoms or UI primitives.
-> Directory: `src/components/molecules/`
+> Directory: `registry/molecules/`
 
 ---
 

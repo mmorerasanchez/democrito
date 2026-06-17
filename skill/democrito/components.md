@@ -1,13 +1,13 @@
 # Component Inventory
 
-> Reference for all democrito components across the four atomic layers. shadcn/ui primitives (`src/components/ui/`) are omitted — extend them via CVA variants, never rebuild from scratch.
+> Reference for all democrito components across the four atomic layers. shadcn/ui primitives (`registry/ui/`) are omitted — extend them via CVA variants, never rebuild from scratch.
 
 ---
 
 # Atoms
 
 > Foundational building blocks. Single-purpose, no child components.
-> Directory: `src/components/atoms/`
+> Directory: `registry/atoms/`
 
 ---
 
@@ -353,7 +353,7 @@ import { CopyButton } from "@/components/atoms";
 # Molecules
 
 > Compositions of 2+ atoms or UI primitives.
-> Directory: `src/components/molecules/`
+> Directory: `registry/molecules/`
 
 ---
 
@@ -718,7 +718,7 @@ Labeled slider + numeric input for model parameters.
 # Organisms
 
 > Major UI sections composed of molecules, atoms, and UI primitives.
-> Directory: `src/components/organisms/`
+> Directory: `registry/organisms/`
 > **19 components · 4 categories**
 
 ---
@@ -1052,7 +1052,7 @@ Tab + tag management UI for organising prompts. Two sections: workspace tabs (wi
 # Templates
 
 > Page layout shells that define spatial structure without business logic.
-> Directory: `src/components/templates/`
+> Directory: `registry/templates/`
 > **7 components · 3 categories**
 
 ---

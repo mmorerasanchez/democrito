@@ -23,7 +23,7 @@ democrito ships exactly what Claude Design needs:
 | democrito asset | What Claude Design reads from it |
 |---|---|
 | `DESIGN.md` | Visual philosophy, surface hierarchy, typography rules, do/don't list |
-| `src/index.css` (`@theme` block) | Every CSS custom property — colors, radii, spacing, fonts |
+| `tokens/index.css` (`@theme` block) | Every CSS custom property — colors, radii, spacing, fonts |
 | `docs/design-system.md` | Component inventory, usage rules, font matrix |
 
 The result: Claude Design knows to use `bg-surface` not `bg-gray-800`, `font-mono`
@@ -39,14 +39,14 @@ your codebase. Point it at these three files:
 
 1. **`DESIGN.md`** — the taste layer. Claude Design uses this to understand the
    visual philosophy, what the system is for, and the do/don't rules.
-2. **`src/index.css`** — the token layer. The `@theme` block contains all CSS
+2. **`tokens/index.css`** — the token layer. The `@theme` block contains all CSS
    custom properties. Claude Design extracts color roles, radii, spacing tokens,
    and font stack from here.
 3. **`docs/design-system.md`** — the vocabulary. Component inventory, font usage
    matrix, and the principles summary.
 
 **If you've customized democrito for your product** (overridden tokens in `:root`),
-point Claude Design at your overridden `src/index.css` rather than democrito's
+point Claude Design at your overridden `tokens/index.css` rather than democrito's
 defaults. Claude Design reads the actual CSS values, not the variable names.
 
 **Optional:** also provide `docs/tokens.md` for the exhaustive color/type/spacing
@@ -67,7 +67,7 @@ After onboarding, your Claude Design session will know:
   no fourth surface, no decorative colors)
 - The IDE-inspired aesthetic register (closer to VS Code/Linear than to Notion/Stripe)
 
-**From `src/index.css`:**
+**From `tokens/index.css`:**
 - Exact HSL values for all three themes (warm, dark, light)
 - Surface colors, foreground hierarchy, accent variants, semantic feedback colors
 - Typography: `font-display`, `font-body`, `font-mono` and their fallback stacks
@@ -148,7 +148,7 @@ I have a validated design from Claude Design. Convert this to a React component
 following the democrito atomic design system rules in CLAUDE.md and DESIGN.md.
 
 - Classify it: is this an atom, molecule, organism, or template?
-- Use existing atoms from src/components/atoms/ rather than recreating them.
+- Use existing atoms from registry/atoms/ rather than recreating them.
 - Replace any hardcoded colors with the correct Tailwind token classes
   (bg-surface, text-foreground, etc.).
 - Ensure font-mono is applied to any data values.
@@ -187,7 +187,7 @@ only the surface and text color values.
 
 If you've overridden democrito's default tokens for your product (e.g., violet accent
 instead of terracotta), make sure Claude Design is reading your overridden
-`src/index.css`, not the upstream democrito defaults.
+`tokens/index.css`, not the upstream democrito defaults.
 
 After overriding, test Claude Design's understanding with a quick prompt:
 
@@ -196,7 +196,7 @@ What is the accent color in this design system, and where is it used?
 ```
 
 If it responds with your override value (not terracotta), the setup is correct.
-If it says terracotta, re-import the updated `src/index.css`.
+If it says terracotta, re-import the updated `tokens/index.css`.
 
 ---
 
@@ -215,7 +215,7 @@ intent and philosophy, not as a contract. If the generated artifact violates a r
 (e.g., uses four surface levels), mention the specific rule in your prompt, not just
 "follow DESIGN.md."
 
-**Theme import is static.** Claude Design reads your `src/index.css` once during
+**Theme import is static.** Claude Design reads your `tokens/index.css` once during
 onboarding. If you update your token overrides, re-run the design system import.
 
 ---
@@ -223,7 +223,7 @@ onboarding. If you update your token overrides, re-run the design system import.
 ## Further reading
 
 - [`DESIGN.md`](../DESIGN.md) — the taste layer Claude Design reads
-- [`src/index.css`](../src/index.css) — the CSS custom properties and `@theme` block
+- [`tokens/index.css`](../tokens/index.css) — the CSS custom properties and `@theme` block
 - [`docs/theming.md`](./theming.md) — how to customize democrito tokens for your product
 - [`docs/tokens.md`](./tokens.md) — complete color/type/spacing reference
 - [Claude Design help center](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)

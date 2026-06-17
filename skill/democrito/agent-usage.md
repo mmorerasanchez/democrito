@@ -27,7 +27,7 @@ Claude Code is the primary development environment for democrito, with full term
 
 ```
 Create a new molecule called CopyButton that uses the Tag atom and a copy icon.
-Follow the existing pattern in src/components/molecules/SearchBar.tsx.
+Follow the existing pattern in registry/molecules/SearchBar.tsx.
 Use font-mono for the code text and text-accent for the copy icon hover state.
 ```
 
@@ -70,7 +70,7 @@ These tools auto-read `CLAUDE.md` at the project root, which contains the full a
 ### Example Prompts
 
 ```
-Create a new atom called Avatar in src/components/atoms/.
+Create a new atom called Avatar in registry/atoms/.
 Check CLAUDE.md for the component rules. Use rounded-full, bg-muted for fallback,
 and font-display text-xs for initials. Export from the atoms index.
 ```
@@ -91,7 +91,7 @@ and font-mono. Refer to the existing TopBar.tsx for the layout pattern.
 
 - Cursor: Use `@CLAUDE.md` to explicitly reference the context file in prompts.
 - Claude Code: It reads `CLAUDE.md` automatically — just write naturally.
-- Reference specific directories: "check `src/components/atoms/` for existing atoms."
+- Reference specific directories: "check `registry/atoms/` for existing atoms."
 
 ---
 
@@ -153,7 +153,7 @@ Copilot infers patterns from surrounding code. The more consistent your codebase
 interface VersionEntryProps {
 ```
 
-- **Name files correctly** — placing a file in `src/components/molecules/` signals Copilot to follow molecule patterns from that directory.
+- **Name files correctly** — placing a file in `registry/molecules/` signals Copilot to follow molecule patterns from that directory.
 
 ---
 

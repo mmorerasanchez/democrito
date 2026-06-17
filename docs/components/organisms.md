@@ -1,8 +1,8 @@
 # Organisms — Component Reference
 
 > Major UI sections composed of molecules, atoms, and UI primitives.
-> Directory: `src/components/organisms/`
-> **19 components · 5 categories**, plus 5 AI-page showcase organisms. 23 prompt-x example organisms live in [`src/examples/prompt-x/`](../../src/examples/prompt-x/) and are documented at the bottom of this page.
+> Directory: `registry/organisms/`
+> **19 components · 5 categories**. 23 prompt-x example organisms live in [`src/examples/prompt-x/`](../../src/examples/prompt-x/) and are documented at the bottom of this page.
 
 ---
 
@@ -481,8 +481,7 @@ an editor or settings surface so engineers don't need to leave the page.
 
 # Showcase (AI page)
 
-Marketing-page organisms used on the AI overview route (`/ai`). Live in
-`src/components/organisms/ai/` and not part of the general application surface.
+Marketing-page organisms used on the AI overview route (`/ai`). These are site-only components and not part of the public registry surface.
 
 | Component | Purpose |
 |---|---|
@@ -497,7 +496,7 @@ Marketing-page organisms used on the AI overview route (`/ai`). Live in
 ✅ Do: Use showcase organisms exclusively on the `/ai` marketing page — they are not part of the application component surface.
 ✅ Do: Keep copy and marketing claims inside these organisms in sync with product reality — they are visible externally.
 ❌ Don't: Never compose showcase organisms into app pages — they are marketing-only components with no application state integration.
-❌ Don't: Never import showcase organisms from the main organisms barrel — they live in `src/components/organisms/ai/` and are intentionally isolated.
+❌ Don't: Never import showcase organisms from the main organisms barrel — they are site-only and intentionally isolated from the public registry.
 
 ---
 

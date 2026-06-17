@@ -59,7 +59,7 @@ For projects not using shadcn CLI, non-React stacks (Vue, Svelte), or plain HTML
 
 **1. Copy the CSS custom properties**
 
-Download or copy `src/index.css` from the [democrito repository](https://github.com/mmorerasanchez/democrito) and import it into your project:
+Download or copy `tokens/index.css` from the [democrito repository](https://github.com/mmorerasanchez/democrito) and import it into your project:
 
 ```tsx
 // main.tsx or main.js
@@ -68,11 +68,11 @@ import "./index.css";
 
 **2. Copy the Tailwind config**
 
-If using Tailwind CSS, these are already in `src/index.css` under the `@theme` block — copy that block into your project's CSS.
+If using Tailwind CSS, these are already in `tokens/index.css` under the `@theme` block — copy that block into your project's CSS.
 
 **3. Add the three fonts**
 
-These load via Google Fonts in `src/index.css`. If you're not importing the full CSS file, add them to your `<head>`:
+These load via Google Fonts in `tokens/index.css`. If you're not importing the full CSS file, add them to your `<head>`:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,7 +123,7 @@ In your `.cursorrules` file or in a prompt:
 
 ```
 @CLAUDE.md
-@src/index.css
+@tokens/index.css
 ```
 
 The agent will read democrito's token definitions and generate components that integrate seamlessly.
@@ -278,7 +278,7 @@ src/
 ├── hooks/                     # Custom React hooks (use-theme, use-mobile)
 └── lib/                       # Utilities (cn helper, etc.)
 
-# No config file — Tailwind v4 uses CSS-first @theme in src/index.css
+# No config file — Tailwind v4 uses CSS-first @theme in tokens/index.css
 design-tokens.json            # W3C DTCG format for tooling interop
 CLAUDE.md                      # AI agent context (auto-read by Claude Code, Cursor)
 CONTRIBUTING.md               # Contribution guidelines
