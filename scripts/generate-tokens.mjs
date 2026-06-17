@@ -1,7 +1,9 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
-const css = readFileSync(resolve("src/index.css"), "utf8");
+// Prefer tokens/index.css when present; fall back to src/index.css so main branch still builds.
+const cssFile = existsSync(resolve("tokens/index.css")) ? "tokens/index.css" : "src/index.css";
+const css = readFileSync(resolve(cssFile), "utf8");
 
 // Match pure HSL-triple values: "H S% L%" (no alpha, no calc, no var())
 const HSL_RE = /(\d[\d.]*)\s+([\d.]+%)\s+([\d.]+%)/;

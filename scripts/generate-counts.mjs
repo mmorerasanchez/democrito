@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
 import { resolve, join } from "node:path";
 
 const root = resolve(".");
@@ -26,12 +26,19 @@ function countThemeTokens(cssPath) {
   return count;
 }
 
-const atoms     = countTsx("src/components/atoms");
-const molecules = countTsx("src/components/molecules");
-const organisms = countTsx("src/components/organisms");
-const templates = countTsx("src/components/templates");
-const ui        = countTsx("src/components/ui");
-const rawTokens = countThemeTokens("src/index.css");
+// Prefer registry/ + tokens/ when present; fall back to src/ so main branch still builds.
+function tierDir(tier) {
+  const registryPath = `registry/${tier}`;
+  return existsSync(join(root, registryPath)) ? registryPath : `src/components/${tier}`;
+}
+const cssPath = existsSync(join(root, "tokens/index.css")) ? "tokens/index.css" : "src/index.css";
+
+const atoms     = countTsx(tierDir("atoms"));
+const molecules = countTsx(tierDir("molecules"));
+const organisms = countTsx(tierDir("organisms"));
+const templates = countTsx(tierDir("templates"));
+const ui        = countTsx(tierDir("ui"));
+const rawTokens = countThemeTokens(cssPath);
 const tokenFloor = `${Math.floor(rawTokens / 10) * 10}+`;
 
 mkdirSync(join(root, "src/generated"), { recursive: true });
