@@ -13,11 +13,11 @@
   ],
   "registryDependencies": [
     "button",
-    "http://localhost:3333/form-field.json",
-    "http://localhost:3333/heading.json",
+    "form-field",
+    "heading",
     "input",
-    "http://localhost:3333/logo.json",
+    "logo",
     "separator",
-    "http://localhost:3333/text.json"
+    "text"
   ]
 }

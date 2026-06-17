@@ -13,7 +13,7 @@
   ],
   "registryDependencies": [
     "avatar",
-    "http://localhost:3333/code.json",
-    "http://localhost:3333/text.json"
+    "code",
+    "text"
   ]
 }

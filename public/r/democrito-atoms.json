@@ -5,16 +5,16 @@
   "description": "All atomic components from democrito",
   "author": "mmorerasanchez",
   "registryDependencies": [
-    "http://localhost:3333/code.json",
-    "http://localhost:3333/code-block.json",
-    "http://localhost:3333/copy-button.json",
-    "http://localhost:3333/heading.json",
-    "http://localhost:3333/kbd.json",
-    "http://localhost:3333/link.json",
-    "http://localhost:3333/logo.json",
-    "http://localhost:3333/spinner.json",
-    "http://localhost:3333/status-badge.json",
-    "http://localhost:3333/tag.json",
-    "http://localhost:3333/text.json"
+    "code",
+    "code-block",
+    "copy-button",
+    "heading",
+    "kbd",
+    "link",
+    "logo",
+    "spinner",
+    "status-badge",
+    "tag",
+    "text"
   ]
 }

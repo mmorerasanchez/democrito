@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "http://localhost:3333/token-counter.json"
+    "token-counter"
   ]
 }

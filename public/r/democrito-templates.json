@@ -5,12 +5,12 @@
   "description": "All template components from democrito",
   "author": "mmorerasanchez",
   "registryDependencies": [
-    "http://localhost:3333/app-shell.json",
-    "http://localhost:3333/comparison-layout.json",
-    "http://localhost:3333/dashboard-layout.json",
-    "http://localhost:3333/detail-layout.json",
-    "http://localhost:3333/editor-layout.json",
-    "http://localhost:3333/library-layout.json",
-    "http://localhost:3333/template-preview.json"
+    "app-shell",
+    "comparison-layout",
+    "dashboard-layout",
+    "detail-layout",
+    "editor-layout",
+    "library-layout",
+    "template-preview"
   ]
 }

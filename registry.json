@@ -555,7 +555,7 @@
         }
       ],
       "registryDependencies": [
-        "http://localhost:3333/copy-button.json"
+        "copy-button"
       ]
     },
     {
@@ -788,7 +788,7 @@
         }
       ],
       "registryDependencies": [
-        "http://localhost:3333/token-counter.json"
+        "token-counter"
       ]
     },
     {
@@ -886,7 +886,7 @@
       "registryDependencies": [
         "button",
         "input",
-        "http://localhost:3333/kbd.json"
+        "kbd"
       ]
     },
     {
@@ -980,8 +980,8 @@
       ],
       "registryDependencies": [
         "card",
-        "http://localhost:3333/heading.json",
-        "http://localhost:3333/text.json"
+        "heading",
+        "text"
       ]
     },
     {
@@ -1077,8 +1077,8 @@
       ],
       "registryDependencies": [
         "avatar",
-        "http://localhost:3333/code.json",
-        "http://localhost:3333/text.json"
+        "code",
+        "text"
       ]
     },
     {
@@ -1096,12 +1096,12 @@
       ],
       "registryDependencies": [
         "button",
-        "http://localhost:3333/form-field.json",
-        "http://localhost:3333/heading.json",
+        "form-field",
+        "heading",
         "input",
-        "http://localhost:3333/logo.json",
+        "logo",
         "separator",
-        "http://localhost:3333/text.json"
+        "text"
       ]
     },
     {
@@ -1139,7 +1139,7 @@
         }
       ],
       "registryDependencies": [
-        "http://localhost:3333/stat-card.json"
+        "stat-card"
       ]
     },
     {
@@ -1224,7 +1224,7 @@
       "registryDependencies": [
         "badge",
         "button",
-        "http://localhost:3333/search-bar.json",
+        "search-bar",
         "select"
       ]
     },
@@ -1328,7 +1328,7 @@
       ],
       "registryDependencies": [
         "badge",
-        "http://localhost:3333/run-history-item.json"
+        "run-history-item"
       ]
     },
     {
@@ -1345,7 +1345,7 @@
         }
       ],
       "registryDependencies": [
-        "http://localhost:3333/tab-nav.json"
+        "tab-nav"
       ]
     },
     {
@@ -1368,8 +1368,8 @@
         "avatar",
         "badge",
         "button",
-        "http://localhost:3333/logo.json",
-        "http://localhost:3333/nav-item.json"
+        "logo",
+        "nav-item"
       ]
     },
     {
@@ -1390,7 +1390,7 @@
       ],
       "registryDependencies": [
         "button",
-        "http://localhost:3333/kbd.json"
+        "kbd"
       ]
     },
     {
@@ -1431,9 +1431,9 @@
         "react-router-dom"
       ],
       "registryDependencies": [
-        "http://localhost:3333/sidebar-nav.json",
-        "http://localhost:3333/theme-toggle.json",
-        "http://localhost:3333/top-bar.json"
+        "sidebar-nav",
+        "theme-toggle",
+        "top-bar"
       ]
     },
     {
@@ -2405,17 +2405,17 @@
       "description": "All atomic components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "http://localhost:3333/code.json",
-        "http://localhost:3333/code-block.json",
-        "http://localhost:3333/copy-button.json",
-        "http://localhost:3333/heading.json",
-        "http://localhost:3333/kbd.json",
-        "http://localhost:3333/link.json",
-        "http://localhost:3333/logo.json",
-        "http://localhost:3333/spinner.json",
-        "http://localhost:3333/status-badge.json",
-        "http://localhost:3333/tag.json",
-        "http://localhost:3333/text.json"
+        "code",
+        "code-block",
+        "copy-button",
+        "heading",
+        "kbd",
+        "link",
+        "logo",
+        "spinner",
+        "status-badge",
+        "tag",
+        "text"
       ]
     },
     {
@@ -2425,24 +2425,24 @@
       "description": "All molecule components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "http://localhost:3333/activity-feed-item.json",
-        "http://localhost:3333/avatar-group.json",
-        "http://localhost:3333/breadcrumb-nav.json",
-        "http://localhost:3333/diff-line.json",
-        "http://localhost:3333/empty-state.json",
-        "http://localhost:3333/field-header.json",
-        "http://localhost:3333/form-field.json",
-        "http://localhost:3333/nav-item.json",
-        "http://localhost:3333/parameter-control.json",
-        "http://localhost:3333/run-history-item.json",
-        "http://localhost:3333/search-bar.json",
-        "http://localhost:3333/stat-card.json",
-        "http://localhost:3333/tab-nav.json",
-        "http://localhost:3333/theme-toggle.json",
-        "http://localhost:3333/token-counter.json",
-        "http://localhost:3333/token-reference-card.json",
-        "http://localhost:3333/variable-editor-row.json",
-        "http://localhost:3333/variable-highlight.json"
+        "activity-feed-item",
+        "avatar-group",
+        "breadcrumb-nav",
+        "diff-line",
+        "empty-state",
+        "field-header",
+        "form-field",
+        "nav-item",
+        "parameter-control",
+        "run-history-item",
+        "search-bar",
+        "stat-card",
+        "tab-nav",
+        "theme-toggle",
+        "token-counter",
+        "token-reference-card",
+        "variable-editor-row",
+        "variable-highlight"
       ]
     },
     {
@@ -2452,25 +2452,25 @@
       "description": "All organism components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "http://localhost:3333/apidoc-panel.json",
-        "http://localhost:3333/apikey-manager.json",
-        "http://localhost:3333/activity-feed.json",
-        "http://localhost:3333/auth-form.json",
-        "http://localhost:3333/bulk-actions-bar.json",
-        "http://localhost:3333/dashboard-stats.json",
-        "http://localhost:3333/data-manager.json",
-        "http://localhost:3333/data-table.json",
-        "http://localhost:3333/export-menu.json",
-        "http://localhost:3333/filter-bar.json",
-        "http://localhost:3333/import-dialog.json",
-        "http://localhost:3333/integration-card.json",
-        "http://localhost:3333/onboarding-wizard.json",
-        "http://localhost:3333/organization-manager.json",
-        "http://localhost:3333/run-history.json",
-        "http://localhost:3333/settings-nav.json",
-        "http://localhost:3333/sidebar-nav.json",
-        "http://localhost:3333/top-bar.json",
-        "http://localhost:3333/user-menu.json"
+        "apidoc-panel",
+        "apikey-manager",
+        "activity-feed",
+        "auth-form",
+        "bulk-actions-bar",
+        "dashboard-stats",
+        "data-manager",
+        "data-table",
+        "export-menu",
+        "filter-bar",
+        "import-dialog",
+        "integration-card",
+        "onboarding-wizard",
+        "organization-manager",
+        "run-history",
+        "settings-nav",
+        "sidebar-nav",
+        "top-bar",
+        "user-menu"
       ]
     },
     {
@@ -2480,13 +2480,13 @@
       "description": "All template components from democrito",
       "author": "mmorerasanchez",
       "registryDependencies": [
-        "http://localhost:3333/app-shell.json",
-        "http://localhost:3333/comparison-layout.json",
-        "http://localhost:3333/dashboard-layout.json",
-        "http://localhost:3333/detail-layout.json",
-        "http://localhost:3333/editor-layout.json",
-        "http://localhost:3333/library-layout.json",
-        "http://localhost:3333/template-preview.json"
+        "app-shell",
+        "comparison-layout",
+        "dashboard-layout",
+        "detail-layout",
+        "editor-layout",
+        "library-layout",
+        "template-preview"
       ]
     },
     {

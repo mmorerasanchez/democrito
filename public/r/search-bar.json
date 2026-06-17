@@ -17,6 +17,6 @@
   "registryDependencies": [
     "button",
     "input",
-    "http://localhost:3333/kbd.json"
+    "kbd"
   ]
 }

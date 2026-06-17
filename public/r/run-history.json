@@ -13,6 +13,6 @@
   ],
   "registryDependencies": [
     "badge",
-    "http://localhost:3333/run-history-item.json"
+    "run-history-item"
   ]
 }

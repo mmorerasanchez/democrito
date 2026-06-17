@@ -18,7 +18,7 @@
     "avatar",
     "badge",
     "button",
-    "http://localhost:3333/logo.json",
-    "http://localhost:3333/nav-item.json"
+    "logo",
+    "nav-item"
   ]
 }

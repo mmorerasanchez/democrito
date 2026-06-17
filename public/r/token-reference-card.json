@@ -16,7 +16,7 @@
   ],
   "registryDependencies": [
     "card",
-    "http://localhost:3333/heading.json",
-    "http://localhost:3333/text.json"
+    "heading",
+    "text"
   ]
 }

@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "http://localhost:3333/tab-nav.json"
+    "tab-nav"
   ]
 }

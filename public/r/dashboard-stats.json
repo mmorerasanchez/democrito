@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "http://localhost:3333/stat-card.json"
+    "stat-card"
   ]
 }

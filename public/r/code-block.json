@@ -17,6 +17,6 @@
     }
   ],
   "registryDependencies": [
-    "http://localhost:3333/copy-button.json"
+    "copy-button"
   ]
 }

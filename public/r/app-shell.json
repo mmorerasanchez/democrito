@@ -15,8 +15,8 @@
     "react-router-dom"
   ],
   "registryDependencies": [
-    "http://localhost:3333/sidebar-nav.json",
-    "http://localhost:3333/theme-toggle.json",
-    "http://localhost:3333/top-bar.json"
+    "sidebar-nav",
+    "theme-toggle",
+    "top-bar"
   ]
 }
