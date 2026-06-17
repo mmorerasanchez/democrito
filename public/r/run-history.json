@@ -12,7 +12,7 @@
     }
   ],
   "registryDependencies": [
-    "badge",
+    "https://democrito.design/r/badge.json",
     "https://democrito.design/r/run-history-item.json"
   ]
 }

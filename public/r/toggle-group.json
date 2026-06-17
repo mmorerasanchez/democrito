@@ -16,6 +16,6 @@
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "toggle"
+    "https://democrito.design/r/toggle.json"
   ]
 }

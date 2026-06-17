@@ -12,8 +12,8 @@
     }
   ],
   "registryDependencies": [
-    "input",
-    "label",
-    "slider"
+    "https://democrito.design/r/input.json",
+    "https://democrito.design/r/label.json",
+    "https://democrito.design/r/slider.json"
   ]
 }

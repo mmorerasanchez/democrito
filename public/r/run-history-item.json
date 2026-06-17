@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "badge"
+    "https://democrito.design/r/badge.json"
   ]
 }

@@ -15,7 +15,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "card",
+    "https://democrito.design/r/card.json",
     "https://democrito.design/r/heading.json",
     "https://democrito.design/r/text.json"
   ]

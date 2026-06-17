@@ -15,11 +15,11 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "badge",
-    "button",
-    "dialog",
-    "input",
-    "label",
-    "radio-group"
+    "https://democrito.design/r/badge.json",
+    "https://democrito.design/r/button.json",
+    "https://democrito.design/r/dialog.json",
+    "https://democrito.design/r/input.json",
+    "https://democrito.design/r/label.json",
+    "https://democrito.design/r/radio-group.json"
   ]
 }

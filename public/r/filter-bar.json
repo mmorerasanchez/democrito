@@ -15,9 +15,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "badge",
-    "button",
+    "https://democrito.design/r/badge.json",
+    "https://democrito.design/r/button.json",
     "https://democrito.design/r/search-bar.json",
-    "select"
+    "https://democrito.design/r/select.json"
   ]
 }

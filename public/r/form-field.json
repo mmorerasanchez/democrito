@@ -15,6 +15,6 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "label"
+    "https://democrito.design/r/label.json"
   ]
 }

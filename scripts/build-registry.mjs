@@ -309,10 +309,10 @@ const customComponentNames = new Set([
   ...tierComponentNames["molecules"],
   ...tierComponentNames["organisms"],
   ...tierComponentNames["templates"],
+  ...tierComponentNames["ui"],
 ]);
 
 if (REGISTRY_URL) {
-  // Individual components: only URL-ify custom (non-ui) deps; ui cross-refs stay bare
   const addUrl = (dep) =>
     customComponentNames.has(dep) ? `${REGISTRY_URL}/${dep}.json` : dep;
 

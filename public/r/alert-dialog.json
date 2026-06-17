@@ -15,6 +15,6 @@
     "@radix-ui/react-alert-dialog"
   ],
   "registryDependencies": [
-    "button"
+    "https://democrito.design/r/button.json"
   ]
 }

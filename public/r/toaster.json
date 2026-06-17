@@ -17,6 +17,6 @@
     }
   ],
   "registryDependencies": [
-    "toast"
+    "https://democrito.design/r/toast.json"
   ]
 }

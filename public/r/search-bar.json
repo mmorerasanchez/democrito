@@ -15,8 +15,8 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "button",
-    "input",
+    "https://democrito.design/r/button.json",
+    "https://democrito.design/r/input.json",
     "https://democrito.design/r/kbd.json"
   ]
 }

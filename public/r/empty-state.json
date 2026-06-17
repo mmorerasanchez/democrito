@@ -12,6 +12,6 @@
     }
   ],
   "registryDependencies": [
-    "button"
+    "https://democrito.design/r/button.json"
   ]
 }
