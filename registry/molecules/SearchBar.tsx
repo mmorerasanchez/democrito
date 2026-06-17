@@ -1,9 +1,9 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { cn } from "../lib/utils";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { Search, X } from "lucide-react";
-import { Kbd } from "@/components/atoms";
+import { Kbd } from "../atoms/Kbd";
 
 interface SearchBarProps {
   value?: string;

@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Kbd } from "@/components/atoms";
+import { cn } from "../lib/utils";
+import { Button } from "../ui/button";
+import { Kbd } from "../atoms/Kbd";
 import { Search, Menu } from "lucide-react";
 
 interface TopBarProps {

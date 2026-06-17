@@ -1,9 +1,10 @@
 import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 
-import { Heading, Text } from "@/components/atoms";
-import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { Heading } from "../atoms/Heading";
+import { Text } from "../atoms/Text";
+import { Card } from "../ui/card";
+import { cn } from "../lib/utils";
 
 interface TokenItem {
   name: string;

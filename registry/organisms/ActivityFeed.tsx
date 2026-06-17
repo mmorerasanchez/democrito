@@ -1,6 +1,7 @@
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Text, Code } from "@/components/atoms";
+import { cn } from "../lib/utils";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Text } from "../atoms/Text";
+import { Code } from "../atoms/Code";
 
 interface FeedItem {
   actor: string;

@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation, useSearchParams } from "react-router-dom";
-import { SidebarNav } from "@/components/organisms/SidebarNav";
-import { TopBar } from "@/components/organisms/TopBar";
-import { ThemeToggle } from "@/components/app/ThemeToggle";
+import { SidebarNav } from "../organisms/SidebarNav";
+import { TopBar } from "../organisms/TopBar";
+import { ThemeToggle } from "../molecules/ThemeToggle";
 
 const routeMap: Record<string, string> = {
   store: "/app/library",

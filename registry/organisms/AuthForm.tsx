@@ -1,9 +1,11 @@
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { FormField } from "@/components/molecules/FormField";
-import { Separator } from "@/components/ui/separator";
-import { Heading, Text, Logo } from "@/components/atoms";
+import { cn } from "../lib/utils";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { FormField } from "../molecules/FormField";
+import { Separator } from "../ui/separator";
+import { Heading } from "../atoms/Heading";
+import { Text } from "../atoms/Text";
+import { Logo } from "../atoms/Logo";
 import { useState } from "react";
 
 interface AuthFormProps {

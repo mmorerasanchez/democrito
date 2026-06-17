@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
-import { NavItem } from "@/components/molecules/NavItem";
-import { Logo } from "@/components/atoms";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "../lib/utils";
+import { NavItem } from "../molecules/NavItem";
+import { Logo } from "../atoms/Logo";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 import {
   FileText, Sparkles, Settings, ChevronsLeft, ChevronsRight,
   Hash, Plus, BarChart3, LayoutTemplate, Code2,
