@@ -3,7 +3,7 @@
  * Generates registry.json and public/r/democrito.json from registry/ source files.
  * Run: node scripts/build-registry.mjs
  */
-import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { resolve, join, dirname, basename } from "node:path";
 
 const root = resolve(".");
@@ -41,6 +41,59 @@ function resolveExtension(pathNoExt) {
     if (fileExists(pathNoExt + ext)) return pathNoExt + ext;
   }
   return null;
+}
+
+/**
+ * Rewrite embedded content so all imports resolve correctly after shadcn install.
+ *
+ * shadcn installs files based on path prefix matching:
+ *   registry/ui/<X>  → src/components/ui/<X>   (ui alias)
+ *   registry/<tier>/<X> → src/components/<X>    (components alias, tier dir stripped)
+ *   registry/lib/<X> → src/lib/<X>             (lib alias)
+ *   registry/hooks/<X> → src/hooks/<X>         (hooks alias)
+ *
+ * So all cross-tier refs need @/ aliases to resolve at the consumer install path.
+ */
+function rewriteContent(content, tier) {
+  const isUi = tier === "ui";
+
+  // 1. @/components/<non-ui-tier>/<name> → @/components/<name>  (flat install)
+  content = content.replace(
+    /from\s+(['"])@\/components\/(?:atoms|molecules|organisms|templates)\/([^'"]+)\1/g,
+    (_, q, name) => `from ${q}@/components/${name}${q}`,
+  );
+
+  // 2. Relative imports
+  content = content.replace(
+    /from\s+(['"])(\.[^'"]+)\1/g,
+    (match, q, spec) => {
+      if (spec.startsWith("./")) {
+        const name = spec.slice(2);
+        const target = isUi ? `@/components/ui/${name}` : `@/components/${name}`;
+        return `from ${q}${target}${q}`;
+      }
+      if (spec.startsWith("../")) {
+        const rest = spec.slice(3);
+        const slashIdx = rest.indexOf("/");
+        if (slashIdx === -1) return match;
+        const dir = rest.slice(0, slashIdx);
+        const name = rest.slice(slashIdx + 1);
+        switch (dir) {
+          case "ui":        return `from ${q}@/components/ui/${name}${q}`;
+          case "lib":       return `from ${q}@/lib/${name}${q}`;
+          case "hooks":     return `from ${q}@/hooks/${name}${q}`;
+          case "atoms":
+          case "molecules":
+          case "organisms":
+          case "templates": return `from ${q}@/components/${name}${q}`;
+          default:          return match;
+        }
+      }
+      return match;
+    },
+  );
+
+  return content;
 }
 
 /** Parse all `from "..."` specifiers in a file. */
@@ -101,8 +154,9 @@ function makeLibEntry(filePath, type) {
 // Process one component file → registry item
 // ---------------------------------------------------------------------------
 
-function processFile(filePath, type) {
-  const content = readFile(filePath);
+function processFile(filePath, type, tier) {
+  const rawContent = readFile(filePath);
+  const content = rewriteContent(rawContent, tier);
   const name = pathToName(filePath);
   const componentName = basename(filePath).replace(/\.(tsx?|jsx?)$/, "");
 
@@ -110,10 +164,11 @@ function processFile(filePath, type) {
   const registryDependencies = new Set();
   const libFiles = new Map(); // path → file entry (deduped)
 
-  // Always include the component itself
+  // Always include the component itself (rewritten content for consumer)
   const files = [{ path: filePath, type, content }];
 
-  for (const spec of parseImports(content)) {
+  // Parse raw content for dependency analysis (import paths pre-rewrite)
+  for (const spec of parseImports(rawContent)) {
     // -- npm package --
     if (isNpmPackage(spec)) {
       if (!SKIP_NPM.has(spec)) dependencies.add(spec);
@@ -211,7 +266,7 @@ for (const { dir, type } of TIERS) {
 
   for (const file of files) {
     const filePath = `registry/${dir}/${file}`;
-    const item = processFile(filePath, type);
+    const item = processFile(filePath, type, dir);
     componentItems.push(item);
     tierComponentNames[dir].push(item.name);
   }
@@ -237,6 +292,39 @@ const tierBundleItems = Object.entries(tierComponentNames).map(([tier, names]) =
   author: "mmorerasanchez",
   registryDependencies: names,
 }));
+
+// ---------------------------------------------------------------------------
+// Prefix custom component registryDependencies with registry URL
+// ---------------------------------------------------------------------------
+// shadcn resolves registryDependencies by name from the official registry.
+// Any custom (non-shadcn) component must be referenced by full URL so shadcn
+// knows where to fetch it.  Set REGISTRY_URL to the served base URL, e.g.:
+//   REGISTRY_URL=http://localhost:3333 node scripts/build-registry.mjs
+// ---------------------------------------------------------------------------
+
+const REGISTRY_URL = process.env.REGISTRY_URL || "";
+
+const customComponentNames = new Set([
+  ...tierComponentNames["atoms"],
+  ...tierComponentNames["molecules"],
+  ...tierComponentNames["organisms"],
+  ...tierComponentNames["templates"],
+]);
+
+if (REGISTRY_URL) {
+  const addUrl = (dep) =>
+    customComponentNames.has(dep) ? `${REGISTRY_URL}/${dep}.json` : dep;
+
+  for (const item of [...componentItems, ...tierBundleItems]) {
+    if (item.registryDependencies) {
+      item.registryDependencies = item.registryDependencies.map(addUrl);
+    }
+  }
+  console.log(`\nRegistry URL: ${REGISTRY_URL}`);
+} else {
+  console.log(`\n⚠ No REGISTRY_URL set — custom registryDependencies will use name-only (may break shadcn add).`);
+  console.log(`  Set via: REGISTRY_URL=http://localhost:3333 node scripts/build-registry.mjs`);
+}
 
 // ---------------------------------------------------------------------------
 // Base items (preserve from existing registry.json, update 3 fields)
@@ -289,9 +377,18 @@ const manifest = {
 // Write files
 // ---------------------------------------------------------------------------
 
-const json = JSON.stringify(manifest, null, 2);
-writeFileSync(join(root, "registry.json"), json);
-writeFileSync(join(root, "public/r/democrito.json"), json);
+mkdirSync(join(root, "public/r"), { recursive: true });
+
+// registry.json = full source manifest
+writeFileSync(join(root, "registry.json"), JSON.stringify(manifest, null, 2));
+
+// public/r/<name>.json = individual served files (one per item, shadcn install format)
+for (const item of allItems) {
+  writeFileSync(
+    join(root, "public/r", `${item.name}.json`),
+    JSON.stringify(item, null, 2),
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Report
@@ -302,7 +399,7 @@ const bundleCount = tierBundleItems.length;
 const baseCount = 2; // democrito + democrito-warm
 const total = allItems.length;
 
-console.log(`\n✓ registry.json and public/r/democrito.json written`);
+console.log(`\n✓ registry.json written, ${total} files written to public/r/`);
 console.log(`\nItem counts:`);
 console.log(`  ${baseCount} base items (democrito, democrito-warm)`);
 for (const [tier, names] of Object.entries(tierComponentNames)) {

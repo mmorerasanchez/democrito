@@ -1,0 +1,18 @@
+{
+  "name": "radio-group",
+  "type": "registry:ui",
+  "title": "radio-group",
+  "description": "radio-group component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/radio-group.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport * as RadioGroupPrimitive from \"@radix-ui/react-radio-group\";\nimport { Circle } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst RadioGroup = React.forwardRef<\n  React.ElementRef<typeof RadioGroupPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>\n>(({ className, ...props }, ref) => {\n  return <RadioGroupPrimitive.Root className={cn(\"grid gap-2\", className)} {...props} ref={ref} />;\n});\nRadioGroup.displayName = RadioGroupPrimitive.Root.displayName;\n\nconst RadioGroupItem = React.forwardRef<\n  React.ElementRef<typeof RadioGroupPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>\n>(({ className, ...props }, ref) => {\n  return (\n    <RadioGroupPrimitive.Item\n      ref={ref}\n      className={cn(\n        \"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator className=\"flex items-center justify-center\">\n        <Circle className=\"h-2.5 w-2.5 fill-current text-current\" />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  );\n});\nRadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;\n\nexport { RadioGroup, RadioGroupItem };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-radio-group",
+    "lucide-react"
+  ]
+}

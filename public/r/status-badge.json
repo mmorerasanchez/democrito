@@ -1,0 +1,14 @@
+{
+  "name": "status-badge",
+  "type": "registry:ui",
+  "title": "StatusBadge",
+  "description": "StatusBadge component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/StatusBadge.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ntype Status = \"draft\" | \"testing\" | \"production\" | \"archived\";\n\nconst statusColorMap: Record<Status, string> = {\n  draft: \"bg-status-draft/10 text-status-draft\",\n  testing: \"bg-status-testing/10 text-status-testing\",\n  production: \"bg-status-production/10 text-status-production\",\n  archived: \"bg-status-archived/10 text-status-archived\",\n};\n\nconst statusLabelMap: Record<Status, string> = {\n  draft: \"Draft\",\n  testing: \"Testing\",\n  production: \"Production\",\n  archived: \"Archived\",\n};\n\ninterface StatusBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {\n  /** Lifecycle status of the entity */\n  status: Status;\n}\n\nconst StatusBadge = React.forwardRef<HTMLSpanElement, StatusBadgeProps>(\n  ({ className, status, children, ...props }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"inline-flex items-center rounded-full px-2 py-0.5 font-mono text-xs font-medium\",\n          statusColorMap[status],\n          className,\n        )}\n        {...props}\n      >\n        {children ?? statusLabelMap[status]}\n      </span>\n    );\n  },\n);\nStatusBadge.displayName = \"StatusBadge\";\n\nexport { StatusBadge };\nexport type { StatusBadgeProps, Status };\n"
+    }
+  ]
+}

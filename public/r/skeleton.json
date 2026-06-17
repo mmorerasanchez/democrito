@@ -1,0 +1,14 @@
+{
+  "name": "skeleton",
+  "type": "registry:ui",
+  "title": "skeleton",
+  "description": "skeleton component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/skeleton.tsx",
+      "type": "registry:ui",
+      "content": "import { cn } from \"@/lib/utils\";\n\nfunction Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"animate-pulse rounded-md bg-muted\", className)} {...props} />;\n}\n\nexport { Skeleton };\n"
+    }
+  ]
+}

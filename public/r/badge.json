@@ -1,0 +1,17 @@
+{
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "badge",
+  "description": "badge component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/badge.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-full font-mono text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground\",\n        destructive: \"border-transparent bg-destructive text-destructive-foreground\",\n        outline: \"border border-border text-foreground\",\n        // Status variants\n        draft: \"border-transparent bg-status-draft/10 text-status-draft\",\n        testing: \"border-transparent bg-status-testing/10 text-status-testing\",\n        production: \"border-transparent bg-status-production/10 text-status-production\",\n        archived: \"border-transparent bg-status-archived/10 text-status-archived\",\n        // Semantic variants\n        success: \"border-transparent bg-success-bg text-success\",\n        warning: \"border-transparent bg-warning-bg text-warning\",\n        error: \"border-transparent bg-error-bg text-error\",\n        info: \"border-transparent bg-info-bg text-info\",\n        // Count variant\n        count: \"border-transparent bg-accent text-accent-foreground min-w-[18px] justify-center\",\n      },\n      size: {\n        default: \"px-2.5 py-0.5\",\n        sm: \"px-2 py-0.5 text-2xs\",\n        lg: \"px-3 py-1\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  },\n);\n\n// Dot badge - 8px circle\nfunction BadgeDot({ color, className }: { color?: string; className?: string }) {\n  return (\n    <span\n      className={cn(\"inline-block h-2 w-2 rounded-full bg-current\", className)}\n      style={color ? { color } : undefined}\n    />\n  );\n}\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, size, ...props }: BadgeProps) {\n  return <div className={cn(badgeVariants({ variant, size }), className)} {...props} />;\n}\n\nexport { Badge, BadgeDot, badgeVariants };\n"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority"
+  ]
+}

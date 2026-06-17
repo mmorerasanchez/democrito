@@ -1,0 +1,14 @@
+{
+  "name": "code",
+  "type": "registry:ui",
+  "title": "Code",
+  "description": "Code component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/Code.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { forwardRef } from \"react\";\n\ntype CodeProps = React.HTMLAttributes<HTMLElement>;\n\nconst Code = forwardRef<HTMLElement, CodeProps>(({ className, ...props }, ref) => {\n  return (\n    <code\n      ref={ref}\n      className={cn(\n        \"rounded-sm border border-border bg-accent/10 px-1.5 py-0.5 font-mono text-sm text-accent\",\n        className,\n      )}\n      {...props}\n    />\n  );\n});\nCode.displayName = \"Code\";\n\nexport { Code };\n"
+    }
+  ]
+}

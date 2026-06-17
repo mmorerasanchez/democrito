@@ -1,0 +1,23 @@
+{
+  "name": "filter-bar",
+  "type": "registry:ui",
+  "title": "FilterBar",
+  "description": "FilterBar component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/FilterBar.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { SearchBar } from \"@/components/SearchBar\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from \"@/components/ui/select\";\nimport { LayoutGrid, List } from \"lucide-react\";\nimport { useState } from \"react\";\n\ninterface FilterBarProps {\n  search: string;\n  onSearchChange: (v: string) => void;\n  viewMode?: \"grid\" | \"list\";\n  onViewModeChange?: (mode: \"grid\" | \"list\") => void;\n  className?: string;\n}\n\nexport function FilterBar({ search, onSearchChange, viewMode: controlledViewMode, onViewModeChange, className }: FilterBarProps) {\n  const [internalViewMode, setInternalViewMode] = useState<\"grid\" | \"list\">(\"grid\");\n  const viewMode = controlledViewMode ?? internalViewMode;\n  const setViewMode = onViewModeChange ?? setInternalViewMode;\n  const statuses = [\"Draft\", \"Testing\", \"Production\", \"Archived\"] as const;\n  const [activeStatuses, setActiveStatuses] = useState<string[]>([]);\n\n  const toggleStatus = (s: string) => {\n    setActiveStatuses((prev) => prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]);\n  };\n\n  return (\n    <div className={cn(\"flex flex-wrap items-center gap-3\", className)}>\n      <SearchBar value={search} onChange={onSearchChange} className=\"w-full sm:w-64\" showShortcut={false} />\n      <div className=\"flex items-center gap-1.5\">\n        {statuses.map((s) => (\n          <Badge\n            key={s}\n            variant={activeStatuses.includes(s) ? s.toLowerCase() as \"draft\" | \"testing\" | \"production\" | \"archived\" : \"outline\"}\n            className=\"cursor-pointer\"\n            onClick={() => toggleStatus(s)}\n          >\n            {s}\n          </Badge>\n        ))}\n      </div>\n      <div className=\"flex items-center gap-2 ml-auto\">\n        <Select defaultValue=\"updated\">\n          <SelectTrigger className=\"w-[130px] h-8 font-mono text-xs\">\n            <SelectValue />\n          </SelectTrigger>\n          <SelectContent className=\"bg-popover border-border\">\n            <SelectItem value=\"updated\">Last updated</SelectItem>\n            <SelectItem value=\"created\">Created</SelectItem>\n            <SelectItem value=\"name\">Name</SelectItem>\n          </SelectContent>\n        </Select>\n        <div className=\"flex items-center border border-border rounded-md\">\n          <Button variant={viewMode === \"grid\" ? \"secondary\" : \"ghost\"} size=\"icon\" className=\"h-8 w-8 rounded-r-none\" onClick={() => setViewMode(\"grid\")} aria-label=\"Grid view\">\n            <LayoutGrid className=\"h-3.5 w-3.5\" />\n          </Button>\n          <Button variant={viewMode === \"list\" ? \"secondary\" : \"ghost\"} size=\"icon\" className=\"h-8 w-8 rounded-l-none\" onClick={() => setViewMode(\"list\")} aria-label=\"List view\">\n            <List className=\"h-3.5 w-3.5\" />\n          </Button>\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "http://localhost:3333/search-bar.json",
+    "select"
+  ]
+}

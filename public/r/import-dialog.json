@@ -1,0 +1,22 @@
+{
+  "name": "import-dialog",
+  "type": "registry:ui",
+  "title": "ImportDialog",
+  "description": "ImportDialog component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/ImportDialog.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport { Textarea } from \"@/components/ui/textarea\";\nimport { Upload, FileText } from \"lucide-react\";\nimport { useState } from \"react\";\n\ntype ImportFormat = \"json\" | \"csv\" | \"yaml\" | \"text\";\n\ninterface ImportDialogProps {\n  onImport?: (content: string, format: ImportFormat) => void;\n  onCancel?: () => void;\n  className?: string;\n}\n\nconst formatOptions: { value: ImportFormat; label: string }[] = [\n  { value: \"json\", label: \"JSON\" },\n  { value: \"csv\", label: \"CSV\" },\n  { value: \"yaml\", label: \"YAML\" },\n  { value: \"text\", label: \"Plain Text\" },\n];\n\n/**\n * ImportDialog — Content area for importing prompts or test data.\n * Supports paste or file reference with format selection.\n */\nexport function ImportDialog({ onImport, onCancel, className }: ImportDialogProps) {\n  const [format, setFormat] = useState<ImportFormat>(\"json\");\n  const [content, setContent] = useState(\"\");\n\n  return (\n    <div className={cn(\"rounded-md border border-border bg-card\", className)}>\n      {/* Header */}\n      <div className=\"flex items-center justify-between border-b border-border px-3 py-2\">\n        <div className=\"flex items-center gap-2\">\n          <Upload className=\"h-4 w-4 text-muted-foreground\" />\n          <span className=\"font-display text-sm font-medium text-foreground\">Import</span>\n        </div>\n      </div>\n\n      <div className=\"p-4 space-y-4\">\n        {/* Format selector */}\n        <div className=\"space-y-1.5\">\n          <span className=\"font-mono text-2xs uppercase tracking-widest text-muted-foreground\">Format</span>\n          <div className=\"flex gap-1\">\n            {formatOptions.map((opt) => (\n              <Button\n                key={opt.value}\n                variant={format === opt.value ? \"default\" : \"ghost\"}\n                size=\"sm\"\n                onClick={() => setFormat(opt.value)}\n                className=\"font-mono text-xs\"\n              >\n                {opt.label}\n              </Button>\n            ))}\n          </div>\n        </div>\n\n        {/* Paste area */}\n        <div className=\"space-y-1.5\">\n          <span className=\"font-mono text-2xs uppercase tracking-widest text-muted-foreground\">Paste content</span>\n          <Textarea\n            value={content}\n            onChange={(e) => setContent(e.target.value)}\n            placeholder={`Paste ${format.toUpperCase()} content here…`}\n            className=\"min-h-[120px] text-xs\"\n          />\n        </div>\n\n        {/* File drop zone */}\n        <div className=\"flex items-center justify-center rounded-md border-2 border-dashed border-border bg-muted/30 px-4 py-6\">\n          <div className=\"text-center\">\n            <FileText className=\"mx-auto h-6 w-6 text-muted-foreground\" />\n            <p className=\"mt-2 font-body text-xs text-muted-foreground\">\n              Or drop a <span className=\"font-mono text-accent\">.{format}</span> file here\n            </p>\n          </div>\n        </div>\n\n        {/* Actions */}\n        <div className=\"flex justify-end gap-2\">\n          <Button variant=\"ghost\" size=\"sm\" onClick={onCancel}>Cancel</Button>\n          <Button size=\"sm\" onClick={() => onImport?.(content, format)} disabled={!content.trim()}>\n            Import\n          </Button>\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "textarea"
+  ]
+}

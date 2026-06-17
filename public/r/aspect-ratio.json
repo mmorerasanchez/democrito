@@ -1,0 +1,17 @@
+{
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "title": "aspect-ratio",
+  "description": "aspect-ratio component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/aspect-ratio.tsx",
+      "type": "registry:ui",
+      "content": "import * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\n\nconst AspectRatio = AspectRatioPrimitive.Root;\n\nexport { AspectRatio };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-aspect-ratio"
+  ]
+}

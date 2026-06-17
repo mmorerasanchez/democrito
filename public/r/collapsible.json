@@ -1,0 +1,17 @@
+{
+  "name": "collapsible",
+  "type": "registry:ui",
+  "title": "collapsible",
+  "description": "collapsible component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/collapsible.tsx",
+      "type": "registry:ui",
+      "content": "import * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\";\n\nconst Collapsible = CollapsiblePrimitive.Root;\n\nconst CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;\n\nconst CollapsibleContent = CollapsiblePrimitive.CollapsibleContent;\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-collapsible"
+  ]
+}

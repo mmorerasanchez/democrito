@@ -1,0 +1,17 @@
+{
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "avatar",
+  "description": "avatar component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/avatar.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\";\nimport { cn } from \"@/lib/utils\";\n\nconst avatarSizes = {\n  xs: \"h-5 w-5 text-2xs\",\n  sm: \"h-7 w-7 text-xs\",\n  md: \"h-9 w-9 text-sm\",\n  lg: \"h-12 w-12 text-base\",\n} as const;\n\ntype AvatarSize = keyof typeof avatarSizes;\n\ninterface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {\n  size?: AvatarSize;\n}\n\nconst Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, AvatarProps>(\n  ({ className, size = \"md\", ...props }, ref) => (\n    <AvatarPrimitive.Root\n      ref={ref}\n      className={cn(\n        \"relative flex shrink-0 overflow-hidden rounded-full\",\n        avatarSizes[size],\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nAvatar.displayName = AvatarPrimitive.Root.displayName;\n\nconst AvatarImage = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Image>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>\n>(({ className, ...props }, ref) => (\n  <AvatarPrimitive.Image\n    ref={ref}\n    className={cn(\"aspect-square h-full w-full\", className)}\n    {...props}\n  />\n));\nAvatarImage.displayName = AvatarPrimitive.Image.displayName;\n\nconst AvatarFallback = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Fallback>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>\n>(({ className, ...props }, ref) => (\n  <AvatarPrimitive.Fallback\n    ref={ref}\n    className={cn(\n      \"flex h-full w-full items-center justify-center rounded-full bg-muted font-display font-medium text-muted-foreground\",\n      className,\n    )}\n    {...props}\n  />\n));\nAvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;\n\nfunction AvatarStatus({ status, className }: { status: \"online\" | \"offline\" | \"busy\"; className?: string }) {\n  const statusColors = {\n    online: \"bg-success\",\n    offline: \"bg-muted-foreground\",\n    busy: \"bg-warning\",\n  };\n  return (\n    <span\n      className={cn(\n        \"absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full border-2 border-background\",\n        statusColors[status],\n        className,\n      )}\n    />\n  );\n}\n\nexport { Avatar, AvatarImage, AvatarFallback, AvatarStatus, avatarSizes };\nexport type { AvatarSize };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-avatar"
+  ]
+}

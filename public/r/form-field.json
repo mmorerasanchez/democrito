@@ -1,0 +1,20 @@
+{
+  "name": "form-field",
+  "type": "registry:ui",
+  "title": "FormField",
+  "description": "FormField component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/FormField.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Label } from \"@/components/ui/label\";\nimport { AlertCircle } from \"lucide-react\";\n\ninterface FormFieldProps {\n  label: string;\n  htmlFor?: string;\n  required?: boolean;\n  helper?: string;\n  error?: string;\n  children: React.ReactNode;\n  className?: string;\n}\n\nexport function FormField({ label, htmlFor, required, helper, error, children, className }: FormFieldProps) {\n  return (\n    <div className={cn(\"space-y-1\", className)}>\n      <Label htmlFor={htmlFor} className=\"font-body text-sm font-medium\">\n        {label}\n        {required && <span className=\"text-destructive ml-0.5\">*</span>}\n      </Label>\n      {children}\n      {error ? (\n        <p className=\"flex items-center gap-1 font-body text-xs text-error\" role=\"alert\">\n          <AlertCircle className=\"h-3 w-3\" />\n          {error}\n        </p>\n      ) : helper ? (\n        <p className=\"font-body text-xs text-muted-foreground\">{helper}</p>\n      ) : null}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "label"
+  ]
+}

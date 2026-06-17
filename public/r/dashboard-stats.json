@@ -1,0 +1,17 @@
+{
+  "name": "dashboard-stats",
+  "type": "registry:ui",
+  "title": "DashboardStats",
+  "description": "DashboardStats component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/DashboardStats.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { StatCard } from \"@/components/StatCard\";\n\ninterface DashboardStatsProps {\n  className?: string;\n}\n\nexport function DashboardStats({ className }: DashboardStatsProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 gap-4 lg:grid-cols-4\", className)}>\n      <StatCard label=\"Total Prompts\" value=\"1,247\" trend={{ direction: \"up\", value: \"+12%\" }} />\n      <StatCard label=\"Evaluations\" value=\"384\" trend={{ direction: \"up\", value: \"+8%\" }} />\n      <StatCard label=\"Avg Score\" value=\"87.3\" trend={{ direction: \"neutral\", value: \"0.0%\" }} />\n      <StatCard label=\"Active Users\" value=\"23\" trend={{ direction: \"down\", value: \"-2\" }} />\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "http://localhost:3333/stat-card.json"
+  ]
+}

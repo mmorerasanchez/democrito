@@ -1,0 +1,14 @@
+{
+  "name": "variable-highlight",
+  "type": "registry:ui",
+  "title": "VariableHighlight",
+  "description": "VariableHighlight component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/VariableHighlight.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\n\ninterface VariableHighlightProps {\n  /** Variable name without braces */\n  name: string;\n  /** Resolved value (shown on hover or inline) */\n  resolvedValue?: string;\n  /** Whether the variable is unresolved / missing */\n  unresolved?: boolean;\n  /** Click handler */\n  onClick?: (name: string) => void;\n  className?: string;\n}\n\n/**\n * VariableHighlight — Inline styled {{variable}} token.\n * Shows accent-colored variable name with optional click-to-highlight\n * and unresolved state (error styling).\n */\nexport function VariableHighlight({\n  name,\n  resolvedValue,\n  unresolved = false,\n  onClick,\n  className,\n}: VariableHighlightProps) {\n  return (\n    <button\n      type=\"button\"\n      onClick={() => onClick?.(name)}\n      title={resolvedValue ? `Resolved: ${resolvedValue}` : unresolved ? \"Unresolved variable\" : name}\n      className={cn(\n        \"inline-flex items-center rounded-sm border px-1.5 py-0.5 font-mono text-sm font-medium transition-colors duration-150\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n        unresolved\n          ? \"border-error-border bg-error-bg text-error\"\n          : \"border-accent/30 bg-accent/10 text-accent hover:bg-accent/20\",\n        className,\n      )}\n    >\n      {\"{{\"}\n      {name}\n      {\"}}\"}\n    </button>\n  );\n}\n"
+    }
+  ]
+}

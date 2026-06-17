@@ -1,0 +1,14 @@
+{
+  "name": "dashboard-layout",
+  "type": "registry:ui",
+  "title": "DashboardLayout",
+  "description": "DashboardLayout component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/templates/DashboardLayout.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport type { ReactNode } from \"react\";\n\ninterface DashboardLayoutProps {\n  /** KPI stats section */\n  stats?: ReactNode;\n  /** Main content grid (activity, recent prompts, etc.) */\n  children: ReactNode;\n  /** Optional header/welcome section */\n  header?: ReactNode;\n  className?: string;\n}\n\n/**\n * DashboardLayout — Overview page template.\n * Optional header → stats row → main content grid.\n */\nexport function DashboardLayout({ stats, children, header, className }: DashboardLayoutProps) {\n  return (\n    <div className={cn(\"flex-1 overflow-auto p-4 md:p-6 lg:p-8\", className)}>\n      <div className=\"mx-auto max-w-6xl space-y-6\">\n        {header}\n        {stats}\n        {children}\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

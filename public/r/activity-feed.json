@@ -1,0 +1,19 @@
+{
+  "name": "activity-feed",
+  "type": "registry:ui",
+  "title": "ActivityFeed",
+  "description": "ActivityFeed component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/ActivityFeed.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Avatar, AvatarFallback } from \"@/components/ui/avatar\";\nimport { Text } from \"@/components/Text\";\nimport { Code } from \"@/components/Code\";\n\ninterface FeedItem {\n  actor: string;\n  initials: string;\n  action: string;\n  resource: string;\n  time: string;\n}\n\ninterface ActivityFeedProps {\n  items: FeedItem[];\n  className?: string;\n}\n\nexport function ActivityFeed({ items, className }: ActivityFeedProps) {\n  return (\n    <div className={cn(\"rounded-md border border-border bg-card overflow-hidden\", className)}>\n      <div className=\"border-b border-border bg-surface px-4 py-3\">\n        <h3 className=\"font-display text-sm font-medium\">Recent Activity</h3>\n      </div>\n      <div className=\"max-h-[400px] overflow-y-auto divide-y divide-border\">\n        {items.map((item, i) => (\n          <div key={i} className=\"flex items-start gap-3 px-4 py-3\">\n            <Avatar size=\"xs\">\n              <AvatarFallback>{item.initials}</AvatarFallback>\n            </Avatar>\n            <div className=\"min-w-0 flex-1\">\n              <p className=\"font-body text-sm\">\n                <span className=\"font-medium text-foreground\">{item.actor}</span>{\" \"}\n                <span className=\"text-muted-foreground\">{item.action}</span>{\" \"}\n                <Code className=\"text-accent border-none bg-transparent p-0\">{item.resource}</Code>\n              </p>\n              <Text mono size=\"xs\" variant=\"muted\" className=\"mt-0.5\">{item.time}</Text>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "avatar",
+    "http://localhost:3333/code.json",
+    "http://localhost:3333/text.json"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "activity-feed-item",
+  "type": "registry:ui",
+  "title": "ActivityFeedItem",
+  "description": "ActivityFeedItem component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/ActivityFeedItem.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Badge } from \"@/components/ui/badge\";\n\ntype ActivityType = \"created\" | \"updated\" | \"deployed\" | \"archived\" | \"commented\";\n\ninterface ActivityFeedItemProps {\n  /** User who performed the action */\n  user: string;\n  /** Type of action */\n  type: ActivityType;\n  /** Target entity name */\n  target: string;\n  /** Relative timestamp */\n  timestamp: string;\n  /** Optional description/detail */\n  detail?: string;\n  className?: string;\n}\n\nconst typeLabels: Record<ActivityType, { label: string; variant: \"success\" | \"info\" | \"warning\" | \"secondary\" | \"outline\" }> = {\n  created: { label: \"created\", variant: \"success\" },\n  updated: { label: \"updated\", variant: \"info\" },\n  deployed: { label: \"deployed\", variant: \"success\" },\n  archived: { label: \"archived\", variant: \"secondary\" },\n  commented: { label: \"commented\", variant: \"outline\" },\n};\n\n/**\n * ActivityFeedItem — A single row in an activity feed.\n * Shows user, action badge, target, timestamp, and optional detail.\n */\nexport function ActivityFeedItem({\n  user,\n  type,\n  target,\n  timestamp,\n  detail,\n  className,\n}: ActivityFeedItemProps) {\n  const { label, variant } = typeLabels[type];\n\n  return (\n    <div className={cn(\"flex items-start gap-3 py-2.5 border-b border-border last:border-b-0\", className)}>\n      {/* Avatar placeholder */}\n      <div className=\"mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted font-mono text-2xs text-muted-foreground\">\n        {user.charAt(0).toUpperCase()}\n      </div>\n\n      <div className=\"flex-1 min-w-0\">\n        <div className=\"flex items-center gap-2 flex-wrap\">\n          <span className=\"font-body text-sm font-medium text-foreground\">{user}</span>\n          <Badge variant={variant} size=\"sm\">{label}</Badge>\n          <span className=\"font-mono text-sm text-foreground truncate\">{target}</span>\n        </div>\n        {detail && (\n          <p className=\"mt-0.5 font-body text-xs text-muted-foreground line-clamp-1\">{detail}</p>\n        )}\n      </div>\n\n      <span className=\"shrink-0 font-mono text-2xs text-foreground-subtle\">{timestamp}</span>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "badge"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "editor-layout",
+  "type": "registry:ui",
+  "title": "EditorLayout",
+  "description": "EditorLayout component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/templates/EditorLayout.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport type { ReactNode } from \"react\";\n\ninterface EditorLayoutProps {\n  /** Left pane content (editor, fields, etc.) */\n  editor: ReactNode;\n  /** Right pane content (preview, playground, etc.) */\n  preview: ReactNode;\n  /** Optional header bar above the split pane */\n  header?: ReactNode;\n  className?: string;\n}\n\n/**\n * EditorLayout — 50/50 split-pane template.\n * Left editor + 4px resizer + right preview.\n * Stacks vertically on mobile (md breakpoint).\n */\nexport function EditorLayout({ editor, preview, header, className }: EditorLayoutProps) {\n  return (\n    <div className={cn(\"flex h-full flex-col overflow-hidden\", className)}>\n      {header && (\n        <div className=\"shrink-0 border-b border-border\">{header}</div>\n      )}\n      <div className=\"flex flex-1 flex-col overflow-hidden md:flex-row\">\n        {/* Left pane */}\n        <div className=\"flex-1 overflow-auto border-b border-border md:border-b-0 md:border-r\">\n          {editor}\n        </div>\n        {/* Resizer visual indicator (desktop only) */}\n        <div className=\"hidden w-1 shrink-0 cursor-col-resize bg-border hover:bg-accent/30 transition-colors duration-150 md:block\" />\n        {/* Right pane */}\n        <div className=\"flex-1 overflow-auto\">\n          {preview}\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

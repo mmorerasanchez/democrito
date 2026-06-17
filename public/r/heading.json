@@ -1,0 +1,14 @@
+{
+  "name": "heading",
+  "type": "registry:ui",
+  "title": "Heading",
+  "description": "Heading component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/Heading.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { forwardRef } from \"react\";\n\ntype HeadingLevel = \"h1\" | \"h2\" | \"h3\" | \"h4\";\n\ninterface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {\n  level?: HeadingLevel;\n  as?: HeadingLevel;\n}\n\nconst headingStyles: Record<HeadingLevel, string> = {\n  h1: \"text-2xl font-semibold font-display tracking-tight text-wrap-balance\",\n  h2: \"text-xl font-medium font-display tracking-tight text-wrap-balance\",\n  h3: \"text-md font-medium font-display\",\n  h4: \"text-sm font-medium font-display uppercase tracking-widest text-muted-foreground\",\n};\n\n/** No icons allowed inside headings — use Text or a wrapper instead. */\nconst Heading = forwardRef<HTMLHeadingElement, HeadingProps>(\n  ({ level = \"h2\", as, className, children, ...props }, ref) => {\n    const Tag = as || level;\n    return (\n      <Tag ref={ref} className={cn(headingStyles[level], className)} {...props}>\n        {children}\n      </Tag>\n    );\n  },\n);\nHeading.displayName = \"Heading\";\n\nexport { Heading };\nexport type { HeadingProps, HeadingLevel };\n"
+    }
+  ]
+}

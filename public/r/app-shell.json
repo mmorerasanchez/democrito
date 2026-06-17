@@ -1,0 +1,22 @@
+{
+  "name": "app-shell",
+  "type": "registry:ui",
+  "title": "AppShell",
+  "description": "AppShell component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/templates/AppShell.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { useState } from \"react\";\nimport { Outlet, useNavigate, useLocation, useSearchParams } from \"react-router-dom\";\nimport { SidebarNav } from \"@/components/SidebarNav\";\nimport { TopBar } from \"@/components/TopBar\";\nimport { ThemeToggle } from \"@/components/ThemeToggle\";\n\nconst routeMap: Record<string, string> = {\n  store: \"/app/library\",\n  designer: \"/app/ai-designer\",\n  settings: \"/app/settings\",\n};\n\nfunction getActiveItem(pathname: string): string {\n  if (pathname.startsWith(\"/app/library\")) return \"store\";\n  if (pathname.startsWith(\"/app/ai-designer\")) return \"designer\";\n  if (pathname.startsWith(\"/app/settings\")) return \"settings\";\n  return \"\";\n}\n\nexport function AppShell() {\n  const [collapsed, setCollapsed] = useState(false);\n  const [mobileOpen, setMobileOpen] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const [searchParams] = useSearchParams();\n\n  const activeItem = getActiveItem(location.pathname);\n  const activeProject = searchParams.get(\"project\") || undefined;\n\n  const handleNavClick = (id: string) => {\n    navigate(routeMap[id] || `/app/${id}`);\n    setMobileOpen(false);\n  };\n\n  const handleProjectClick = (slug: string) => {\n    navigate(`/app/library?project=${slug}`);\n    setMobileOpen(false);\n  };\n\n  return (\n    <div className=\"flex h-screen w-full overflow-hidden bg-background\">\n      {mobileOpen && (\n        <div\n          className=\"fixed inset-0 z-overlay bg-background/80 lg:hidden\"\n          onClick={() => setMobileOpen(false)}\n        />\n      )}\n\n      <div className={cn(\n        \"fixed inset-y-0 left-0 z-modal lg:relative lg:z-auto transition-transform duration-200\",\n        mobileOpen ? \"translate-x-0\" : \"-translate-x-full lg:translate-x-0\",\n      )}>\n        <SidebarNav\n          collapsed={collapsed}\n          onToggle={() => setCollapsed(!collapsed)}\n          activeItem={activeItem}\n          onItemClick={handleNavClick}\n          activeProject={activeProject}\n          onProjectClick={handleProjectClick}\n          className=\"h-full\"\n        />\n      </div>\n\n      <div className=\"flex flex-1 flex-col overflow-hidden\">\n        <TopBar onMenuClick={() => setMobileOpen(true)} actions={<ThemeToggle />} />\n        <Outlet />\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "react-router-dom"
+  ],
+  "registryDependencies": [
+    "http://localhost:3333/sidebar-nav.json",
+    "http://localhost:3333/theme-toggle.json",
+    "http://localhost:3333/top-bar.json"
+  ]
+}

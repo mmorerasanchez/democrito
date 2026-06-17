@@ -1,0 +1,20 @@
+{
+  "name": "export-menu",
+  "type": "registry:ui",
+  "title": "ExportMenu",
+  "description": "ExportMenu component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/ExportMenu.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\nimport { Download, FileJson, FileSpreadsheet, FileText, Copy } from \"lucide-react\";\nimport { useState } from \"react\";\n\ntype ExportFormat = \"json\" | \"csv\" | \"yaml\" | \"markdown\" | \"clipboard\";\n\ninterface ExportMenuProps {\n  onExport?: (format: ExportFormat) => void;\n  promptName?: string;\n  className?: string;\n}\n\nconst exportOptions: { format: ExportFormat; label: string; icon: typeof FileJson; description: string }[] = [\n  { format: \"json\", label: \"JSON\", icon: FileJson, description: \"Structured prompt data with metadata\" },\n  { format: \"csv\", label: \"CSV\", icon: FileSpreadsheet, description: \"Tabular format for spreadsheets\" },\n  { format: \"yaml\", label: \"YAML\", icon: FileText, description: \"Human-readable config format\" },\n  { format: \"markdown\", label: \"Markdown\", icon: FileText, description: \"Documentation-ready format\" },\n  { format: \"clipboard\", label: \"Copy to Clipboard\", icon: Copy, description: \"Copy compiled prompt text\" },\n];\n\n/**\n * ExportMenu — Panel listing available export formats with descriptions.\n */\nexport function ExportMenu({ onExport, promptName, className }: ExportMenuProps) {\n  return (\n    <div className={cn(\"rounded-md border border-border bg-card w-72\", className)}>\n      {/* Header */}\n      <div className=\"flex items-center gap-2 border-b border-border px-3 py-2\">\n        <Download className=\"h-4 w-4 text-muted-foreground\" />\n        <span className=\"font-display text-sm font-medium text-foreground\">Export</span>\n        {promptName && (\n          <span className=\"font-mono text-2xs text-muted-foreground truncate ml-auto\">{promptName}</span>\n        )}\n      </div>\n\n      {/* Options */}\n      <div className=\"py-1\">\n        {exportOptions.map(({ format, label, icon: Icon, description }) => (\n          <button\n            key={format}\n            type=\"button\"\n            onClick={() => onExport?.(format)}\n            className=\"flex w-full items-start gap-3 px-3 py-2.5 text-left transition-colors duration-150 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n          >\n            <Icon className=\"mt-0.5 h-4 w-4 shrink-0 text-muted-foreground\" />\n            <div className=\"min-w-0\">\n              <span className=\"font-mono text-sm font-medium text-foreground\">{label}</span>\n              <p className=\"font-body text-xs text-muted-foreground\">{description}</p>\n            </div>\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ]
+}

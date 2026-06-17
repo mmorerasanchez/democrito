@@ -1,0 +1,17 @@
+{
+  "name": "field-header",
+  "type": "registry:ui",
+  "title": "FieldHeader",
+  "description": "FieldHeader component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/FieldHeader.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { TokenCounter } from \"@/components/TokenCounter\";\n\ntype AnatomyField = \"role\" | \"tone\" | \"context\" | \"task\" | \"reasoning\" | \"examples\" | \"output\" | \"constraints\" | \"tools\";\n\ninterface FieldHeaderProps {\n  /** Display label for the field */\n  label: string;\n  /** Field category for color coding */\n  field: AnatomyField;\n  /** Token count for this field */\n  tokenCount?: number;\n  /** Max tokens for progress bar */\n  tokenMax?: number;\n  /** Whether the field is required */\n  required?: boolean;\n  /** Right-side actions slot */\n  actions?: React.ReactNode;\n  className?: string;\n}\n\nconst fieldColorMap: Record<AnatomyField, string> = {\n  role: \"bg-category-teal\",\n  tone: \"bg-category-amber\",\n  context: \"bg-category-emerald\",\n  task: \"bg-category-orange\",\n  reasoning: \"bg-category-violet\",\n  examples: \"bg-category-rose\",\n  output: \"bg-category-blue\",\n  constraints: \"bg-category-red\",\n  tools: \"bg-category-gold\",\n};\n\n/**\n * FieldHeader — Header bar for a labeled field section.\n * Shows a colored dot, field label, required indicator, token counter, and action slot.\n */\nexport function FieldHeader({\n  label,\n  field,\n  tokenCount,\n  tokenMax = 4000,\n  required,\n  actions,\n  className,\n}: FieldHeaderProps) {\n  return (\n    <div className={cn(\"flex items-center justify-between gap-2 py-1.5\", className)}>\n      <div className=\"flex items-center gap-2\">\n        <span className={cn(\"h-2 w-2 rounded-full shrink-0\", fieldColorMap[field])} />\n        <span className=\"font-body text-sm font-medium text-foreground\">{label}</span>\n        {required && (\n          <span className=\"font-mono text-2xs text-error\">*</span>\n        )}\n      </div>\n      <div className=\"flex items-center gap-3\">\n        {tokenCount !== undefined && (\n          <TokenCounter current={tokenCount} max={tokenMax} compact />\n        )}\n        {actions}\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "http://localhost:3333/token-counter.json"
+  ]
+}

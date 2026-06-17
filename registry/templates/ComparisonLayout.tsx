@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface ComparisonLayoutProps {
   /** Toolbar with version selectors, sync toggle, close */

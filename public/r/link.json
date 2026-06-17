@@ -1,0 +1,14 @@
+{
+  "name": "link",
+  "type": "registry:ui",
+  "title": "Link",
+  "description": "Link component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/Link.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { forwardRef } from \"react\";\n\ninterface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {\n  external?: boolean;\n}\n\nconst Link = forwardRef<HTMLAnchorElement, LinkProps>(\n  ({ external, className, children, ...props }, ref) => {\n    return (\n      <a\n        ref={ref}\n        className={cn(\n          \"font-body text-foreground bg-link-highlight px-0.5 rounded-sm transition-colors hover:text-accent\",\n          className,\n        )}\n        {...(external && { target: \"_blank\", rel: \"noopener noreferrer\" })}\n        {...props}\n      >\n        {children}\n        {external && <span aria-hidden=\"true\"> ↗</span>}\n      </a>\n    );\n  },\n);\nLink.displayName = \"Link\";\n\nexport { Link };\nexport type { LinkProps };\n"
+    }
+  ]
+}

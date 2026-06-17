@@ -1,0 +1,25 @@
+{
+  "name": "theme-toggle",
+  "type": "registry:ui",
+  "title": "ThemeToggle",
+  "description": "ThemeToggle component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/ThemeToggle.tsx",
+      "type": "registry:component",
+      "content": "import { useTheme } from \"@/hooks/use-theme\";\nimport { Button } from \"@/components/ui/button\";\nimport { Sun, Moon, Flame } from \"lucide-react\";\n\nexport function ThemeToggle() {\n  const { theme, setTheme } = useTheme();\n\n  const themes = [\n    { value: \"warm\" as const, icon: Flame, label: \"Warm\", isDefault: true },\n    { value: \"dark\" as const, icon: Moon, label: \"Dark\", isDefault: false },\n    { value: \"light\" as const, icon: Sun, label: \"Light\", isDefault: false },\n  ];\n\n  return (\n    <div className=\"flex items-center gap-1 rounded-md border border-border bg-muted p-0.5\">\n      {themes.map(({ value, icon: Icon, label, isDefault }) => (\n        <Button\n          key={value}\n          variant={theme === value ? \"default\" : \"ghost\"}\n          size=\"sm\"\n          className=\"h-7 px-2 text-xs font-display\"\n          onClick={() => setTheme(value)}\n          aria-label={`Switch to ${label} theme${isDefault ? \" (default)\" : \"\"}`}\n        >\n          <Icon className=\"h-3 w-3 sm:mr-1\" />\n          <span className=\"hidden sm:inline\">{label}</span>\n        </Button>\n      ))}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "registry/hooks/use-theme.tsx",
+      "type": "registry:hook",
+      "content": "import { createContext, useContext, useEffect, useState, ReactNode } from \"react\";\n\ntype Theme = \"dark\" | \"light\" | \"warm\";\n\ninterface ThemeContextType {\n  theme: Theme;\n  setTheme: (theme: Theme) => void;\n}\n\nconst ThemeContext = createContext<ThemeContextType>({ theme: \"warm\", setTheme: () => {} });\n\nexport function ThemeProvider({ children }: { children: ReactNode }) {\n  const [theme, setTheme] = useState<Theme>(() => {\n    try {\n      const stored = localStorage.getItem(\"democrito-theme\") as Theme | null;\n      return stored || \"warm\";\n    } catch {\n      return \"warm\";\n    }\n  });\n\n  useEffect(() => {\n    const root = document.documentElement;\n    root.classList.remove(\"dark\", \"light\", \"warm\");\n    root.classList.add(theme);\n    localStorage.setItem(\"democrito-theme\", theme);\n  }, [theme]);\n\n  return (\n    <ThemeContext.Provider value={{ theme, setTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}\n\nexport const useTheme = () => useContext(ThemeContext);\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ]
+}

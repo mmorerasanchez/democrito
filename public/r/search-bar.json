@@ -1,0 +1,22 @@
+{
+  "name": "search-bar",
+  "type": "registry:ui",
+  "title": "SearchBar",
+  "description": "SearchBar component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/SearchBar.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Input } from \"@/components/ui/input\";\nimport { Button } from \"@/components/ui/button\";\nimport { Search, X } from \"lucide-react\";\nimport { Kbd } from \"@/components/Kbd\";\n\ninterface SearchBarProps {\n  value?: string;\n  onChange?: (value: string) => void;\n  placeholder?: string;\n  showShortcut?: boolean;\n  className?: string;\n}\n\nexport function SearchBar({ value = \"\", onChange, placeholder = \"Search…\", showShortcut = true, className }: SearchBarProps) {\n  const [internal, setInternal] = React.useState(value);\n  const inputRef = React.useRef<HTMLInputElement>(null);\n\n  const currentValue = onChange ? value : internal;\n  const handleChange = (v: string) => {\n    if (onChange) onChange(v);\n    else setInternal(v);\n  };\n\n  return (\n    <div className={cn(\"relative flex items-center\", className)}>\n      <Search className=\"absolute left-3 h-4 w-4 text-muted-foreground\" />\n      <Input\n        ref={inputRef}\n        value={currentValue}\n        onChange={(e) => handleChange(e.target.value)}\n        placeholder={placeholder}\n        className=\"pl-9 pr-16\"\n      />\n      {currentValue && (\n        <Button\n          variant=\"ghost\"\n          size=\"icon\"\n          className=\"absolute right-8 h-6 w-6\"\n          onClick={() => { handleChange(\"\"); inputRef.current?.focus(); }}\n          aria-label=\"Clear search\"\n        >\n          <X className=\"h-3 w-3\" />\n        </Button>\n      )}\n      {showShortcut && !currentValue && (\n        <span className=\"absolute right-3 hidden sm:flex items-center gap-0.5\">\n          <Kbd>⌘</Kbd><Kbd>K</Kbd>\n        </span>\n      )}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "http://localhost:3333/kbd.json"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "breadcrumb-nav",
+  "type": "registry:ui",
+  "title": "BreadcrumbNav",
+  "description": "BreadcrumbNav component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/BreadcrumbNav.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { ChevronRight } from \"lucide-react\";\n\ninterface BreadcrumbItem {\n  label: string;\n  href?: string;\n}\n\ninterface BreadcrumbNavProps {\n  items: BreadcrumbItem[];\n  maxItems?: number;\n  className?: string;\n}\n\nexport function BreadcrumbNav({ items, maxItems = 4, className }: BreadcrumbNavProps) {\n  let displayItems = items;\n  let truncated = false;\n\n  if (maxItems && items.length > maxItems) {\n    truncated = true;\n    displayItems = [items[0], { label: \"…\" }, ...items.slice(-2)];\n  }\n\n  return (\n    <nav aria-label=\"Breadcrumb\" className={cn(\"flex items-center gap-1\", className)}>\n      {displayItems.map((item, i) => {\n        const isLast = i === displayItems.length - 1;\n        return (\n          <span key={i} className=\"flex items-center gap-1\">\n            {item.href && !isLast ? (\n              <a href={item.href} className=\"font-body text-sm text-muted-foreground hover:text-foreground transition-colors\">\n                {item.label}\n              </a>\n            ) : (\n              <span className={cn(\n                \"font-body text-sm\",\n                isLast ? \"font-medium text-foreground\" : \"text-muted-foreground\",\n              )}>\n                {item.label}\n              </span>\n            )}\n            {!isLast && <ChevronRight className=\"h-3 w-3 text-muted-foreground\" />}\n          </span>\n        );\n      })}\n    </nav>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ]
+}
