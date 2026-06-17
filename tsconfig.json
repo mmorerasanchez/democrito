@@ -5,9 +5,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/lib/*": ["./registry/lib/*"],
+      "@/components/*": ["./registry/*"]
     },
     "skipLibCheck": true,
     "strictNullChecks": false

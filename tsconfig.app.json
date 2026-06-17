@@ -17,9 +17,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/lib/*": ["./registry/lib/*"],
+      "@/components/*": ["./registry/*"]
     },
     "skipLibCheck": true,
     "strict": false,
@@ -30,6 +29,7 @@
     "useDefineForClassFields": true
   },
   "include": [
-    "src"
+    "registry",
+    "tests"
   ]
 }

@@ -90,10 +90,10 @@ type ThemeName = typeof THEME_NAMES[number];
  */
 
 const tokensJson = JSON.parse(
-  readFileSync(resolve(__dirname, "../../design-tokens.json"), "utf-8")
+  readFileSync(resolve(__dirname, "../design-tokens.json"), "utf-8")
 );
 
-const indexCss = readFileSync(resolve(__dirname, "../index.css"), "utf-8");
+const indexCss = readFileSync(resolve(__dirname, "../tokens/index.css"), "utf-8");
 
 // Only test groups that map to CSS custom properties
 const CSS_VAR_GROUPS = ["color", "zIndex", "dimension", "duration", "cubicBezier"];
