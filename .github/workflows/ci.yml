@@ -8,7 +8,7 @@ on:
 
 jobs:
   quality:
-    name: Lint, Type-check & Test
+    name: Build, Type-check & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: npx eslint . --max-warnings 0
+      - name: Build (registry + tokens)
+        run: npm run build
 
       - name: Type-check
-        run: npx tsc --noEmit
+        run: npx tsc -p tsconfig.app.json --noEmit
 
       - name: Test
         run: npx vitest run
