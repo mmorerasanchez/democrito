@@ -1,0 +1,14 @@
+{
+  "name": "text",
+  "type": "registry:ui",
+  "title": "Text",
+  "description": "Text component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/Text.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { forwardRef } from \"react\";\n\ntype TextVariant = \"default\" | \"muted\" | \"subtle\" | \"accent\" | \"error\" | \"success\";\n\ninterface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {\n  variant?: TextVariant;\n  size?: \"xs\" | \"sm\" | \"base\" | \"lg\";\n  mono?: boolean;\n  as?: \"p\" | \"span\" | \"div\";\n}\n\nconst textVariantStyles: Record<TextVariant, string> = {\n  default: \"text-foreground\",\n  muted: \"text-muted-foreground\",\n  subtle: \"text-foreground-subtle\",\n  accent: \"text-accent\",\n  error: \"text-error\",\n  success: \"text-success\",\n};\n\nconst Text = forwardRef<HTMLParagraphElement, TextProps>(\n  ({ variant = \"default\", size = \"base\", mono = false, as: Tag = \"p\", className, ...props }, ref) => {\n    return (\n      <Tag\n        ref={ref}\n        className={cn(\n          `text-${size}`,\n          mono ? \"font-mono\" : \"font-body\",\n          textVariantStyles[variant],\n          className,\n        )}\n        {...props}\n      />\n    );\n  },\n);\nText.displayName = \"Text\";\n\nexport { Text };\nexport type { TextProps, TextVariant };\n"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "detail-layout",
+  "type": "registry:ui",
+  "title": "DetailLayout",
+  "description": "DetailLayout component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/templates/DetailLayout.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport type { ReactNode } from \"react\";\n\ninterface DetailLayoutProps {\n  /** Breadcrumb navigation */\n  breadcrumb?: ReactNode;\n  /** Title area (title + actions) */\n  titleBar: ReactNode;\n  /** Status indicator slot */\n  statusBar?: ReactNode;\n  /** Tabs navigation (optional — omitted on saved view) */\n  tabs?: ReactNode;\n  /** Active tab content */\n  children: ReactNode;\n  className?: string;\n}\n\n/**\n * DetailLayout — Full-width detail view with tabs.\n * Breadcrumb → title bar → status lifecycle → tabs → content.\n */\nexport function DetailLayout({ breadcrumb, titleBar, statusBar, tabs, children, className }: DetailLayoutProps) {\n  return (\n    <div className={cn(\"flex h-full flex-col overflow-hidden\", className)}>\n      {/* Header section */}\n      <div className=\"shrink-0 space-y-0\">\n        {breadcrumb && (\n          <div className=\"px-4 pt-3 md:px-6\">{breadcrumb}</div>\n        )}\n        <div className=\"px-4 py-3 md:px-6\">{titleBar}</div>\n        {statusBar && (\n          <div className=\"px-4 pb-3 md:px-6\">{statusBar}</div>\n        )}\n        <div className=\"px-4 md:px-6\">{tabs}</div>\n      </div>\n\n      {/* Scrollable tab content */}\n      <div className=\"flex-1 overflow-auto p-4 md:p-6\">\n        {children}\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

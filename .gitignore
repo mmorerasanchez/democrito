@@ -1,0 +1,50 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Lockfiles (npm is the canonical package manager)
+bun.lockb
+bun.lock
+
+# Playwright artifacts
+playwright-report/
+test-results/
+
+# Internal working documents — not for public distribution
+# Patterns use **/ to catch files at any depth inside docs/
+docs/**/cr-*.md
+docs/**/web-ai-pages-*.md
+docs/**/web-presentation-*.md
+docs/**/testing-session-*.md
+docs/**/lovable-prompt-*.md
+docs/**/use-cases-*.md
+docs/**/proposition-*.md
+docs/**/session-*.md
+docs/**/draft-*.md
+docs/**/audits/
+docs/**/*-prompts-*.md
+docs/claude-code-prompts-*.md
+.lovable/
+.claude/
+PHASE-*.md

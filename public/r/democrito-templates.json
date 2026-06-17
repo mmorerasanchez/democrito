@@ -1,0 +1,16 @@
+{
+  "name": "democrito-templates",
+  "type": "registry:ui",
+  "title": "All Templates",
+  "description": "All template components from democrito",
+  "author": "mmorerasanchez",
+  "registryDependencies": [
+    "app-shell",
+    "comparison-layout",
+    "dashboard-layout",
+    "detail-layout",
+    "editor-layout",
+    "library-layout",
+    "template-preview"
+  ]
+}

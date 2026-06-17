@@ -1,0 +1,14 @@
+{
+  "name": "comparison-layout",
+  "type": "registry:ui",
+  "title": "ComparisonLayout",
+  "description": "ComparisonLayout component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/templates/ComparisonLayout.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport type { ReactNode } from \"react\";\n\ninterface ComparisonLayoutProps {\n  /** Toolbar with version selectors, sync toggle, close */\n  toolbar: ReactNode;\n  /** Left version panel */\n  panelA: ReactNode;\n  /** Right version panel */\n  panelB: ReactNode;\n  className?: string;\n}\n\n/**\n * ComparisonLayout — Side-by-side 50/50 comparison template.\n * Toolbar on top → two equal panels below.\n * Stacks vertically on mobile.\n */\nexport function ComparisonLayout({ toolbar, panelA, panelB, className }: ComparisonLayoutProps) {\n  return (\n    <div className={cn(\"flex h-full flex-col overflow-hidden\", className)}>\n      {/* Toolbar */}\n      <div className=\"shrink-0 border-b border-border\">\n        {toolbar}\n      </div>\n\n      {/* Side-by-side panels */}\n      <div className=\"flex flex-1 flex-col overflow-hidden md:flex-row\">\n        <div className=\"flex-1 overflow-auto border-b border-border md:border-b-0 md:border-r\">\n          {panelA}\n        </div>\n        <div className=\"hidden w-px shrink-0 bg-border md:block\" />\n        <div className=\"flex-1 overflow-auto\">\n          {panelB}\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "diff-line",
+  "type": "registry:ui",
+  "title": "DiffLine",
+  "description": "DiffLine component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/DiffLine.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\n\ninterface DiffLineProps {\n  /** Line number */\n  lineNumber: number;\n  /** Type of diff */\n  type: \"added\" | \"removed\" | \"unchanged\";\n  /** Text content */\n  text: string;\n  className?: string;\n}\n\n/**\n * DiffLine — A single line in a diff view.\n * Shows line number, +/− prefix, and text with semantic coloring.\n */\nexport function DiffLine({ lineNumber, type, text, className }: DiffLineProps) {\n  return (\n    <div\n      className={cn(\n        \"flex items-start gap-2 px-3 py-0.5 font-mono text-xs leading-relaxed\",\n        type === \"added\" && \"bg-success-bg text-success\",\n        type === \"removed\" && \"bg-error-bg text-error\",\n        type === \"unchanged\" && \"text-foreground\",\n        className,\n      )}\n    >\n      <span className=\"w-5 shrink-0 select-none text-right text-foreground-subtle\">\n        {lineNumber}\n      </span>\n      <span className={cn(\n        \"flex-1 whitespace-pre-wrap\",\n        type !== \"unchanged\" && \"font-medium\",\n      )}>\n        {type === \"added\" && \"+ \"}\n        {type === \"removed\" && \"− \"}\n        {text || \"\\u00A0\"}\n      </span>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "empty-state",
+  "type": "registry:ui",
+  "title": "EmptyState",
+  "description": "EmptyState component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/EmptyState.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\n\ninterface EmptyStateProps {\n  title: string;\n  description: string;\n  action?: { label: string; onClick: () => void };\n  variant?: \"no-data\" | \"no-results\" | \"error\" | \"first-use\";\n  className?: string;\n}\n\nexport function EmptyState({ title, description, action, className }: EmptyStateProps) {\n  return (\n    <div className={cn(\"flex flex-col items-center justify-center py-12 text-center\", className)}>\n      <h3 className=\"font-display text-md font-medium text-foreground\">{title}</h3>\n      <p className=\"mt-1 max-w-[360px] font-body text-sm text-muted-foreground\">{description}</p>\n      {action && (\n        <Button onClick={action.onClick} className=\"mt-4\">{action.label}</Button>\n      )}\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "button"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "input",
+  "type": "registry:ui",
+  "title": "input",
+  "description": "input component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/input.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {\n  error?: boolean;\n}\n\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type, error, ...props }, ref) => {\n    return (\n      <input\n        type={type}\n        className={cn(\n          \"flex h-9 w-full rounded-md border bg-card px-3 py-2 font-mono text-base text-foreground ring-offset-background transition-all duration-150\",\n          \"file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground\",\n          \"placeholder:text-muted-foreground\",\n          \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n          \"disabled:cursor-not-allowed disabled:opacity-50\",\n          error\n            ? \"border-destructive focus-visible:ring-destructive\"\n            : \"border-input\",\n          className,\n        )}\n        ref={ref}\n        aria-invalid={error || undefined}\n        {...props}\n      />\n    );\n  },\n);\nInput.displayName = \"Input\";\n\nexport { Input };\n"
+    }
+  ]
+}

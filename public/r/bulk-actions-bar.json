@@ -1,0 +1,21 @@
+{
+  "name": "bulk-actions-bar",
+  "type": "registry:ui",
+  "title": "BulkActionsBar",
+  "description": "BulkActionsBar component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/BulkActionsBar.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { X, FolderInput, Tag, Archive, Trash2 } from \"lucide-react\";\n\ninterface BulkActionsBarProps {\n  selectedCount: number;\n  onDismiss?: () => void;\n  onMove?: () => void;\n  onTag?: () => void;\n  onArchive?: () => void;\n  onDelete?: () => void;\n  className?: string;\n}\n\nexport function BulkActionsBar({ selectedCount, onDismiss, onMove, onTag, onArchive, onDelete, className }: BulkActionsBarProps) {\n  if (selectedCount === 0) return null;\n\n  return (\n    <div className={cn(\n      \"sticky bottom-4 mx-auto flex w-fit items-center gap-3 rounded-lg border border-border bg-card px-4 py-2.5 shadow-lg animate-bulk-bar-in\",\n      className,\n    )}>\n      <span className=\"font-mono text-sm text-foreground font-medium\">{selectedCount} selected</span>\n      <div className=\"h-4 w-px bg-border\" />\n      <div className=\"flex items-center gap-1\">\n        <Button variant=\"secondary\" size=\"sm\" onClick={onMove}><FolderInput className=\"h-3.5 w-3.5 mr-1\" />Move</Button>\n        <Button variant=\"secondary\" size=\"sm\" onClick={onTag}><Tag className=\"h-3.5 w-3.5 mr-1\" />Tag</Button>\n        <Button variant=\"secondary\" size=\"sm\" onClick={onArchive}><Archive className=\"h-3.5 w-3.5 mr-1\" />Archive</Button>\n        <Button variant=\"destructive\" size=\"sm\" onClick={onDelete}><Trash2 className=\"h-3.5 w-3.5 mr-1\" />Delete</Button>\n      </div>\n      <Button variant=\"ghost\" size=\"icon\" className=\"h-6 w-6 ml-1\" onClick={onDismiss} aria-label=\"Dismiss\">\n        <X className=\"h-3.5 w-3.5\" />\n      </Button>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button"
+  ]
+}

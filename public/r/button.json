@@ -1,0 +1,19 @@
+{
+  "name": "button",
+  "type": "registry:ui",
+  "title": "button",
+  "description": "button component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/button.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { Loader2 } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-display font-medium ring-offset-background transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary/90 active:scale-[0.98]\",\n        secondary: \"bg-card text-secondary-foreground border border-border hover:bg-muted active:scale-[0.98]\",\n        destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90 active:scale-[0.98]\",\n        outline: \"border border-input bg-background hover:bg-muted hover:text-foreground\",\n        ghost: \"hover:bg-muted hover:text-foreground\",\n        link: \"text-accent underline-offset-4 hover:underline\",\n      },\n      size: {\n        sm: \"h-8 px-3 text-sm [&_svg]:size-3.5\",\n        default: \"h-9 px-4 text-base [&_svg]:size-4\",\n        lg: \"h-11 px-6 text-lg [&_svg]:size-5\",\n        icon: \"h-9 w-9 min-h-11 min-w-11 [&_svg]:size-4\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  },\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean;\n  loading?: boolean;\n}\n\nconst Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ className, variant, size, asChild = false, loading = false, children, disabled, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\";\n    return (\n      <Comp\n        className={cn(buttonVariants({ variant, size, className }))}\n        ref={ref}\n        disabled={disabled || loading}\n        {...props}\n      >\n        {loading && <Loader2 className=\"animate-spin\" />}\n        {children}\n      </Comp>\n    );\n  },\n);\nButton.displayName = \"Button\";\n\nexport { Button, buttonVariants };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority",
+    "lucide-react"
+  ]
+}

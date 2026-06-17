@@ -1,0 +1,21 @@
+{
+  "name": "variable-editor-row",
+  "type": "registry:ui",
+  "title": "VariableEditorRow",
+  "description": "VariableEditorRow component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/VariableEditorRow.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Input } from \"@/components/ui/input\";\nimport { Button } from \"@/components/ui/button\";\nimport { Trash2 } from \"lucide-react\";\n\ninterface VariableEditorRowProps {\n  /** Variable name */\n  name: string;\n  /** Default/current value */\n  value: string;\n  /** Whether this row is highlighted (active) */\n  highlighted?: boolean;\n  onNameChange?: (name: string) => void;\n  onValueChange?: (value: string) => void;\n  onDelete?: () => void;\n  className?: string;\n}\n\n/**\n * VariableEditorRow — A single name/value row in a variable manager.\n * Two mono inputs + delete button. Supports highlighted state.\n */\nexport function VariableEditorRow({\n  name,\n  value,\n  highlighted = false,\n  onNameChange,\n  onValueChange,\n  onDelete,\n  className,\n}: VariableEditorRowProps) {\n  return (\n    <div\n      className={cn(\n        \"flex items-center gap-2 rounded-md px-2 py-1.5 transition-all duration-150\",\n        highlighted && \"bg-accent/10 ring-1 ring-accent/30\",\n        className,\n      )}\n    >\n      <Input\n        value={name}\n        onChange={(e) => onNameChange?.(e.target.value)}\n        placeholder=\"variable_name\"\n        className=\"h-8 flex-1 font-mono text-sm\"\n      />\n      <Input\n        value={value}\n        onChange={(e) => onValueChange?.(e.target.value)}\n        placeholder=\"default value\"\n        className=\"h-8 flex-[2] font-mono text-sm\"\n      />\n      <Button\n        variant=\"ghost\"\n        size=\"icon\"\n        className=\"h-8 w-8 min-h-0 min-w-0 shrink-0 text-muted-foreground hover:text-error\"\n        onClick={onDelete}\n        aria-label={`Delete variable ${name}`}\n      >\n        <Trash2 className=\"h-3.5 w-3.5\" />\n      </Button>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input"
+  ]
+}

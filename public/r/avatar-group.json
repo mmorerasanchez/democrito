@@ -1,0 +1,17 @@
+{
+  "name": "avatar-group",
+  "type": "registry:ui",
+  "title": "AvatarGroup",
+  "description": "AvatarGroup component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/AvatarGroup.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Avatar, AvatarFallback, AvatarImage, AvatarStatus, type AvatarSize } from \"@/components/ui/avatar\";\n\ninterface AvatarGroupProps {\n  name: string;\n  role?: string;\n  initials?: string;\n  imageSrc?: string;\n  status?: \"online\" | \"offline\" | \"busy\";\n  size?: AvatarSize;\n  className?: string;\n}\n\nexport function AvatarGroup({ name, role, initials, imageSrc, status, size = \"md\", className }: AvatarGroupProps) {\n  const fallbackInitials = initials || name.split(\" \").map((n) => n[0]).join(\"\").toUpperCase().slice(0, 2);\n\n  return (\n    <div className={cn(\"flex items-center gap-3\", className)}>\n      <Avatar size={size}>\n        {imageSrc && <AvatarImage src={imageSrc} alt={name} />}\n        <AvatarFallback>{fallbackInitials}</AvatarFallback>\n        {status && <AvatarStatus status={status} />}\n      </Avatar>\n      <div className=\"min-w-0\">\n        <p className=\"truncate font-display text-sm font-medium text-foreground\">{name}</p>\n        {role && <p className=\"truncate font-body text-xs text-muted-foreground\">{role}</p>}\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "avatar"
+  ]
+}

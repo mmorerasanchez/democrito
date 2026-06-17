@@ -1,0 +1,31 @@
+{
+  "name": "democrito",
+  "private": true,
+  "version": "3.5.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/generate-counts.mjs && node scripts/generate-tokens.mjs && node scripts/stamp-design-date.mjs && node scripts/build-registry.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "registry": "node scripts/build-registry.mjs"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.16.5",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react-swc": "^3.11.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "jsdom": "^20.0.3",
+    "lucide-react": "^0.462.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.0",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.19",
+    "vitest": "^3.2.4"
+  }
+}

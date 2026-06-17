@@ -1,0 +1,21 @@
+{
+  "name": "top-bar",
+  "type": "registry:ui",
+  "title": "TopBar",
+  "description": "TopBar component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/TopBar.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Button } from \"@/components/ui/button\";\nimport { Kbd } from \"@/components/Kbd\";\nimport { Search, Menu } from \"lucide-react\";\n\ninterface TopBarProps {\n  onMenuClick?: () => void;\n  showMobileMenu?: boolean;\n  actions?: React.ReactNode;\n  className?: string;\n}\n\nexport function TopBar({ onMenuClick, showMobileMenu = true, actions, className }: TopBarProps) {\n  return (\n    <header className={cn(\n      \"sticky top-0 z-sticky flex h-header items-center justify-between border-b border-border bg-surface px-4\",\n      className,\n    )}>\n      <div className=\"flex items-center gap-3 min-w-0\">\n        {showMobileMenu && (\n          <Button variant=\"ghost\" size=\"icon\" className=\"lg:hidden\" onClick={onMenuClick} aria-label=\"Toggle menu\">\n            <Menu className=\"h-4 w-4\" />\n          </Button>\n        )}\n      </div>\n      <div className=\"flex items-center gap-2\">\n        <Button variant=\"ghost\" size=\"sm\" className=\"hidden sm:flex items-center gap-2 text-muted-foreground\">\n          <Search className=\"h-4 w-4\" />\n          <span className=\"font-body text-sm\">Search</span>\n          <span className=\"flex items-center gap-0.5\"><Kbd>⌘</Kbd><Kbd>K</Kbd></span>\n        </Button>\n        <Button variant=\"ghost\" size=\"icon\" className=\"sm:hidden\" aria-label=\"Search\">\n          <Search className=\"h-4 w-4\" />\n        </Button>\n        {actions}\n      </div>\n    </header>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "kbd"
+  ]
+}

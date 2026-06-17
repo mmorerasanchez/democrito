@@ -1,0 +1,19 @@
+{
+  "name": "parameter-control",
+  "type": "registry:ui",
+  "title": "ParameterControl",
+  "description": "ParameterControl component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/ParameterControl.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Label } from \"@/components/ui/label\";\nimport { Slider } from \"@/components/ui/slider\";\nimport { Input } from \"@/components/ui/input\";\n\ninterface ParameterControlProps {\n  label: string;\n  value: number;\n  onChange?: (value: number) => void;\n  min?: number;\n  max?: number;\n  step?: number;\n  unit?: string;\n  className?: string;\n}\n\n/**\n * ParameterControl — Labeled slider + numeric input for model parameters\n * (temperature, top_p, max_tokens, etc.)\n */\nexport function ParameterControl({\n  label,\n  value,\n  onChange,\n  min = 0,\n  max = 1,\n  step = 0.01,\n  unit,\n  className,\n}: ParameterControlProps) {\n  return (\n    <div className={cn(\"space-y-2\", className)}>\n      <div className=\"flex items-center justify-between\">\n        <Label className=\"font-body text-sm font-medium\">{label}</Label>\n        <div className=\"flex items-center gap-1\">\n          <Input\n            type=\"number\"\n            value={value}\n            onChange={(e) => onChange?.(parseFloat(e.target.value) || 0)}\n            min={min}\n            max={max}\n            step={step}\n            className=\"h-7 w-16 px-2 text-center font-mono text-xs\"\n          />\n          {unit && (\n            <span className=\"font-mono text-2xs text-muted-foreground\">{unit}</span>\n          )}\n        </div>\n      </div>\n      <Slider\n        value={[value]}\n        onValueChange={([v]) => onChange?.(v)}\n        min={min}\n        max={max}\n        step={step}\n        className=\"w-full\"\n      />\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "input",
+    "label",
+    "slider"
+  ]
+}

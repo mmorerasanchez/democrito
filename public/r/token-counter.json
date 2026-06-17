@@ -1,0 +1,17 @@
+{
+  "name": "token-counter",
+  "type": "registry:ui",
+  "title": "TokenCounter",
+  "description": "TokenCounter component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/TokenCounter.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Progress } from \"@/components/ui/progress\";\n\ninterface TokenCounterProps {\n  current: number;\n  max: number;\n  compact?: boolean;\n  className?: string;\n}\n\nexport function TokenCounter({ current, max, compact, className }: TokenCounterProps) {\n  const ratio = current / max;\n  const variant = ratio > 0.9 ? \"error\" : ratio > 0.75 ? \"warning\" : \"default\";\n\n  return (\n    <span className={cn(\"inline-flex items-center gap-2\", className)}>\n      <span className={cn(\n        \"font-mono text-xs\",\n        variant === \"error\" && \"text-error\",\n        variant === \"warning\" && \"text-warning\",\n        variant === \"default\" && \"text-muted-foreground\",\n      )}>\n        {compact ? current.toLocaleString() : `${current.toLocaleString()} tokens`}\n      </span>\n      <Progress value={ratio * 100} variant={variant === \"default\" ? \"default\" : variant} className=\"w-[60px] h-[3px]\" />\n    </span>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "progress"
+  ]
+}

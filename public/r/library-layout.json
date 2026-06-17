@@ -1,0 +1,14 @@
+{
+  "name": "library-layout",
+  "type": "registry:ui",
+  "title": "LibraryLayout",
+  "description": "LibraryLayout component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/templates/LibraryLayout.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport type { ReactNode } from \"react\";\n\ninterface LibraryLayoutProps {\n  /** FilterBar or search controls */\n  filters: ReactNode;\n  /** Card grid or list content */\n  children: ReactNode;\n  /** Pagination controls */\n  pagination?: ReactNode;\n  /** BulkActionsBar (shown conditionally) */\n  bulkActions?: ReactNode;\n  className?: string;\n}\n\n/**\n * LibraryLayout — Filterable card grid template.\n * FilterBar on top → scrollable card grid → pagination at bottom.\n * Optional bulk actions bar overlays from the bottom.\n */\nexport function LibraryLayout({ filters, children, pagination, bulkActions, className }: LibraryLayoutProps) {\n  return (\n    <div className={cn(\"flex h-full flex-col\", className)}>\n      {/* Filter bar */}\n      <div className=\"shrink-0 border-b border-border\">\n        {filters}\n      </div>\n\n      {/* Scrollable content area */}\n      <div className=\"flex-1 overflow-auto p-4 md:p-6\">\n        <div className=\"grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3\">\n          {children}\n        </div>\n      </div>\n\n      {/* Pagination */}\n      {pagination && (\n        <div className=\"shrink-0 border-t border-border px-4 py-3\">\n          {pagination}\n        </div>\n      )}\n\n      {/* Bulk actions bar (overlays bottom) */}\n      {bulkActions && (\n        <div className=\"shrink-0 animate-bulk-bar-in\">\n          {bulkActions}\n        </div>\n      )}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

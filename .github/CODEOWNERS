@@ -1,0 +1,21 @@
+# Design System Owners
+# Approval required for changes to core token files and CI
+
+# Core token files — require owner review
+src/index.css                   @mmorerasanchez
+tailwind.config.ts              @mmorerasanchez
+design-tokens.json              @mmorerasanchez
+
+# Component library
+src/components/                 @mmorerasanchez
+
+# Documentation
+docs/                           @mmorerasanchez
+README.md                       @mmorerasanchez
+CONTRIBUTING.md                 @mmorerasanchez
+CHANGELOG.md                    @mmorerasanchez
+CLAUDE.md                       @mmorerasanchez
+docs/design-system.md            @mmorerasanchez
+
+# CI / Tooling
+.github/                        @mmorerasanchez

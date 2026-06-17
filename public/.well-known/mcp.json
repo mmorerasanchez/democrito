@@ -1,0 +1,16 @@
+{
+  "name": "democrito",
+  "description": "General-purpose, themeable atomic design system for data-dense, IDE-inspired applications. Warm + dark + light themes. Tailwind CSS v4 + shadcn/ui + Radix UI.",
+  "homepage": "https://democrito.design",
+  "ai_context": {
+    "llms_txt":      "https://democrito.design/llms.txt",
+    "llms_full_txt": "https://democrito.design/llms-full.txt",
+    "claude_skill":  "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md",
+    "claude_md":     "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/CLAUDE.md"
+  },
+  "distribution": {
+    "shadcn_registry": "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json",
+    "github":          "https://github.com/mmorerasanchez/democrito",
+    "npm":             null
+  }
+}

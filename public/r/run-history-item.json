@@ -1,0 +1,17 @@
+{
+  "name": "run-history-item",
+  "type": "registry:ui",
+  "title": "RunHistoryItem",
+  "description": "RunHistoryItem component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/RunHistoryItem.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Badge } from \"@/components/ui/badge\";\n\ntype RunStatus = \"success\" | \"error\" | \"running\" | \"pending\";\n\ninterface RunHistoryItemProps {\n  /** Run identifier */\n  runId: string;\n  /** Model used */\n  model: string;\n  /** Status of the run */\n  status: RunStatus;\n  /** Token usage */\n  tokens?: number;\n  /** Latency in ms */\n  latencyMs?: number;\n  /** Relative timestamp */\n  timestamp: string;\n  /** Click handler */\n  onClick?: () => void;\n  className?: string;\n}\n\nconst statusConfig: Record<RunStatus, { variant: \"success\" | \"error\" | \"info\" | \"warning\"; label: string }> = {\n  success: { variant: \"success\", label: \"success\" },\n  error: { variant: \"error\", label: \"error\" },\n  running: { variant: \"info\", label: \"running\" },\n  pending: { variant: \"warning\", label: \"pending\" },\n};\n\n/**\n * RunHistoryItem — A single run entry in a history list.\n * Shows run ID, model, status badge, tokens, latency, and timestamp.\n */\nexport function RunHistoryItem({\n  runId,\n  model,\n  status,\n  tokens,\n  latencyMs,\n  timestamp,\n  onClick,\n  className,\n}: RunHistoryItemProps) {\n  const { variant, label } = statusConfig[status];\n\n  return (\n    <button\n      type=\"button\"\n      onClick={onClick}\n      className={cn(\n        \"flex w-full items-center gap-3 border-b border-border px-3 py-2.5 text-left transition-colors duration-150\",\n        \"hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n        \"last:border-b-0\",\n        className,\n      )}\n    >\n      <span className=\"font-mono text-xs text-foreground-subtle shrink-0\">{runId}</span>\n      <span className=\"font-mono text-sm text-foreground truncate\">{model}</span>\n      <Badge variant={variant} size=\"sm\">{label}</Badge>\n      <div className=\"ml-auto flex items-center gap-3 shrink-0\">\n        {tokens !== undefined && (\n          <span className=\"font-mono text-2xs text-muted-foreground\">{tokens.toLocaleString()} tok</span>\n        )}\n        {latencyMs !== undefined && (\n          <span className=\"font-mono text-2xs text-muted-foreground\">{latencyMs}ms</span>\n        )}\n        <span className=\"font-mono text-2xs text-foreground-subtle\">{timestamp}</span>\n      </div>\n    </button>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "badge"
+  ]
+}

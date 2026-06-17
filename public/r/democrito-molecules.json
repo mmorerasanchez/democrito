@@ -1,0 +1,27 @@
+{
+  "name": "democrito-molecules",
+  "type": "registry:ui",
+  "title": "All Molecules",
+  "description": "All molecule components from democrito",
+  "author": "mmorerasanchez",
+  "registryDependencies": [
+    "activity-feed-item",
+    "avatar-group",
+    "breadcrumb-nav",
+    "diff-line",
+    "empty-state",
+    "field-header",
+    "form-field",
+    "nav-item",
+    "parameter-control",
+    "run-history-item",
+    "search-bar",
+    "stat-card",
+    "tab-nav",
+    "theme-toggle",
+    "token-counter",
+    "token-reference-card",
+    "variable-editor-row",
+    "variable-highlight"
+  ]
+}

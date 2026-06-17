@@ -1,0 +1,18 @@
+{
+  "name": "progress",
+  "type": "registry:ui",
+  "title": "progress",
+  "description": "progress component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/progress.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst progressVariants = cva(\"h-full w-full flex-1 transition-all\", {\n  variants: {\n    variant: {\n      default: \"bg-accent\",\n      success: \"bg-success\",\n      warning: \"bg-warning\",\n      error: \"bg-error\",\n      info: \"bg-info\",\n    },\n  },\n  defaultVariants: {\n    variant: \"default\",\n  },\n});\n\ninterface ProgressProps\n  extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,\n    VariantProps<typeof progressVariants> {\n  indeterminate?: boolean;\n}\n\nconst Progress = React.forwardRef<\n  React.ElementRef<typeof ProgressPrimitive.Root>,\n  ProgressProps\n>(({ className, value, variant, indeterminate, ...props }, ref) => (\n  <ProgressPrimitive.Root\n    ref={ref}\n    className={cn(\"relative h-1 w-full overflow-hidden rounded-full bg-border\", className)}\n    {...props}\n  >\n    <ProgressPrimitive.Indicator\n      className={cn(\n        progressVariants({ variant }),\n        indeterminate && \"animate-[indeterminate_1.5s_ease-in-out_infinite] origin-left\",\n      )}\n      style={indeterminate ? undefined : { transform: `translateX(-${100 - (value || 0)}%)` }}\n    />\n  </ProgressPrimitive.Root>\n));\nProgress.displayName = ProgressPrimitive.Root.displayName;\n\nexport { Progress };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-progress",
+    "class-variance-authority"
+  ]
+}

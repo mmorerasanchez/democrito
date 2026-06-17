@@ -1,0 +1,22 @@
+{
+  "name": "code-block",
+  "type": "registry:ui",
+  "title": "CodeBlock",
+  "description": "CodeBlock component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/CodeBlock.tsx",
+      "type": "registry:component",
+      "content": "import { forwardRef } from \"react\";\n\nimport { CopyButton } from \"@/components/CopyButton\";\nimport { cn } from \"@/lib/utils\";\nimport { tokenizeBrackets } from \"@/lib/tokenizeBrackets\";\n\ninterface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** The code to render and optionally copy. Preserve whitespace exactly as written. */\n  code: string;\n  /** Optional language label shown in the top-left corner (e.g. \"bash\", \"tsx\"). */\n  language?: string;\n  /** Whether to render the overlay copy button. Defaults to true. */\n  showCopy?: boolean;\n}\n\n/**\n * Multi-line code display. Uses `--surface` (not `--card`) to keep it positioned as\n * content, not an elevated container. Overflow is horizontal-scroll only — never wrap.\n */\nconst CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(\n  ({ code, language, showCopy = true, className, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"group relative rounded-lg bg-surface\",\n          language ? \"pt-8 pb-4\" : \"py-4\",\n          \"px-4\",\n          className,\n        )}\n        {...props}\n      >\n        {language && (\n          <span className=\"absolute left-3 top-2 font-mono text-xs text-foreground-muted\">\n            {language}\n          </span>\n        )}\n        {showCopy && (\n          <CopyButton\n            variant=\"ghost\"\n            value={code}\n            label={language ? `${language} snippet` : \"code snippet\"}\n            className=\"absolute right-2 top-2 h-9 w-9 min-h-0 min-w-0 opacity-50 transition-opacity duration-100 group-hover:opacity-100 focus-visible:opacity-100\"\n          />\n        )}\n        <pre\n          role=\"code\"\n          className=\"overflow-x-auto whitespace-pre font-mono text-sm text-foreground\"\n        >\n          {tokenizeBrackets(code)}\n        </pre>\n      </div>\n    );\n  },\n);\nCodeBlock.displayName = \"CodeBlock\";\n\nexport { CodeBlock };\nexport type { CodeBlockProps };\n"
+    },
+    {
+      "path": "registry/lib/tokenizeBrackets.tsx",
+      "type": "registry:lib",
+      "content": "import React from \"react\";\n\nconst SPLIT_RE = /(\\[[^\\]\\n]+\\])/g;\nconst MATCH_RE = /^\\[[^\\]\\n]+\\]$/;\n\nconst HIGHLIGHT_CLASS = \"rounded-sm bg-accent/10 px-1 text-accent\";\n\n/**\n * Splits `text` on [bracketed] tokens and wraps each match in a highlighted span.\n * Plain segments are returned as strings. The raw `text` is unchanged and should\n * be used as the copy-to-clipboard value.\n */\nexport function tokenizeBrackets(text: string): React.ReactNode[] {\n  const parts = text.split(SPLIT_RE);\n  return parts.map((part, i) =>\n    MATCH_RE.test(part) ? (\n      <span key={i} className={HIGHLIGHT_CLASS}>\n        {part}\n      </span>\n    ) : (\n      part\n    ),\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "copy-button"
+  ]
+}

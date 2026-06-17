@@ -1,0 +1,28 @@
+{
+  "name": "democrito-organisms",
+  "type": "registry:ui",
+  "title": "All Organisms",
+  "description": "All organism components from democrito",
+  "author": "mmorerasanchez",
+  "registryDependencies": [
+    "apidoc-panel",
+    "apikey-manager",
+    "activity-feed",
+    "auth-form",
+    "bulk-actions-bar",
+    "dashboard-stats",
+    "data-manager",
+    "data-table",
+    "export-menu",
+    "filter-bar",
+    "import-dialog",
+    "integration-card",
+    "onboarding-wizard",
+    "organization-manager",
+    "run-history",
+    "settings-nav",
+    "sidebar-nav",
+    "top-bar",
+    "user-menu"
+  ]
+}

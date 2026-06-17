@@ -1,0 +1,17 @@
+{
+  "name": "separator",
+  "type": "registry:ui",
+  "title": "separator",
+  "description": "separator component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/ui/separator.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(({ className, orientation = \"horizontal\", decorative = true, ...props }, ref) => (\n  <SeparatorPrimitive.Root\n    ref={ref}\n    decorative={decorative}\n    orientation={orientation}\n    className={cn(\"shrink-0 bg-border\", orientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\", className)}\n    {...props}\n  />\n));\nSeparator.displayName = SeparatorPrimitive.Root.displayName;\n\nexport { Separator };\n"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-separator"
+  ]
+}

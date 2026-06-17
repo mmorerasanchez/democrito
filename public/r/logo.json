@@ -1,0 +1,19 @@
+{
+  "name": "logo",
+  "type": "registry:ui",
+  "title": "Logo",
+  "description": "Logo component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/Logo.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { useTheme } from \"@/hooks/use-theme\";\n\nconst PLACEHOLDER_SVG =\n  \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23888'/%3E%3Ctext x='14' y='19' font-size='12' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3ED%3C/text%3E%3C/svg%3E\";\n\ninterface LogoProps {\n  /**\n   * Logo image src for light/warm themes.\n   * Pass your own asset; defaults to a placeholder SVG.\n   */\n  logoSrc?: string;\n  /**\n   * Logo image src for the dark theme.\n   * Pass your own asset; defaults to the same placeholder.\n   */\n  logoDarkSrc?: string;\n  /** Size in pixels for width/height */\n  size?: number;\n  className?: string;\n}\n\n/**\n * Logo — Theme-aware brand mark.\n * Consumers supply their own assets via logoSrc / logoDarkSrc props.\n * Falls back to a neutral placeholder so the component never renders a broken <img>.\n */\nexport function Logo({ logoSrc, logoDarkSrc, size = 28, className }: LogoProps) {\n  const { theme } = useTheme();\n  const src = theme === \"dark\"\n    ? (logoDarkSrc ?? PLACEHOLDER_SVG)\n    : (logoSrc ?? PLACEHOLDER_SVG);\n\n  return (\n    <img\n      src={src}\n      alt=\"logo\"\n      width={size}\n      height={size}\n      className={cn(\"shrink-0 object-contain\", className)}\n    />\n  );\n}\n"
+    },
+    {
+      "path": "registry/hooks/use-theme.tsx",
+      "type": "registry:hook",
+      "content": "import { createContext, useContext, useEffect, useState, ReactNode } from \"react\";\n\ntype Theme = \"dark\" | \"light\" | \"warm\";\n\ninterface ThemeContextType {\n  theme: Theme;\n  setTheme: (theme: Theme) => void;\n}\n\nconst ThemeContext = createContext<ThemeContextType>({ theme: \"warm\", setTheme: () => {} });\n\nexport function ThemeProvider({ children }: { children: ReactNode }) {\n  const [theme, setTheme] = useState<Theme>(() => {\n    try {\n      const stored = localStorage.getItem(\"democrito-theme\") as Theme | null;\n      return stored || \"warm\";\n    } catch {\n      return \"warm\";\n    }\n  });\n\n  useEffect(() => {\n    const root = document.documentElement;\n    root.classList.remove(\"dark\", \"light\", \"warm\");\n    root.classList.add(theme);\n    localStorage.setItem(\"democrito-theme\", theme);\n  }, [theme]);\n\n  return (\n    <ThemeContext.Provider value={{ theme, setTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}\n\nexport const useTheme = () => useContext(ThemeContext);\n"
+    }
+  ]
+}

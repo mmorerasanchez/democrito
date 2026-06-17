@@ -1,0 +1,21 @@
+{
+  "name": "user-menu",
+  "type": "registry:ui",
+  "title": "UserMenu",
+  "description": "UserMenu component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/UserMenu.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport { LogOut, Settings, CreditCard, User } from \"lucide-react\";\n\ninterface UserMenuProps {\n  name: string;\n  email: string;\n  initials?: string;\n  plan?: string;\n  onProfile?: () => void;\n  onSettings?: () => void;\n  onBilling?: () => void;\n  onLogout?: () => void;\n  className?: string;\n}\n\n/**\n * UserMenu — Dropdown-like user menu panel with profile info and actions.\n */\nexport function UserMenu({\n  name,\n  email,\n  initials,\n  plan,\n  onProfile,\n  onSettings,\n  onBilling,\n  onLogout,\n  className,\n}: UserMenuProps) {\n  const avatarInitials = initials || name.split(\" \").map((n) => n[0]).join(\"\").slice(0, 2).toUpperCase();\n\n  return (\n    <div className={cn(\"rounded-md border border-border bg-card w-64\", className)}>\n      {/* Profile section */}\n      <div className=\"flex items-center gap-3 border-b border-border px-3 py-3\">\n        <div className=\"flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/10 font-mono text-sm font-medium text-accent\">\n          {avatarInitials}\n        </div>\n        <div className=\"min-w-0 flex-1\">\n          <span className=\"block font-display text-sm font-medium text-foreground truncate\">{name}</span>\n          <span className=\"block font-body text-xs text-muted-foreground truncate\">{email}</span>\n        </div>\n        {plan && <Badge variant=\"outline\" size=\"sm\"><span className=\"font-mono\">{plan}</span></Badge>}\n      </div>\n\n      {/* Actions */}\n      <div className=\"py-1\">\n        {[\n          { label: \"Profile\", icon: User, action: onProfile },\n          { label: \"Settings\", icon: Settings, action: onSettings },\n          { label: \"Billing\", icon: CreditCard, action: onBilling },\n        ].map(({ label, icon: Icon, action }) => (\n          <button\n            key={label}\n            type=\"button\"\n            onClick={action}\n            className=\"flex w-full items-center gap-3 px-3 py-2 text-left transition-colors duration-150 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n          >\n            <Icon className=\"h-4 w-4 text-muted-foreground\" />\n            <span className=\"font-body text-sm text-foreground\">{label}</span>\n          </button>\n        ))}\n      </div>\n\n      {/* Logout */}\n      <div className=\"border-t border-border py-1\">\n        <button\n          type=\"button\"\n          onClick={onLogout}\n          className=\"flex w-full items-center gap-3 px-3 py-2 text-left transition-colors duration-150 hover:bg-error-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n        >\n          <LogOut className=\"h-4 w-4 text-error\" />\n          <span className=\"font-body text-sm text-error\">Log out</span>\n        </button>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button"
+  ]
+}

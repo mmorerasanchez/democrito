@@ -1,0 +1,14 @@
+{
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "Spinner component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/atoms/Spinner.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\n\ninterface SpinnerProps {\n  size?: \"sm\" | \"md\" | \"lg\" | \"inline\";\n  className?: string;\n}\n\nconst spinnerSizes = {\n  sm: \"h-3.5 w-3.5\",\n  md: \"h-5 w-5\",\n  lg: \"h-7 w-7\",\n  inline: \"h-4 w-4\",\n};\n\nexport function Spinner({ size = \"md\", className }: SpinnerProps) {\n  return (\n    <div\n      className={cn(\n        \"animate-spin rounded-full border-2 border-muted-foreground border-t-accent\",\n        spinnerSizes[size],\n        className,\n      )}\n      role=\"status\"\n      aria-label=\"Loading\"\n    >\n      <span className=\"sr-only\">Loading…</span>\n    </div>\n  );\n}\n\n// AI thinking dots — 3 × 6px staggered pulse\nexport function ThinkingDots({ className }: { className?: string }) {\n  return (\n    <span className={cn(\"inline-flex items-center gap-1\", className)} role=\"status\" aria-label=\"Thinking\">\n      {[0, 1, 2].map((i) => (\n        <span\n          key={i}\n          className=\"inline-block h-1.5 w-1.5 rounded-full bg-accent animate-ai-pulse\"\n          style={{ animationDelay: `${i * 200}ms` }}\n        />\n      ))}\n    </span>\n  );\n}\n"
+    }
+  ]
+}

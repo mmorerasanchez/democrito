@@ -1,0 +1,20 @@
+{
+  "name": "nav-item",
+  "type": "registry:ui",
+  "title": "NavItem",
+  "description": "NavItem component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/NavItem.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Badge } from \"@/components/ui/badge\";\nimport type { LucideIcon } from \"lucide-react\";\n\ninterface NavItemProps {\n  icon: LucideIcon;\n  label: string;\n  active?: boolean;\n  disabled?: boolean;\n  collapsed?: boolean;\n  count?: number;\n  badge?: string;\n  onClick?: () => void;\n  className?: string;\n}\n\nexport function NavItem({ icon: Icon, label, active, disabled, collapsed, count, badge, onClick, className }: NavItemProps) {\n  return (\n    <button\n      onClick={onClick}\n      disabled={disabled}\n      className={cn(\n        \"flex w-full items-center gap-3 rounded-md px-3 py-2 font-display text-sm font-medium transition-all duration-150\",\n        active\n          ? \"bg-card text-foreground\"\n          : \"text-muted-foreground hover:bg-muted hover:text-foreground\",\n        disabled && \"pointer-events-none opacity-50\",\n        className,\n      )}\n    >\n      <div className=\"relative shrink-0\">\n        <Icon className=\"h-[18px] w-[18px]\" />\n        {collapsed && count !== undefined && (\n          <span className=\"absolute -top-1.5 -right-1.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-accent font-mono text-[8px] font-bold text-accent-foreground\">\n            {count}\n          </span>\n        )}\n      </div>\n      {!collapsed && (\n        <>\n          <span className=\"flex-1 text-left truncate\">{label}</span>\n          {count !== undefined && <Badge variant=\"count\" size=\"sm\">{count}</Badge>}\n          {badge && <Badge variant=\"outline\" size=\"sm\" className=\"text-2xs\">{badge}</Badge>}\n        </>\n      )}\n    </button>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge"
+  ]
+}

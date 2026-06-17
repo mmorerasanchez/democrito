@@ -1,0 +1,20 @@
+{
+  "name": "democrito-atoms",
+  "type": "registry:ui",
+  "title": "All Atoms",
+  "description": "All atomic components from democrito",
+  "author": "mmorerasanchez",
+  "registryDependencies": [
+    "code",
+    "code-block",
+    "copy-button",
+    "heading",
+    "kbd",
+    "link",
+    "logo",
+    "spinner",
+    "status-badge",
+    "tag",
+    "text"
+  ]
+}

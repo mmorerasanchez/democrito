@@ -1,0 +1,14 @@
+{
+  "name": "stat-card",
+  "type": "registry:ui",
+  "title": "StatCard",
+  "description": "StatCard component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/StatCard.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\n\ninterface StatCardProps {\n  label: string;\n  value: string | number;\n  trend?: { direction: \"up\" | \"down\" | \"neutral\"; value: string };\n  className?: string;\n}\n\nexport function StatCard({ label, value, trend, className }: StatCardProps) {\n  return (\n    <div className={cn(\"rounded-md border border-border bg-card p-4 space-y-1\", className)}>\n      <p className=\"font-body text-xs text-muted-foreground\">{label}</p>\n      <p className=\"font-mono text-2xl font-bold text-foreground\">{value}</p>\n      {trend && (\n        <p className={cn(\n          \"flex items-center gap-1 font-mono text-xs\",\n          trend.direction === \"up\" && \"text-success\",\n          trend.direction === \"down\" && \"text-error\",\n          trend.direction === \"neutral\" && \"text-muted-foreground\",\n        )}>\n          {trend.value}\n        </p>\n      )}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

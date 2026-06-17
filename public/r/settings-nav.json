@@ -1,0 +1,17 @@
+{
+  "name": "settings-nav",
+  "type": "registry:ui",
+  "title": "SettingsNav",
+  "description": "SettingsNav component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/organisms/SettingsNav.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { TabNav } from \"@/components/TabNav\";\n\ninterface SettingsSection {\n  label: string;\n  value: string;\n  disabled?: boolean;\n}\n\ninterface SettingsNavProps {\n  sections: SettingsSection[];\n  activeSection: string;\n  onSectionChange?: (value: string) => void;\n  className?: string;\n}\n\n/**\n * SettingsNav — Horizontal tab navigation for settings pages.\n * Renders below the header, above settings content.\n */\nexport function SettingsNav({\n  sections,\n  activeSection,\n  onSectionChange,\n  className,\n}: SettingsNavProps) {\n  return (\n    <div className={cn(className)}>\n      <TabNav\n        items={sections.map((s) => ({ label: s.label, value: s.value, disabled: s.disabled }))}\n        value={activeSection}\n        onValueChange={onSectionChange}\n      />\n    </div>\n  );\n}\n"
+    }
+  ],
+  "registryDependencies": [
+    "tab-nav"
+  ]
+}

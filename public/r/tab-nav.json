@@ -1,0 +1,17 @@
+{
+  "name": "tab-nav",
+  "type": "registry:ui",
+  "title": "TabNav",
+  "description": "TabNav component",
+  "author": "mmorerasanchez",
+  "files": [
+    {
+      "path": "registry/molecules/TabNav.tsx",
+      "type": "registry:component",
+      "content": "import { cn } from \"@/lib/utils\";\nimport type { LucideIcon } from \"lucide-react\";\n\ninterface TabNavItem {\n  label: string;\n  value: string;\n  icon?: LucideIcon;\n  disabled?: boolean;\n  badge?: string;\n}\n\ninterface TabNavProps {\n  items: TabNavItem[];\n  value: string;\n  onValueChange: (value: string) => void;\n  className?: string;\n}\n\nexport function TabNav({ items, value, onValueChange, className }: TabNavProps) {\n  return (\n    <nav className={cn(\"flex items-center gap-1 rounded-lg bg-muted p-1\", className)} role=\"tablist\">\n      {items.map((item) => {\n        const isActive = item.value === value;\n        const Icon = item.icon;\n        return (\n          <button\n            key={item.value}\n            role=\"tab\"\n            aria-selected={isActive}\n            aria-disabled={item.disabled}\n            disabled={item.disabled}\n            onClick={() => onValueChange(item.value)}\n            className={cn(\n              \"inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-display text-sm font-medium transition-colors duration-150\",\n              \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n              isActive\n                ? \"bg-card text-foreground shadow-xs\"\n                : \"text-muted-foreground hover:text-foreground\",\n              item.disabled && \"cursor-not-allowed opacity-40 hover:text-muted-foreground\",\n            )}\n          >\n            {item.label}\n            {item.badge && <span className=\"font-mono text-2xs text-muted-foreground\">{item.badge}</span>}\n            {Icon && <Icon className=\"h-3.5 w-3.5\" />}\n          </button>\n        );\n      })}\n    </nav>\n  );\n}\n"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ]
+}
