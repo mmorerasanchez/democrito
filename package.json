@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:visual": "npx playwright test",
-    "test:visual:update": "npx playwright test --update-snapshots"
+    "test:visual:update": "npx playwright test --update-snapshots",
+    "registry": "node scripts/build-registry.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

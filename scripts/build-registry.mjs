@@ -1,0 +1,318 @@
+/**
+ * scripts/build-registry.mjs
+ * Generates registry.json and public/r/democrito.json from registry/ source files.
+ * Run: node scripts/build-registry.mjs
+ */
+import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
+import { resolve, join, dirname, basename } from "node:path";
+
+const root = resolve(".");
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function toKebabCase(str) {
+  return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+function readFile(path) {
+  return readFileSync(join(root, path), "utf8");
+}
+
+function fileExists(path) {
+  return existsSync(join(root, path));
+}
+
+/** Resolve a relative import path to a registry/ file path (without extension).
+ *  Uses Node's path.resolve to handle ".." correctly, then makes it relative to root. */
+function resolveRelative(fromPath, importPath) {
+  // fromPath: "registry/atoms/CodeBlock.tsx" (relative to root)
+  // importPath: "../lib/tokenizeBrackets"
+  const absFrom = join(root, fromPath);
+  const absResolved = resolve(dirname(absFrom), importPath);
+  // Return path relative to root
+  return absResolved.slice(root.length + 1).replace(/\\/g, "/");
+}
+
+/** Find the actual file on disk given a path-without-extension. */
+function resolveExtension(pathNoExt) {
+  for (const ext of [".tsx", ".ts", ".jsx", ".js"]) {
+    if (fileExists(pathNoExt + ext)) return pathNoExt + ext;
+  }
+  return null;
+}
+
+/** Parse all `from "..."` specifiers in a file. */
+function parseImports(content) {
+  const sources = new Set();
+  const re = /from\s+['"]([^'"]+)['"]/g;
+  let m;
+  while ((m = re.exec(content)) !== null) sources.add(m[1]);
+  return [...sources];
+}
+
+/** Check if a specifier is an npm package (not a relative or @/ alias path). */
+function isNpmPackage(spec) {
+  return !spec.startsWith(".") && !spec.startsWith("@/");
+}
+
+const SKIP_NPM = new Set(["react", "react-dom"]);
+
+/** Convert a component file path to a registry item name. */
+function pathToName(filePath) {
+  return toKebabCase(basename(filePath).replace(/\.(tsx?|jsx?)$/, ""));
+}
+
+// ---------------------------------------------------------------------------
+// Tier config
+// ---------------------------------------------------------------------------
+
+const TIERS = [
+  { dir: "atoms",     type: "registry:component" },
+  { dir: "molecules", type: "registry:component" },
+  { dir: "organisms", type: "registry:component" },
+  { dir: "templates", type: "registry:component" },
+  { dir: "ui",        type: "registry:ui" },
+];
+
+// Files we track as embeddable lib/hook entries (utils is covered by the base item)
+const REGISTRY_LIB_FILES = new Set([
+  "registry/lib/tokenizeBrackets.tsx",
+]);
+const REGISTRY_HOOK_FILES = new Set([
+  "registry/hooks/use-theme.tsx",
+  "registry/hooks/use-toast.ts",
+  "registry/hooks/use-mobile.tsx",
+]);
+
+// Cache for embedded lib/hook content to avoid re-reading
+const contentCache = new Map();
+function cachedContent(path) {
+  if (!contentCache.has(path)) contentCache.set(path, readFile(path));
+  return contentCache.get(path);
+}
+
+function makeLibEntry(filePath, type) {
+  return { path: filePath, type, content: cachedContent(filePath) };
+}
+
+// ---------------------------------------------------------------------------
+// Process one component file → registry item
+// ---------------------------------------------------------------------------
+
+function processFile(filePath, type) {
+  const content = readFile(filePath);
+  const name = pathToName(filePath);
+  const componentName = basename(filePath).replace(/\.(tsx?|jsx?)$/, "");
+
+  const dependencies = new Set();
+  const registryDependencies = new Set();
+  const libFiles = new Map(); // path → file entry (deduped)
+
+  // Always include the component itself
+  const files = [{ path: filePath, type, content }];
+
+  for (const spec of parseImports(content)) {
+    // -- npm package --
+    if (isNpmPackage(spec)) {
+      if (!SKIP_NPM.has(spec)) dependencies.add(spec);
+      continue;
+    }
+
+    // -- @/ alias (untouched files) --
+    if (spec.startsWith("@/")) {
+      const inner = spec.slice(2); // "lib/utils", "components/ui/button", etc.
+
+      if (inner === "lib/utils") continue; // covered by democrito base
+
+      if (inner.startsWith("components/ui/")) {
+        registryDependencies.add(inner.replace("components/ui/", ""));
+        continue;
+      }
+      if (inner.startsWith("components/atoms/") || inner.startsWith("components/molecules/") ||
+          inner.startsWith("components/organisms/") || inner.startsWith("components/templates/")) {
+        const compName = inner.split("/").pop();
+        registryDependencies.add(toKebabCase(compName));
+        continue;
+      }
+      // @/hooks/* — shouldn't appear in edited files but handle gracefully
+      if (inner.startsWith("hooks/")) {
+        const hookBase = "registry/" + inner;
+        const hookFile = resolveExtension(hookBase);
+        if (hookFile && REGISTRY_HOOK_FILES.has(hookFile)) {
+          libFiles.set(hookFile, makeLibEntry(hookFile, "registry:hook"));
+        } else {
+          dependencies.add(spec); // treat as unknown npm-like dep
+        }
+        continue;
+      }
+      continue; // other @/ paths — skip
+    }
+
+    // -- relative import --
+    const resolvedBase = resolveRelative(filePath, spec);
+    const resolvedFile = resolveExtension(resolvedBase);
+
+    if (!resolvedFile) continue; // can't resolve
+
+    // Is it a lib file?
+    if (REGISTRY_LIB_FILES.has(resolvedFile)) {
+      libFiles.set(resolvedFile, makeLibEntry(resolvedFile, "registry:lib"));
+      continue;
+    }
+    // Is it a hooks file?
+    if (REGISTRY_HOOK_FILES.has(resolvedFile)) {
+      libFiles.set(resolvedFile, makeLibEntry(resolvedFile, "registry:hook"));
+      continue;
+    }
+    // Is it utils? Skip (base dep)
+    if (resolvedFile === "registry/lib/utils.ts") continue;
+
+    // Otherwise it's another registry component → registryDependency
+    registryDependencies.add(pathToName(resolvedFile));
+  }
+
+  files.push(...libFiles.values());
+
+  const deps = [...dependencies].sort();
+  const regDeps = [...registryDependencies].sort();
+
+  if (deps.length === 0 && regDeps.length === 0) {
+    console.warn(`  ⚠ ${name}: no dependencies or registryDependencies (check parse)`);
+  }
+
+  return {
+    name,
+    type: "registry:ui",
+    title: componentName,
+    description: `${componentName} component`,
+    author: "mmorerasanchez",
+    files,
+    ...(deps.length > 0 && { dependencies: deps }),
+    ...(regDeps.length > 0 && { registryDependencies: regDeps }),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Build component items
+// ---------------------------------------------------------------------------
+
+const componentItems = [];
+const tierComponentNames = {}; // tier → [name, ...]
+
+for (const { dir, type } of TIERS) {
+  const dirPath = join(root, "registry", dir);
+  const files = readdirSync(dirPath)
+    .filter(f => f.endsWith(".tsx") || f.endsWith(".ts"))
+    .sort();
+
+  tierComponentNames[dir] = [];
+
+  for (const file of files) {
+    const filePath = `registry/${dir}/${file}`;
+    const item = processFile(filePath, type);
+    componentItems.push(item);
+    tierComponentNames[dir].push(item.name);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Tier bundle items
+// ---------------------------------------------------------------------------
+
+const TIER_BUNDLE_DISPLAY = {
+  atoms:     { title: "All Atoms",     description: "All atomic components from democrito" },
+  molecules: { title: "All Molecules", description: "All molecule components from democrito" },
+  organisms: { title: "All Organisms", description: "All organism components from democrito" },
+  templates: { title: "All Templates", description: "All template components from democrito" },
+  ui:        { title: "All UI",        description: "All UI primitive components from democrito" },
+};
+
+const tierBundleItems = Object.entries(tierComponentNames).map(([tier, names]) => ({
+  name: `democrito-${tier}`,
+  type: "registry:ui",
+  title: TIER_BUNDLE_DISPLAY[tier].title,
+  description: TIER_BUNDLE_DISPLAY[tier].description,
+  author: "mmorerasanchez",
+  registryDependencies: names,
+}));
+
+// ---------------------------------------------------------------------------
+// Base items (preserve from existing registry.json, update 3 fields)
+// ---------------------------------------------------------------------------
+
+const existingRegistry = JSON.parse(readFile("registry.json"));
+const [baseItem, warmItem] = existingRegistry.items;
+
+// Update: baseColor stone → slate; meta.version 3.2.1 → 3.5.0; file path src/ → registry/
+const updatedBaseItem = {
+  ...baseItem,
+  baseColor: "slate",
+  description: baseItem.description.replace("stone grays", "stone grays"), // unchanged
+  files: [
+    {
+      path: "registry/lib/utils.ts",
+      type: "registry:lib",
+      content: cachedContent("registry/lib/utils.ts"),
+    },
+  ],
+  meta: {
+    ...baseItem.meta,
+    version: "3.5.0",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Assemble final items array
+// ---------------------------------------------------------------------------
+
+const allItems = [
+  updatedBaseItem,
+  warmItem,
+  ...componentItems,
+  ...tierBundleItems,
+];
+
+// ---------------------------------------------------------------------------
+// Build output objects
+// ---------------------------------------------------------------------------
+
+const manifest = {
+  $schema: existingRegistry.$schema,
+  name: existingRegistry.name,
+  homepage: existingRegistry.homepage,
+  items: allItems,
+};
+
+// ---------------------------------------------------------------------------
+// Write files
+// ---------------------------------------------------------------------------
+
+const json = JSON.stringify(manifest, null, 2);
+writeFileSync(join(root, "registry.json"), json);
+writeFileSync(join(root, "public/r/democrito.json"), json);
+
+// ---------------------------------------------------------------------------
+// Report
+// ---------------------------------------------------------------------------
+
+const compCount = componentItems.length;
+const bundleCount = tierBundleItems.length;
+const baseCount = 2; // democrito + democrito-warm
+const total = allItems.length;
+
+console.log(`\n✓ registry.json and public/r/democrito.json written`);
+console.log(`\nItem counts:`);
+console.log(`  ${baseCount} base items (democrito, democrito-warm)`);
+for (const [tier, names] of Object.entries(tierComponentNames)) {
+  console.log(`  ${names.length.toString().padStart(3)} ${tier}`);
+}
+console.log(`  --- `);
+console.log(`  ${compCount} components total`);
+console.log(`  ${bundleCount} tier bundles`);
+console.log(`  ${total} total items (expected 110)`);
+
+if (total !== 110) {
+  console.warn(`\n⚠ Expected 110 items, got ${total}. Investigate.`);
+}
