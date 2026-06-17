@@ -216,13 +216,13 @@ that match — using democrito tokens:
 ```
 Read the "Dashboard" screen from Stitch via MCP. Generate the StatCard component
 it uses as a democrito molecule. Follow the component rules in CLAUDE.md.
-Map any generic colors to the appropriate token classes from src/index.css.
+Map any generic colors to the appropriate token classes from tokens/index.css.
 ```
 
 ```
 Pull the sidebar component from the Stitch "Settings" screen.
 Classify it as an organism (TopBar pattern). Use democrito tokens throughout.
-Check if SidebarNav already exists in src/components/organisms/ before creating.
+Check if SidebarNav already exists in registry/organisms/ before creating.
 ```
 
 ---

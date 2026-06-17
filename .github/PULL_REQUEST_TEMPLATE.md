@@ -17,7 +17,7 @@ Brief summary of changes.
 - [ ] Molecules
 - [ ] Organisms
 - [ ] Templates
-- [ ] Tokens (`src/index.css` — CSS custom properties + `@theme` block)
+- [ ] Tokens (`tokens/index.css` — CSS custom properties + `@theme` block)
 - [ ] Documentation only
 - [ ] CI / Tooling
 

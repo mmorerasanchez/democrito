@@ -215,8 +215,8 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 ### Atoms
 
 > **Two counts, different scopes:**
-> - **Custom atoms** (`src/components/atoms/`) — 11 hand-crafted single-purpose components. These are the "democrito atoms" referenced in OverviewPage stats and CLAUDE.md.
-> - **shadcn/ui primitives** (`src/components/ui/`) — 15 form/interactive atoms sourced from shadcn/ui and extended via CVA. Counted separately; extend them but never rebuild from scratch.
+> - **Custom atoms** (`registry/atoms/`) — 11 hand-crafted single-purpose components. These are the "democrito atoms" referenced in OverviewPage stats and CLAUDE.md.
+> - **shadcn/ui primitives** (`registry/ui/`) — 15 form/interactive atoms sourced from shadcn/ui and extended via CVA. Counted separately; extend them but never rebuild from scratch.
 > - **Total atom-level components: 26** (11 custom + 15 shadcn/ui)
 
 #### Custom atoms (11)
@@ -277,7 +277,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | RunHistoryItem | custom | Ready | Run entry with model, status, tokens, latency |
 | TokenReferenceCard | custom | Ready | Inline token swatch + name + value for token docs pages |
 
-> **Pagination** is a shadcn/ui primitive at `src/components/ui/pagination.tsx`, not a custom democrito molecule.
+> **Pagination** is a shadcn/ui primitive at `registry/ui/pagination.tsx`, not a custom democrito molecule.
 
 ### Organisms (19 — public surface)
 

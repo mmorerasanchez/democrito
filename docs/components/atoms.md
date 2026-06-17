@@ -1,13 +1,13 @@
 # Atoms — Component Reference
 
 > Foundational building blocks. Single-purpose, no child components.
-> Directory: `src/components/atoms/`
+> Directory: `registry/atoms/`
 
 ---
 
 ## Button
 
-> `src/components/ui/button.tsx` — shadcn/ui primitive used throughout the system.
+> `registry/ui/button.tsx` — shadcn/ui primitive used throughout the system.
 
 ### Do/Don't
 

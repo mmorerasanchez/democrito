@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.5.1] — 2026-06-17
+
+### Changed
+- **Repo split:** Product (this repo) separated from the showcase site; `democrito-site` now consumes this repo via git submodule at `vendor/democrito`
+- **History reset:** Rebased to a clean v3.5.0 root commit; pre-split history archived privately; old remote tags removed from origin
+- **Registry contract:** 110 registry items built out — 103 components + 5 tier bundles + 2 base configs; all `registryDependencies` reference full `https://democrito.design/r/` URLs; single, multi-dep, and bundle installs resolve correctly via `shadcn add`
+- **Product layout:** Flattened to `tokens/` + `registry/` (no `src/`); AI context files live at root (`CLAUDE.md`, `AGENTS.md`, `DESIGN.md`)
+
+---
+
 ## [3.5.0] — 2026-06-15
 
 ### Changed

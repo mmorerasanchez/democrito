@@ -71,7 +71,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/) scoped to
 
 - `atoms`, `molecules`, `organisms`, `templates` — component layers
 - `ui` — shadcn/ui primitives
-- `tokens` — design tokens (`src/index.css` `@theme` block)
+- `tokens` — design tokens (`tokens/index.css` `@theme` block)
 - `theme` — theme switching, CSS cascade, or multi-theme behavior
 - `pages` — route pages
 - `deps` — dependency updates
@@ -135,7 +135,7 @@ refactor(atoms): rename Tag to Badge for shadcn consistency
 Place it in the correct directory:
 
 ```
-src/components/<level>/YourComponent.tsx
+registry/<level>/YourComponent.tsx
 ```
 
 - **One component per file**, PascalCase filename
@@ -183,7 +183,7 @@ npm test
 Add your component to the layer's `index.ts`:
 
 ```ts
-// src/components/<level>/index.ts
+// registry/<level>/index.ts
 export { YourComponent } from "./YourComponent";
 ```
 
@@ -191,7 +191,7 @@ export { YourComponent } from "./YourComponent";
 
 Before submitting, confirm every item below:
 
-- [ ] Component placed in the correct Atomic Design layer (`atoms/`, `molecules/`, `organisms/`, or `templates/`)
+- [ ] Component placed in the correct Atomic Design layer (`registry/atoms/`, `registry/molecules/`, `registry/organisms/`, or `registry/templates/`)
 - [ ] Uses CSS custom properties exclusively — no hardcoded hex, RGB, or Tailwind color names (e.g., no `bg-gray-800`, no `text-white`)
 - [ ] Typography: `font-display` for headings/labels, `font-body` for prose, `font-mono` for ALL data, code, and user-editable content
 - [ ] Theme-aware: visually verified in all three themes (Warm, Dark, Light) using the theme toggle on `/tokens`
@@ -218,15 +218,15 @@ Design tokens are the foundation of the visual system. Changes to tokens affect 
 
 | File | Role |
 | --- | --- |
-| `src/index.css` | CSS custom properties + `@theme` block (source of truth). All token definitions and Tailwind v4 mappings live here. |
+| `tokens/index.css` | CSS custom properties + `@theme` block (source of truth). All token definitions and Tailwind v4 mappings live here. |
 
-> **Tailwind v4 is CSS-first.** There is no `tailwind.config.ts` — it was removed in v3.1.0. All token-to-utility mappings are declared in the `@theme` block inside `src/index.css`.
+> **Tailwind v4 is CSS-first.** There is no `tailwind.config.ts` — it was removed in v3.1.0. All token-to-utility mappings are declared in the `@theme` block inside `tokens/index.css`.
 
 ### How to propose a token change
 
 1. **Open an issue first** describing the token you want to add, modify, or remove — and why
-2. **Update `src/index.css`** — add the CSS custom property in all three theme blocks (`:root`, `.dark`, `.light`)
-3. **Add a `@theme` mapping** in `src/index.css` if the token needs a Tailwind utility class
+2. **Update `tokens/index.css`** — add the CSS custom property in all three theme blocks (`:root`, `.dark`, `.light`)
+3. **Add a `@theme` mapping** in `tokens/index.css` if the token needs a Tailwind utility class
 4. **Update `docs/design-system.md`** to document the new token
 5. **Test visually** across all three themes using the theme toggle in the showcase (`/tokens`)
 6. Submit a PR with before/after screenshots showing all three themes

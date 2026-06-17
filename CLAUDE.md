@@ -7,7 +7,7 @@
 > code from the first generation.
 
 > **⚠️ Themeable system.** This is a general-purpose, brandable design system. Before
-> using default token values, check `src/index.css` (the `@theme` block) for any
+> using default token values, check `tokens/index.css` (the `@theme` block) for any
 > custom theme overrides. The accent color, font families, radius, and surface palette
 > may differ from the defaults documented below. See [`docs/theming.md`](docs/theming.md)
 > for the full theming guide.
@@ -33,13 +33,13 @@ The component library follows **Atomic Design** methodology with five levels:
 
 | Level | Directory | Description | Examples |
 |---|---|---|---|
-| **Atoms** | `src/components/atoms/` | Smallest building blocks — single-purpose, no child components | `Heading`, `Tag`, `Spinner`, `Code`, `CodeBlock`, `Kbd`, `Link`, `Logo`, `StatusBadge`, `Text` |
-| **Molecules** | `src/components/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState` |
-| **Organisms** | `src/components/organisms/` | Major UI sections, may include molecules | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm`, `SidebarNav`, `UserMenu` |
-| **Templates** | `src/components/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout`, `DashboardLayout` |
+| **Atoms** | `registry/atoms/` | Smallest building blocks — single-purpose, no child components | `Heading`, `Tag`, `Spinner`, `Code`, `CodeBlock`, `Kbd`, `Link`, `Logo`, `StatusBadge`, `Text` |
+| **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState` |
+| **Organisms** | `registry/organisms/` | Major UI sections, may include molecules | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm`, `SidebarNav`, `UserMenu` |
+| **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout`, `DashboardLayout` |
 | **Pages** | `src/pages/` | Route-level components that compose templates + organisms | `OverviewPage`, `AtomsPage`, `MoleculesPage`, `TokensPage`, `AiPage`, `ManifiestoPage` |
 
-**UI Primitives** (`src/components/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
+**UI Primitives** (`registry/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 
 Each level has a barrel `index.ts` for re-exports. One component per file, PascalCase filenames.
 
@@ -50,7 +50,7 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 > **Full reference:** [`docs/tokens.md`](docs/tokens.md) — colors, typography, spacing, radii, motion.
 
 **Key behavioral rules:**
-- All colors are HSL CSS custom properties in `src/index.css`, defined via CSS-first `@theme` in `src/index.css`
+- All colors are HSL CSS custom properties in `tokens/index.css`, defined via CSS-first `@theme` in `tokens/index.css`
 - Three themes: **Warm** (`:root`, default), **Dark** (`.dark`), **Light** (`.light`)
 - 3-surface hierarchy: `--background` → `--surface` → `--card`
 - 3-font system: `font-display` (headings), `font-body` (text), `font-mono` (data/code)
@@ -61,15 +61,15 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 
 ## Rules
 
-1. **Check existing atoms first** — before creating any new component, verify it doesn't already exist in `atoms/`, `molecules/`, or `ui/`.
+1. **Check existing atoms first** — before creating any new component, verify it doesn't already exist in `registry/atoms/`, `registry/molecules/`, or `registry/ui/`.
 2. **Always use design tokens** — never use magic numbers for colors, spacing, or radii. Use Tailwind classes mapped to CSS variables.
 3. **TypeScript with proper prop types** — every component must define an explicit `interface` for its props with JSDoc descriptions.
 4. **Follow existing naming conventions** — PascalCase filenames, one component per file, barrel `index.ts` exports.
 5. **Use shadcn/ui primitives as the base** — extend via CVA variants in `ui/` components; compose them into atoms/molecules, never rebuild from scratch.
 6. **User-editable content uses `font-mono`** — all code, data values, and user-generated content must use the mono font family.
-7. **Three-theme compliance** — any new color token must be defined in all three themes (`:root` for warm default, `.dark`, `.light`) in `src/index.css`.
+7. **Three-theme compliance** — any new color token must be defined in all three themes (`:root` for warm default, `.dark`, `.light`) in `tokens/index.css`.
 8. **Semantic color only** — use `bg-card`, `text-muted-foreground`, `border-border` etc. Never write `bg-gray-800` or `text-white`.
-9. **Check for theme overrides** — before assuming default token values, verify the project's `src/index.css` `@theme` block for custom theme configuration.
+9. **Check for theme overrides** — before assuming default token values, verify the project's `tokens/index.css` `@theme` block for custom theme configuration.
 
 ---
 
@@ -111,7 +111,7 @@ Available test commands:
 
 | File | Purpose |
 |---|---|
-| `src/index.css` | CSS custom properties + CSS-first `@theme` — source of truth for all design tokens and Tailwind integration |
+| `tokens/index.css` | CSS custom properties + CSS-first `@theme` — source of truth for all design tokens and Tailwind integration |
 | `docs/theming.md` | How to customize the system for a specific brand or product |
 | `docs/design-system.md` | Full design system specification and component inventory |
 | `DESIGN.md` | Design philosophy and visual language — the "taste layer" for AI agents |

@@ -28,7 +28,7 @@ This predictability is essential for a design system built to be consumed by AI-
 ## Five Levels → Folder Structure
 
 ```
-src/components/
+registry/
 ├── atoms/           # Level 1 — Foundational building blocks
 │   ├── Code.tsx
 │   ├── CodeBlock.tsx
@@ -83,7 +83,6 @@ src/components/
 │   ├── SidebarNav.tsx
 │   ├── TopBar.tsx
 │   ├── UserMenu.tsx
-│   ├── ai/          # AI showcase organisms (5)
 │   └── index.ts
 │
 ├── templates/       # Level 4 — Page layout shells (no business logic)
@@ -168,7 +167,7 @@ The atomic hierarchy enforces a strict **upward composition** model:
 
 ## Relationship with shadcn/ui
 
-The `src/components/ui/` directory contains **shadcn/ui primitives** — the raw building blocks provided by the [shadcn/ui](https://ui.shadcn.com/) library. These are pre-styled, accessible components built on Radix UI.
+The `registry/ui/` directory contains **shadcn/ui primitives** — the raw building blocks provided by the [shadcn/ui](https://ui.shadcn.com/) library. These are pre-styled, accessible components built on Radix UI.
 
 ### The contract
 
@@ -202,7 +201,7 @@ Tokens ──▶ Atoms ──▶ Molecules ──▶ Organisms ──▶ Templat
 
 | File | Role |
 |---|---|
-| `src/index.css` | **Source of truth** — CSS custom properties in HSL + CSS-first `@theme` block that maps tokens to Tailwind utilities (`bg-surface`, `text-accent`, etc.). Defined for all three themes (Dark, Light, Warm). |
+| `tokens/index.css` | **Source of truth** — CSS custom properties in HSL + CSS-first `@theme` block that maps tokens to Tailwind utilities (`bg-surface`, `text-accent`, etc.). Defined for all three themes (Dark, Light, Warm). |
 
 ### Token categories
 

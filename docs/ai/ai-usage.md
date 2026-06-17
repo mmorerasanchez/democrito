@@ -73,7 +73,7 @@ democrito's universal rules there; keep product-specific overrides in the repo's
 ### Example prompts
 
 ```
-Create a new atom called Avatar in src/components/atoms/.
+Create a new atom called Avatar in registry/atoms/.
 Use rounded-full, bg-muted for fallback, font-display text-xs for initials.
 Export from the atoms index.
 ```
@@ -92,7 +92,7 @@ Refer to the existing TopBar.tsx for layout pattern.
 
 ### Tips
 
-- Reference specific files: "check `src/components/atoms/` before creating."
+- Reference specific files: "check `registry/atoms/` before creating."
 - Mention atomic level: "this is a molecule — it composes atoms."
 - Use the democrito skill for token lookups mid-session.
 
@@ -103,7 +103,7 @@ Refer to the existing TopBar.tsx for layout pattern.
 Claude Design (Anthropic Labs) generates visual artifacts — designs, prototypes,
 React components, HTML layouts — using your team's design system.
 
-democrito's `DESIGN.md` and `src/index.css` are exactly what Claude Design's
+democrito's `DESIGN.md` and `tokens/index.css` are exactly what Claude Design's
 onboarding reads to learn your system.
 
 > **Full guide:** [`docs/claude-design.md`](./claude-design.md)
@@ -111,7 +111,7 @@ onboarding reads to learn your system.
 ### Quick setup
 
 1. Open [claude.ai/design](https://claude.ai/design)
-2. During onboarding, import: `DESIGN.md`, `src/index.css`, and `docs/design-system.md`
+2. During onboarding, import: `DESIGN.md`, `tokens/index.css`, and `docs/design-system.md`
 3. Claude Design stores your system and applies it to every project automatically
 
 ### Handoff to Claude Code
@@ -190,7 +190,7 @@ per product.
 democrito design system rules (apply to all projects):
 
 ARCHITECTURE: Atomic Design (atoms → molecules → organisms → templates → pages)
-- Before creating any component, check src/components/atoms/, molecules/, ui/ for existing ones.
+- Before creating any component, check registry/atoms/, registry/molecules/, registry/ui/ for existing ones.
 - Name the atomic level in every prompt ("create a molecule", "extend the organism").
 
 TOKENS: All colors, spacing, and radii come from CSS custom properties. Never hardcode.
@@ -207,7 +207,7 @@ FONTS (non-negotiable):
 RULES:
 - Never use bg-gray-800, text-white, or any hardcoded color
 - No fourth surface level, no gradients, no decorative colors
-- Extend shadcn/ui primitives (src/components/ui/), never rebuild them
+- Extend shadcn/ui primitives (registry/ui/), never rebuild them
 - TypeScript with explicit prop interfaces
 ```
 
@@ -245,7 +245,7 @@ Use the same font-mono text-xs pattern as the Badge component there.
 
 ```
 Create a new molecule called NotificationBanner that composes the StatusBadge and Text atoms.
-Follow the existing pattern in src/components/molecules/StatCard.tsx.
+Follow the existing pattern in registry/molecules/StatCard.tsx.
 Use font-body for the message text and text-accent for the icon color.
 ```
 

@@ -30,7 +30,7 @@ A single `FormField` composes three layers stacked with `space-y-1`:
 └─────────────────────────────┘
 ```
 
-Source — `src/components/molecules/FormField.tsx:18`:
+Source — `registry/molecules/FormField.tsx:18`:
 ```tsx
 <div className={cn("space-y-1", className)}>
   <Label>{label}</Label>
@@ -55,7 +55,7 @@ Fields and the submit button share a single vertical stack with `space-y-4`:
 └─────────────────────────────┘
 ```
 
-Source — `src/components/organisms/AuthForm.tsx:54`:
+Source — `registry/organisms/AuthForm.tsx:54`:
 ```tsx
 <form className="space-y-4">
   <FormField label="Email" ...>...</FormField>
@@ -82,7 +82,7 @@ When a form is preceded by a header, social auth block, or separator, the surrou
 └─────────────────────────────┘
 ```
 
-Source — `src/components/organisms/AuthForm.tsx:26`:
+Source — `registry/organisms/AuthForm.tsx:26`:
 ```tsx
 <div className="... space-y-6">
   <div className="... space-y-1">...</div>  {/* header group */}

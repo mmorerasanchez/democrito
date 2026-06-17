@@ -39,4 +39,4 @@ Via git clone:
 - Dark   (`.dark`)
 - Light  (`.light`)
 
-Every color token is defined in all three themes in src/index.css.
+Every color token is defined in all three themes in tokens/index.css.

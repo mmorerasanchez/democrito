@@ -9,9 +9,9 @@ The design system ships with a warm, monochromatic palette as the default and tw
 ## Architecture Overview
 
 ```
-index.css          →  CSS custom properties (source of truth)
-src/index.css @theme →  Maps CSS vars to Tailwind utilities
-components/        →  Only use semantic tokens (bg-surface, text-accent, etc.)
+tokens/index.css          →  CSS custom properties (source of truth)
+tokens/index.css @theme   →  Maps CSS vars to Tailwind utilities
+components/               →  Only use semantic tokens (bg-surface, text-accent, etc.)
 ```
 
 Theming flows **one direction**: change variables → everything updates. Components never reference raw colors.
@@ -108,7 +108,7 @@ You can remap these to your own categorical needs — they're used via `text-cat
 
 ### Font Families
 
-Three font stacks in the `@theme` block of `src/index.css`, each with a strict purpose:
+Three font stacks in the `@theme` block of `tokens/index.css`, each with a strict purpose:
 
 ```css
 @theme {

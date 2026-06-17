@@ -33,7 +33,7 @@ Read these bundled files on-demand when you need deeper context:
 
 When generating or reviewing democrito code, apply this order:
 
-1. **Tokens first.** Never hardcode colors, spacing, or radii. Every visual value comes from `src/index.css` CSS custom properties, exposed via the CSS-first `@theme` block in `src/index.css`. Use Tailwind utility classes bound to tokens (`bg-surface`, `text-foreground-muted`, `border-border`) — never `bg-gray-800` or `text-white`.
+1. **Tokens first.** Never hardcode colors, spacing, or radii. Every visual value comes from `tokens/index.css` CSS custom properties, exposed via the CSS-first `@theme` block in `tokens/index.css`. Use Tailwind utility classes bound to tokens (`bg-surface`, `text-foreground-muted`, `border-border`) — never `bg-gray-800` or `text-white`.
 2. **Three-surface hierarchy.** Build depth with `--background` → `--surface` → `--card`, in that order. Inputs must not share a surface with their containing card.
 3. **Three-font system.** `font-display` for headings, `font-body` for prose, `font-mono` for all data, code, user-generated content, and tokens/commands.
 4. **Three-theme compliance.** Every new color token must be defined in all three themes: `:root` (warm, default), `.dark`, and `.light`.
@@ -51,13 +51,13 @@ When generating or reviewing democrito code, apply this order:
 
 | Level | Directory | Description | Examples |
 |---|---|---|---|
-| **Atoms** | `src/components/atoms/` | Single-purpose building blocks | `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text`, `CopyButton`, `CodeBlock` |
-| **Molecules** | `src/components/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState`, `TokenReferenceCard` |
-| **Organisms** | `src/components/organisms/` | Major UI sections | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm` |
-| **Templates** | `src/components/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout` |
+| **Atoms** | `registry/atoms/` | Single-purpose building blocks | `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text`, `CopyButton`, `CodeBlock` |
+| **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState`, `TokenReferenceCard` |
+| **Organisms** | `registry/organisms/` | Major UI sections | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm` |
+| **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout` |
 | **Pages** | `src/pages/` | Route-level components | `DashboardPage`, `LibraryPage`, `SettingsPage`, `AiPage` |
 
-**UI Primitives** (`src/components/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
+**UI Primitives** (`registry/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 
 ---
 
@@ -86,7 +86,7 @@ When generating or reviewing democrito code, apply this order:
 
 | File | Purpose |
 |---|---|
-| `src/index.css` | CSS custom properties + `@theme` block — source of truth for all design tokens |
+| `tokens/index.css` | CSS custom properties + `@theme` block — source of truth for all design tokens |
 | `CLAUDE.md` | Auto-read context file for AI agents working in the repo |
 | `docs/theming.md` | How to customize the system for a specific brand |
 | `CONTRIBUTING.md` | Development workflow and conventions |
