@@ -9,7 +9,7 @@
 > **⚠️ Themeable system.** This is a general-purpose, brandable design system. Before
 > using default token values, check `tokens/index.css` (the `@theme` block) for any
 > custom theme overrides. The accent color, font families, radius, and surface palette
-> may differ from the defaults documented below. See [`docs/theming.md`](docs/theming.md)
+> may differ from the defaults documented below. See [`docs/reference/theming.md`](docs/reference/theming.md)
 > for the full theming guide.
 
 ---
@@ -47,7 +47,7 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 
 ## Design Tokens
 
-> **Full reference:** [`docs/tokens.md`](docs/tokens.md) — colors, typography, spacing, radii, motion.
+> **Full reference:** [`docs/reference/tokens.md`](docs/reference/tokens.md) — colors, typography, spacing, radii, motion.
 
 **Key behavioral rules:**
 - All colors are HSL CSS custom properties in `tokens/index.css`, defined via CSS-first `@theme` in `tokens/index.css`
@@ -112,8 +112,8 @@ Available test commands:
 | File | Purpose |
 |---|---|
 | `tokens/index.css` | CSS custom properties + CSS-first `@theme` — source of truth for all design tokens and Tailwind integration |
-| `docs/theming.md` | How to customize the system for a specific brand or product |
-| `docs/design-system.md` | Full design system specification and component inventory |
+| `docs/reference/theming.md` | How to customize the system for a specific brand or product |
+| `docs/reference/design-system.md` | Full design system specification and component inventory |
 | `DESIGN.md` | Design philosophy and visual language — the "taste layer" for AI agents |
 | `CONTRIBUTING.md` | Development workflow, commit conventions, component creation guide |
 | `CHANGELOG.md` | Version history (Keep a Changelog format) |

@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 
 const tokens = JSON.parse(
-  readFileSync(resolve(__dirname, "../design-tokens.json"), "utf-8")
+  readFileSync(resolve(__dirname, "../tokens/design-tokens.json"), "utf-8")
 );
 
 interface TokenLeaf {

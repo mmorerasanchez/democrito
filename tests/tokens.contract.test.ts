@@ -86,11 +86,11 @@ type ThemeName = typeof THEME_NAMES[number];
  * defined in design-tokens.json have corresponding CSS custom properties in index.css.
  *
  * Note: typography tokens (fontFamily, fontSize) are declared in the @theme block in
- * src/index.css as Tailwind utilities, not as --var properties, so they are excluded.
+ * tokens/index.css as Tailwind utilities, not as --var properties, so they are excluded.
  */
 
 const tokensJson = JSON.parse(
-  readFileSync(resolve(__dirname, "../design-tokens.json"), "utf-8")
+  readFileSync(resolve(__dirname, "../tokens/design-tokens.json"), "utf-8")
 );
 
 const indexCss = readFileSync(resolve(__dirname, "../tokens/index.css"), "utf-8");

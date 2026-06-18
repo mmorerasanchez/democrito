@@ -1,8 +1,7 @@
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-// Prefer tokens/index.css when present; fall back to src/index.css so main branch still builds.
-const cssFile = existsSync(resolve("tokens/index.css")) ? "tokens/index.css" : "src/index.css";
+const cssFile = "tokens/index.css";
 const css = readFileSync(resolve(cssFile), "utf8");
 
 // Match pure HSL-triple values: "H S% L%" (no alpha, no calc, no var())
@@ -103,7 +102,7 @@ const today = new Date().toISOString().split("T")[0];
 
 const out = {
   $schema: "https://design-tokens.github.io/community-group/format/",
-  $description: `Atomic Design System — W3C DTCG format. Auto-generated ${today} from src/index.css.`,
+  $description: `Atomic Design System — W3C DTCG format. Auto-generated ${today} from tokens/index.css.`,
   $version: "1.0.0",
   color: colorGroup,
   dimension: dimensionGroup,
@@ -115,7 +114,7 @@ const out = {
 // Remove undefined keys
 const clean = Object.fromEntries(Object.entries(out).filter(([, v]) => v !== undefined));
 
-writeFileSync(resolve("design-tokens.json"), JSON.stringify(clean, null, 2));
+writeFileSync(resolve("tokens/design-tokens.json"), JSON.stringify(clean, null, 2));
 
 const colorCount = Object.keys(colorGroup).filter((k) => !k.startsWith("$")).length;
 console.log(`✓ design-tokens.json — ${colorCount} color tokens, dimension/zIndex/duration/cubicBezier included`);

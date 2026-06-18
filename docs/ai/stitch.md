@@ -230,7 +230,7 @@ Check if SidebarNav already exists in registry/organisms/ before creating.
 ## Further reading
 
 - [`DESIGN.md`](../DESIGN.md) — democrito's taste layer (the file Stitch reads)
-- [`docs/tokens.md`](./tokens.md) — complete token reference for manual mapping
-- [`docs/theming.md`](./theming.md) — how to override democrito tokens for your product
+- [`docs/reference/tokens.md`](../reference/tokens.md) — complete token reference for manual mapping
+- [`docs/reference/theming.md`](../reference/theming.md) — how to override democrito tokens for your product
 - [Google Stitch DESIGN.md open-source announcement](https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/)
 - [Stitch MCP documentation](https://stitch.withgoogle.com/docs/mcp/setup/)
