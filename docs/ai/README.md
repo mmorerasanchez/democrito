@@ -144,6 +144,6 @@ RULES:
 3. TypeScript with explicit prop interfaces and JSDoc
 4. Extend shadcn/ui primitives, don't rebuild
 5. Prompts are code — all user content uses font-mono
-6. One component per file, PascalCase, barrel index.ts exports
+6. One component per file, PascalCase
 7. Three themes: define any new token in all three (warm/dark/light)
 ```

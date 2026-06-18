@@ -281,8 +281,6 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 
 ### Organisms (19 — public surface)
 
-> 23 prompt-x example organisms + 2 example molecules (TestCaseRow, ScoreBreakdown) live in `src/examples/prompt-x/`. They are full-featured reference implementations and are NOT part of the public democrito surface.
-
 | Name | Base | Status |
 |---|---|---|
 | TopBar | custom | Ready |
@@ -321,26 +319,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 
 ---
 
-## 8. Showcase Pages
-
-The democrito repo is a self-contained design system showcase — no application routes. All pages live in `src/pages/` and are routed via `src/App.tsx` inside `ShowcaseLayout`.
-
-| Route | Page Component | Sidebar Label | Notes |
-|---|---|---|---|
-| `/` | `OverviewPage` | README | Hero, Why/How/What, stats, design principles |
-| `/tokens` | `TokensPage` | Tokens | Full token reference + TokenReferenceCard |
-| `/atoms` | `AtomsPage` | Atoms | Custom atoms + shadcn/ui atoms showcase |
-| `/molecules` | `MoleculesPage` | Molecules | All 17 molecules |
-| `/organisms` | `OrganismsPage` | Organisms | All 19 public organisms |
-| `/pages` | `TemplatesPage` | Layouts | All 7 layout templates |
-| `/ai` | `AiPage` | AI | Install + FileArchitecture + Distribution cards |
-| `/ai/:platform` | `AiDetailPage` | — | Per-platform deep-dive (claude, vibe-coding, github, …) |
-| `/manifesto` | `ManifiestoPage` | MANIFIESTO | Editorial manifesto |
-| `/test/tokens` | `TokenSmokeTest` | — | Dev-only smoke test, not linked in nav |
-
----
-
-## 9. Changelog
+## 8. Changelog
 
 See [CHANGELOG.md](../CHANGELOG.md) for the full version history.
 

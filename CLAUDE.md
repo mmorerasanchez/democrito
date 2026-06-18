@@ -37,11 +37,10 @@ The component library follows **Atomic Design** methodology with five levels:
 | **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState` |
 | **Organisms** | `registry/organisms/` | Major UI sections, may include molecules | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm`, `SidebarNav`, `UserMenu` |
 | **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout`, `DashboardLayout` |
-| **Pages** | `src/pages/` | Route-level components that compose templates + organisms | `OverviewPage`, `AtomsPage`, `MoleculesPage`, `TokensPage`, `AiPage`, `ManifiestoPage` |
 
 **UI Primitives** (`registry/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 
-Each level has a barrel `index.ts` for re-exports. One component per file, PascalCase filenames.
+One component per file, PascalCase filenames.
 
 ---
 
@@ -64,7 +63,7 @@ Each level has a barrel `index.ts` for re-exports. One component per file, Pasca
 1. **Check existing atoms first** — before creating any new component, verify it doesn't already exist in `registry/atoms/`, `registry/molecules/`, or `registry/ui/`.
 2. **Always use design tokens** — never use magic numbers for colors, spacing, or radii. Use Tailwind classes mapped to CSS variables.
 3. **TypeScript with proper prop types** — every component must define an explicit `interface` for its props with JSDoc descriptions.
-4. **Follow existing naming conventions** — PascalCase filenames, one component per file, barrel `index.ts` exports.
+4. **Follow existing naming conventions** — PascalCase filenames, one component per file.
 5. **Use shadcn/ui primitives as the base** — extend via CVA variants in `ui/` components; compose them into atoms/molecules, never rebuild from scratch.
 6. **User-editable content uses `font-mono`** — all code, data values, and user-generated content must use the mono font family.
 7. **Three-theme compliance** — any new color token must be defined in all three themes (`:root` for warm default, `.dark`, `.light`) in `tokens/index.css`.

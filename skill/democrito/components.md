@@ -928,7 +928,7 @@ Labeled slider + numeric input for model parameters.
 
 # Examples: prompt-x molecules
 
-The following molecules live in `src/examples/prompt-x/` and are NOT part of the public molecules barrel. They are full reference implementations for prompt-engineering UIs, importable for projects building on the prompt-x stack.
+The following molecules live in the democrito-site repo and are not part of the public registry. They are full reference implementations for prompt-engineering UIs, importable for projects building on the prompt-x stack.
 
 ## TestCaseRow
 
@@ -959,7 +959,7 @@ Score badge that opens a centered modal with a weighted-rubric breakdown.
 
 > Major UI sections composed of molecules, atoms, and UI primitives.
 > Directory: `registry/organisms/`
-> **19 components · 5 categories**. 23 prompt-x example organisms live in `src/examples/prompt-x/` and are documented at the bottom of this page.
+> **19 components · 5 categories**. 23 prompt-x example organisms are documented in the democrito-site repo and are not part of the public registry.
 
 ---
 
@@ -1453,13 +1453,13 @@ Marketing-page organisms used on the AI overview route (`/ai`). These are site-o
 ✅ Do: Use showcase organisms exclusively on the `/ai` marketing page — they are not part of the application component surface.
 ✅ Do: Keep copy and marketing claims inside these organisms in sync with product reality — they are visible externally.
 ❌ Don't: Never compose showcase organisms into app pages — they are marketing-only components with no application state integration.
-❌ Don't: Never import showcase organisms from the main organisms barrel — they are site-only and intentionally isolated from the public registry.
+❌ Don't: Never import showcase organisms into app pages — they are site-only and intentionally isolated from the public registry.
 
 ---
 
 # Examples: prompt-x organisms
 
-The 23 prompt-x-specific organisms live in `src/examples/prompt-x/`. They are NOT exported from the public registry or the main organisms barrel, but stand as full reference implementations of how to compose democrito atoms into a prompt-engineering UI.
+The 23 prompt-x-specific organisms live in the democrito-site repo. They are not part of the public registry, but stand as full reference implementations of how to compose democrito atoms into a prompt-engineering UI.
 
 | Component | Description |
 |---|---|
