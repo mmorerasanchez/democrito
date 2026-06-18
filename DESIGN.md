@@ -11,8 +11,8 @@
 >
 > **Complements, does not replace:**
 > - `CLAUDE.md` — agent coding rules and project structure
-> - `docs/design-system.md` — full token inventory and component spec
-> - `docs/tokens.md` — exhaustive color/type/spacing reference
+> - `docs/reference/design-system.md` — full token inventory and component spec
+> - `docs/reference/tokens.md` — exhaustive color/type/spacing reference
 >
 > This file is the *taste layer*; those files are the *vocabulary*.
 >
@@ -553,7 +553,7 @@ bg-primary (if not the most important action on screen).
 
 When making a visual decision while working in democrito:
 
-1. Does `docs/design-system.md` already answer this? → Use that.
+1. Does `docs/reference/design-system.md` already answer this? → Use that.
 2. Does the three-surface hierarchy handle the depth? → If no,
    reconsider the layout.
 3. Is a fourth font being introduced? → Stop. Three is the limit.
@@ -575,18 +575,18 @@ and tools. This is how they relate:
 |------|------|----------|
 | `DESIGN.md` (this file) | Design philosophy, visual taste, agent prompt guide | AI agents (Stitch, Claude, Cursor), designers |
 | `CLAUDE.md` | Coding rules, project structure, key files | AI coding agents (Claude Code, Cursor, Windsurf) |
-| `docs/design-system.md` | Full token inventory, component spec, every value | Developers, component authors |
-| `docs/tokens.md` | Color/type/spacing reference with examples | Developers, designers |
-| `docs/theming.md` | How to customize for your brand | Developers adopting democrito |
-| `docs/architecture.md` | Why Atomic Design, folder structure, composition rules | Contributors |
-| `docs/ai-usage.md` | Prompting strategies for each AI tool | AI-assisted developers |
-| `design-tokens.json` | W3C DTCG format tokens | Figma Token Studio, Style Dictionary |
+| `docs/reference/design-system.md` | Full token inventory, component spec, every value | Developers, component authors |
+| `docs/reference/tokens.md` | Color/type/spacing reference with examples | Developers, designers |
+| `docs/reference/theming.md` | How to customize for your brand | Developers adopting democrito |
+| `docs/reference/architecture.md` | Why Atomic Design, folder structure, composition rules | Contributors |
+| `docs/ai/README.md` | Prompting strategies for each AI tool | AI-assisted developers |
+| `tokens/design-tokens.json` | W3C DTCG format tokens | Figma Token Studio, Style Dictionary |
 
 **Resolution order when sources conflict:**
 
 1. `tokens/index.css` — token values (the source of truth)
 2. `DESIGN.md` — philosophy wins on intent questions
-3. `docs/design-system.md` — spec wins on component details
+3. `docs/reference/design-system.md` — spec wins on component details
 4. `CLAUDE.md` — rules win on coding conventions
 5. `docs/` files — extended reference
 

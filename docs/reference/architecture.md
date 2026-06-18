@@ -225,5 +225,5 @@ Tokens ensure that when a theme changes from Dark to Warm, _every_ component ada
 ## Further Reading
 
 - [Design Tokens Reference](./tokens.md) — complete token inventory with values
-- [AI Usage Guide](../ai/ai-usage.md) — how AI tools consume this architecture
+- [AI Usage Guide](../ai/README.md) — how AI tools consume this architecture
 - [Component Inventory](./design-system.md) — full list of every component

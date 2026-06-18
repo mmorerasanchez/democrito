@@ -13,10 +13,20 @@
 | [Architecture](./reference/architecture.md) | Atomic Design decisions and rationale |
 | [Design Tokens](./reference/tokens.md) | Complete tokens reference — colors, typography, spacing, radii, motion |
 | [Theming](./reference/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
-| [AI Usage](./ai/ai-usage.md) | How to use this design system with AI coding tools (Claude, Cursor, Copilot) |
 | [Migration](./reference/migration.md) | How to consume tokens in a new project and migrate from MUI, Chakra, Bootstrap, or Tailwind UI |
 | [Content Guidelines](./guides/content-guidelines.md) | Voice, button labels, empty states, error messages, and AI copy anti-patterns |
-| [AI Context](./ai/ai-context.md) | Agent entry point — reading order, decision hierarchy, and AI bias suppression rules |
+
+## AI Integration
+
+| Document | Description |
+|---|---|
+| [AI Context](./ai/README.md) | Agent entry point — reading order, decision hierarchy, AI bias suppression, compact token reference |
+| [Claude Code / terminal](./ai/terminal.md) | Claude Code setup, skill install, Cowork planning tool |
+| [Lovable](./ai/lovable.md) | GitHub sync, two-tier knowledge architecture, example prompts |
+| [Cursor / Windsurf](./ai/cursor.md) | IDE agent setup — `CLAUDE.md` auto-read, fallback token reference |
+| [Replit / v0 / Bolt](./ai/replit.md) | Web-based tools without filesystem access — paste compact token reference |
+| [Claude Design](./ai/claude-design.md) | Visual generation + handoff to Claude Code |
+| [Google Stitch](./ai/stitch.md) | DESIGN.md import + MCP bridge |
 
 ## Component Reference
 
