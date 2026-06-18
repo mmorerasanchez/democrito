@@ -208,6 +208,10 @@ Before submitting, confirm every item below:
 - Describe **what** you added, **why**, and include a screenshot showing all three themes
 - Reference any related issues
 
+### Generated skill files
+
+The `skill/democrito/` directory contains AI-context files (principles, tokens, components, agent-usage) that are **generated** from `docs/` during `npm run build` via `scripts/sync-skill-docs.mjs`. Edit the canonical source in `docs/`, then rebuild — never edit `skill/democrito/*.md` directly.
+
 ---
 
 ## Design Token Changes
@@ -227,7 +231,7 @@ Design tokens are the foundation of the visual system. Changes to tokens affect 
 1. **Open an issue first** describing the token you want to add, modify, or remove — and why
 2. **Update `tokens/index.css`** — add the CSS custom property in all three theme blocks (`:root`, `.dark`, `.light`)
 3. **Add a `@theme` mapping** in `tokens/index.css` if the token needs a Tailwind utility class
-4. **Update `docs/design-system.md`** to document the new token
+4. **Update `docs/reference/design-system.md`** to document the new token
 5. **Test visually** across all three themes using the theme toggle in the showcase (`/tokens`)
 6. Submit a PR with before/after screenshots showing all three themes
 
