@@ -117,4 +117,4 @@ When making design decisions, check against these questions:
 
 ---
 
-*See [`docs/tokens.md`](./tokens.md) for the full token reference and [`docs/theming.md`](./theming.md) for customization.*
+*See [`docs/reference/tokens.md`](./tokens.md) for the full token reference and [`docs/reference/theming.md`](./theming.md) for customization.*
