@@ -16,8 +16,11 @@ democrito provides three files designed to be read by AI tools:
 | File | Format | Auto-read by | Purpose |
 |---|---|---|---|
 | `CLAUDE.md` | Markdown | Claude Code, Cursor, Windsurf | Coding rules, architecture, key files |
+| `AGENTS.md` | Markdown | Codex, GitHub Copilot, Cursor | Entry point for non-Claude agents; consistent with CLAUDE.md |
 | `DESIGN.md` | Markdown (Stitch-compatible) | Google Stitch, any agent you paste it into | Visual philosophy, token quick-reference, do/don't |
-| `skill/democrito/` | Claude Skill package | Claude Code (via `/skills add`) | On-demand principles, tokens, component inventory |
+| `skill/democrito/` | Claude Skill package | Claude Code (via `cp -R skill/democrito ~/.claude/skills/`) | On-demand principles, tokens, component inventory |
+
+> **Precedence:** `CLAUDE.md` takes priority for Claude Code; `AGENTS.md` is the equivalent entry point for other agents. Both files are kept in sync — `AGENTS.md` defers to `CLAUDE.md` for the full context.
 
 The compact token reference at the bottom of this file works for tools that need manual context (v0, Bolt, ChatGPT, etc.).
 

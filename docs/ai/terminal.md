@@ -25,7 +25,7 @@ The skill gives Claude Code on-demand access to the full token reference, compon
 inventory, and principles — without embedding everything in CLAUDE.md:
 
 ```
-/skills add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md
+cp -R skill/democrito ~/.claude/skills/
 ```
 
 Invoke in session: `Use the democrito skill` or reference it directly in prompts.
@@ -91,7 +91,7 @@ inventory checks.
 
 ### What Cowork is good for with democrito
 
-- Auditing the component inventory against the 11/18/19/7 atomic split
+- Auditing the component inventory against the atomic split
 - Planning Claude Code sessions (what to build, in what order)
 - Writing and reviewing documentation (docs/ updates, Notion mirrors)
 - Token consistency checks across themes

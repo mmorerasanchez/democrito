@@ -71,7 +71,7 @@ shadow-based depth for static elements.
 
 | Role | Token | Dark | Light | Warm | Usage |
 |------|-------|------|-------|------|-------|
-| Page | `--background` | `20 14% 4%` | `30 5% 96%` | `30 18% 91%` | Outermost page surface |
+| Page | `--background` | `20 14% 4%` | `30 6% 93%` | `30 18% 91%` | Outermost page surface |
 | Panel | `--surface` | `20 8% 8%` | `40 6% 97%` | `40 15% 94%` | Sidebars, headers, sticky regions |
 | Elevated | `--card` | `12 6% 15%` | `40 8% 99%` | `30 25% 97%` | Cards, modals, popovers, dialogs |
 
@@ -133,6 +133,8 @@ Dark is the theme most associated with democrito's visual identity in
 screenshots — the default in code is not the default in people's heads.
 When generating UI for democrito, default to Dark for demonstrations
 unless the context specifies otherwise.
+
+**Precedence:** code default = Warm (`:root`); demo/screenshot default = Dark; when unsure, use Warm.
 
 ---
 
@@ -626,7 +628,7 @@ Applied via `.dark` class.
 ### Light
 
 Warm off-whites with the same terracotta accent. Background is warm
-cream (`30 5% 96%`), not pure white. Cards are near-white
+cream (`30 6% 93%`), not pure white. Cards are near-white
 (`40 8% 99%`). Text is dark warm gray (`24 10% 10%`).
 Applied via `.light` class.
 

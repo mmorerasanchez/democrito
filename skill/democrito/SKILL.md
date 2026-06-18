@@ -51,10 +51,10 @@ When generating or reviewing democrito code, apply this order:
 
 | Level | Directory | Description | Examples |
 |---|---|---|---|
-| **Atoms** | `registry/atoms/` | Single-purpose building blocks | `Heading`, `Tag`, `Spinner`, `Code`, `Kbd`, `Link`, `Text`, `CopyButton`, `CodeBlock` |
+| **Atoms** | `registry/atoms/` | Single-purpose building blocks | `Code`, `CodeBlock`, `CopyButton`, `Heading`, `Kbd`, `Link`, `Logo`, `Spinner`, `StatusBadge`, `Tag`, `Text` |
 | **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState`, `TokenReferenceCard` |
-| **Organisms** | `registry/organisms/` | Major UI sections | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm` |
-| **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout` |
+| **Organisms** | `registry/organisms/` | Major UI sections | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm`, `SidebarNav`, `UserMenu` |
+| **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout`, `DashboardLayout` |
 
 **UI Primitives** (`registry/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 

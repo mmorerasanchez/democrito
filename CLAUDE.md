@@ -33,8 +33,8 @@ The component library follows **Atomic Design** methodology with five levels:
 
 | Level | Directory | Description | Examples |
 |---|---|---|---|
-| **Atoms** | `registry/atoms/` | Smallest building blocks — single-purpose, no child components | `Heading`, `Tag`, `Spinner`, `Code`, `CodeBlock`, `Kbd`, `Link`, `Logo`, `StatusBadge`, `Text` |
-| **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState` |
+| **Atoms** | `registry/atoms/` | Smallest building blocks — single-purpose, no child components | `Code`, `CodeBlock`, `CopyButton`, `Heading`, `Kbd`, `Link`, `Logo`, `Spinner`, `StatusBadge`, `Tag`, `Text` |
+| **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState`, `TokenReferenceCard` |
 | **Organisms** | `registry/organisms/` | Major UI sections, may include molecules | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm`, `SidebarNav`, `UserMenu` |
 | **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout`, `DashboardLayout` |
 
@@ -74,7 +74,7 @@ One component per file, PascalCase filenames.
 
 ## Git Workflow
 
-**Internal changes commit directly to `main`.** No feature branches, no PRs.
+**Every change must go on a branch** (`<type>/<issue#>-<desc>`), open a PR, and wait for review — never commit directly to `main`, never self-merge.
 
 Commit message format: `<type>(<scope>): <description>` — lowercase, imperative mood, no trailing period, ≤72 chars.
 
@@ -82,7 +82,7 @@ Types: `feat fix docs style refactor chore perf test`
 
 Scopes map to layers: `tokens atoms molecules organisms templates ui theme deps pages`
 
-External contributors follow `CONTRIBUTING.md` (feature branches → PR → review).
+See `CONTRIBUTING.md` for the full branch and PR workflow.
 
 ---
 

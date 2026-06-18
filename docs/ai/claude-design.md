@@ -222,7 +222,7 @@ onboarding. If you update your token overrides, re-run the design system import.
 
 ## Further reading
 
-- [`DESIGN.md`](../DESIGN.md) — the taste layer Claude Design reads
+- [`DESIGN.md`](../../DESIGN.md) — the taste layer Claude Design reads
 - [`tokens/index.css`](../tokens/index.css) — the CSS custom properties and `@theme` block
 - [`docs/reference/theming.md`](../reference/theming.md) — how to customize democrito tokens for your product
 - [`docs/reference/tokens.md`](../reference/tokens.md) — complete color/type/spacing reference
