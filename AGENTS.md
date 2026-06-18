@@ -4,7 +4,7 @@
 > here are consistent with `CLAUDE.md`; read that file for the full context.
 >
 > **For Codex, GitHub Copilot, Cursor, and other agents:** this file is your entry
-> point. Read `docs/ai/ai-context.md` for the AI-specific bias table before touching
+> point. Read `docs/ai/README.md` for the AI-specific bias table before touching
 > any component.
 
 democrito is a general-purpose, themeable Atomic Design System built on
@@ -167,8 +167,8 @@ Classify a component before writing it. If you can't classify it, don't build it
 |---|---|
 | `tokens/index.css` | All design tokens — CSS custom properties + Tailwind `@theme` block |
 | `CLAUDE.md` | Full AI agent context (Claude Code) |
-| `docs/ai/ai-context.md` | Reading order + AI bias table (read first) |
-| `docs/tokens.md` | Full token reference |
-| `docs/theming.md` | How to customize for a specific brand |
-| `docs/design-system.md` | Full component inventory |
+| `docs/ai/README.md` | Reading order + AI bias table (read first) |
+| `docs/reference/tokens.md` | Full token reference |
+| `docs/reference/theming.md` | How to customize for a specific brand |
+| `docs/reference/design-system.md` | Full component inventory |
 | `CONTRIBUTING.md` | Commit conventions, branch naming, component creation guide |

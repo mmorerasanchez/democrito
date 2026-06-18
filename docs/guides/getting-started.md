@@ -225,7 +225,7 @@ For a complete theming guide with real-world examples, see [Theming](./theming.m
 | [Theming Guide](./theming.md) | Customize democrito for your brand — full examples included |
 | [Architecture](./architecture.md) | Atomic Design rationale and component composition rules |
 | [Migration Guide](./migration.md) | Switching from MUI, Chakra, Bootstrap, or Tailwind UI |
-| [AI Usage Guide](../ai/ai-usage.md) | Using democrito with Lovable, Cursor, Claude Code, v0 |
+| [AI Usage Guide](../ai/README.md) | Using democrito with Lovable, Cursor, Claude Code, v0 |
 | [Live Demo](https://democrito.design/) | Interactive token reference and component showcase |
 
 ---
@@ -328,7 +328,7 @@ Read [CONTRIBUTING.md](../CONTRIBUTING.md) for:
 | [Architecture](./architecture.md) | Atomic Design decisions, layer descriptions, composition rules |
 | [Design Tokens](./tokens.md) | Token inventory with hex values, theme definitions |
 | [Theming](../reference/theming.md) | Brand customization — palette, fonts, spacing, real examples |
-| [AI Usage](../ai/ai-usage.md) | Prompting strategies for Lovable, Cursor, Claude Code, v0 |
+| [AI Usage](../ai/README.md) | Prompting strategies for Lovable, Cursor, Claude Code, v0 |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | Development setup, commit conventions, component creation |
 | [CLAUDE.md](../CLAUDE.md) | AI agent context — auto-read by Claude Code, Cursor |
 | [design-system.md](../reference/design-system.md) | Complete spec — component inventory, tokens, rules |
