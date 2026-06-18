@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve, join } from "node:path";
 
 const root = resolve(".");
@@ -26,12 +26,10 @@ function countThemeTokens(cssPath) {
   return count;
 }
 
-// Prefer registry/ + tokens/ when present; fall back to src/ so main branch still builds.
 function tierDir(tier) {
-  const registryPath = `registry/${tier}`;
-  return existsSync(join(root, registryPath)) ? registryPath : `src/components/${tier}`;
+  return `registry/${tier}`;
 }
-const cssPath = existsSync(join(root, "tokens/index.css")) ? "tokens/index.css" : "src/index.css";
+const cssPath = "tokens/index.css";
 
 const atoms     = countTsx(tierDir("atoms"));
 const molecules = countTsx(tierDir("molecules"));

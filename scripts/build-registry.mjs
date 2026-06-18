@@ -342,7 +342,7 @@ if (REGISTRY_URL) {
 const existingRegistry = JSON.parse(readFile("registry.json"));
 const [baseItem, warmItem] = existingRegistry.items;
 
-// Update: baseColor stone → slate; meta.version 3.2.1 → 3.5.0; file path src/ → registry/
+// Base item: lock baseColor=slate, version=3.5.0, path=registry/lib/utils.ts
 const updatedBaseItem = {
   ...baseItem,
   baseColor: "slate",

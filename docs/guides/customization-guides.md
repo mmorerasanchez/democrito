@@ -497,4 +497,4 @@ Every guide above follows the same five steps regardless of how different the ou
 
 ---
 
-> See also: [`docs/theming.md`](theming.md) for the full token reference, [`docs/tokens.md`](tokens.md) for exhaustive color/type/spacing values, and [`DESIGN.md`](../DESIGN.md) for the taste layer philosophy.
+> See also: [`docs/reference/theming.md`](../reference/theming.md) for the full token reference, [`docs/reference/tokens.md`](../reference/tokens.md) for exhaustive color/type/spacing values, and [`DESIGN.md`](../DESIGN.md) for the taste layer philosophy.

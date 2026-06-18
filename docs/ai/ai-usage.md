@@ -111,7 +111,7 @@ onboarding reads to learn your system.
 ### Quick setup
 
 1. Open [claude.ai/design](https://claude.ai/design)
-2. During onboarding, import: `DESIGN.md`, `tokens/index.css`, and `docs/design-system.md`
+2. During onboarding, import: `DESIGN.md`, `tokens/index.css`, and `docs/reference/design-system.md`
 3. Claude Design stores your system and applies it to every project automatically
 
 ### Handoff to Claude Code
@@ -141,7 +141,7 @@ In your Cowork project instructions, include a brief democrito context block:
 This project is democrito — a React + TypeScript + Tailwind v4 atomic design
 system. Source is at the repo root (democrito/).
 Key files: CLAUDE.md (coding rules), DESIGN.md (visual philosophy),
-docs/ (documentation), docs/design-system.md (component inventory).
+docs/ (documentation), docs/reference/design-system.md (component inventory).
 The democrito skill is available — use it for token lookups and component
 inventory checks.
 ```
@@ -423,6 +423,6 @@ RULES:
 - [`DESIGN.md`](../DESIGN.md) — design philosophy and agent prompt guide
 - [`docs/claude-design.md`](./claude-design.md) — full Claude Design setup guide
 - [`docs/stitch.md`](./stitch.md) — full Google Stitch integration guide
-- [`docs/tokens.md`](./tokens.md) — complete token inventory with hex values
-- [`docs/theming.md`](./theming.md) — how to customize democrito for your product
-- [`docs/architecture.md`](./architecture.md) — why Atomic Design, composition rules
+- [`docs/reference/tokens.md`](../reference/tokens.md) — complete token inventory with hex values
+- [`docs/reference/theming.md`](../reference/theming.md) — how to customize democrito for your product
+- [`docs/reference/architecture.md`](../reference/architecture.md) — why Atomic Design, composition rules

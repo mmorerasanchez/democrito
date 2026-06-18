@@ -100,7 +100,7 @@ After editing `tokens/index.css`, regenerate the DTCG JSON:
 npm run build   # runs generate-tokens + generate-counts + stamp-design-date + build-registry
 ```
 
-Full theming guide: [`docs/theming.md`](docs/theming.md)
+Full theming guide: [`docs/reference/theming.md`](docs/reference/theming.md)
 
 ---
 
@@ -161,9 +161,9 @@ democrito publishes a machine-readable manifest at `/.well-known/mcp.json` and n
 | Resource | Description |
 | --- | --- |
 | [Live Showcase](https://democrito.design) | Interactive component gallery and theme playground |
-| [`docs/theming.md`](docs/theming.md) | Retheme guide — palette, fonts, spacing, full examples |
-| [`docs/design-system.md`](docs/design-system.md) | Full component inventory, token reference, usage rules |
-| [`design-tokens.json`](design-tokens.json) | W3C DTCG tokens for Figma Token Studio, Style Dictionary |
+| [`docs/reference/theming.md`](docs/reference/theming.md) | Retheme guide — palette, fonts, spacing, full examples |
+| [`docs/reference/design-system.md`](docs/reference/design-system.md) | Full component inventory, token reference, usage rules |
+| [`tokens/design-tokens.json`](tokens/design-tokens.json) | W3C DTCG tokens for Figma Token Studio, Style Dictionary |
 | [`CLAUDE.md`](CLAUDE.md) | AI agent context — auto-read by Claude Code and compatible tools |
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history |
 
@@ -171,7 +171,11 @@ democrito publishes a machine-readable manifest at `/.well-known/mcp.json` and n
 
 ## License & Usage
 
-MIT — see [LICENSE](LICENSE) for the license and [USAGE.md](USAGE.md) for usage terms, attribution guidance, and the paid kit license summary.
+MIT — see [LICENSE](LICENSE). Free to use in any project, commercial or personal. The Claude Skill and `DESIGN.md` follow the same MIT terms.
+
+Paid brand-fit kits sold via [democrito.design](https://democrito.design) are licensed for use by the purchaser's company only and may not be redistributed.
+
+Questions: [hola@atomic-products.com](mailto:hola@atomic-products.com)
 
 ---
 

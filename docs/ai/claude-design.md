@@ -24,7 +24,7 @@ democrito ships exactly what Claude Design needs:
 |---|---|
 | `DESIGN.md` | Visual philosophy, surface hierarchy, typography rules, do/don't list |
 | `tokens/index.css` (`@theme` block) | Every CSS custom property — colors, radii, spacing, fonts |
-| `docs/design-system.md` | Component inventory, usage rules, font matrix |
+| `docs/reference/design-system.md` | Component inventory, usage rules, font matrix |
 
 The result: Claude Design knows to use `bg-surface` not `bg-gray-800`, `font-mono`
 for all data values, terracotta not generic blue, and never a fourth surface level.
@@ -42,14 +42,14 @@ your codebase. Point it at these three files:
 2. **`tokens/index.css`** — the token layer. The `@theme` block contains all CSS
    custom properties. Claude Design extracts color roles, radii, spacing tokens,
    and font stack from here.
-3. **`docs/design-system.md`** — the vocabulary. Component inventory, font usage
+3. **`docs/reference/design-system.md`** — the vocabulary. Component inventory, font usage
    matrix, and the principles summary.
 
 **If you've customized democrito for your product** (overridden tokens in `:root`),
 point Claude Design at your overridden `tokens/index.css` rather than democrito's
 defaults. Claude Design reads the actual CSS values, not the variable names.
 
-**Optional:** also provide `docs/tokens.md` for the exhaustive color/type/spacing
+**Optional:** also provide `docs/reference/tokens.md` for the exhaustive color/type/spacing
 reference with semantic role descriptions for each token.
 
 ---
@@ -224,6 +224,6 @@ onboarding. If you update your token overrides, re-run the design system import.
 
 - [`DESIGN.md`](../DESIGN.md) — the taste layer Claude Design reads
 - [`tokens/index.css`](../tokens/index.css) — the CSS custom properties and `@theme` block
-- [`docs/theming.md`](./theming.md) — how to customize democrito tokens for your product
-- [`docs/tokens.md`](./tokens.md) — complete color/type/spacing reference
+- [`docs/reference/theming.md`](../reference/theming.md) — how to customize democrito tokens for your product
+- [`docs/reference/tokens.md`](../reference/tokens.md) — complete color/type/spacing reference
 - [Claude Design help center](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design)

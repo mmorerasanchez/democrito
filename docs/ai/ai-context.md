@@ -30,7 +30,7 @@ Never place an organism inside another organism.
 - Colors: CSS custom properties only. Never hardcode hex values.
 - Typography: `font-display` for titles and button labels, `font-body` for prose and descriptions,
   `font-mono` for ALL user-editable content, data values, and code
-- Spacing: use the spacing scale from `docs/tokens.md` — check pattern-level spacing rules
+- Spacing: use the spacing scale from `docs/reference/tokens.md` — check pattern-level spacing rules
   in `docs/patterns/` for specific element-to-element distances
 
 **Step 5 — Apply content rules**
