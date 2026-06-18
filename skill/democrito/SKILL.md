@@ -55,7 +55,6 @@ When generating or reviewing democrito code, apply this order:
 | **Molecules** | `registry/molecules/` | Compositions of 2+ atoms | `FormField`, `SearchBar`, `StatCard`, `TokenCounter`, `TabNav`, `EmptyState`, `TokenReferenceCard` |
 | **Organisms** | `registry/organisms/` | Major UI sections | `TopBar`, `DataTable`, `FilterBar`, `DashboardStats`, `AuthForm` |
 | **Templates** | `registry/templates/` | Page layout shells — no business logic | `AppShell`, `EditorLayout`, `LibraryLayout`, `DetailLayout` |
-| **Pages** | `src/pages/` | Route-level components | `DashboardPage`, `LibraryPage`, `SettingsPage`, `AiPage` |
 
 **UI Primitives** (`registry/ui/`) are shadcn/ui components — extend via CVA variants, never modify directly.
 
@@ -65,7 +64,7 @@ When generating or reviewing democrito code, apply this order:
 
 1. **Check existing components first** — verify the component doesn't already exist in `atoms/`, `molecules/`, or `ui/` before creating anything new.
 2. **TypeScript with explicit prop interfaces** — every component must declare an `interface` for its props with JSDoc descriptions.
-3. **PascalCase filenames, one component per file, barrel `index.ts` exports.**
+3. **PascalCase filenames, one component per file.**
 4. **Extend shadcn/ui primitives via CVA variants** — compose them into atoms/molecules, never rebuild from scratch.
 5. **User-editable content uses `font-mono`** — all code, data values, and user-generated content.
 6. **Semantic color only** — use `bg-card`, `text-muted-foreground`, `border-border`. Never `bg-gray-800` or `text-white`.

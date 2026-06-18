@@ -172,22 +172,13 @@ export function YourComponent({ label, variant = "default", onAction }: YourComp
 
 ### 5. Write tests
 
-Add a test file alongside your component or in `src/test/`:
+Add a test file alongside your component or in `tests/`:
 
 ```bash
 npm test
 ```
 
-### 6. Update the barrel export
-
-Add your component to the layer's `index.ts`:
-
-```ts
-// registry/<level>/index.ts
-export { YourComponent } from "./YourComponent";
-```
-
-### 7. Pre-PR checklist
+### 6. Pre-PR checklist
 
 Before submitting, confirm every item below:
 
@@ -197,12 +188,10 @@ Before submitting, confirm every item below:
 - [ ] Theme-aware: visually verified in all three themes (Warm, Dark, Light) using the theme toggle on `/tokens`
 - [ ] Responsive: tested at 375px, 768px, and 1280px viewport widths
 - [ ] Accessible: keyboard navigable, `aria-label` added where icon-only or ambiguous
-- [ ] Exported from the layer's `index.ts` barrel file
-- [ ] Added to the showcase page for its layer (`src/pages/<layer>Page.tsx`)
-- [ ] Test file added or updated in `src/test/` (run `npm test` to verify passing)
+- [ ] Test file added or updated in `tests/` (run `npm test` to verify passing)
 - [ ] Entry added to `docs/components/<layer>.md`
 
-### 8. Submit a pull request
+### 7. Submit a pull request
 
 - Use a clear title following the commit convention: `feat(molecules): add CopyButton molecule`
 - Describe **what** you added, **why**, and include a screenshot showing all three themes

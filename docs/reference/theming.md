@@ -124,7 +124,7 @@ Three font stacks in the `@theme` block of `tokens/index.css`, each with a stric
 | Body | `font-body` | Paragraphs, descriptions, helper text |
 | Mono | `font-mono` | Data values, code, user-generated content, table headers |
 
-**To rebrand:** Replace the font names in the `@theme { --font-*: }` entries and the `@import` statements at the top of `src/index.css`. The class names (`font-display`, etc.) stay the same — components don't change.
+**To rebrand:** Replace the font names in the `@theme { --font-*: }` entries and the `@import` statements at the top of `tokens/index.css`. The class names (`font-display`, etc.) stay the same — components don't change.
 
 ### Type Scale
 
@@ -232,7 +232,7 @@ A data-heavy dashboard with a cool-toned palette and tight spacing.
 ```
 
 ```css
-/* src/index.css — @theme font overrides */
+/* tokens/index.css — @theme font overrides */
 @theme {
   --font-display: "Inter", system-ui, sans-serif;
   --font-body:    "Inter", system-ui, sans-serif;
@@ -290,7 +290,7 @@ A friendly, spacious consumer product with a green accent.
 ```
 
 ```css
-/* src/index.css — @theme font overrides */
+/* tokens/index.css — @theme font overrides */
 @theme {
   --font-display: "DM Sans", system-ui, sans-serif;
   --font-body:    "DM Sans", system-ui, sans-serif;
@@ -315,7 +315,7 @@ A friendly, spacious consumer product with a green accent.
 
 1. **Pick your accent color** — one hue that defines your brand. Set `--accent`, `--accent-muted`, `--accent-subtle`.
 2. **Set your surface scale** — three HSL values with increasing lightness (dark themes) or decreasing saturation (light themes).
-3. **Choose your fonts** — update `@import` and the `@theme { --font-*: }` entries in `src/index.css`.
+3. **Choose your fonts** — update `@import` and the `@theme { --font-*: }` entries in `tokens/index.css`.
 4. **Tune radius** — set `--radius` once; all components inherit.
 5. **Adjust semantics** — shift success/warning/error/info hues to harmonize with your palette temperature.
 6. **Test all three layers** — background, surface, and card should feel like a natural depth progression.

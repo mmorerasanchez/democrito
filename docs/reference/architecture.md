@@ -40,8 +40,7 @@ registry/
 │   ├── Spinner.tsx
 │   ├── StatusBadge.tsx
 │   ├── Tag.tsx
-│   ├── Text.tsx
-│   └── index.ts     # Barrel export
+│   └── Text.tsx
 │
 ├── molecules/       # Level 2 — Compositions of 2+ atoms
 │   ├── ActivityFeedItem.tsx
@@ -60,8 +59,7 @@ registry/
 │   ├── TokenCounter.tsx
 │   ├── TokenReferenceCard.tsx
 │   ├── VariableEditorRow.tsx
-│   ├── VariableHighlight.tsx
-│   └── index.ts
+│   └── VariableHighlight.tsx
 │
 ├── organisms/       # Level 3 — Major UI sections
 │   ├── APIDocPanel.tsx
@@ -82,8 +80,7 @@ registry/
 │   ├── SettingsNav.tsx
 │   ├── SidebarNav.tsx
 │   ├── TopBar.tsx
-│   ├── UserMenu.tsx
-│   └── index.ts
+│   └── UserMenu.tsx
 │
 ├── templates/       # Level 4 — Page layout shells (no business logic)
 │   ├── AppShell.tsx
@@ -92,8 +89,7 @@ registry/
 │   ├── DetailLayout.tsx
 │   ├── EditorLayout.tsx
 │   ├── LibraryLayout.tsx
-│   ├── TemplatePreview.tsx
-│   └── index.ts
+│   └── TemplatePreview.tsx
 │
 ├── ui/              # shadcn/ui base primitives (see below)
 │   ├── button.tsx
@@ -101,27 +97,6 @@ registry/
 │   ├── dialog.tsx
 │   └── ...
 │
-src/pages/           # Level 5 — Route-level components
-    ├── AiPage.tsx
-    ├── AiDetailPage.tsx
-    ├── AtomsPage.tsx
-    ├── ManifiestoPage.tsx
-    ├── MoleculesPage.tsx
-    ├── OrganismsPage.tsx
-    ├── TemplatesPage.tsx
-    ├── TokensPage.tsx
-    ├── NotFound.tsx
-    └── ...
-```
-
-Each directory contains an `index.ts` barrel file for clean imports:
-
-```ts
-// Consumer code
-import { Heading, Tag, Spinner } from "@/components/atoms";
-import { StatCard, SearchBar } from "@/components/molecules";
-import { TopBar, DataTable } from "@/components/organisms";
-import { AppShell } from "@/components/templates";
 ```
 
 ---

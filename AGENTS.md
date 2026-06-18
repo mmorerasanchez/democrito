@@ -155,7 +155,6 @@ perf(theme): reduce CSS custom property count by 12
 | Molecules | `registry/molecules/` | Compositions of 2+ atoms |
 | Organisms | `registry/organisms/` | Major UI sections — never nest organisms |
 | Templates | `registry/templates/` | Layout shells — no business logic |
-| Pages | `src/pages/` | Route-level, composes templates + organisms |
 
 Classify a component before writing it. If you can't classify it, don't build it yet.
 

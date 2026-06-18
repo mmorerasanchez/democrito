@@ -298,9 +298,8 @@ Read [CONTRIBUTING.md](../CONTRIBUTING.md) for:
 3. Use only semantic design tokens — never hardcode colors
 4. Follow the three-font typography system
 5. Extend shadcn/ui primitives via CVA variants
-6. Update the barrel export (`index.ts`)
-7. Write tests if adding a component
-8. Submit a PR with a clear description
+6. Write tests if adding a component
+7. Submit a PR with a clear description
 
 ### Design Rules for Contributors
 

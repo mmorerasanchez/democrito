@@ -477,7 +477,7 @@ Labeled slider + numeric input for model parameters.
 
 # Examples: prompt-x molecules
 
-The following molecules live in [`src/examples/prompt-x/`](../../src/examples/prompt-x/) and are NOT part of the public molecules barrel. They are full reference implementations for prompt-engineering UIs, importable for projects building on the prompt-x stack.
+The following molecules live in the democrito-site repo and are not part of the public registry. They are full reference implementations for prompt-engineering UIs, importable for projects building on the prompt-x stack.
 
 ## TestCaseRow
 
