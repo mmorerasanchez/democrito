@@ -18,8 +18,11 @@ democrito provides three files designed to be read by AI tools:
 | File | Format | Auto-read by | Purpose |
 |---|---|---|---|
 | `CLAUDE.md` | Markdown | Claude Code, Cursor, Windsurf | Coding rules, architecture, key files |
+| `AGENTS.md` | Markdown | Codex, GitHub Copilot, Cursor | Entry point for non-Claude agents; consistent with CLAUDE.md |
 | `DESIGN.md` | Markdown (Stitch-compatible) | Google Stitch, any agent you paste it into | Visual philosophy, token quick-reference, do/don't |
-| `skill/democrito/` | Claude Skill package | Claude Code (via `/skills add`) | On-demand principles, tokens, component inventory |
+| `skill/democrito/` | Claude Skill package | Claude Code (via `cp -R skill/democrito ~/.claude/skills/`) | On-demand principles, tokens, component inventory |
+
+> **Precedence:** `CLAUDE.md` takes priority for Claude Code; `AGENTS.md` is the equivalent entry point for other agents. Both files are kept in sync — `AGENTS.md` defers to `CLAUDE.md` for the full context.
 
 The compact token reference at the bottom of this file works for tools that need manual context (v0, Bolt, ChatGPT, etc.).
 
@@ -180,7 +183,7 @@ The skill gives Claude Code on-demand access to the full token reference, compon
 inventory, and principles — without embedding everything in CLAUDE.md:
 
 ```
-/skills add https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md
+cp -R skill/democrito ~/.claude/skills/
 ```
 
 Invoke in session: `Use the democrito skill` or reference it directly in prompts.
@@ -246,7 +249,7 @@ inventory checks.
 
 ### What Cowork is good for with democrito
 
-- Auditing the component inventory against the 11/18/19/7 atomic split
+- Auditing the component inventory against the atomic split
 - Planning Claude Code sessions (what to build, in what order)
 - Writing and reviewing documentation (docs/ updates, Notion mirrors)
 - Token consistency checks across themes
