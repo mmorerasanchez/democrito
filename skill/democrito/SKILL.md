@@ -88,7 +88,7 @@ When generating or reviewing democrito code, apply this order:
 |---|---|
 | `tokens/index.css` | CSS custom properties + `@theme` block — source of truth for all design tokens |
 | `CLAUDE.md` | Auto-read context file for AI agents working in the repo |
-| `docs/theming.md` | How to customize the system for a specific brand |
+| `docs/reference/theming.md` | How to customize the system for a specific brand |
 | `CONTRIBUTING.md` | Development workflow and conventions |
 
 ---
