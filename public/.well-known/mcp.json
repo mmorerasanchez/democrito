@@ -6,7 +6,8 @@
     "llms_txt":      "https://democrito.design/llms.txt",
     "llms_full_txt": "https://democrito.design/llms-full.txt",
     "claude_skill":  "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/skill/democrito/SKILL.md",
-    "claude_md":     "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/CLAUDE.md"
+    "claude_md":     "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/CLAUDE.md",
+    "design_system": "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/docs/reference/design-system.md"
   },
   "distribution": {
     "shadcn_registry": "https://raw.githubusercontent.com/mmorerasanchez/democrito/main/registry.json",
