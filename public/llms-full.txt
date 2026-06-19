@@ -8,7 +8,7 @@ Repo: https://github.com/mmorerasanchez/democrito
 
 ## Stack
 
-React 18, TypeScript, Tailwind CSS 4.2, shadcn/ui, Vite
+React 18, TypeScript, Tailwind CSS v4, shadcn/ui, Radix UI
 
 ## Install
 
@@ -23,18 +23,20 @@ Via git clone:
 - CLAUDE.md             — coding rules and architecture summary
 - AGENTS.md             — cross-tool agent context (Cursor, Copilot, Codex)
 - DESIGN.md             — visual philosophy and taste layer
-- docs/design-system.md  — full component inventory and specification
-- docs/tokens.md        — full token reference
-- docs/theming.md       — theme customization guide
-- docs/architecture.md  — atomic design architecture
-- /.well-known/mcp.json — AI agent discovery manifest
+- docs/reference/design-system.md — full component inventory and specification
+  103 components — 11 atoms · 18 molecules · 19 organisms · 7 templates · 48 ui primitives.
+- skill/democrito/             — installable Claude Skill (tokens, components, conventions)
+- docs/reference/tokens.md    — full token reference
+- docs/reference/theming.md   — theme customization guide
+- docs/reference/architecture.md — atomic design architecture
+- /.well-known/mcp.json       — AI agent discovery manifest
 
 ## Architecture — Atomic Design
 
 | Level      | Directory                    | Count |
 |------------|------------------------------|-------|
 | Atoms      | registry/atoms/              | 11    |
-| Molecules  | registry/molecules/          | 17    |
+| Molecules  | registry/molecules/          | 18    |
 | Organisms  | registry/organisms/          | 19    |
 | Templates  | registry/templates/          | 7     |
 
