@@ -27,6 +27,11 @@ jobs:
       - name: Build (registry + tokens)
         run: npm run build
 
+      - name: Check generated artifacts are committed (no drift)
+        run: |
+          git diff --exit-code -- registry.json "public/r" tokens/design-tokens.json skill/democrito \
+            || (echo "::error::Generated artifacts are stale — run 'npm run build' and commit the result." && exit 1)
+
       - name: Type-check
         run: npx tsc -p tsconfig.app.json --noEmit
 
