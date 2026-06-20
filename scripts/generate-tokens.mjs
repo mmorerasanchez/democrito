@@ -98,11 +98,9 @@ for (const [k, v] of Object.entries(rootAll)) {
   }
 }
 
-const today = new Date().toISOString().split("T")[0];
-
 const out = {
   $schema: "https://design-tokens.github.io/community-group/format/",
-  $description: `Atomic Design System — W3C DTCG format. Auto-generated ${today} from tokens/index.css.`,
+  $description: "Atomic Design System — W3C DTCG format. Auto-generated from tokens/index.css.",
   $version: "1.0.0",
   color: colorGroup,
   dimension: dimensionGroup,
