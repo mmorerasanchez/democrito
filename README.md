@@ -8,7 +8,7 @@
 
 **democrito** is a general-purpose, themeable atomic design system for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and developer workspaces.
 
-103 components across five atomic layers, 48 shadcn/ui primitives, three themes (warm/dark/light), a three-font semantic typography hierarchy, and a CSS custom-property token architecture designed to be forked, rethemed, and kept consistent by AI agents.
+103 components across five layers (including 48 shadcn/ui primitives), three themes (warm/dark/light), a three-font semantic typography hierarchy, and a CSS custom-property token architecture designed to be forked, rethemed, and kept consistent by AI agents.
 
 [🌐 Live Showcase](https://democrito.design) · [📦 GitHub](https://github.com/mmorerasanchez/democrito)
 
@@ -151,6 +151,7 @@ democrito publishes a machine-readable manifest at `/.well-known/mcp.json` and n
 | **Monochromatic + Accent** | 95% neutral grays, single accent hue, semantic feedback colors only |
 | **3-Surface Hierarchy** | `--background` → `--surface` → `--card` creates depth without complexity |
 | **Typography as Hierarchy** | Three fonts convey meaning: Display (titles), Body (content), Mono (data/code) |
+| **Progressive Disclosure** | Start with the lightest variant, add complexity as needed. |
 | **IDE-Inspired** | Clean, distraction-free workspace optimized for data-dense work |
 | **Accessible by Default** | WCAG 2.1 AA, 44×44px touch targets, keyboard navigation |
 
