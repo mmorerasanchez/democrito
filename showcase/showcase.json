@@ -24,15 +24,29 @@
       "body": "Satoshi, Outfit, Inter, system-ui, sans-serif",
       "mono": "\"JetBrains Mono\", \"IBM Plex Mono\", Consolas, monospace"
     },
-    "themes": [":root/.warm", ".dark", ".light"],
-    "components": { "atoms": 11, "molecules": 18, "organisms": 19, "templates": 7, "ui": 48, "total": 103 }
+    "themes": [
+      ":root/.warm",
+      ".dark",
+      ".light"
+    ],
+    "components": {
+      "atoms": 11,
+      "molecules": 18,
+      "organisms": 19,
+      "templates": 7,
+      "ui": 48,
+      "total": 103
+    }
   },
-
   "spectrum": {
-    "axis": ["pure-retheme", "retheme-additions", "partial-fork", "rewrite"],
-    "note": "No audited system is a pure retheme. Every one of the three diverged past token values. That is the finding, not a gap in the sample."
+    "axis": [
+      "pure-retheme",
+      "retheme-additions",
+      "partial-fork",
+      "rewrite"
+    ],
+    "note": "Of the three systems audited against source, none is a pure retheme — every one diverged past token values. The only pure retheme in the set is a prototype (mesa), which is exactly the pattern: the discipline holds while a system is small, and gives way once it ships."
   },
-
   "systems": [
     {
       "slug": "habito",
@@ -43,61 +57,138 @@
       "year": 2026,
       "builtBy": "Mariano Morera",
       "screenshot": "/showcase/habito.png",
-
       "divergence": {
         "verdict": "retheme-additions",
         "evidence": "5 of 7 audited primitives byte-identical to stock modulo import paths; the 17 files in src/components/ are net-new product surfaces (heatmap.tsx, check-control.tsx, area-donut.tsx), not edited democrito ones.",
-        "componentsEdited": ["src/components/ui/sonner.tsx"],
+        "componentsEdited": [
+          "src/components/ui/sonner.tsx"
+        ],
         "componentsAdded": 17,
         "primitivesAudited": "7 of 46",
         "primitivesUnverified": 39,
         "coverageNote": "Component-layer coverage is 15%. Published as-is rather than claimed complete."
       },
-
       "headline": "Removed the accent entirely. democrito's components didn't care.",
-
       "tokens": {
-        "--accent":           { "base": "18 60% 45%", "system": "0 0% 90%", "note": "not recoloured — eliminated. Aliased to a neutral; the design doc forbids using it as an accent." },
-        "--background":       { "base": "30 18% 91%", "system": "0 0% 98%" },
-        "--card":             { "base": "30 25% 97%", "system": "0 0% 98%", "note": "aliases --background; no card/background distinction exists" },
-        "--surface":          { "base": "40 15% 94%", "system": null, "note": "ABSENT — 3-surface hierarchy collapsed to 1" },
-        "--foreground":       { "base": "12 6% 15%",  "system": "0 0% 7%" },
-        "--muted-foreground": { "base": "20 6% 41%",  "system": "0 0% 32%" },
-        "--border":           { "base": "28 14% 81%", "system": "0 0% 90%" },
-        "--ring":             { "base": "18 60% 45%", "system": "0 0% 7%" },
-        "--radius":           { "base": "0.75rem",    "system": "0.25rem" },
-        "--font-display":     { "base": "Plus Jakarta Sans", "system": "Fraunces", "note": "applied to h1 only" },
-        "--font-body":        { "base": "Satoshi",    "system": "Inter", "note": "renamed --font-sans" },
-        "--font-mono":        { "base": "JetBrains Mono", "system": "ui-monospace system stack", "note": "declared, applied by nothing" }
+        "--accent": {
+          "base": "18 60% 45%",
+          "system": "0 0% 90%",
+          "note": "not recoloured — eliminated. Aliased to a neutral; the design doc forbids using it as an accent."
+        },
+        "--background": {
+          "base": "30 18% 91%",
+          "system": "0 0% 98%"
+        },
+        "--card": {
+          "base": "30 25% 97%",
+          "system": "0 0% 98%",
+          "note": "aliases --background; no card/background distinction exists"
+        },
+        "--surface": {
+          "base": "40 15% 94%",
+          "system": null,
+          "note": "ABSENT — 3-surface hierarchy collapsed to 1"
+        },
+        "--foreground": {
+          "base": "12 6% 15%",
+          "system": "0 0% 7%"
+        },
+        "--muted-foreground": {
+          "base": "20 6% 41%",
+          "system": "0 0% 32%"
+        },
+        "--border": {
+          "base": "28 14% 81%",
+          "system": "0 0% 90%"
+        },
+        "--ring": {
+          "base": "18 60% 45%",
+          "system": "0 0% 7%"
+        },
+        "--radius": {
+          "base": "0.75rem",
+          "system": "0.25rem"
+        },
+        "--font-display": {
+          "base": "Plus Jakarta Sans",
+          "system": "Fraunces",
+          "note": "applied to h1 only"
+        },
+        "--font-body": {
+          "base": "Satoshi",
+          "system": "Inter",
+          "note": "renamed --font-sans"
+        },
+        "--font-mono": {
+          "base": "JetBrains Mono",
+          "system": "ui-monospace system stack",
+          "note": "declared, applied by nothing"
+        }
       },
-
-      "themes": { "count": 3, "default": "light", "mechanism": "data-theme attribute", "note": "democrito defaults to warm; habito demoted warm to an opt-in comfort setting and made an achromatic light theme the default" },
-
+      "themes": {
+        "count": 3,
+        "default": "light",
+        "mechanism": "data-theme attribute",
+        "note": "democrito defaults to warm; habito demoted warm to an opt-in comfort setting and made an achromatic light theme the default"
+      },
       "vignette": {
         "defaultTheme": "light",
         "valueFormat": "hsl-function",
         "valueFormatWarning": "Source stores complete hsl() at the primitive tier. Injecting source values into hsl(var(--x)) yields hsl(hsl(0 0% 98%)) and fails. Use the triplets below.",
         "resolved": {
-          "--background": "0 0% 98%", "--foreground": "0 0% 7%",
-          "--card": "0 0% 98%", "--card-foreground": "0 0% 7%",
-          "--popover": "0 0% 98%", "--popover-foreground": "0 0% 7%",
-          "--primary": "0 0% 7%", "--primary-foreground": "0 0% 98%",
-          "--secondary": "0 0% 90%", "--secondary-foreground": "0 0% 7%",
-          "--muted": "0 0% 90%", "--muted-foreground": "0 0% 32%",
-          "--accent": "0 0% 90%", "--accent-foreground": "0 0% 7%",
-          "--destructive": "0 0% 7%", "--destructive-foreground": "0 0% 98%",
-          "--border": "0 0% 90%", "--input": "0 0% 90%", "--ring": "0 0% 7%",
+          "--background": "0 0% 98%",
+          "--foreground": "0 0% 7%",
+          "--card": "0 0% 98%",
+          "--card-foreground": "0 0% 7%",
+          "--popover": "0 0% 98%",
+          "--popover-foreground": "0 0% 7%",
+          "--primary": "0 0% 7%",
+          "--primary-foreground": "0 0% 98%",
+          "--secondary": "0 0% 90%",
+          "--secondary-foreground": "0 0% 7%",
+          "--muted": "0 0% 90%",
+          "--muted-foreground": "0 0% 32%",
+          "--accent": "0 0% 90%",
+          "--accent-foreground": "0 0% 7%",
+          "--destructive": "0 0% 7%",
+          "--destructive-foreground": "0 0% 98%",
+          "--border": "0 0% 90%",
+          "--input": "0 0% 90%",
+          "--ring": "0 0% 7%",
           "--radius": "0.25rem",
-          "--subtle": "0 0% 90%", "--raised": "0 0% 98%",
-          "--fill-strong": "0 0% 7%", "--fill-track": "0 0% 90%", "--fill-muted": "0 0% 95%",
+          "--subtle": "0 0% 90%",
+          "--raised": "0 0% 98%",
+          "--fill-strong": "0 0% 7%",
+          "--fill-track": "0 0% 90%",
+          "--fill-muted": "0 0% 95%",
           "--color-ring-offset-background": "0 0% 98%"
         },
         "absent": [
-          { "token": "--surface", "substitutedWith": "--background (0 0% 98%)", "consequence": "3-surface hierarchy flattens to 1" },
-          { "token": "--foreground-muted", "substitutedWith": "--muted-foreground (0 0% 32%)", "consequence": "without substitution, secondary copy renders at full-contrast ink" },
-          { "token": "--accent-muted", "substitutedWith": null, "consequence": "no accent family exists to degrade to" },
-          { "token": "--accent-subtle", "substitutedWith": null, "consequence": "as above" },
-          { "token": "--sidebar-* (7 tokens)", "substitutedWith": null, "consequence": "stock sidebar renders transparent, unbordered, hoverless" }
+          {
+            "token": "--surface",
+            "substitutedWith": "--background (0 0% 98%)",
+            "consequence": "3-surface hierarchy flattens to 1"
+          },
+          {
+            "token": "--foreground-muted",
+            "substitutedWith": "--muted-foreground (0 0% 32%)",
+            "consequence": "without substitution, secondary copy renders at full-contrast ink"
+          },
+          {
+            "token": "--accent-muted",
+            "substitutedWith": null,
+            "consequence": "no accent family exists to degrade to"
+          },
+          {
+            "token": "--accent-subtle",
+            "substitutedWith": null,
+            "consequence": "as above"
+          },
+          {
+            "token": "--sidebar-* (7 tokens)",
+            "substitutedWith": null,
+            "consequence": "stock sidebar renders transparent, unbordered, hoverless"
+          }
         ],
         "fonts": {
           "display": "\"Fraunces\", ui-serif, Georgia, serif",
@@ -112,11 +203,19 @@
           "duration-[260ms] / ease-[cubic-bezier(0.2,0.8,0.2,1)] — the signature completion motion is an arbitrary value, not a token",
           "rounded-[2px] in chart.tsx; 2px SVG rect corners in heatmap.tsx (documented deliberate departure)"
         ],
-        "excludeComponents": ["sidebar", "chart"]
+        "excludeComponents": [
+          "sidebar",
+          "chart"
+        ]
       },
-
-      "extendedPalette": { "tokenNames": 18, "distinctValues": 13, "pureAliases": 5, "hueFamilies": 1, "huesLiveInDefaultTheme": 0, "note": "8 achromatic neutrals plus a 5-step warm ramp that is entirely dormant in the light theme" },
-
+      "extendedPalette": {
+        "tokenNames": 18,
+        "distinctValues": 13,
+        "pureAliases": 5,
+        "hueFamilies": 1,
+        "huesLiveInDefaultTheme": 0,
+        "note": "8 achromatic neutrals plus a 5-step warm ramp that is entirely dormant in the light theme"
+      },
       "kept": [
         "shadcn/ui primitives at stock styling — button.tsx is unmodified cva, six variants, four sizes",
         "semantic token names and the @theme inline binding pattern",
@@ -134,7 +233,6 @@
         "value format bare triplets → full hsl() at a primitive tier"
       ],
       "recipe": "Kept democrito's token architecture and left the shadcn primitives untouched, then replaced the palette wholesale with two neutral ramps, removed the accent entirely, and added 17 product-specific components on top.",
-
       "contractNotes": {
         "held": [
           "Every stock primitive that referenced only declared tokens rendered correctly under a total palette replacement.",
@@ -146,13 +244,11 @@
           "tw-animate-css was dropped from the CSS imports but kept in package.json — animate-in / fade-in are dead classes and the milestone panel renders instantly."
         ]
       },
-
       "warnings": [
         "Two surfaces exist. This entry covers the app repo; a separate marketing repo carries a near-identical token layer and is the surface that still credits democrito.",
         "docs/DESIGN.md v2.0.0 no longer credits democrito. AGENTS.md is stale — it references four --brand-* tokens removed from src/styles.css."
       ]
     },
-
     {
       "slug": "prompt-x",
       "name": "prompt-x",
@@ -162,57 +258,124 @@
       "year": 2026,
       "builtBy": "Mariano Morera",
       "screenshot": "/showcase/prompt-x.png",
-
       "divergence": {
         "verdict": "partial-fork",
         "evidence": "button.tsx adds an `accent` variant and a `loading?: boolean` prop to ButtonProps; input.tsx adds `error` and `variant` props. The primitives' TypeScript APIs changed, not just their classes.",
-        "componentsEdited": ["button.tsx", "input.tsx", "textarea.tsx", "card.tsx", "table.tsx", "avatar.tsx", "sonner.tsx", "coming-soon-overlay.tsx"],
+        "componentsEdited": [
+          "button.tsx",
+          "input.tsx",
+          "textarea.tsx",
+          "card.tsx",
+          "table.tsx",
+          "avatar.tsx",
+          "sonner.tsx",
+          "coming-soon-overlay.tsx"
+        ],
         "componentsAdded": 0,
         "primitivesAudited": "49 of 49 surveyed",
         "primitivesUnverified": 0,
         "coverageNote": "8 of 49 restyled with non-stock tokens; 3 of those given new API surface."
       },
-
       "headline": "Inverted the default theme end to end at a fixed 18° hue, then extended the vocabulary.",
-
       "tokens": {
-        "--background":       { "base": "30 18% 91%", "system": "20 14% 4%", "note": "91% → 4% lightness — a full inversion" },
-        "--surface":          { "base": "40 15% 94%", "system": "20 8% 8%" },
-        "--card":             { "base": "30 25% 97%", "system": "12 6% 15%" },
-        "--foreground":       { "base": "12 6% 15%",  "system": "60 9% 98%" },
-        "--accent":           { "base": "18 60% 45%", "system": "18 65% 55%", "note": "hue held at 18° — lightened +10% L, +5% S for dark" },
-        "--accent-muted":     { "base": "18 38% 55%", "system": "18 40% 20%" },
-        "--accent-subtle":    { "base": "30 15% 92%", "system": "18 30% 15%" },
-        "--border":           { "base": "28 14% 81%", "system": "25 8% 25%" },
-        "--muted-foreground": { "base": "20 6% 41%",  "system": "24 5% 64%" },
-        "--ring":             { "base": "18 60% 45%", "system": "18 65% 55%" },
-        "--radius":           { "base": "0.75rem",    "system": "0.5rem", "note": "declared but consumed by nothing — inert" }
+        "--background": {
+          "base": "30 18% 91%",
+          "system": "20 14% 4%",
+          "note": "91% → 4% lightness — a full inversion"
+        },
+        "--surface": {
+          "base": "40 15% 94%",
+          "system": "20 8% 8%"
+        },
+        "--card": {
+          "base": "30 25% 97%",
+          "system": "12 6% 15%"
+        },
+        "--foreground": {
+          "base": "12 6% 15%",
+          "system": "60 9% 98%"
+        },
+        "--accent": {
+          "base": "18 60% 45%",
+          "system": "18 65% 55%",
+          "note": "hue held at 18° — lightened +10% L, +5% S for dark"
+        },
+        "--accent-muted": {
+          "base": "18 38% 55%",
+          "system": "18 40% 20%"
+        },
+        "--accent-subtle": {
+          "base": "30 15% 92%",
+          "system": "18 30% 15%"
+        },
+        "--border": {
+          "base": "28 14% 81%",
+          "system": "25 8% 25%"
+        },
+        "--muted-foreground": {
+          "base": "20 6% 41%",
+          "system": "24 5% 64%"
+        },
+        "--ring": {
+          "base": "18 60% 45%",
+          "system": "18 65% 55%"
+        },
+        "--radius": {
+          "base": "0.75rem",
+          "system": "0.5rem",
+          "note": "declared but consumed by nothing — inert"
+        }
       },
-
-      "themes": { "count": 3, "default": "dark", "mechanism": "class", "note": "democrito's warm survives here as .warm and reproduces base almost verbatim — background, surface, card, foreground, accent, ring, sidebar-primary and sidebar-ring all match" },
-
+      "themes": {
+        "count": 3,
+        "default": "dark",
+        "mechanism": "class",
+        "note": "democrito's warm survives here as .warm and reproduces base almost verbatim — background, surface, card, foreground, accent, ring, sidebar-primary and sidebar-ring all match"
+      },
       "vignette": {
         "defaultTheme": "dark",
         "valueFormat": "bare-triplet",
         "resolved": {
-          "--background": "20 14% 4%", "--foreground": "60 9% 98%",
-          "--surface": "20 8% 8%", "--foreground-muted": "24 5% 64%",
-          "--card": "12 6% 15%", "--card-foreground": "60 9% 98%",
-          "--popover": "12 6% 15%", "--popover-foreground": "60 9% 98%",
-          "--primary": "20 6% 90%", "--primary-foreground": "20 14% 4%",
-          "--secondary": "20 8% 17%", "--secondary-foreground": "60 9% 98%",
-          "--muted": "24 10% 12%", "--muted-foreground": "24 5% 64%",
-          "--accent": "18 65% 55%", "--accent-foreground": "60 9% 98%",
-          "--accent-muted": "18 40% 20%", "--accent-subtle": "18 30% 15%",
-          "--destructive": "6 65% 60%", "--destructive-foreground": "60 9% 98%",
-          "--border": "25 8% 25%", "--input": "25 8% 25%", "--ring": "18 65% 55%",
-          "--sidebar-background": "20 8% 8%", "--sidebar-foreground": "60 9% 98%",
-          "--sidebar-primary": "18 65% 55%", "--sidebar-primary-foreground": "60 9% 98%",
-          "--sidebar-accent": "12 6% 15%", "--sidebar-accent-foreground": "60 9% 98%",
-          "--sidebar-border": "12 6% 20%", "--sidebar-ring": "18 65% 55%",
-          "--accent-hover": "18 60% 50%", "--foreground-subtle": "24 5% 45%", "--border-subtle": "12 6% 12%",
+          "--background": "20 14% 4%",
+          "--foreground": "60 9% 98%",
+          "--surface": "20 8% 8%",
+          "--foreground-muted": "24 5% 64%",
+          "--card": "12 6% 15%",
+          "--card-foreground": "60 9% 98%",
+          "--popover": "12 6% 15%",
+          "--popover-foreground": "60 9% 98%",
+          "--primary": "20 6% 90%",
+          "--primary-foreground": "20 14% 4%",
+          "--secondary": "20 8% 17%",
+          "--secondary-foreground": "60 9% 98%",
+          "--muted": "24 10% 12%",
+          "--muted-foreground": "24 5% 64%",
+          "--accent": "18 65% 55%",
+          "--accent-foreground": "60 9% 98%",
+          "--accent-muted": "18 40% 20%",
+          "--accent-subtle": "18 30% 15%",
+          "--destructive": "6 65% 60%",
+          "--destructive-foreground": "60 9% 98%",
+          "--border": "25 8% 25%",
+          "--input": "25 8% 25%",
+          "--ring": "18 65% 55%",
+          "--sidebar-background": "20 8% 8%",
+          "--sidebar-foreground": "60 9% 98%",
+          "--sidebar-primary": "18 65% 55%",
+          "--sidebar-primary-foreground": "60 9% 98%",
+          "--sidebar-accent": "12 6% 15%",
+          "--sidebar-accent-foreground": "60 9% 98%",
+          "--sidebar-border": "12 6% 20%",
+          "--sidebar-ring": "18 65% 55%",
+          "--accent-hover": "18 60% 50%",
+          "--foreground-subtle": "24 5% 45%",
+          "--border-subtle": "12 6% 12%",
           "--radius": "0.5rem",
-          "--radius-sm": "4px", "--radius-md": "8px", "--radius-lg": "12px", "--radius-xl": "16px", "--radius-full": "9999px"
+          "--radius-sm": "4px",
+          "--radius-md": "8px",
+          "--radius-lg": "12px",
+          "--radius-xl": "16px",
+          "--radius-full": "9999px"
         },
         "absent": [],
         "beyondListNote": "Five tokens were consumed but outside the requested list: --accent-hover (button's accent variant hover), --foreground-subtle (all input/textarea placeholders), --border-subtle, and two sidebar foregrounds. Omitting them leaves visible holes.",
@@ -230,16 +393,19 @@
         ],
         "excludeComponents": []
       },
-
       "extendedPalette": {
         "tokenNames": 21,
         "distinctValues": 18,
         "pureAliases": 3,
         "themeInvariant": true,
-        "groups": { "anatomy": 9, "platform": 4, "status": 4, "semantic": 4 },
+        "groups": {
+          "anatomy": 9,
+          "platform": 4,
+          "status": 4,
+          "semantic": 4
+        },
         "note": "The 9 anatomy hues span 0°, 25°, 38°, 48°, 152°, 185°, 230°, 262°, 340° — domain encoding for the 9-field prompt anatomy. Three of four status tokens are byte-identical aliases of semantic tokens, so 21 names is 18 distinct hues."
       },
-
       "kept": [
         "3-surface hierarchy intact in all three themes; bg-surface used in 33 source files",
         "accent hue held at 18° across every theme and every accent-family token",
@@ -258,7 +424,6 @@
         "8 of 49 primitives restyled; 3 given new prop APIs"
       ],
       "recipe": "Took democrito's token contract and component set, inverted the default theme to dark while keeping warm as a near-verbatim copy of base, extended the token layer with ~40 domain and scale tokens, and edited 8 of 49 primitives — three of them with new props, not just new classes.",
-
       "contractNotes": {
         "held": [
           "A full light-to-dark inversion at fixed hue changed no component. Every one of the 92 :root tokens is a terminal literal with no alias indirection.",
@@ -270,13 +435,11 @@
           "Bare `rounded` falls through to a Tailwind default that is not a token in this system and cannot be reproduced."
         ]
       },
-
       "warnings": [
         "The 21 added hues contradict democrito's monochromatic principle as written. They are legitimate domain encoding — democrito itself ships a 9-hue --category-* palette. The principle text needs a documented carve-out for categorical encoding.",
         "This entry covers app-prompt-x/ only. The repo also contains web/ and 8 worktree copies, unaudited."
       ]
     },
-
     {
       "slug": "southern-startups",
       "name": "Southern Startups",
@@ -286,36 +449,77 @@
       "year": 2026,
       "builtBy": "Mariano Morera",
       "screenshot": "/showcase/southern-startups.png",
-
       "divergence": {
         "verdict": "rewrite",
         "evidence": "components/ui/ holds 5 files against democrito's 48, and none is a retheme. select.tsx is a native <select> where shadcn ships a Radix composite — a different component with a different API and accessibility model. package.json carries exactly one Radix dependency; democrito's primitive layer needs roughly twenty.",
-        "componentsEdited": ["button.tsx", "select.tsx", "input.tsx", "textarea.tsx", "skeleton.tsx"],
+        "componentsEdited": [
+          "button.tsx",
+          "select.tsx",
+          "input.tsx",
+          "textarea.tsx",
+          "skeleton.tsx"
+        ],
         "componentsAdded": 29,
         "primitivesAudited": "5 of 5 (100% of the primitive layer)",
         "primitivesUnverified": 29,
         "coverageNote": "5 of 5 primitives fully verified. The 29 atomic components were not diffed against democrito's equivalents. Total component coverage: 15%."
       },
-
       "headline": "Zero base token values survive. It is still recognisably democrito.",
-
       "tokens": {
-        "--accent":           { "base": "18 60% 45%", "system": "145 52% 35%", "note": "renamed --brand. Terracotta → Andalucía green: 127° of hue. The largest single divergence in the set." },
-        "--background":       { "base": "30 18% 91%", "system": "30 5% 96%", "note": "saturation 18% → 5% — the warm cast removed" },
-        "--surface":          { "base": "40 15% 94%", "system": "40 6% 97%" },
-        "--card":             { "base": "30 25% 97%", "system": "40 8% 99%" },
-        "--foreground":       { "base": "12 6% 15%",  "system": "24 10% 10%" },
-        "--border":           { "base": "28 14% 81%", "system": "30 8% 88%" },
-        "--muted-foreground": { "base": "20 6% 41%",  "system": "24 5% 44%", "note": "renamed --foreground-muted" },
-        "--accent-subtle":    { "base": "30 15% 92%", "system": "145 52% 96%", "note": "renamed --brand-subtle" },
-        "--accent-muted":     { "base": "18 38% 55%", "system": null, "note": "ABSENT at any name" },
-        "--ring":             { "base": "18 60% 45%", "system": null, "note": "ABSENT — replaced by --shadow-focus, a 3-layer composite box-shadow" },
-        "--radius":           { "base": "0.75rem",    "system": null, "note": "ABSENT — replaced by a 5-step config-literal scale" }
+        "--accent": {
+          "base": "18 60% 45%",
+          "system": "145 52% 35%",
+          "note": "renamed --brand. Terracotta → Andalucía green: 127° of hue. The largest single divergence in the set."
+        },
+        "--background": {
+          "base": "30 18% 91%",
+          "system": "30 5% 96%",
+          "note": "saturation 18% → 5% — the warm cast removed"
+        },
+        "--surface": {
+          "base": "40 15% 94%",
+          "system": "40 6% 97%"
+        },
+        "--card": {
+          "base": "30 25% 97%",
+          "system": "40 8% 99%"
+        },
+        "--foreground": {
+          "base": "12 6% 15%",
+          "system": "24 10% 10%"
+        },
+        "--border": {
+          "base": "28 14% 81%",
+          "system": "30 8% 88%"
+        },
+        "--muted-foreground": {
+          "base": "20 6% 41%",
+          "system": "24 5% 44%",
+          "note": "renamed --foreground-muted"
+        },
+        "--accent-subtle": {
+          "base": "30 15% 92%",
+          "system": "145 52% 96%",
+          "note": "renamed --brand-subtle"
+        },
+        "--accent-muted": {
+          "base": "18 38% 55%",
+          "system": null,
+          "note": "ABSENT at any name"
+        },
+        "--ring": {
+          "base": "18 60% 45%",
+          "system": null,
+          "note": "ABSENT — replaced by --shadow-focus, a 3-layer composite box-shadow"
+        },
+        "--radius": {
+          "base": "0.75rem",
+          "system": null,
+          "note": "ABSENT — replaced by a 5-step config-literal scale"
+        }
       },
-
       "tokensInherited": [],
       "tokensInheritedNote": "Zero base democrito token values survive unchanged. Every token in the reference set moved value, was renamed, or was deleted. The inheritance here is structural, not chromatic.",
-
       "renamed": {
         "--accent": "--brand",
         "--accent-foreground": "--brand-foreground",
@@ -323,34 +527,84 @@
         "--muted-foreground": "--foreground-muted"
       },
       "renamedNote": "The --accent → --brand rename resolved a genuine collision: the authenticated portal inherited 54 shadcn primitives where --accent means 'neutral hover surface', while this codebase used it to mean 'the brand colour'. A usage sweep found ~26 uses meaning hover-surface and zero meaning brand. Rather than repoint either library, the project took --brand — a name neither claims. The cleanest example in the set of a contract break resolved by renaming rather than re-valuing.",
-
-      "themes": { "count": 1, "default": ":root", "mechanism": "none", "note": "democrito ships three; this kept one and deleted two. No darkMode key, no ThemeProvider, no prefers-color-scheme block anywhere — a single-theme system with no user choice to make." },
-
+      "themes": {
+        "count": 1,
+        "default": ":root",
+        "mechanism": "none",
+        "note": "democrito ships three; this kept one and deleted two. No darkMode key, no ThemeProvider, no prefers-color-scheme block anywhere — a single-theme system with no user choice to make."
+      },
       "vignette": {
         "defaultTheme": ":root",
         "valueFormat": "bare-triplet",
         "resolved": {
-          "--background": "30 5% 96%", "--foreground": "24 10% 10%",
-          "--surface": "40 6% 97%", "--foreground-muted": "24 5% 44%",
+          "--background": "30 5% 96%",
+          "--foreground": "24 10% 10%",
+          "--surface": "40 6% 97%",
+          "--foreground-muted": "24 5% 44%",
           "--muted-foreground": "24 5% 44%",
-          "--card": "40 8% 99%", "--card-foreground": "24 10% 10%",
+          "--card": "40 8% 99%",
+          "--card-foreground": "24 10% 10%",
           "--border": "30 8% 88%",
-          "--accent": "145 52% 35%", "--accent-foreground": "0 0% 100%", "--accent-subtle": "145 52% 96%",
-          "--brand": "145 52% 35%", "--brand-text": "145 52% 28%", "--brand-hover": "145 52% 20%",
-          "--brand-active": "145 52% 14%", "--brand-subtle-active": "145 52% 88%",
-          "--success": "145 52% 35%", "--warning": "40 72% 40%", "--error": "12 61% 49%", "--info": "214 60% 53%",
+          "--accent": "145 52% 35%",
+          "--accent-foreground": "0 0% 100%",
+          "--accent-subtle": "145 52% 96%",
+          "--brand": "145 52% 35%",
+          "--brand-text": "145 52% 28%",
+          "--brand-hover": "145 52% 20%",
+          "--brand-active": "145 52% 14%",
+          "--brand-subtle-active": "145 52% 88%",
+          "--success": "145 52% 35%",
+          "--warning": "40 72% 40%",
+          "--error": "12 61% 49%",
+          "--info": "214 60% 53%",
           "--color-gray-300": "30 5% 79%"
         },
         "absent": [
-          { "token": "--muted-foreground", "substitutedWith": "--foreground-muted (24 5% 44%)", "consequence": "RELOCATED, not absent. Declare both names at the same value or every borrowed component's secondary copy renders at full-contrast ink." },
-          { "token": "--destructive", "substitutedWith": "--error (12 61% 49%)", "consequence": "the most dangerous absence — a democrito destructive button renders unfilled and its label as body ink, silently losing the only thing marking it destructive" },
-          { "token": "--ring", "substitutedWith": "--shadow-focus composite", "consequence": "ring-* compiles to nothing. A borrowed component loses its focus indicator entirely — invisible in screenshots and mouse testing, breaks WCAG 2.4.7 for keyboard users." },
-          { "token": "--primary", "substitutedWith": "--brand-text (145 52% 28%)", "consequence": "bg-primary matches nothing; a default-variant democrito button renders with no background" },
-          { "token": "--secondary", "substitutedWith": null, "consequence": "secondary-variant controls render unfilled — this system's secondary is an outline instead" },
-          { "token": "--muted", "substitutedWith": "--surface (40 6% 97%)", "consequence": "skeletons and muted panels in borrowed components render transparent" },
-          { "token": "--popover", "substitutedWith": null, "consequence": "a borrowed dropdown/popover/tooltip renders transparent over page content — unreadable" },
-          { "token": "--input", "substitutedWith": "--border (30 8% 88%)", "consequence": "border-input compiles to nothing; a borrowed input renders edgeless" },
-          { "token": "--sidebar-* (6 tokens)", "substitutedWith": null, "consequence": "whole family deleted — a stock sidebar is transparent, unbordered, hoverless" }
+          {
+            "token": "--muted-foreground",
+            "substitutedWith": "--foreground-muted (24 5% 44%)",
+            "consequence": "RELOCATED, not absent. Declare both names at the same value or every borrowed component's secondary copy renders at full-contrast ink."
+          },
+          {
+            "token": "--destructive",
+            "substitutedWith": "--error (12 61% 49%)",
+            "consequence": "the most dangerous absence — a democrito destructive button renders unfilled and its label as body ink, silently losing the only thing marking it destructive"
+          },
+          {
+            "token": "--ring",
+            "substitutedWith": "--shadow-focus composite",
+            "consequence": "ring-* compiles to nothing. A borrowed component loses its focus indicator entirely — invisible in screenshots and mouse testing, breaks WCAG 2.4.7 for keyboard users."
+          },
+          {
+            "token": "--primary",
+            "substitutedWith": "--brand-text (145 52% 28%)",
+            "consequence": "bg-primary matches nothing; a default-variant democrito button renders with no background"
+          },
+          {
+            "token": "--secondary",
+            "substitutedWith": null,
+            "consequence": "secondary-variant controls render unfilled — this system's secondary is an outline instead"
+          },
+          {
+            "token": "--muted",
+            "substitutedWith": "--surface (40 6% 97%)",
+            "consequence": "skeletons and muted panels in borrowed components render transparent"
+          },
+          {
+            "token": "--popover",
+            "substitutedWith": null,
+            "consequence": "a borrowed dropdown/popover/tooltip renders transparent over page content — unreadable"
+          },
+          {
+            "token": "--input",
+            "substitutedWith": "--border (30 8% 88%)",
+            "consequence": "border-input compiles to nothing; a borrowed input renders edgeless"
+          },
+          {
+            "token": "--sidebar-* (6 tokens)",
+            "substitutedWith": null,
+            "consequence": "whole family deleted — a stock sidebar is transparent, unbordered, hoverless"
+          }
         ],
         "absentSummary": "21 of 31 requested tokens are absent or relocated. The system ships no sidebar and no navbar by design — the web surface is a public directory reached by search and deep link — so the absence is a scope decision, not neglect.",
         "fonts": {
@@ -366,20 +620,38 @@
         ],
         "bareRoundedCount": 0,
         "bareRoundedNote": "The trap exists structurally (no DEFAULT) but never fires — zero bare `rounded` classes across apps/web. Every corner is a token value.",
-        "excludeComponents": ["sidebar", "popover", "dropdown", "tooltip"]
+        "excludeComponents": [
+          "sidebar",
+          "popover",
+          "dropdown",
+          "tooltip"
+        ]
       },
-
       "extendedPalette": {
         "tokenNames": 88,
         "distinctValues": 46,
         "pureAliases": 42,
         "themeInvariant": true,
-        "groups": { "green": 9, "gray": 7, "status": 5, "tag": 16, "city": 16, "chart": 18, "semantic": 4, "brand": 7 },
+        "groups": {
+          "green": 9,
+          "gray": 7,
+          "status": 5,
+          "tag": 16,
+          "city": 16,
+          "chart": 18,
+          "semantic": 4,
+          "brand": 7
+        },
         "note": "--color-city-* is a byte-identical clone of --color-tag-*, all 16 tokens — 16 names, zero new colours. 145 52% 35% is declared under seven different names. Most aliasing is the intended three-tier architecture; the city/tag and status/semantic duplication is redundancy."
       },
-
-      "components": { "atoms": 9, "molecules": 6, "organisms": 11, "templates": 3, "ui": 5, "total": 34 },
-
+      "components": {
+        "atoms": 9,
+        "molecules": 6,
+        "organisms": 11,
+        "templates": 3,
+        "ui": 5,
+        "total": 34
+      },
       "kept": [
         "the three-tier token architecture (primitive → semantic → component-scoped), named as such in the file header",
         "bare-HSL-triplet storage with hsl(var(--x)) consumption",
@@ -402,7 +674,6 @@
         "the shadcn primitive layer, rewritten"
       ],
       "recipe": "Take democrito's token architecture and directory taxonomy. Keep the storage format and the consumption contract exactly. Replace every value: desaturate the warm surfaces toward neutral, swap the terracotta accent for Andalucía green 127° away, drop to a single light theme. Rename the accent family to --brand to escape a shadcn collision, collapse the three-face type system to two by removing the licence-encumbered body face. Then write your own component layer against the tokens rather than restyling democrito's.",
-
       "contractNotes": {
         "held": [
           "The storage format and consumption contract survived a total rewrite of both palette and component layer. A system can share nothing chromatically with democrito and still be structurally the same system.",
@@ -415,7 +686,6 @@
           "Deleting --ring means any borrowed component silently loses its focus indicator — an accessibility failure invisible to screenshots and mouse testing."
         ]
       },
-
       "warnings": [
         "Audited at ref ce5afa10 (post-PR #53 branch tip), not a fetched origin/main. Verify before publishing.",
         "Four directories contain token declarations; only apps/web ships. Two prototypes are still on --accent naming and one is a stock shadcn scaffold unrelated to democrito.",
@@ -424,45 +694,206 @@
       ]
     }
   ],
-
+  "prototypes": {
+    "sectionTitle": "Prototypes",
+    "sectionNote": "Not shipped products. These were built to explore how far the token layer stretches, and they are the only place in this batch where a pure retheme appears. Their values are read from the design boards, not extracted from source — so unlike the case studies above, nothing here is source-verified. Treated as evidence of intent, not of practice.",
+    "verificationLevel": "self-declared",
+    "systems": [
+      {
+        "slug": "mesa",
+        "name": "mesa",
+        "tagline": "Weekly meal planning that stays legible at a glance. Plan the week, not the meal",
+        "status": "prototype",
+        "year": 2026,
+        "builtBy": "Mariano Morera",
+        "divergence": {
+          "verdict": "pure-retheme",
+          "evidence": "Four of six declared tokens — --background 30 18% 91%, --card 30 25% 97%, --primary 15 10% 22%, --border 28 14% 81% — are byte-identical to democrito base warm. Only the accent pair moved.",
+          "primitivesAudited": "0 — board-declared only",
+          "primitivesUnverified": null
+        },
+        "headline": "The only pure retheme in the set. One hue moved; nothing else did.",
+        "tokens": {
+          "--accent": {
+            "base": "18 60% 45%",
+            "system": "212 52% 52%",
+            "note": "terracotta → soft blue, 166° of hue"
+          },
+          "--accent-muted": {
+            "base": "18 38% 55%",
+            "system": "212 40% 62%"
+          },
+          "--background": {
+            "base": "30 18% 91%",
+            "system": "30 18% 91%",
+            "note": "unchanged"
+          },
+          "--card": {
+            "base": "30 25% 97%",
+            "system": "30 25% 97%",
+            "note": "unchanged"
+          },
+          "--primary": {
+            "base": "15 10% 22%",
+            "system": "15 10% 22%",
+            "note": "unchanged"
+          },
+          "--border": {
+            "base": "28 14% 81%",
+            "system": "28 14% 81%",
+            "note": "unchanged"
+          }
+        },
+        "themes": {
+          "count": 3,
+          "default": "warm",
+          "note": "democrito's theme set, untouched"
+        },
+        "kept": [
+          "the entire warm surface hierarchy",
+          "the radius scale",
+          "all three font roles",
+          "all three themes"
+        ],
+        "overridden": [
+          "the accent pair — and nothing else"
+        ],
+        "recipe": "Changed --accent and --accent-muted. Stopped.",
+        "contractNotes": {
+          "held": [
+            "This is what the theming guide describes, executed literally: two token values, zero component edits, an identity that reads as nothing like democrito."
+          ],
+          "broke": []
+        },
+        "warnings": [
+          "Board-declared values only. No source audit was run — the shipped systems above each contradicted their own boards in at least one respect before audit, so treat this as unverified."
+        ],
+        "screenshot": "/showcase/mesa.png"
+      },
+      {
+        "slug": "strength",
+        "name": "strength",
+        "tagline": "Progressive overload, made visible. Do all you can — then progress",
+        "status": "prototype",
+        "year": 2026,
+        "builtBy": "Mariano Morera",
+        "divergence": {
+          "verdict": "retheme-additions",
+          "evidence": "Accent re-hued and heavily re-saturated, plus a four-step yellow→orange effort ramp that democrito has no counterpart for.",
+          "primitivesAudited": "0 — board-declared only",
+          "primitivesUnverified": null
+        },
+        "headline": "A semantic ramp where democrito has a single accent.",
+        "tokens": {
+          "--accent": {
+            "base": "18 60% 45%",
+            "system": "32 92% 52%",
+            "note": "14° of hue, but saturation 60% → 92% — the shift is chroma, not hue"
+          },
+          "--background": {
+            "base": "30 18% 91%",
+            "system": "40 12% 97%"
+          },
+          "--primary": {
+            "base": "15 10% 22%",
+            "system": "24 10% 10%"
+          },
+          "--card": {
+            "base": "30 25% 97%",
+            "system": "0 0% 100%"
+          }
+        },
+        "added": {
+          "--brand-yellow": "45 96% 55%",
+          "--brand-amber": "38 94% 53%",
+          "--orange-strong": "20 88% 46%"
+        },
+        "themes": {
+          "count": 3,
+          "default": "light"
+        },
+        "kept": [
+          "the surface hierarchy",
+          "all three font roles",
+          "one bold element per screen"
+        ],
+        "overridden": [
+          "accent saturation",
+          "background and card lightness",
+          "a single accent replaced by a four-step effort ramp"
+        ],
+        "recipe": "Re-hued and re-saturated the accent, then added a yellow→orange ramp so effort reads as a gradient rather than a state.",
+        "contractNotes": {
+          "held": [
+            "The ramp is additive — it sits alongside --accent rather than replacing it, so democrito components referencing --accent still resolve."
+          ],
+          "broke": []
+        },
+        "warnings": [
+          "Board-declared values only. No source audit was run.",
+          "The ramp is the same shape as prompt-x's 21 added hues: a domain that needs more than one accent. Two of five systems reached for this, which is an argument about democrito's principle rather than about either system."
+        ],
+        "screenshot": "/showcase/strength.png"
+      }
+    ]
+  },
   "whatWeLearned": [
     {
       "title": "Absent tokens fail silently",
       "body": "In Tailwind v4 a utility whose token is undeclared compiles to nothing. No error. The class is emitted, the element inherits, and it looks plausible. Observed across all three systems: a flattened surface hierarchy, secondary copy at full-contrast ink, a focus ring that simply isn't there.",
-      "evidence": ["habito: --surface, --foreground-muted, seven --sidebar-*", "southern-startups: 21 of 31 tokens absent or relocated"]
+      "evidence": [
+        "habito: --surface, --foreground-muted, seven --sidebar-*",
+        "southern-startups: 21 of 31 tokens absent or relocated"
+      ]
     },
     {
       "title": "A stock component can be broken by the token layer alone",
       "body": "habito's sidebar.tsx is byte-identical to shadcn stock and renders transparent, unbordered and hoverless. Nobody edited it. The seven tokens it references were never declared. Its chart.tsx hardcodes .dark, which habito replaced with data-theme — dead code in a file nobody touched.",
-      "evidence": ["habito: sidebar.tsx, chart.tsx"]
+      "evidence": [
+        "habito: sidebar.tsx, chart.tsx"
+      ]
     },
     {
       "title": "The contract stops at the CSS boundary",
       "body": "Fonts, radius scales, spacing and type scales can reach components through tailwind.config.ts instead of custom properties. Anything supplied by config cannot be re-scoped by CSS — which means it cannot be re-themed by the mechanism democrito is built on.",
-      "evidence": ["prompt-x: all three font families and 26 bare `rounded` classes", "southern-startups: the entire radius scale", "habito: spacing, type scale and shadows are Tailwind stock"]
+      "evidence": [
+        "prompt-x: all three font families and 26 bare `rounded` classes",
+        "southern-startups: the entire radius scale",
+        "habito: spacing, type scale and shadows are Tailwind stock"
+      ]
     },
     {
       "title": "Value format is part of the contract",
       "body": "democrito stores bare HSL triplets consumed as hsl(var(--x)). habito stores complete hsl() at a primitive tier. Both are defensible; they are not interchangeable, and mixing them produces hsl(hsl(0 0% 98%)) — invalid, and silent.",
-      "evidence": ["habito"]
+      "evidence": [
+        "habito"
+      ]
     },
     {
       "title": "Naming collisions are real, and renaming is the honest fix",
       "body": "southern-startups hit a collision where --accent meant 'brand colour' locally and 'neutral hover surface' in 54 inherited shadcn primitives. A usage sweep found ~26 uses of the foreign meaning and zero of the local one. The resolution was to take --brand, a name neither library claims.",
-      "evidence": ["southern-startups: PR #53"]
+      "evidence": [
+        "southern-startups: PR #53"
+      ]
     },
     {
       "title": "The monochromatic principle needs a carve-out",
       "body": "prompt-x added 21 hues to encode a 9-field domain model, which reads as a violation of 'monochromatic + accent'. But democrito itself ships a 9-hue --category-* palette. The principle was never written to distinguish decoration from categorical encoding. It should be.",
-      "evidence": ["prompt-x: 9 anatomy hues", "democrito: --category-* palette"]
+      "evidence": [
+        "prompt-x: 9 anatomy hues",
+        "democrito: --category-* palette"
+      ]
     },
     {
       "title": "Nobody did a pure retheme",
       "body": "Three systems, three verdicts, none of them 'tokens only'. The lightest touch still added 17 components; the heaviest rewrote the primitive layer and kept zero base token values. If the pitch is 'just change the tokens', the evidence says that is not what people do with it.",
-      "evidence": ["habito: retheme-additions", "prompt-x: partial-fork", "southern-startups: rewrite"]
+      "evidence": [
+        "habito: retheme-additions",
+        "prompt-x: partial-fork",
+        "southern-startups: rewrite"
+      ]
     }
   ],
-
   "submit": {
     "headline": "Built something on democrito?",
     "body": "Send the URL. If it holds the contract, it goes on this page.",

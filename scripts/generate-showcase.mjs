@@ -6,8 +6,7 @@ const validateOnly = process.argv.includes("--validate-only");
 
 // ── Load data ──────────────────────────────────────────────────────────────
 
-const dataPath   = join(root, "showcase", "showcase.json");
-const schemaPath = join(root, "showcase", "showcase.schema.json");
+const dataPath = join(root, "showcase", "showcase.json");
 
 let data;
 try {
@@ -19,33 +18,28 @@ try {
 
 // ── Validate ───────────────────────────────────────────────────────────────
 
-const VALID_VERDICTS      = ["pure-retheme", "retheme-additions", "partial-fork", "rewrite"];
-const VALID_VALUE_FORMATS = ["bare-triplet", "hsl-function"];
-const VALID_STATUSES      = ["live", "prototype", "private", "alpha"];
-const SLUG_PATTERN        = /^[a-z0-9-]+$/;
+const VALID_VERDICTS        = ["pure-retheme", "retheme-additions", "partial-fork", "rewrite"];
+const VALID_VALUE_FORMATS   = ["bare-triplet", "hsl-function"];
+const VALID_STATUSES        = ["live", "prototype", "private", "alpha"];
+const VALID_VERIFY_LEVELS   = ["self-declared", "source-audited"];
+const SLUG_PATTERN          = /^[a-z0-9-]+$/;
 
-function validate(d) {
+function validateSystem(sys, context, requireVignette) {
   const errors = [];
+  const id = `${context} '${sys.slug ?? "(no slug)"}'`;
 
-  if (!Array.isArray(d.systems) || d.systems.length === 0) {
-    errors.push("systems must be a non-empty array");
-    return errors;
+  if (!sys.slug || !SLUG_PATTERN.test(sys.slug)) {
+    errors.push(`${id}: slug must match ^[a-z0-9-]+$`);
   }
-
-  for (const sys of d.systems) {
-    const id = `system '${sys.slug ?? "(no slug)"}'`;
-
-    if (!sys.slug || !SLUG_PATTERN.test(sys.slug)) {
-      errors.push(`${id}: slug must match ^[a-z0-9-]+$`);
-    }
-    if (!VALID_STATUSES.includes(sys.status)) {
-      errors.push(`${id}: status '${sys.status}' must be one of ${VALID_STATUSES.join(", ")}`);
-    }
-    if (!sys.divergence || !VALID_VERDICTS.includes(sys.divergence.verdict)) {
-      errors.push(`${id}: divergence.verdict '${sys.divergence?.verdict}' must be one of ${VALID_VERDICTS.join(", ")}`);
-    }
+  if (!VALID_STATUSES.includes(sys.status)) {
+    errors.push(`${id}: status '${sys.status}' must be one of ${VALID_STATUSES.join(", ")}`);
+  }
+  if (!sys.divergence || !VALID_VERDICTS.includes(sys.divergence.verdict)) {
+    errors.push(`${id}: divergence.verdict '${sys.divergence?.verdict}' must be one of ${VALID_VERDICTS.join(", ")}`);
+  }
+  if (requireVignette) {
     if (!sys.vignette) {
-      errors.push(`${id}: vignette is required`);
+      errors.push(`${id}: vignette is required for shipped systems`);
     } else {
       if (!VALID_VALUE_FORMATS.includes(sys.vignette.valueFormat)) {
         errors.push(`${id}: vignette.valueFormat '${sys.vignette.valueFormat}' must be one of ${VALID_VALUE_FORMATS.join(", ")}`);
@@ -62,21 +56,48 @@ function validate(d) {
         }
       }
     }
-    if (sys.tokens) {
-      for (const [name, entry] of Object.entries(sys.tokens)) {
-        if (typeof entry !== "object" || entry === null || !("base" in entry)) {
-          errors.push(`${id}: tokens.${name} requires a 'base' field`);
-        }
+  }
+  if (sys.tokens) {
+    for (const [name, entry] of Object.entries(sys.tokens)) {
+      if (typeof entry !== "object" || entry === null || !("base" in entry)) {
+        errors.push(`${id}: tokens.${name} requires a 'base' field`);
       }
+    }
+  } else {
+    errors.push(`${id}: tokens is required`);
+  }
+  for (const field of ["name", "tagline", "recipe", "contractNotes"]) {
+    if (!(field in sys)) errors.push(`${id}: required field '${field}' is missing`);
+  }
+  if (sys.contractNotes) {
+    if (!Array.isArray(sys.contractNotes.held))  errors.push(`${id}: contractNotes.held must be an array`);
+    if (!Array.isArray(sys.contractNotes.broke))  errors.push(`${id}: contractNotes.broke must be an array`);
+  }
+  return errors;
+}
+
+function validate(d) {
+  const errors = [];
+
+  if (!Array.isArray(d.systems) || d.systems.length === 0) {
+    errors.push("systems must be a non-empty array");
+    return errors;
+  }
+
+  for (const sys of d.systems) {
+    errors.push(...validateSystem(sys, "system", true));
+  }
+
+  if (d.prototypes) {
+    if (!VALID_VERIFY_LEVELS.includes(d.prototypes.verificationLevel)) {
+      errors.push(`prototypes.verificationLevel '${d.prototypes.verificationLevel}' must be one of ${VALID_VERIFY_LEVELS.join(", ")}`);
+    }
+    if (!Array.isArray(d.prototypes.systems)) {
+      errors.push("prototypes.systems must be an array");
     } else {
-      errors.push(`${id}: tokens is required`);
-    }
-    for (const field of ["name", "tagline", "kept", "overridden", "recipe", "contractNotes"]) {
-      if (!(field in sys)) errors.push(`${id}: required field '${field}' is missing`);
-    }
-    if (sys.contractNotes) {
-      if (!Array.isArray(sys.contractNotes.held))  errors.push(`${id}: contractNotes.held must be an array`);
-      if (!Array.isArray(sys.contractNotes.broke))  errors.push(`${id}: contractNotes.broke must be an array`);
+      for (const sys of d.prototypes.systems) {
+        errors.push(...validateSystem(sys, "prototype", false));
+      }
     }
   }
 
@@ -126,6 +147,54 @@ function tokenTable(tokens) {
   ].join("\n");
 }
 
+function renderSystem(sys, lines) {
+  lines.push(`**${sys.tagline}**`);
+  lines.push("");
+  if (sys.url) {
+    lines.push(`URL: <${sys.url}>`);
+  }
+  const coveragePart = sys.divergence.primitivesAudited
+    ? ` · Coverage: ${sys.divergence.primitivesAudited}${sys.divergence.coverageNote ? ` (${sys.divergence.coverageNote})` : ""}`
+    : "";
+  lines.push(`Status: ${sys.status} · ${sys.year} · Built by ${sys.builtBy}`);
+  lines.push(`Verdict: ${sys.divergence.verdict}${coveragePart}`);
+  lines.push("");
+  if (sys.headline) {
+    lines.push(`> ${sys.headline}`);
+    lines.push("");
+  }
+  lines.push("### Token Diff");
+  lines.push("");
+  lines.push(tokenTable(sys.tokens));
+  lines.push("");
+  if (sys.kept && sys.kept.length > 0) {
+    lines.push("### Kept");
+    lines.push("");
+    lines.push(bulletList(sys.kept));
+    lines.push("");
+  }
+  if (sys.overridden && sys.overridden.length > 0) {
+    lines.push("### Overridden");
+    lines.push("");
+    lines.push(bulletList(sys.overridden));
+    lines.push("");
+  }
+  lines.push("### Recipe");
+  lines.push("");
+  lines.push(sys.recipe);
+  lines.push("");
+  lines.push("### Contract Notes");
+  lines.push("");
+  lines.push("**Held:**");
+  lines.push("");
+  lines.push(bulletList(sys.contractNotes.held));
+  lines.push("");
+  lines.push("**Broke:**");
+  lines.push("");
+  lines.push(bulletList(sys.contractNotes.broke));
+  lines.push("");
+}
+
 // ── Generate docs/showcase.md ──────────────────────────────────────────────
 
 function genShowcaseMd(d) {
@@ -135,7 +204,7 @@ function genShowcaseMd(d) {
   lines.push("");
   lines.push("# Systems Built With democrito");
   lines.push("");
-  lines.push("democrito is a token contract. Every CSS custom property in `tokens/index.css` is a named commitment — a value any consuming system can override. What the three systems below show is not how well they followed the contract, but how far each one went: what each kept, what each changed, and where the contract held and where it broke. Divergence is a measure, not a grade.");
+  lines.push("democrito is a token contract. Every CSS custom property in `tokens/index.css` is a named commitment — a value any consuming system can override. What the systems below show is not how well they followed the contract, but how far each one went: what each kept, what each changed, and where the contract held and where it broke. Divergence is a measure, not a grade.");
   lines.push("");
   lines.push("## Divergence Spectrum");
   lines.push("");
@@ -143,6 +212,11 @@ function genShowcaseMd(d) {
   lines.push("|---|---|---|");
   for (const sys of d.systems) {
     lines.push(`| ${sys.divergence.verdict} | ${sys.name} | ${sys.divergence.evidence} |`);
+  }
+  if (d.prototypes) {
+    for (const sys of d.prototypes.systems) {
+      lines.push(`| ${sys.divergence.verdict} | ${sys.name} (prototype) | ${sys.divergence.evidence} |`);
+    }
   }
   lines.push("");
   lines.push(`> ${d.spectrum.note}`);
@@ -153,44 +227,23 @@ function genShowcaseMd(d) {
   for (const sys of d.systems) {
     lines.push(`## ${sys.name}`);
     lines.push("");
-    lines.push(`**${sys.tagline}**`);
-    lines.push("");
-    lines.push(`URL: <${sys.url}>`);
-    lines.push(`Status: ${sys.status} · ${sys.year} · Built by ${sys.builtBy}`);
-    lines.push(`Verdict: ${sys.divergence.verdict} · Coverage: ${sys.divergence.primitivesAudited} (${sys.divergence.coverageNote})`);
-    lines.push("");
-    if (sys.headline) {
-      lines.push(`> ${sys.headline}`);
-      lines.push("");
-    }
-    lines.push("### Token Diff");
-    lines.push("");
-    lines.push(tokenTable(sys.tokens));
-    lines.push("");
-    lines.push("### Kept");
-    lines.push("");
-    lines.push(bulletList(sys.kept));
-    lines.push("");
-    lines.push("### Overridden");
-    lines.push("");
-    lines.push(bulletList(sys.overridden));
-    lines.push("");
-    lines.push("### Recipe");
-    lines.push("");
-    lines.push(sys.recipe);
-    lines.push("");
-    lines.push("### Contract Notes");
-    lines.push("");
-    lines.push("**Held:**");
-    lines.push("");
-    lines.push(bulletList(sys.contractNotes.held));
-    lines.push("");
-    lines.push("**Broke:**");
-    lines.push("");
-    lines.push(bulletList(sys.contractNotes.broke));
-    lines.push("");
+    renderSystem(sys, lines);
     lines.push("---");
     lines.push("");
+  }
+
+  if (d.prototypes) {
+    lines.push(`## ${d.prototypes.sectionTitle}`);
+    lines.push("");
+    lines.push(`> ${d.prototypes.sectionNote}`);
+    lines.push("");
+    for (const sys of d.prototypes.systems) {
+      lines.push(`### ${sys.name} (prototype · not source-verified)`);
+      lines.push("");
+      renderSystem(sys, lines);
+      lines.push("---");
+      lines.push("");
+    }
   }
 
   lines.push("## What We Learned");
@@ -222,14 +275,21 @@ function genShowcaseMd(d) {
 
 function genReadmeRegion(d) {
   const lines = [];
+  const systemCount = d.systems.length + (d.prototypes?.systems?.length ?? 0);
 
-  lines.push("democrito is a token contract. Three systems show how far builders actually went.");
+  lines.push(`democrito is a token contract. ${systemCount} systems show how far builders actually went.`);
   lines.push("");
   lines.push("| System | What it did | Verdict | URL |");
   lines.push("| --- | --- | --- | --- |");
   for (const sys of d.systems) {
     const what = sys.headline ?? sys.tagline;
     lines.push(`| **${sys.name}** | ${what} | ${sys.divergence.verdict} | [${new URL(sys.url).hostname}](${sys.url}) |`);
+  }
+  if (d.prototypes) {
+    for (const sys of d.prototypes.systems) {
+      const what = sys.headline ?? sys.tagline;
+      lines.push(`| **${sys.name}** (prototype) | ${what} | ${sys.divergence.verdict} | — |`);
+    }
   }
   lines.push("");
   lines.push("Full audit, token diffs, and what broke: [docs/showcase.md](docs/showcase.md)");

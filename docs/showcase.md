@@ -2,7 +2,7 @@
 
 # Systems Built With democrito
 
-democrito is a token contract. Every CSS custom property in `tokens/index.css` is a named commitment — a value any consuming system can override. What the three systems below show is not how well they followed the contract, but how far each one went: what each kept, what each changed, and where the contract held and where it broke. Divergence is a measure, not a grade.
+democrito is a token contract. Every CSS custom property in `tokens/index.css` is a named commitment — a value any consuming system can override. What the systems below show is not how well they followed the contract, but how far each one went: what each kept, what each changed, and where the contract held and where it broke. Divergence is a measure, not a grade.
 
 ## Divergence Spectrum
 
@@ -11,8 +11,10 @@ democrito is a token contract. Every CSS custom property in `tokens/index.css` i
 | retheme-additions | habito | 5 of 7 audited primitives byte-identical to stock modulo import paths; the 17 files in src/components/ are net-new product surfaces (heatmap.tsx, check-control.tsx, area-donut.tsx), not edited democrito ones. |
 | partial-fork | prompt-x | button.tsx adds an `accent` variant and a `loading?: boolean` prop to ButtonProps; input.tsx adds `error` and `variant` props. The primitives' TypeScript APIs changed, not just their classes. |
 | rewrite | Southern Startups | components/ui/ holds 5 files against democrito's 48, and none is a retheme. select.tsx is a native <select> where shadcn ships a Radix composite — a different component with a different API and accessibility model. package.json carries exactly one Radix dependency; democrito's primitive layer needs roughly twenty. |
+| pure-retheme | mesa (prototype) | Four of six declared tokens — --background 30 18% 91%, --card 30 25% 97%, --primary 15 10% 22%, --border 28 14% 81% — are byte-identical to democrito base warm. Only the accent pair moved. |
+| retheme-additions | strength (prototype) | Accent re-hued and heavily re-saturated, plus a four-step yellow→orange effort ramp that democrito has no counterpart for. |
 
-> No audited system is a pure retheme. Every one of the three diverged past token values. That is the finding, not a gap in the sample.
+> Of the three systems audited against source, none is a pure retheme — every one diverged past token values. The only pure retheme in the set is a prototype (mesa), which is exactly the pattern: the discipline holds while a system is small, and gives way once it ships.
 
 ---
 
@@ -210,6 +212,103 @@ Take democrito's token architecture and directory taxonomy. Keep the storage for
 - ecosystem-map.tsx:47 interpolates var(--status-acquired); the declared token is --color-status-acquired. The class compiles, the declaration is dropped, one of four map markers renders unfilled. The contract held everywhere it was checked and failed where it wasn't.
 - The focus indicator is declared twice — a custom property in CSS and a hardcoded literal in tailwind.config.ts. They agree today; nothing keeps them agreeing, and the config literal is the one every component actually uses.
 - Deleting --ring means any borrowed component silently loses its focus indicator — an accessibility failure invisible to screenshots and mouse testing.
+
+---
+
+## Prototypes
+
+> Not shipped products. These were built to explore how far the token layer stretches, and they are the only place in this batch where a pure retheme appears. Their values are read from the design boards, not extracted from source — so unlike the case studies above, nothing here is source-verified. Treated as evidence of intent, not of practice.
+
+### mesa (prototype · not source-verified)
+
+**Weekly meal planning that stays legible at a glance. Plan the week, not the meal**
+
+Status: prototype · 2026 · Built by Mariano Morera
+Verdict: pure-retheme · Coverage: 0 — board-declared only
+
+> The only pure retheme in the set. One hue moved; nothing else did.
+
+### Token Diff
+
+| Token | Base | System | Note |
+|---|---|---|---|
+| `--accent` | `18 60% 45%` | `212 52% 52%` | terracotta → soft blue, 166° of hue |
+| `--accent-muted` | `18 38% 55%` | `212 40% 62%` |  |
+| `--background` | `30 18% 91%` | `30 18% 91%` | unchanged |
+| `--card` | `30 25% 97%` | `30 25% 97%` | unchanged |
+| `--primary` | `15 10% 22%` | `15 10% 22%` | unchanged |
+| `--border` | `28 14% 81%` | `28 14% 81%` | unchanged |
+
+### Kept
+
+- the entire warm surface hierarchy
+- the radius scale
+- all three font roles
+- all three themes
+
+### Overridden
+
+- the accent pair — and nothing else
+
+### Recipe
+
+Changed --accent and --accent-muted. Stopped.
+
+### Contract Notes
+
+**Held:**
+
+- This is what the theming guide describes, executed literally: two token values, zero component edits, an identity that reads as nothing like democrito.
+
+**Broke:**
+
+
+
+---
+
+### strength (prototype · not source-verified)
+
+**Progressive overload, made visible. Do all you can — then progress**
+
+Status: prototype · 2026 · Built by Mariano Morera
+Verdict: retheme-additions · Coverage: 0 — board-declared only
+
+> A semantic ramp where democrito has a single accent.
+
+### Token Diff
+
+| Token | Base | System | Note |
+|---|---|---|---|
+| `--accent` | `18 60% 45%` | `32 92% 52%` | 14° of hue, but saturation 60% → 92% — the shift is chroma, not hue |
+| `--background` | `30 18% 91%` | `40 12% 97%` |  |
+| `--primary` | `15 10% 22%` | `24 10% 10%` |  |
+| `--card` | `30 25% 97%` | `0 0% 100%` |  |
+
+### Kept
+
+- the surface hierarchy
+- all three font roles
+- one bold element per screen
+
+### Overridden
+
+- accent saturation
+- background and card lightness
+- a single accent replaced by a four-step effort ramp
+
+### Recipe
+
+Re-hued and re-saturated the accent, then added a yellow→orange ramp so effort reads as a gradient rather than a state.
+
+### Contract Notes
+
+**Held:**
+
+- The ramp is additive — it sits alongside --accent rather than replacing it, so democrito components referencing --accent still resolve.
+
+**Broke:**
+
+
 
 ---
 
