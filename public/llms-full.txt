@@ -114,3 +114,15 @@ Base unit: 4px. Scale: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64.
 - Don't modify shadcn/ui primitives in-place — extend via variants
 - Don't add a color token without defining it for all three themes
 - Don't skip the TypeScript props interface on a component
+
+## Systems built on democrito
+
+Three systems used democrito as their token contract. Each went further than tokens only.
+
+| System | Verdict | Key divergence |
+|--------|---------|----------------|
+| habito | retheme-additions | Kept token architecture; replaced palette with neutral ramps; eliminated accent entirely |
+| prompt-x | partial-fork | Inverted to dark at fixed 18° hue; extended with 21 domain tokens; edited 8 of 49 primitives |
+| Southern Startups | rewrite | Replaced every colour value; reduced to 1 theme; rewrote the component layer against the tokens |
+
+Full audit: docs/showcase.md

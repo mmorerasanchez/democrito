@@ -116,6 +116,24 @@ All token values are HSL CSS custom properties defined in all three themes simul
 
 ---
 
+## Built With democrito
+
+<!-- BEGIN GENERATED: showcase -->
+democrito is a token contract. 5 systems show how far builders actually went.
+
+| System | What it did | Verdict | URL |
+| --- | --- | --- | --- |
+| **habito** | Removed the accent entirely. democrito's components didn't care. | retheme-additions | [habito-health.lovable.app](https://habito-health.lovable.app/) |
+| **prompt-x** | Inverted the default theme end to end at a fixed 18° hue, then extended the vocabulary. | partial-fork | [prompt-x.io](https://prompt-x.io/) |
+| **Southern Startups** | Zero base token values survive. It is still recognisably democrito. | rewrite | [www.southern-startups.com](https://www.southern-startups.com/) |
+| **mesa** (prototype) | The only pure retheme in the set. One hue moved; nothing else did. | pure-retheme | — |
+| **strength** (prototype) | A semantic ramp where democrito has a single accent. | retheme-additions | — |
+
+Full audit, token diffs, and what broke: [docs/showcase.md](docs/showcase.md)
+<!-- END GENERATED: showcase -->
+
+---
+
 ## For AI Agents
 
 democrito is structured to be read and maintained by AI coding agents. Three files serve as the authoritative context:

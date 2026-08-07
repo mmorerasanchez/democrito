@@ -42,3 +42,12 @@ Via git clone:
 - Light  (`.light`)
 
 Every color token is defined in all three themes in tokens/index.css.
+
+## Systems built on democrito
+
+democrito has been used as the token contract for three documented systems:
+- habito (https://habito-health.lovable.app/) — retheme-additions
+- prompt-x (https://prompt-x.io/) — partial-fork
+- Southern Startups (https://www.southern-startups.com/) — rewrite
+
+Full token diffs and what broke: docs/showcase.md
