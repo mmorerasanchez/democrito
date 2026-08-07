@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Showcase data layer:** `showcase/showcase.json` — hand-authored audit of three systems (habito, prompt-x, Southern Startups) built on democrito; includes token diffs, divergence verdicts, kept/overridden lists, vignette configs, and contract notes
+- **Showcase schema:** `showcase/showcase.schema.json` — JSON Schema draft 2020-12 governing the showcase data format
+- **Showcase generator:** `scripts/generate-showcase.mjs` — reads and validates `showcase.json`, emits `docs/showcase.md` and updates the `README.md` generated region; deterministic (no timestamps); supports `--validate-only` flag
+- **Showcase screenshots:** `public/showcase/` — placeholder PNGs for habito, prompt-x, and Southern Startups (1600×1000; real screenshots to follow in PR 2)
+- **`docs/showcase.md`** — generated full audit document with divergence spectrum, per-system token diffs, contract analysis, and seven cross-cutting findings
+- **GEO surface:** showcase and three system names added to `public/llms.txt` and `public/llms-full.txt`
+- **CI coverage:** drift gate extended to `docs/showcase.md` and `README.md`; dedicated schema validation step added before build
+
+---
+
 ## [3.5.1] — 2026-06-17
 
 ### Changed

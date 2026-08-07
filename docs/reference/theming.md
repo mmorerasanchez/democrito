@@ -323,3 +323,7 @@ A friendly, spacious consumer product with a green accent.
 8. **Set `color-scheme`** — add `color-scheme: light` or `color-scheme: dark` to each theme block so native browser controls (scrollbars, inputs, `<dialog>` backdrops) match the rest of the UI.
 
 No component files need to change. The system is designed so that **tokens are the only branding surface**.
+
+---
+
+Three systems have rethemed democrito in production. The [showcase](../showcase.md) records how far each went and what broke.

@@ -15,6 +15,7 @@
 | [Theming](./reference/theming.md) | How to customize the system for your brand — palette, fonts, spacing, with full examples |
 | [Migration](./reference/migration.md) | How to consume tokens in a new project and migrate from MUI, Chakra, Bootstrap, or Tailwind UI |
 | [Content Guidelines](./guides/content-guidelines.md) | Voice, button labels, empty states, error messages, and AI copy anti-patterns |
+| [Showcase](./showcase.md) | Three systems built on democrito — how each diverged, what held, what broke |
 
 ## AI Integration
 

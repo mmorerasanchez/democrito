@@ -1,0 +1,260 @@
+import { readFileSync, writeFileSync } from "node:fs";
+import { resolve, join } from "node:path";
+
+const root = resolve(".");
+const validateOnly = process.argv.includes("--validate-only");
+
+// ── Load data ──────────────────────────────────────────────────────────────
+
+const dataPath   = join(root, "showcase", "showcase.json");
+const schemaPath = join(root, "showcase", "showcase.schema.json");
+
+let data;
+try {
+  data = JSON.parse(readFileSync(dataPath, "utf8"));
+} catch (err) {
+  console.error(`✗ generate-showcase — cannot read showcase.json: ${err.message}`);
+  process.exit(1);
+}
+
+// ── Validate ───────────────────────────────────────────────────────────────
+
+const VALID_VERDICTS      = ["pure-retheme", "retheme-additions", "partial-fork", "rewrite"];
+const VALID_VALUE_FORMATS = ["bare-triplet", "hsl-function"];
+const VALID_STATUSES      = ["live", "prototype", "private", "alpha"];
+const SLUG_PATTERN        = /^[a-z0-9-]+$/;
+
+function validate(d) {
+  const errors = [];
+
+  if (!Array.isArray(d.systems) || d.systems.length === 0) {
+    errors.push("systems must be a non-empty array");
+    return errors;
+  }
+
+  for (const sys of d.systems) {
+    const id = `system '${sys.slug ?? "(no slug)"}'`;
+
+    if (!sys.slug || !SLUG_PATTERN.test(sys.slug)) {
+      errors.push(`${id}: slug must match ^[a-z0-9-]+$`);
+    }
+    if (!VALID_STATUSES.includes(sys.status)) {
+      errors.push(`${id}: status '${sys.status}' must be one of ${VALID_STATUSES.join(", ")}`);
+    }
+    if (!sys.divergence || !VALID_VERDICTS.includes(sys.divergence.verdict)) {
+      errors.push(`${id}: divergence.verdict '${sys.divergence?.verdict}' must be one of ${VALID_VERDICTS.join(", ")}`);
+    }
+    if (!sys.vignette) {
+      errors.push(`${id}: vignette is required`);
+    } else {
+      if (!VALID_VALUE_FORMATS.includes(sys.vignette.valueFormat)) {
+        errors.push(`${id}: vignette.valueFormat '${sys.vignette.valueFormat}' must be one of ${VALID_VALUE_FORMATS.join(", ")}`);
+      }
+      for (const absent of (sys.vignette.absent ?? [])) {
+        if (typeof absent.token !== "string" || !absent.token) {
+          errors.push(`${id}: vignette.absent entry missing required 'token' string`);
+        }
+        if (!("substitutedWith" in absent)) {
+          errors.push(`${id}: vignette.absent entry for '${absent.token}' missing required 'substitutedWith' (use null if none)`);
+        }
+        if (typeof absent.consequence !== "string" || !absent.consequence.trim()) {
+          errors.push(`${id}: vignette.absent entry for '${absent.token}' requires a non-empty 'consequence' string`);
+        }
+      }
+    }
+    if (sys.tokens) {
+      for (const [name, entry] of Object.entries(sys.tokens)) {
+        if (typeof entry !== "object" || entry === null || !("base" in entry)) {
+          errors.push(`${id}: tokens.${name} requires a 'base' field`);
+        }
+      }
+    } else {
+      errors.push(`${id}: tokens is required`);
+    }
+    for (const field of ["name", "tagline", "kept", "overridden", "recipe", "contractNotes"]) {
+      if (!(field in sys)) errors.push(`${id}: required field '${field}' is missing`);
+    }
+    if (sys.contractNotes) {
+      if (!Array.isArray(sys.contractNotes.held))  errors.push(`${id}: contractNotes.held must be an array`);
+      if (!Array.isArray(sys.contractNotes.broke))  errors.push(`${id}: contractNotes.broke must be an array`);
+    }
+  }
+
+  if (!Array.isArray(d.whatWeLearned)) {
+    errors.push("whatWeLearned must be an array");
+  }
+  if (!d.submit || !d.submit.email || !d.submit.subject || !d.submit.bodyTemplate) {
+    errors.push("submit requires email, subject, and bodyTemplate");
+  }
+
+  return errors;
+}
+
+const errors = validate(data);
+if (errors.length > 0) {
+  console.error("✗ generate-showcase — showcase.json validation failed:");
+  for (const e of errors) console.error(`  - ${e}`);
+  process.exit(1);
+}
+
+if (validateOnly) {
+  console.log("✓ generate-showcase — showcase.json is valid (--validate-only)");
+  process.exit(0);
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+function enc(s) {
+  return encodeURIComponent(s).replace(/%20/g, "%20");
+}
+
+function bulletList(items) {
+  return items.map((i) => `- ${i}`).join("\n");
+}
+
+function tokenTable(tokens) {
+  const rows = Object.entries(tokens).map(([name, entry]) => {
+    const base   = entry.base   ?? "";
+    const system = entry.system === null ? "ABSENT" : (entry.system ?? "");
+    const note   = entry.note   ?? "";
+    return `| \`${name}\` | \`${base}\` | ${system === "ABSENT" ? "**ABSENT**" : `\`${system}\``} | ${note} |`;
+  });
+  return [
+    "| Token | Base | System | Note |",
+    "|---|---|---|---|",
+    ...rows,
+  ].join("\n");
+}
+
+// ── Generate docs/showcase.md ──────────────────────────────────────────────
+
+function genShowcaseMd(d) {
+  const lines = [];
+
+  lines.push("<!-- GENERATED by scripts/generate-showcase.mjs — edit showcase/showcase.json instead -->");
+  lines.push("");
+  lines.push("# Systems Built With democrito");
+  lines.push("");
+  lines.push("democrito is a token contract. Every CSS custom property in `tokens/index.css` is a named commitment — a value any consuming system can override. What the three systems below show is not how well they followed the contract, but how far each one went: what each kept, what each changed, and where the contract held and where it broke. Divergence is a measure, not a grade.");
+  lines.push("");
+  lines.push("## Divergence Spectrum");
+  lines.push("");
+  lines.push("| Verdict | System | Evidence |");
+  lines.push("|---|---|---|");
+  for (const sys of d.systems) {
+    lines.push(`| ${sys.divergence.verdict} | ${sys.name} | ${sys.divergence.evidence} |`);
+  }
+  lines.push("");
+  lines.push(`> ${d.spectrum.note}`);
+  lines.push("");
+  lines.push("---");
+  lines.push("");
+
+  for (const sys of d.systems) {
+    lines.push(`## ${sys.name}`);
+    lines.push("");
+    lines.push(`**${sys.tagline}**`);
+    lines.push("");
+    lines.push(`URL: <${sys.url}>`);
+    lines.push(`Status: ${sys.status} · ${sys.year} · Built by ${sys.builtBy}`);
+    lines.push(`Verdict: ${sys.divergence.verdict} · Coverage: ${sys.divergence.primitivesAudited} (${sys.divergence.coverageNote})`);
+    lines.push("");
+    if (sys.headline) {
+      lines.push(`> ${sys.headline}`);
+      lines.push("");
+    }
+    lines.push("### Token Diff");
+    lines.push("");
+    lines.push(tokenTable(sys.tokens));
+    lines.push("");
+    lines.push("### Kept");
+    lines.push("");
+    lines.push(bulletList(sys.kept));
+    lines.push("");
+    lines.push("### Overridden");
+    lines.push("");
+    lines.push(bulletList(sys.overridden));
+    lines.push("");
+    lines.push("### Recipe");
+    lines.push("");
+    lines.push(sys.recipe);
+    lines.push("");
+    lines.push("### Contract Notes");
+    lines.push("");
+    lines.push("**Held:**");
+    lines.push("");
+    lines.push(bulletList(sys.contractNotes.held));
+    lines.push("");
+    lines.push("**Broke:**");
+    lines.push("");
+    lines.push(bulletList(sys.contractNotes.broke));
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+  }
+
+  lines.push("## What We Learned");
+  lines.push("");
+  for (const item of d.whatWeLearned) {
+    lines.push(`### ${item.title}`);
+    lines.push("");
+    lines.push(item.body);
+    lines.push("");
+    if (item.evidence && item.evidence.length > 0) {
+      lines.push(bulletList(item.evidence));
+      lines.push("");
+    }
+  }
+  lines.push("---");
+  lines.push("");
+  lines.push(`## ${d.submit.headline}`);
+  lines.push("");
+  lines.push(d.submit.body);
+  lines.push("");
+  const mailtoUrl = `mailto:${d.submit.email}?subject=${enc(d.submit.subject)}&body=${enc(d.submit.bodyTemplate)}`;
+  lines.push(`[${d.submit.cta}](${mailtoUrl})`);
+  lines.push("");
+
+  return lines.join("\n");
+}
+
+// ── Generate README.md region ──────────────────────────────────────────────
+
+function genReadmeRegion(d) {
+  const lines = [];
+
+  lines.push("democrito is a token contract. Three systems show how far builders actually went.");
+  lines.push("");
+  lines.push("| System | What it did | Verdict | URL |");
+  lines.push("| --- | --- | --- | --- |");
+  for (const sys of d.systems) {
+    const what = sys.headline ?? sys.tagline;
+    lines.push(`| **${sys.name}** | ${what} | ${sys.divergence.verdict} | [${new URL(sys.url).hostname}](${sys.url}) |`);
+  }
+  lines.push("");
+  lines.push("Full audit, token diffs, and what broke: [docs/showcase.md](docs/showcase.md)");
+
+  return lines.join("\n");
+}
+
+// ── Write outputs ──────────────────────────────────────────────────────────
+
+const showcaseMd = genShowcaseMd(data);
+const showcasePath = join(root, "docs", "showcase.md");
+writeFileSync(showcasePath, showcaseMd, "utf8");
+
+const readmePath = join(root, "README.md");
+const readmeRaw  = readFileSync(readmePath, "utf8");
+const region     = genReadmeRegion(data);
+const fence_re   = /<!-- BEGIN GENERATED: showcase -->[\s\S]*?<!-- END GENERATED: showcase -->/;
+const replacement = `<!-- BEGIN GENERATED: showcase -->\n${region}\n<!-- END GENERATED: showcase -->`;
+
+if (!fence_re.test(readmeRaw)) {
+  console.error("✗ generate-showcase — README.md is missing the generated-showcase fences. Add them first.");
+  process.exit(1);
+}
+
+const newReadme = readmeRaw.replace(fence_re, replacement);
+writeFileSync(readmePath, newReadme, "utf8");
+
+console.log("✓ generate-showcase — docs/showcase.md · README.md region updated");
