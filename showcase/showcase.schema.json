@@ -9,6 +9,15 @@
   "properties": {
     "$schema":   { "type": "string" },
     "generated": { "type": "string" },
+    "intro": {
+      "type": "object",
+      "required": ["heading", "body", "note"],
+      "properties": {
+        "heading": { "type": "string" },
+        "body":    { "type": "string" },
+        "note":    { "type": "string" }
+      }
+    },
     "base": {
       "type": "object",
       "description": "The democrito baseline values being compared against.",
@@ -35,7 +44,9 @@
             "enum": ["pure-retheme", "retheme-additions", "partial-fork", "rewrite"]
           }
         },
-        "note": { "type": "string" }
+        "note":             { "type": "string" },
+        "axisLabels":      { "type": "object", "additionalProperties": { "type": "string" } },
+        "axisDefinitions": { "type": "object", "additionalProperties": { "type": "string" } }
       }
     },
     "systems": {
@@ -203,14 +214,20 @@
     },
     "absentEntry": {
       "type": "object",
-      "required": ["token", "substitutedWith", "consequence"],
+      "required": ["token", "substitutedWith", "consequence", "mode", "renderValue"],
       "properties": {
-        "token": { "type": "string" },
+        "token":           { "type": "string" },
         "substitutedWith": { "type": ["string", "null"] },
-        "consequence": {
-          "type": "string",
-          "minLength": 1
-        }
+        "consequence":     { "type": "string", "minLength": 1 },
+        "mode":            { "type": "string", "enum": ["substituted", "approximated", "excluded"] },
+        "renderValue":     { "type": ["string", "null"] }
+      },
+      "if": {
+        "properties": { "mode": { "not": { "const": "excluded" } } },
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": { "renderValue": { "type": "string", "minLength": 1 } }
       }
     }
   }
