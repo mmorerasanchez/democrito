@@ -123,9 +123,9 @@ democrito is a token contract. 5 systems show how far builders actually went.
 
 | System | What it did | Verdict | URL |
 | --- | --- | --- | --- |
-| **habito** | Removed the accent entirely. democrito's components didn't care. | retheme-additions | [habito-health.lovable.app](https://habito-health.lovable.app/) |
-| **prompt-x** | Inverted the default theme end to end at a fixed 18° hue, then extended the vocabulary. | partial-fork | [prompt-x.io](https://prompt-x.io/) |
-| **Southern Startups** | Zero base token values survive. It is still recognisably democrito. | rewrite | [www.southern-startups.com](https://www.southern-startups.com/) |
+| **habito** | Dropped the accent hue entirely — and the inherited components carried on regardless. | retheme-additions | [habito-health.lovable.app](https://habito-health.lovable.app/) |
+| **prompt-x** | Inverted the palette end to end, and held the accent hue exactly where it started. | partial-fork | [prompt-x.io](https://prompt-x.io/) |
+| **Southern Startups** | Kept none of the original colours. Still, structurally, the same system. | rewrite | [www.southern-startups.com](https://www.southern-startups.com/) |
 | **mesa** (prototype) | The only pure retheme in the set. One hue moved; nothing else did. | pure-retheme | — |
 | **strength** (prototype) | A semantic ramp where democrito has a single accent. | retheme-additions | — |
 

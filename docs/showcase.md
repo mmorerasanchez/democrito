@@ -2,28 +2,20 @@
 
 # Built on democrito
 
-democrito is a token contract, not a component library you are meant to leave alone. Five systems were built on it and measured against base: three shipped products audited against source code, two prototypes read from their design boards. None of them stayed inside the lines. This page records how far each one went, what survived the journey, and — where it matters most — exactly where the contract broke. The failures are published because they are the part worth reading.
+One token layer, five products. habito went fully achromatic and dropped the accent hue altogether. prompt-x inverted the whole palette to dark while holding the accent at exactly 18°. Southern Startups swapped terracotta for Andalucía green, kept a single theme, and shares none of the original colour values — and is still, structurally, the same system. Each entry below shows what it inherited, what it made its own, and the real democrito components rendered live under its tokens.
 
-> Divergence is a measure, not a grade. A system further right was pushed harder, not built worse.
+> How far a system went is a measure, not a grade. Further right means pushed harder, not built worse.
 
-## Divergence Spectrum
+## How far each system went
 
-| Verdict | System | Evidence |
-|---|---|---|
-| retheme-additions | habito | 5 of 7 audited primitives byte-identical to stock modulo import paths; the 17 files in src/components/ are net-new product surfaces (heatmap.tsx, check-control.tsx, area-donut.tsx), not edited democrito ones. |
-| partial-fork | prompt-x | button.tsx adds an `accent` variant and a `loading?: boolean` prop to ButtonProps; input.tsx adds `error` and `variant` props. The primitives' TypeScript APIs changed, not just their classes. |
-| rewrite | Southern Startups | components/ui/ holds 5 files against democrito's 48, and none is a retheme. select.tsx is a native <select> where shadcn ships a Radix composite — a different component with a different API and accessibility model. package.json carries exactly one Radix dependency; democrito's primitive layer needs roughly twenty. |
-| pure-retheme | mesa (prototype) | Four of six declared tokens — --background 30 18% 91%, --card 30 25% 97%, --primary 15 10% 22%, --border 28 14% 81% — are byte-identical to democrito base warm. Only the accent pair moved. |
-| retheme-additions | strength (prototype) | Accent re-hued and heavily re-saturated, plus a four-step yellow→orange effort ramp that democrito has no counterpart for. |
+| Approach | Label | Systems | Definition |
+|---|---|---|---|
+| pure-retheme | Retheme | mesa (prototype) | Token values changed. Components untouched. |
+| retheme-additions | Retheme + extend | habito, strength (prototype) | Tokens changed, new components added alongside the inherited ones. |
+| partial-fork | Adapt the components | prompt-x | Inherited components adapted — classes, variants or props. |
+| rewrite | Rebuild on the same bones | Southern Startups | Own component layer, built against the same token contract. |
 
-> Of the three systems audited against source, none is a pure retheme — every one diverged past token values. The only pure retheme in the set is a prototype (mesa), which is exactly the pattern: the discipline holds while a system is small, and gives way once it ships.
-
-| Verdict | Label | Definition |
-|---|---|---|
-| pure-retheme | Pure retheme | Token values changed. Zero component edits. |
-| retheme-additions | Retheme + additions | Tokens changed, new components added, inherited ones untouched. |
-| partial-fork | Partial fork | Inherited components edited — classes, variants, or props. |
-| rewrite | Rewrite | Component layer replaced. Only the contract survives. |
+> The three shipped products each went past token values — and the foundation held at every distance. Southern Startups sits furthest out, sharing no colours and no components with base, and is still recognisably democrito. That range is the point: the contract is what travels, not the palette.
 
 ---
 
@@ -33,18 +25,18 @@ democrito is a token contract, not a component library you are meant to leave al
 
 URL: <https://habito-health.lovable.app/>
 Status: live · 2026 · Built by Mariano Morera
-Verdict: retheme-additions · Coverage: 7 of 46 (Component-layer coverage is 15%. Published as-is rather than claimed complete.)
+Approach: retheme-additions · Audit coverage: 7 of 46 (Component-layer coverage is 15%. Published as-is rather than claimed complete.)
 
-> Removed the accent entirely. democrito's components didn't care.
+> Dropped the accent hue entirely — and the inherited components carried on regardless.
 
-### Token Diff
+### Token diff from base
 
 | Token | Base | System | Note |
 |---|---|---|---|
 | `--accent` | `18 60% 45%` | `0 0% 90%` | not recoloured — eliminated. Aliased to a neutral; the design doc forbids using it as an accent. |
 | `--background` | `30 18% 91%` | `0 0% 98%` |  |
 | `--card` | `30 25% 97%` | `0 0% 98%` | aliases --background; no card/background distinction exists |
-| `--surface` | `40 15% 94%` | **ABSENT** | ABSENT — 3-surface hierarchy collapsed to 1 |
+| `--surface` | `40 15% 94%` | not used | ABSENT — 3-surface hierarchy collapsed to 1 |
 | `--foreground` | `12 6% 15%` | `0 0% 7%` |  |
 | `--muted-foreground` | `20 6% 41%` | `0 0% 32%` |  |
 | `--border` | `28 14% 81%` | `0 0% 90%` |  |
@@ -54,40 +46,36 @@ Verdict: retheme-additions · Coverage: 7 of 46 (Component-layer coverage is 15%
 | `--font-body` | `Satoshi` | `Inter` | renamed --font-sans |
 | `--font-mono` | `JetBrains Mono` | `ui-monospace system stack` | declared, applied by nothing |
 
-### Kept
+### Inherited
 
 - shadcn/ui primitives at stock styling — button.tsx is unmodified cva, six variants, four sizes
-- semantic token names and the @theme inline binding pattern
+- semantic token names and the @theme binding pattern
 - themes as custom-property overrides; no component branches on theme
-- the three-role font split, structurally intact
-- the radius scale shape: sm/md/lg/xl derived by calc() from a single --radius
+- the radius scale shape — sm/md/lg/xl derived by calc() from a single --radius
 
-### Overridden
+### Made its own
 
-- accent eliminated, not recoloured
-- palette replaced with two achromatic/near-achromatic primitive ramps
-- three-surface hierarchy collapsed — no --surface; --card aliases --background
-- --destructive aliased to --foreground; no success/warning/error/info exist
-- all three font faces replaced
-- theme mechanism class → data-theme; default flipped warm → light
-- value format bare triplets → full hsl() at a primitive tier
+- an accent-free palette: --accent aliased to a neutral, by design rather than by omission
+- two achromatic ramps in place of the warm palette
+- one surface where democrito has three
+- Fraunces and Inter in place of all three inherited faces
 
-### Recipe
+### How it was done
 
 Kept democrito's token architecture and left the shadcn primitives untouched, then replaced the palette wholesale with two neutral ramps, removed the accent entirely, and added 17 product-specific components on top.
 
 ### Contract Notes
 
-**Held:**
+**What carried over:**
 
 - Every stock primitive that referenced only declared tokens rendered correctly under a total palette replacement.
 - Removing the accent hue entirely broke nothing that referenced --accent — it resolved to a neutral and kept working.
 
-**Broke:**
+**What it needed on top:**
 
-- sidebar.tsx is byte-identical to stock and renders transparent, unbordered and hoverless: seven --sidebar-* tokens it references were never declared.
-- chart.tsx hardcodes .dark; habito replaced that with data-theme, so its dark-theme colour injection is dead code.
-- tw-animate-css was dropped from the CSS imports but kept in package.json — animate-in / fade-in are dead classes and the milestone panel renders instantly.
+- sidebar.tsx ships stock and reads seven --sidebar-* tokens this system doesn't declare — it needs them declared, or a sidebar of its own.
+- chart.tsx keys its dark handling off .dark; this system themes via data-theme, so that path needs rewiring.
+- tw-animate-css is still a dependency but no longer imported, so animate-in / fade-in need the import back or the classes removed.
 
 ---
 
@@ -97,11 +85,11 @@ Kept democrito's token architecture and left the shadcn primitives untouched, th
 
 URL: <https://prompt-x.io/>
 Status: live · 2026 · Built by Mariano Morera
-Verdict: partial-fork · Coverage: 49 of 49 surveyed (8 of 49 restyled with non-stock tokens; 3 of those given new API surface.)
+Approach: partial-fork · Audit coverage: 49 of 49 surveyed (8 of 49 restyled with non-stock tokens; 3 of those given new API surface.)
 
-> Inverted the default theme end to end at a fixed 18° hue, then extended the vocabulary.
+> Inverted the palette end to end, and held the accent hue exactly where it started.
 
-### Token Diff
+### Token diff from base
 
 | Token | Base | System | Note |
 |---|---|---|---|
@@ -117,41 +105,36 @@ Verdict: partial-fork · Coverage: 49 of 49 surveyed (8 of 49 restyled with non-
 | `--ring` | `18 60% 45%` | `18 65% 55%` |  |
 | `--radius` | `0.75rem` | `0.5rem` | declared but consumed by nothing — inert |
 
-### Kept
+### Inherited
 
-- 3-surface hierarchy intact in all three themes; bg-surface used in 33 source files
-- accent hue held at 18° across every theme and every accent-family token
-- accent family fully in sync — accent, ring, sidebar-primary, sidebar-ring identical within each theme
-- three-font split intact: Plus Jakarta Sans / Satoshi / JetBrains Mono
-- the .warm theme reproduces democrito base almost verbatim
-- no hardcoded hex anywhere in src/components/ui/
-- atomic directory convention preserved
+- the three-surface hierarchy, intact across all three themes — bg-surface used in 33 files
+- the accent hue at 18° in every theme, with the whole accent family in sync
+- the three-font split: Plus Jakarta Sans, Satoshi, JetBrains Mono
+- a warm theme that reproduces democrito base almost verbatim
 
-### Overridden
+### Made its own
 
-- default theme inverted: :root is dark; warm demoted to opt-in
-- --radius 0.75rem → 0.5rem, superseded by a px scale democrito does not define
-- accent lightened +10% L / +5% S for dark
-- 21 non-inherited colour tokens added
-- token layer extended with spacing, 9-step type scale, layout dims, z-index, motion
-- 8 of 49 primitives restyled; 3 given new prop APIs
+- dark as the default, with warm demoted to an opt-in comfort setting
+- 21 domain tokens encoding the nine-field prompt anatomy
+- a px radius scale layered over the inherited --radius
+- 8 of 49 primitives restyled, three of them given new props
 
-### Recipe
+### How it was done
 
 Took democrito's token contract and component set, inverted the default theme to dark while keeping warm as a near-verbatim copy of base, extended the token layer with ~40 domain and scale tokens, and edited 8 of 49 primitives — three of them with new props, not just new classes.
 
 ### Contract Notes
 
-**Held:**
+**What carried over:**
 
 - A full light-to-dark inversion at fixed hue changed no component. Every one of the 92 :root tokens is a terminal literal with no alias indirection.
 - The accent family stayed in sync across all three themes without tooling — the discipline held by hand.
 
-**Broke:**
+**What it needed on top:**
 
-- Fonts and the radius scale reach components through tailwind.config.ts rather than CSS custom properties. A scoped re-render inherits neither — the contract stops at the CSS boundary.
-- --radius is declared and consumed by nothing. The token exists; the value is inert.
-- Bare `rounded` falls through to a Tailwind default that is not a token in this system and cannot be reproduced.
+- Fonts and the radius scale reach components through tailwind.config.ts rather than CSS custom properties — fine in the app, but it means those values can't be re-scoped by CSS alone.
+- --radius is declared and read by nothing; the px scale supersedes it and the token can go.
+- 26 bare `rounded` classes fall through to Tailwind's default rather than resolving to a token.
 
 ---
 
@@ -161,11 +144,11 @@ Took democrito's token contract and component set, inverted the default theme to
 
 URL: <https://www.southern-startups.com/>
 Status: alpha · 2026 · Built by Mariano Morera
-Verdict: rewrite · Coverage: 5 of 5 (100% of the primitive layer) (5 of 5 primitives fully verified. The 29 atomic components were not diffed against democrito's equivalents. Total component coverage: 15%.)
+Approach: rewrite · Audit coverage: 5 of 5 (100% of the primitive layer) (5 of 5 primitives fully verified. The 29 atomic components were not diffed against democrito's equivalents. Total component coverage: 15%.)
 
-> Zero base token values survive. It is still recognisably democrito.
+> Kept none of the original colours. Still, structurally, the same system.
 
-### Token Diff
+### Token diff from base
 
 | Token | Base | System | Note |
 |---|---|---|---|
@@ -177,67 +160,58 @@ Verdict: rewrite · Coverage: 5 of 5 (100% of the primitive layer) (5 of 5 primi
 | `--border` | `28 14% 81%` | `30 8% 88%` |  |
 | `--muted-foreground` | `20 6% 41%` | `24 5% 44%` | renamed --foreground-muted |
 | `--accent-subtle` | `30 15% 92%` | `145 52% 96%` | renamed --brand-subtle |
-| `--accent-muted` | `18 38% 55%` | **ABSENT** | ABSENT at any name |
-| `--ring` | `18 60% 45%` | **ABSENT** | ABSENT — replaced by --shadow-focus, a 3-layer composite box-shadow |
-| `--radius` | `0.75rem` | **ABSENT** | ABSENT — replaced by a 5-step config-literal scale |
+| `--accent-muted` | `18 38% 55%` | not used | ABSENT at any name |
+| `--ring` | `18 60% 45%` | not used | ABSENT — replaced by --shadow-focus, a 3-layer composite box-shadow |
+| `--radius` | `0.75rem` | not used | ABSENT — replaced by a 5-step config-literal scale |
 
-### Kept
+### Inherited
 
-- the three-tier token architecture (primitive → semantic → component-scoped), named as such in the file header
+- the three-tier token architecture, named as such in the file header
 - bare-HSL-triplet storage with hsl(var(--x)) consumption
-- Tailwind opacity-modifier compatibility via / <alpha-value>
-- the atomic directory taxonomy: atoms / molecules / organisms / templates
-- cva + tailwind-merge + clsx + @radix-ui/react-slot as the composition primitives
-- Plus Jakarta Sans as the display face
-- JetBrains Mono as the mono face
+- the atomic directory taxonomy — atoms, molecules, organisms, templates
+- Plus Jakarta Sans and JetBrains Mono
 
-### Overridden
+### Made its own
 
-- every colour value in the reference table
-- theme count 3 → 1
-- accent hue 18° → 145°
-- accent family naming --accent* → --brand*
-- --muted-foreground → --foreground-muted
-- --radius single custom property → 5-step config-literal scale
-- focus indicator: --ring token → --shadow-focus 3-layer composite
-- body face Satoshi → Plus Jakarta Sans; three faces → two
-- the entire --sidebar-* family, deleted
-- the shadcn primitive layer, rewritten
+- Andalucía green, 127° from terracotta, renamed --brand to clear a shadcn naming collision
+- one theme where democrito ships three
+- a three-layer composite focus ring in place of --ring
+- its own five-file component layer, written against the inherited tokens
 
-### Recipe
+### How it was done
 
 Take democrito's token architecture and directory taxonomy. Keep the storage format and the consumption contract exactly. Replace every value: desaturate the warm surfaces toward neutral, swap the terracotta accent for Andalucía green 127° away, drop to a single light theme. Rename the accent family to --brand to escape a shadcn collision, collapse the three-face type system to two by removing the licence-encumbered body face. Then write your own component layer against the tokens rather than restyling democrito's.
 
 ### Contract Notes
 
-**Held:**
+**What carried over:**
 
 - The storage format and consumption contract survived a total rewrite of both palette and component layer. A system can share nothing chromatically with democrito and still be structurally the same system.
 - Zero hardcoded colours across all 34 components — every colour routes through a token, verified by grep.
 - A naming collision with a foreign library was resolved by taking a third name rather than re-valuing either side. The contract bent without breaking.
 
-**Broke:**
+**What it needed on top:**
 
-- ecosystem-map.tsx:47 interpolates var(--status-acquired); the declared token is --color-status-acquired. The class compiles, the declaration is dropped, one of four map markers renders unfilled. The contract held everywhere it was checked and failed where it wasn't.
-- The focus indicator is declared twice — a custom property in CSS and a hardcoded literal in tailwind.config.ts. They agree today; nothing keeps them agreeing, and the config literal is the one every component actually uses.
-- Deleting --ring means any borrowed component silently loses its focus indicator — an accessibility failure invisible to screenshots and mouse testing.
+- ecosystem-map.tsx:47 reads var(--status-acquired) where the declared token is --color-status-acquired — the marker it colours stays unfilled until the names match.
+- The focus ring is declared twice, once as a custom property and once as a Tailwind literal; they agree today and nothing keeps them agreeing.
+- Without --ring, any component borrowed from democrito loses its focus indicator — worth declaring if this system ever pulls one in.
 
 ---
 
 ## Prototypes
 
-> Not shipped products. These were built to explore how far the token layer stretches, and they are the only place in this batch where a pure retheme appears. Their values are read from the design boards, not extracted from source — so unlike the case studies above, nothing here is source-verified. Treated as evidence of intent, not of practice.
+> Two systems built to explore how far the token layer stretches. Their values are read from the design boards rather than extracted from source, so unlike the entries above nothing here is source-verified — evidence of intent rather than of practice. mesa is the one pure retheme in the set: four of its six declared tokens are byte-identical to base, and only the accent pair moved.
 
 ### mesa (prototype · not source-verified)
 
 **Weekly meal planning that stays legible at a glance. Plan the week, not the meal**
 
 Status: prototype · 2026 · Built by Mariano Morera
-Verdict: pure-retheme · Coverage: 0 — board-declared only
+Approach: pure-retheme · Audit coverage: 0 — board-declared only
 
 > The only pure retheme in the set. One hue moved; nothing else did.
 
-### Token Diff
+### Token diff from base
 
 | Token | Base | System | Note |
 |---|---|---|---|
@@ -248,28 +222,28 @@ Verdict: pure-retheme · Coverage: 0 — board-declared only
 | `--primary` | `15 10% 22%` | `15 10% 22%` | unchanged |
 | `--border` | `28 14% 81%` | `28 14% 81%` | unchanged |
 
-### Kept
+### Inherited
 
 - the entire warm surface hierarchy
 - the radius scale
 - all three font roles
 - all three themes
 
-### Overridden
+### Made its own
 
 - the accent pair — and nothing else
 
-### Recipe
+### How it was done
 
 Changed --accent and --accent-muted. Stopped.
 
 ### Contract Notes
 
-**Held:**
+**What carried over:**
 
 - This is what the theming guide describes, executed literally: two token values, zero component edits, an identity that reads as nothing like democrito.
 
-**Broke:**
+**What it needed on top:**
 
 
 
@@ -280,11 +254,11 @@ Changed --accent and --accent-muted. Stopped.
 **Progressive overload, made visible. Do all you can — then progress**
 
 Status: prototype · 2026 · Built by Mariano Morera
-Verdict: retheme-additions · Coverage: 0 — board-declared only
+Approach: retheme-additions · Audit coverage: 0 — board-declared only
 
 > A semantic ramp where democrito has a single accent.
 
-### Token Diff
+### Token diff from base
 
 | Token | Base | System | Note |
 |---|---|---|---|
@@ -293,90 +267,85 @@ Verdict: retheme-additions · Coverage: 0 — board-declared only
 | `--primary` | `15 10% 22%` | `24 10% 10%` |  |
 | `--card` | `30 25% 97%` | `0 0% 100%` |  |
 
-### Kept
+### Inherited
 
 - the surface hierarchy
 - all three font roles
 - one bold element per screen
 
-### Overridden
+### Made its own
 
 - accent saturation
 - background and card lightness
 - a single accent replaced by a four-step effort ramp
 
-### Recipe
+### How it was done
 
 Re-hued and re-saturated the accent, then added a yellow→orange ramp so effort reads as a gradient rather than a state.
 
 ### Contract Notes
 
-**Held:**
+**What carried over:**
 
 - The ramp is additive — it sits alongside --accent rather than replacing it, so democrito components referencing --accent still resolve.
 
-**Broke:**
+**What it needed on top:**
 
 
 
 ---
 
-## What We Learned
+## What five builds taught us
 
-### Absent tokens fail silently
+### The contract travels further than the palette
 
-In Tailwind v4 a utility whose token is undeclared compiles to nothing. No error. The class is emitted, the element inherits, and it looks plausible. Observed across all three systems: a flattened surface hierarchy, secondary copy at full-contrast ink, a focus ring that simply isn't there.
+Southern Startups shares no colour values with democrito, ships one theme instead of three, and wrote its own component layer — and is still recognisably the same system. What carried over was the three-tier token architecture, the storage format and the consumption rule. That, rather than the palette, is what a design system actually hands you.
+
+- southern-startups: rewrite verdict
+- habito: retheme-additions
+- prompt-x: partial-fork
+
+### Components survive a total palette replacement
+
+habito replaced every colour with achromatic ramps and removed the accent hue outright. Every stock primitive that referenced only declared tokens kept rendering correctly — --accent resolved to a neutral and nothing complained. Inheriting the token names, not the values, is what makes that possible.
+
+- habito: 5 of 7 audited primitives byte-identical to stock
+
+### Declare every token your components reference
+
+In Tailwind v4 a utility whose token is undeclared compiles to nothing — no error, the element inherits, and the result looks plausible. habito's sidebar.tsx is byte-identical to stock and renders transparent because seven --sidebar-* tokens were never declared. Nobody edited that component; the tokens simply weren't there. Worth a build-time check in any derived system.
 
 - habito: --surface, --foreground-muted, seven --sidebar-*
 - southern-startups: 21 of 31 tokens absent or relocated
 
-### A stock component can be broken by the token layer alone
+### @theme-derived tokens need re-declaring to scope
 
-habito's sidebar.tsx is byte-identical to shadcn stock and renders transparent, unbordered and hoverless. Nobody edited it. The seven tokens it references were never declared. Its chart.tsx hardcodes .dark, which habito replaced with data-theme — dead code in a file nobody touched.
-
-- habito: sidebar.tsx, chart.tsx
-
-### The contract stops at the CSS boundary
-
-Fonts, radius scales, spacing and type scales can reach components through tailwind.config.ts instead of custom properties. Anything supplied by config cannot be re-scoped by CSS — which means it cannot be re-themed by the mechanism democrito is built on.
-
-- prompt-x: all three font families and 26 bare `rounded` classes
-- southern-startups: the entire radius scale
-- habito: spacing, type scale and shadows are Tailwind stock
-
-### Value format is part of the contract
-
-democrito stores bare HSL triplets consumed as hsl(var(--x)). habito stores complete hsl() at a primitive tier. Both are defensible; they are not interchangeable, and mixing them produces hsl(hsl(0 0% 98%)) — invalid, and silent.
-
-- habito
-
-### Naming collisions are real, and renaming is the honest fix
-
-southern-startups hit a collision where --accent meant 'brand colour' locally and 'neutral hover surface' in 54 inherited shadcn primitives. A usage sweep found ~26 uses of the foreign meaning and zero of the local one. The resolution was to take --brand, a name neither library claims.
-
-- southern-startups: PR #53
-
-### The monochromatic principle needs a carve-out
-
-prompt-x added 21 hues to encode a 9-field domain model, which reads as a violation of 'monochromatic + accent'. But democrito itself ships a 9-hue --category-* palette. The principle was never written to distinguish decoration from categorical encoding. It should be.
-
-- prompt-x: 9 anatomy hues
-- democrito: --category-* palette
-
-### Nobody did a pure retheme
-
-Three systems, three verdicts, none of them 'tokens only'. The lightest touch still added 17 components; the heaviest rewrote the primitive layer and kept zero base token values. If the pitch is 'just change the tokens', the evidence says that is not what people do with it.
-
-- habito: retheme-additions
-- prompt-x: partial-fork
-- southern-startups: rewrite
-
-### @theme-derived tokens cannot be re-scoped
-
-Tailwind v4's @theme block derives --color-* as hsl(var(--x)) and --radius-* as calc(var(--radius)…). A custom property's value is computed where it is declared — these are declared once at :root, substitute the root's values, and freeze. Descendants inherit the resolved colour, not the expression. So overriding --background on a subtree changes nothing that bg-background reads. We hit this building the vignettes on this page: all three rendered democrito's own warm palette while their data claimed otherwise, in every theme, until the derived names were re-declared on each wrapper too.
+Tailwind v4's @theme derives --color-* as hsl(var(--x)) and --radius-* as calc(var(--radius)…). A custom property's value is computed where it is declared — these are declared once at :root and freeze there, so overriding --background on a subtree changes nothing that bg-background reads. We hit this building the live vignettes on this page: all three rendered democrito's own palette until the derived names were re-declared on each wrapper too. Themeing a whole document is unaffected; scoping to part of one needs both layers.
 
 - democrito-site: SystemVignette.tsx
 - tokens/index.css @theme block
+
+### Value format is part of the contract
+
+democrito stores bare HSL triplets consumed as hsl(var(--x)). habito stores complete hsl() at a primitive tier. Both are defensible and they are not interchangeable — mixing them yields hsl(hsl(0 0% 98%)), which fails silently. Worth stating explicitly wherever a system documents its tokens.
+
+- habito: hsl() at primitive tier vs base bare triplets
+
+### The contract stops at the CSS boundary
+
+Fonts, radius, spacing and type scales can reach components through tailwind.config.ts instead of custom properties. Anything supplied by config works fine in the app but cannot be re-scoped by CSS — which matters the moment a system needs an embedded or previewed surface.
+
+- prompt-x: three font families and the radius scale
+- southern-startups: radius scale as config literals
+- habito: spacing, type and shadows are Tailwind stock
+
+### Categorical colour deserves a documented carve-out
+
+prompt-x added 21 hues to encode a nine-field domain model, and strength added a four-step effort ramp. Both read as departures from 'monochromatic + accent' — but democrito itself ships a nine-hue --category-* palette for exactly this purpose. Two of five systems reached for it, which says the principle needs to name categorical and semantic encoding as sanctioned rather than leaving it to inference.
+
+- prompt-x: 9 anatomy hues
+- strength: yellow→orange effort ramp
+- democrito: --category-* palette
 
 ---
 
