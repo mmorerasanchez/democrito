@@ -92,6 +92,10 @@
         "subject":      { "type": "string" },
         "bodyTemplate": { "type": "string" }
       }
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
     }
   },
   "$defs": {
