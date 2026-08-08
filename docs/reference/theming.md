@@ -313,6 +313,19 @@ A friendly, spacious consumer product with a green accent.
 
 ## Checklist: Rebranding the System
 
+### Scoping to a subtree
+
+Overriding the semantic tokens on a container is not enough. Tailwind's `@theme` derives `--color-*` from them at `:root`, and those derivations freeze there — utilities read the derived name, not yours. To theme part of a page, re-declare the derived names as well:
+
+```css
+[data-theme="mine"] {
+  --background: 0 0% 98%;
+  --color-background: hsl(0 0% 98%); /* the one utilities actually read */
+}
+```
+
+The same applies to `--radius-*`. Font tokens are unaffected — they are literals, so one level of indirection resolves at use.
+
 1. **Pick your accent color** — one hue that defines your brand. Set `--accent`, `--accent-muted`, `--accent-subtle`.
 2. **Set your surface scale** — three HSL values with increasing lightness (dark themes) or decreasing saturation (light themes).
 3. **Choose your fonts** — update `@import` and the `@theme { --font-*: }` entries in `tokens/index.css`.
