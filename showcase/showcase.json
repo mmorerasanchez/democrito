@@ -1,6 +1,11 @@
 {
   "$schema": "./showcase.schema.json",
   "generated": "hand-authored; edit this file, never docs/showcase.md or the README region",
+  "intro": {
+    "heading": "Built on democrito",
+    "body": "democrito is a token contract, not a component library you are meant to leave alone. Five systems were built on it and measured against base: three shipped products audited against source code, two prototypes read from their design boards. None of them stayed inside the lines. This page records how far each one went, what survived the journey, and \u2014 where it matters most \u2014 exactly where the contract broke. The failures are published because they are the part worth reading.",
+    "note": "Divergence is a measure, not a grade. A system further right was pushed harder, not built worse."
+  },
   "base": {
     "name": "democrito",
     "version": "3.5.x",
@@ -45,7 +50,19 @@
       "partial-fork",
       "rewrite"
     ],
-    "note": "Of the three systems audited against source, none is a pure retheme — every one diverged past token values. The only pure retheme in the set is a prototype (mesa), which is exactly the pattern: the discipline holds while a system is small, and gives way once it ships."
+    "note": "Of the three systems audited against source, none is a pure retheme \u2014 every one diverged past token values. The only pure retheme in the set is a prototype (mesa), which is exactly the pattern: the discipline holds while a system is small, and gives way once it ships.",
+    "axisLabels": {
+      "pure-retheme": "Pure retheme",
+      "retheme-additions": "Retheme + additions",
+      "partial-fork": "Partial fork",
+      "rewrite": "Rewrite"
+    },
+    "axisDefinitions": {
+      "pure-retheme": "Token values changed. Zero component edits.",
+      "retheme-additions": "Tokens changed, new components added, inherited ones untouched.",
+      "partial-fork": "Inherited components edited \u2014 classes, variants, or props.",
+      "rewrite": "Component layer replaced. Only the contract survives."
+    }
   },
   "systems": [
     {
@@ -73,7 +90,7 @@
         "--accent": {
           "base": "18 60% 45%",
           "system": "0 0% 90%",
-          "note": "not recoloured — eliminated. Aliased to a neutral; the design doc forbids using it as an accent."
+          "note": "not recoloured \u2014 eliminated. Aliased to a neutral; the design doc forbids using it as an accent."
         },
         "--background": {
           "base": "30 18% 91%",
@@ -87,7 +104,7 @@
         "--surface": {
           "base": "40 15% 94%",
           "system": null,
-          "note": "ABSENT — 3-surface hierarchy collapsed to 1"
+          "note": "ABSENT \u2014 3-surface hierarchy collapsed to 1"
         },
         "--foreground": {
           "base": "12 6% 15%",
@@ -167,26 +184,36 @@
           {
             "token": "--surface",
             "substitutedWith": "--background (0 0% 98%)",
+            "renderValue": "0 0% 98%",
+            "mode": "substituted",
             "consequence": "3-surface hierarchy flattens to 1"
           },
           {
             "token": "--foreground-muted",
             "substitutedWith": "--muted-foreground (0 0% 32%)",
+            "renderValue": "0 0% 32%",
+            "mode": "substituted",
             "consequence": "without substitution, secondary copy renders at full-contrast ink"
           },
           {
             "token": "--accent-muted",
             "substitutedWith": null,
+            "renderValue": "0 0% 90%",
+            "mode": "approximated",
             "consequence": "no accent family exists to degrade to"
           },
           {
             "token": "--accent-subtle",
             "substitutedWith": null,
+            "renderValue": "0 0% 95%",
+            "mode": "approximated",
             "consequence": "as above"
           },
           {
             "token": "--sidebar-* (7 tokens)",
             "substitutedWith": null,
+            "renderValue": null,
+            "mode": "excluded",
             "consequence": "stock sidebar renders transparent, unbordered, hoverless"
           }
         ],
@@ -196,11 +223,11 @@
           "mono": "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace",
           "load": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap",
           "criticalCss": "font-feature-settings: \"ss01\", \"cv11\"",
-          "criticalNote": "Fraunces opsz is a 9..144 range with no font-optical-sizing declaration — browser auto-sizing keys off rendered px. Match heading size, not just family. Inter's ss01/cv11 must be copied or the glyphs differ visibly."
+          "criticalNote": "Fraunces opsz is a 9..144 range with no font-optical-sizing declaration \u2014 browser auto-sizing keys off rendered px. Match heading size, not just family. Inter's ss01/cv11 must be copied or the glyphs differ visibly."
         },
         "scaleWarning": "Spacing, type scale and shadows are Tailwind v4 stock, not tokens. The vignette must run Tailwind v4's default theme underneath or it inherits the host page's scales.",
         "unreproducible": [
-          "duration-[260ms] / ease-[cubic-bezier(0.2,0.8,0.2,1)] — the signature completion motion is an arbitrary value, not a token",
+          "duration-[260ms] / ease-[cubic-bezier(0.2,0.8,0.2,1)] \u2014 the signature completion motion is an arbitrary value, not a token",
           "rounded-[2px] in chart.tsx; 2px SVG rect corners in heatmap.tsx (documented deliberate departure)"
         ],
         "excludeComponents": [
@@ -217,7 +244,7 @@
         "note": "8 achromatic neutrals plus a 5-step warm ramp that is entirely dormant in the light theme"
       },
       "kept": [
-        "shadcn/ui primitives at stock styling — button.tsx is unmodified cva, six variants, four sizes",
+        "shadcn/ui primitives at stock styling \u2014 button.tsx is unmodified cva, six variants, four sizes",
         "semantic token names and the @theme inline binding pattern",
         "themes as custom-property overrides; no component branches on theme",
         "the three-role font split, structurally intact",
@@ -226,33 +253,33 @@
       "overridden": [
         "accent eliminated, not recoloured",
         "palette replaced with two achromatic/near-achromatic primitive ramps",
-        "three-surface hierarchy collapsed — no --surface; --card aliases --background",
+        "three-surface hierarchy collapsed \u2014 no --surface; --card aliases --background",
         "--destructive aliased to --foreground; no success/warning/error/info exist",
         "all three font faces replaced",
-        "theme mechanism class → data-theme; default flipped warm → light",
-        "value format bare triplets → full hsl() at a primitive tier"
+        "theme mechanism class \u2192 data-theme; default flipped warm \u2192 light",
+        "value format bare triplets \u2192 full hsl() at a primitive tier"
       ],
       "recipe": "Kept democrito's token architecture and left the shadcn primitives untouched, then replaced the palette wholesale with two neutral ramps, removed the accent entirely, and added 17 product-specific components on top.",
       "contractNotes": {
         "held": [
           "Every stock primitive that referenced only declared tokens rendered correctly under a total palette replacement.",
-          "Removing the accent hue entirely broke nothing that referenced --accent — it resolved to a neutral and kept working."
+          "Removing the accent hue entirely broke nothing that referenced --accent \u2014 it resolved to a neutral and kept working."
         ],
         "broke": [
           "sidebar.tsx is byte-identical to stock and renders transparent, unbordered and hoverless: seven --sidebar-* tokens it references were never declared.",
           "chart.tsx hardcodes .dark; habito replaced that with data-theme, so its dark-theme colour injection is dead code.",
-          "tw-animate-css was dropped from the CSS imports but kept in package.json — animate-in / fade-in are dead classes and the milestone panel renders instantly."
+          "tw-animate-css was dropped from the CSS imports but kept in package.json \u2014 animate-in / fade-in are dead classes and the milestone panel renders instantly."
         ]
       },
       "warnings": [
         "Two surfaces exist. This entry covers the app repo; a separate marketing repo carries a near-identical token layer and is the surface that still credits democrito.",
-        "docs/DESIGN.md v2.0.0 no longer credits democrito. AGENTS.md is stale — it references four --brand-* tokens removed from src/styles.css."
+        "docs/DESIGN.md v2.0.0 no longer credits democrito. AGENTS.md is stale \u2014 it references four --brand-* tokens removed from src/styles.css."
       ]
     },
     {
       "slug": "prompt-x",
       "name": "prompt-x",
-      "tagline": "The IDE for prompt engineering — structure, test, and version your prompts like real code",
+      "tagline": "The IDE for prompt engineering \u2014 structure, test, and version your prompts like real code",
       "url": "https://prompt-x.io/",
       "status": "live",
       "year": 2026,
@@ -276,12 +303,12 @@
         "primitivesUnverified": 0,
         "coverageNote": "8 of 49 restyled with non-stock tokens; 3 of those given new API surface."
       },
-      "headline": "Inverted the default theme end to end at a fixed 18° hue, then extended the vocabulary.",
+      "headline": "Inverted the default theme end to end at a fixed 18\u00b0 hue, then extended the vocabulary.",
       "tokens": {
         "--background": {
           "base": "30 18% 91%",
           "system": "20 14% 4%",
-          "note": "91% → 4% lightness — a full inversion"
+          "note": "91% \u2192 4% lightness \u2014 a full inversion"
         },
         "--surface": {
           "base": "40 15% 94%",
@@ -298,7 +325,7 @@
         "--accent": {
           "base": "18 60% 45%",
           "system": "18 65% 55%",
-          "note": "hue held at 18° — lightened +10% L, +5% S for dark"
+          "note": "hue held at 18\u00b0 \u2014 lightened +10% L, +5% S for dark"
         },
         "--accent-muted": {
           "base": "18 38% 55%",
@@ -323,14 +350,14 @@
         "--radius": {
           "base": "0.75rem",
           "system": "0.5rem",
-          "note": "declared but consumed by nothing — inert"
+          "note": "declared but consumed by nothing \u2014 inert"
         }
       },
       "themes": {
         "count": 3,
         "default": "dark",
         "mechanism": "class",
-        "note": "democrito's warm survives here as .warm and reproduces base almost verbatim — background, surface, card, foreground, accent, ring, sidebar-primary and sidebar-ring all match"
+        "note": "democrito's warm survives here as .warm and reproduces base almost verbatim \u2014 background, surface, card, foreground, accent, ring, sidebar-primary and sidebar-ring all match"
       },
       "vignette": {
         "defaultTheme": "dark",
@@ -383,13 +410,13 @@
           "display": "\"Plus Jakarta Sans\", system-ui, sans-serif",
           "body": "Satoshi, system-ui, sans-serif",
           "mono": "\"JetBrains Mono\", monospace",
-          "load": "Google Fonts for Plus Jakarta Sans (400–800) and JetBrains Mono (400–700); api.fontshare.com for Satoshi (400–700)",
+          "load": "Google Fonts for Plus Jakarta Sans (400\u2013800) and JetBrains Mono (400\u2013700); api.fontshare.com for Satoshi (400\u2013700)",
           "criticalNote": "Satoshi is NOT on Google Fonts. Load it from Fontshare or the body face silently degrades to system-ui.",
           "configSupplied": true,
-          "configNote": "All three families are tailwind.config.ts literals, not CSS custom properties. A scoped wrapper inherits nothing — declare all three manually."
+          "configNote": "All three families are tailwind.config.ts literals, not CSS custom properties. A scoped wrapper inherits nothing \u2014 declare all three manually."
         },
         "unreproducible": [
-          "bare `rounded` (26 uses) resolves to Tailwind's stock 0.25rem — borderRadius overrides sm/md/lg/xl/full but not DEFAULT. Not a token; not declarable."
+          "bare `rounded` (26 uses) resolves to Tailwind's stock 0.25rem \u2014 borderRadius overrides sm/md/lg/xl/full but not DEFAULT. Not a token; not declarable."
         ],
         "excludeComponents": []
       },
@@ -404,12 +431,12 @@
           "status": 4,
           "semantic": 4
         },
-        "note": "The 9 anatomy hues span 0°, 25°, 38°, 48°, 152°, 185°, 230°, 262°, 340° — domain encoding for the 9-field prompt anatomy. Three of four status tokens are byte-identical aliases of semantic tokens, so 21 names is 18 distinct hues."
+        "note": "The 9 anatomy hues span 0\u00b0, 25\u00b0, 38\u00b0, 48\u00b0, 152\u00b0, 185\u00b0, 230\u00b0, 262\u00b0, 340\u00b0 \u2014 domain encoding for the 9-field prompt anatomy. Three of four status tokens are byte-identical aliases of semantic tokens, so 21 names is 18 distinct hues."
       },
       "kept": [
         "3-surface hierarchy intact in all three themes; bg-surface used in 33 source files",
-        "accent hue held at 18° across every theme and every accent-family token",
-        "accent family fully in sync — accent, ring, sidebar-primary, sidebar-ring identical within each theme",
+        "accent hue held at 18\u00b0 across every theme and every accent-family token",
+        "accent family fully in sync \u2014 accent, ring, sidebar-primary, sidebar-ring identical within each theme",
         "three-font split intact: Plus Jakarta Sans / Satoshi / JetBrains Mono",
         "the .warm theme reproduces democrito base almost verbatim",
         "no hardcoded hex anywhere in src/components/ui/",
@@ -417,33 +444,33 @@
       ],
       "overridden": [
         "default theme inverted: :root is dark; warm demoted to opt-in",
-        "--radius 0.75rem → 0.5rem, superseded by a px scale democrito does not define",
+        "--radius 0.75rem \u2192 0.5rem, superseded by a px scale democrito does not define",
         "accent lightened +10% L / +5% S for dark",
         "21 non-inherited colour tokens added",
         "token layer extended with spacing, 9-step type scale, layout dims, z-index, motion",
         "8 of 49 primitives restyled; 3 given new prop APIs"
       ],
-      "recipe": "Took democrito's token contract and component set, inverted the default theme to dark while keeping warm as a near-verbatim copy of base, extended the token layer with ~40 domain and scale tokens, and edited 8 of 49 primitives — three of them with new props, not just new classes.",
+      "recipe": "Took democrito's token contract and component set, inverted the default theme to dark while keeping warm as a near-verbatim copy of base, extended the token layer with ~40 domain and scale tokens, and edited 8 of 49 primitives \u2014 three of them with new props, not just new classes.",
       "contractNotes": {
         "held": [
           "A full light-to-dark inversion at fixed hue changed no component. Every one of the 92 :root tokens is a terminal literal with no alias indirection.",
-          "The accent family stayed in sync across all three themes without tooling — the discipline held by hand."
+          "The accent family stayed in sync across all three themes without tooling \u2014 the discipline held by hand."
         ],
         "broke": [
-          "Fonts and the radius scale reach components through tailwind.config.ts rather than CSS custom properties. A scoped re-render inherits neither — the contract stops at the CSS boundary.",
+          "Fonts and the radius scale reach components through tailwind.config.ts rather than CSS custom properties. A scoped re-render inherits neither \u2014 the contract stops at the CSS boundary.",
           "--radius is declared and consumed by nothing. The token exists; the value is inert.",
           "Bare `rounded` falls through to a Tailwind default that is not a token in this system and cannot be reproduced."
         ]
       },
       "warnings": [
-        "The 21 added hues contradict democrito's monochromatic principle as written. They are legitimate domain encoding — democrito itself ships a 9-hue --category-* palette. The principle text needs a documented carve-out for categorical encoding.",
+        "The 21 added hues contradict democrito's monochromatic principle as written. They are legitimate domain encoding \u2014 democrito itself ships a 9-hue --category-* palette. The principle text needs a documented carve-out for categorical encoding.",
         "This entry covers app-prompt-x/ only. The repo also contains web/ and 8 worktree copies, unaudited."
       ]
     },
     {
       "slug": "southern-startups",
       "name": "Southern Startups",
-      "tagline": "Every startup, investor and programme in Andalucía — in one searchable public directory, with sources",
+      "tagline": "Every startup, investor and programme in Andaluc\u00eda \u2014 in one searchable public directory, with sources",
       "url": "https://www.southern-startups.com/",
       "status": "alpha",
       "year": 2026,
@@ -451,7 +478,7 @@
       "screenshot": "/showcase/southern-startups.png",
       "divergence": {
         "verdict": "rewrite",
-        "evidence": "components/ui/ holds 5 files against democrito's 48, and none is a retheme. select.tsx is a native <select> where shadcn ships a Radix composite — a different component with a different API and accessibility model. package.json carries exactly one Radix dependency; democrito's primitive layer needs roughly twenty.",
+        "evidence": "components/ui/ holds 5 files against democrito's 48, and none is a retheme. select.tsx is a native <select> where shadcn ships a Radix composite \u2014 a different component with a different API and accessibility model. package.json carries exactly one Radix dependency; democrito's primitive layer needs roughly twenty.",
         "componentsEdited": [
           "button.tsx",
           "select.tsx",
@@ -469,12 +496,12 @@
         "--accent": {
           "base": "18 60% 45%",
           "system": "145 52% 35%",
-          "note": "renamed --brand. Terracotta → Andalucía green: 127° of hue. The largest single divergence in the set."
+          "note": "renamed --brand. Terracotta \u2192 Andaluc\u00eda green: 127\u00b0 of hue. The largest single divergence in the set."
         },
         "--background": {
           "base": "30 18% 91%",
           "system": "30 5% 96%",
-          "note": "saturation 18% → 5% — the warm cast removed"
+          "note": "saturation 18% \u2192 5% \u2014 the warm cast removed"
         },
         "--surface": {
           "base": "40 15% 94%",
@@ -510,12 +537,12 @@
         "--ring": {
           "base": "18 60% 45%",
           "system": null,
-          "note": "ABSENT — replaced by --shadow-focus, a 3-layer composite box-shadow"
+          "note": "ABSENT \u2014 replaced by --shadow-focus, a 3-layer composite box-shadow"
         },
         "--radius": {
           "base": "0.75rem",
           "system": null,
-          "note": "ABSENT — replaced by a 5-step config-literal scale"
+          "note": "ABSENT \u2014 replaced by a 5-step config-literal scale"
         }
       },
       "tokensInherited": [],
@@ -526,12 +553,12 @@
         "--accent-subtle": "--brand-subtle",
         "--muted-foreground": "--foreground-muted"
       },
-      "renamedNote": "The --accent → --brand rename resolved a genuine collision: the authenticated portal inherited 54 shadcn primitives where --accent means 'neutral hover surface', while this codebase used it to mean 'the brand colour'. A usage sweep found ~26 uses meaning hover-surface and zero meaning brand. Rather than repoint either library, the project took --brand — a name neither claims. The cleanest example in the set of a contract break resolved by renaming rather than re-valuing.",
+      "renamedNote": "The --accent \u2192 --brand rename resolved a genuine collision: the authenticated portal inherited 54 shadcn primitives where --accent means 'neutral hover surface', while this codebase used it to mean 'the brand colour'. A usage sweep found ~26 uses meaning hover-surface and zero meaning brand. Rather than repoint either library, the project took --brand \u2014 a name neither claims. The cleanest example in the set of a contract break resolved by renaming rather than re-valuing.",
       "themes": {
         "count": 1,
         "default": ":root",
         "mechanism": "none",
-        "note": "democrito ships three; this kept one and deleted two. No darkMode key, no ThemeProvider, no prefers-color-scheme block anywhere — a single-theme system with no user choice to make."
+        "note": "democrito ships three; this kept one and deleted two. No darkMode key, no ThemeProvider, no prefers-color-scheme block anywhere \u2014 a single-theme system with no user choice to make."
       },
       "vignette": {
         "defaultTheme": ":root",
@@ -563,63 +590,95 @@
           {
             "token": "--muted-foreground",
             "substitutedWith": "--foreground-muted (24 5% 44%)",
+            "renderValue": "24 5% 44%",
+            "mode": "substituted",
             "consequence": "RELOCATED, not absent. Declare both names at the same value or every borrowed component's secondary copy renders at full-contrast ink."
           },
           {
             "token": "--destructive",
             "substitutedWith": "--error (12 61% 49%)",
-            "consequence": "the most dangerous absence — a democrito destructive button renders unfilled and its label as body ink, silently losing the only thing marking it destructive"
+            "renderValue": "12 61% 49%",
+            "mode": "substituted",
+            "consequence": "the most dangerous absence \u2014 a democrito destructive button renders unfilled and its label as body ink, silently losing the only thing marking it destructive"
           },
           {
             "token": "--ring",
             "substitutedWith": "--shadow-focus composite",
-            "consequence": "ring-* compiles to nothing. A borrowed component loses its focus indicator entirely — invisible in screenshots and mouse testing, breaks WCAG 2.4.7 for keyboard users."
+            "renderValue": "145 52% 28%",
+            "mode": "approximated",
+            "consequence": "ring-* compiles to nothing. A borrowed component loses its focus indicator entirely \u2014 invisible in screenshots and mouse testing, breaks WCAG 2.4.7 for keyboard users."
           },
           {
             "token": "--primary",
             "substitutedWith": "--brand-text (145 52% 28%)",
+            "renderValue": "145 52% 28%",
+            "mode": "substituted",
             "consequence": "bg-primary matches nothing; a default-variant democrito button renders with no background"
           },
           {
             "token": "--secondary",
             "substitutedWith": null,
-            "consequence": "secondary-variant controls render unfilled — this system's secondary is an outline instead"
+            "renderValue": "40 6% 97%",
+            "mode": "approximated",
+            "consequence": "secondary-variant controls render unfilled \u2014 this system's secondary is an outline instead"
           },
           {
             "token": "--muted",
             "substitutedWith": "--surface (40 6% 97%)",
+            "renderValue": "40 6% 97%",
+            "mode": "substituted",
             "consequence": "skeletons and muted panels in borrowed components render transparent"
           },
           {
             "token": "--popover",
             "substitutedWith": null,
-            "consequence": "a borrowed dropdown/popover/tooltip renders transparent over page content — unreadable"
+            "renderValue": null,
+            "mode": "excluded",
+            "consequence": "a borrowed dropdown/popover/tooltip renders transparent over page content \u2014 unreadable"
           },
           {
             "token": "--input",
             "substitutedWith": "--border (30 8% 88%)",
+            "renderValue": "30 8% 88%",
+            "mode": "substituted",
             "consequence": "border-input compiles to nothing; a borrowed input renders edgeless"
           },
           {
             "token": "--sidebar-* (6 tokens)",
             "substitutedWith": null,
-            "consequence": "whole family deleted — a stock sidebar is transparent, unbordered, hoverless"
+            "renderValue": null,
+            "mode": "excluded",
+            "consequence": "whole family deleted \u2014 a stock sidebar is transparent, unbordered, hoverless"
+          },
+          {
+            "token": "--primary-foreground",
+            "substitutedWith": "--brand-foreground (0 0% 100%)",
+            "renderValue": "0 0% 100%",
+            "mode": "substituted",
+            "consequence": "Not declared under democrito's name. Without it a borrowed primary button's label falls back to inherited ink on a brand-green fill \u2014 unreadable."
+          },
+          {
+            "token": "--secondary-foreground",
+            "substitutedWith": "--foreground (24 10% 10%)",
+            "renderValue": "24 10% 10%",
+            "mode": "substituted",
+            "consequence": "Same gap as --secondary: the role exists as an outline button, the token does not."
           }
         ],
-        "absentSummary": "21 of 31 requested tokens are absent or relocated. The system ships no sidebar and no navbar by design — the web surface is a public directory reached by search and deep link — so the absence is a scope decision, not neglect.",
+        "absentSummary": "21 of 31 requested tokens are absent or relocated. The system ships no sidebar and no navbar by design \u2014 the web surface is a public directory reached by search and deep link \u2014 so the absence is a scope decision, not neglect.",
         "fonts": {
           "display": "\"Plus Jakarta Sans\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif",
           "body": "var(--font-display)",
           "mono": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
-          "load": "self-hosted via next/font/local — zero external requests. Both faces OFL 1.1, latin subset woff2.",
-          "criticalNote": "TWO faces, not three. --font-body aliases --font-display: Satoshi was removed on licence grounds (ITF Fontshare permits CDN delivery, forbids self-hosting; this repo self-hosts). next/font emits hashed family names at build, so a scoped wrapper can reference none of them — declare all three manually.",
+          "load": "self-hosted via next/font/local \u2014 zero external requests. Both faces OFL 1.1, latin subset woff2.",
+          "criticalNote": "TWO faces, not three. --font-body aliases --font-display: Satoshi was removed on licence grounds (ITF Fontshare permits CDN delivery, forbids self-hosting; this repo self-hosts). next/font emits hashed family names at build, so a scoped wrapper can reference none of them \u2014 declare all three manually.",
           "configSupplied": true
         },
         "unreproducible": [
-          "the radius scale — sm 4px / md 6px / lg 8px / xl 12px / full 9999px live as tailwind.config.ts string literals, not custom properties. The wrapper must hardcode them; democrito's calc(var(--radius) - 2px) idiom has nothing to resolve against."
+          "the radius scale \u2014 sm 4px / md 6px / lg 8px / xl 12px / full 9999px live as tailwind.config.ts string literals, not custom properties. The wrapper must hardcode them; democrito's calc(var(--radius) - 2px) idiom has nothing to resolve against."
         ],
         "bareRoundedCount": 0,
-        "bareRoundedNote": "The trap exists structurally (no DEFAULT) but never fires — zero bare `rounded` classes across apps/web. Every corner is a token value.",
+        "bareRoundedNote": "The trap exists structurally (no DEFAULT) but never fires \u2014 zero bare `rounded` classes across apps/web. Every corner is a token value.",
         "excludeComponents": [
           "sidebar",
           "popover",
@@ -642,7 +701,7 @@
           "semantic": 4,
           "brand": 7
         },
-        "note": "--color-city-* is a byte-identical clone of --color-tag-*, all 16 tokens — 16 names, zero new colours. 145 52% 35% is declared under seven different names. Most aliasing is the intended three-tier architecture; the city/tag and status/semantic duplication is redundancy."
+        "note": "--color-city-* is a byte-identical clone of --color-tag-*, all 16 tokens \u2014 16 names, zero new colours. 145 52% 35% is declared under seven different names. Most aliasing is the intended three-tier architecture; the city/tag and status/semantic duplication is redundancy."
       },
       "components": {
         "atoms": 9,
@@ -653,7 +712,7 @@
         "total": 34
       },
       "kept": [
-        "the three-tier token architecture (primitive → semantic → component-scoped), named as such in the file header",
+        "the three-tier token architecture (primitive \u2192 semantic \u2192 component-scoped), named as such in the file header",
         "bare-HSL-triplet storage with hsl(var(--x)) consumption",
         "Tailwind opacity-modifier compatibility via / <alpha-value>",
         "the atomic directory taxonomy: atoms / molecules / organisms / templates",
@@ -663,40 +722,40 @@
       ],
       "overridden": [
         "every colour value in the reference table",
-        "theme count 3 → 1",
-        "accent hue 18° → 145°",
-        "accent family naming --accent* → --brand*",
-        "--muted-foreground → --foreground-muted",
-        "--radius single custom property → 5-step config-literal scale",
-        "focus indicator: --ring token → --shadow-focus 3-layer composite",
-        "body face Satoshi → Plus Jakarta Sans; three faces → two",
+        "theme count 3 \u2192 1",
+        "accent hue 18\u00b0 \u2192 145\u00b0",
+        "accent family naming --accent* \u2192 --brand*",
+        "--muted-foreground \u2192 --foreground-muted",
+        "--radius single custom property \u2192 5-step config-literal scale",
+        "focus indicator: --ring token \u2192 --shadow-focus 3-layer composite",
+        "body face Satoshi \u2192 Plus Jakarta Sans; three faces \u2192 two",
         "the entire --sidebar-* family, deleted",
         "the shadcn primitive layer, rewritten"
       ],
-      "recipe": "Take democrito's token architecture and directory taxonomy. Keep the storage format and the consumption contract exactly. Replace every value: desaturate the warm surfaces toward neutral, swap the terracotta accent for Andalucía green 127° away, drop to a single light theme. Rename the accent family to --brand to escape a shadcn collision, collapse the three-face type system to two by removing the licence-encumbered body face. Then write your own component layer against the tokens rather than restyling democrito's.",
+      "recipe": "Take democrito's token architecture and directory taxonomy. Keep the storage format and the consumption contract exactly. Replace every value: desaturate the warm surfaces toward neutral, swap the terracotta accent for Andaluc\u00eda green 127\u00b0 away, drop to a single light theme. Rename the accent family to --brand to escape a shadcn collision, collapse the three-face type system to two by removing the licence-encumbered body face. Then write your own component layer against the tokens rather than restyling democrito's.",
       "contractNotes": {
         "held": [
           "The storage format and consumption contract survived a total rewrite of both palette and component layer. A system can share nothing chromatically with democrito and still be structurally the same system.",
-          "Zero hardcoded colours across all 34 components — every colour routes through a token, verified by grep.",
+          "Zero hardcoded colours across all 34 components \u2014 every colour routes through a token, verified by grep.",
           "A naming collision with a foreign library was resolved by taking a third name rather than re-valuing either side. The contract bent without breaking."
         ],
         "broke": [
           "ecosystem-map.tsx:47 interpolates var(--status-acquired); the declared token is --color-status-acquired. The class compiles, the declaration is dropped, one of four map markers renders unfilled. The contract held everywhere it was checked and failed where it wasn't.",
-          "The focus indicator is declared twice — a custom property in CSS and a hardcoded literal in tailwind.config.ts. They agree today; nothing keeps them agreeing, and the config literal is the one every component actually uses.",
-          "Deleting --ring means any borrowed component silently loses its focus indicator — an accessibility failure invisible to screenshots and mouse testing."
+          "The focus indicator is declared twice \u2014 a custom property in CSS and a hardcoded literal in tailwind.config.ts. They agree today; nothing keeps them agreeing, and the config literal is the one every component actually uses.",
+          "Deleting --ring means any borrowed component silently loses its focus indicator \u2014 an accessibility failure invisible to screenshots and mouse testing."
         ]
       },
       "warnings": [
         "Audited at ref ce5afa10 (post-PR #53 branch tip), not a fetched origin/main. Verify before publishing.",
         "Four directories contain token declarations; only apps/web ships. Two prototypes are still on --accent naming and one is a stock shadcn scaffold unrelated to democrito.",
         "context/DESIGN.md and context/REPLIT.md still document Satoshi as the body face. Source removed it. Docs are stale.",
-        "design-system.html at repo root hardcodes its own copy of the token values and loads Satoshi from Fontshare — contradicts the removal decision and will drift."
+        "design-system.html at repo root hardcodes its own copy of the token values and loads Satoshi from Fontshare \u2014 contradicts the removal decision and will drift."
       ]
     }
   ],
   "prototypes": {
     "sectionTitle": "Prototypes",
-    "sectionNote": "Not shipped products. These were built to explore how far the token layer stretches, and they are the only place in this batch where a pure retheme appears. Their values are read from the design boards, not extracted from source — so unlike the case studies above, nothing here is source-verified. Treated as evidence of intent, not of practice.",
+    "sectionNote": "Not shipped products. These were built to explore how far the token layer stretches, and they are the only place in this batch where a pure retheme appears. Their values are read from the design boards, not extracted from source \u2014 so unlike the case studies above, nothing here is source-verified. Treated as evidence of intent, not of practice.",
     "verificationLevel": "self-declared",
     "systems": [
       {
@@ -708,8 +767,8 @@
         "builtBy": "Mariano Morera",
         "divergence": {
           "verdict": "pure-retheme",
-          "evidence": "Four of six declared tokens — --background 30 18% 91%, --card 30 25% 97%, --primary 15 10% 22%, --border 28 14% 81% — are byte-identical to democrito base warm. Only the accent pair moved.",
-          "primitivesAudited": "0 — board-declared only",
+          "evidence": "Four of six declared tokens \u2014 --background 30 18% 91%, --card 30 25% 97%, --primary 15 10% 22%, --border 28 14% 81% \u2014 are byte-identical to democrito base warm. Only the accent pair moved.",
+          "primitivesAudited": "0 \u2014 board-declared only",
           "primitivesUnverified": null
         },
         "headline": "The only pure retheme in the set. One hue moved; nothing else did.",
@@ -717,7 +776,7 @@
           "--accent": {
             "base": "18 60% 45%",
             "system": "212 52% 52%",
-            "note": "terracotta → soft blue, 166° of hue"
+            "note": "terracotta \u2192 soft blue, 166\u00b0 of hue"
           },
           "--accent-muted": {
             "base": "18 38% 55%",
@@ -756,7 +815,7 @@
           "all three themes"
         ],
         "overridden": [
-          "the accent pair — and nothing else"
+          "the accent pair \u2014 and nothing else"
         ],
         "recipe": "Changed --accent and --accent-muted. Stopped.",
         "contractNotes": {
@@ -766,21 +825,21 @@
           "broke": []
         },
         "warnings": [
-          "Board-declared values only. No source audit was run — the shipped systems above each contradicted their own boards in at least one respect before audit, so treat this as unverified."
+          "Board-declared values only. No source audit was run \u2014 the shipped systems above each contradicted their own boards in at least one respect before audit, so treat this as unverified."
         ],
         "screenshot": "/showcase/mesa.png"
       },
       {
         "slug": "strength",
         "name": "strength",
-        "tagline": "Progressive overload, made visible. Do all you can — then progress",
+        "tagline": "Progressive overload, made visible. Do all you can \u2014 then progress",
         "status": "prototype",
         "year": 2026,
         "builtBy": "Mariano Morera",
         "divergence": {
           "verdict": "retheme-additions",
-          "evidence": "Accent re-hued and heavily re-saturated, plus a four-step yellow→orange effort ramp that democrito has no counterpart for.",
-          "primitivesAudited": "0 — board-declared only",
+          "evidence": "Accent re-hued and heavily re-saturated, plus a four-step yellow\u2192orange effort ramp that democrito has no counterpart for.",
+          "primitivesAudited": "0 \u2014 board-declared only",
           "primitivesUnverified": null
         },
         "headline": "A semantic ramp where democrito has a single accent.",
@@ -788,7 +847,7 @@
           "--accent": {
             "base": "18 60% 45%",
             "system": "32 92% 52%",
-            "note": "14° of hue, but saturation 60% → 92% — the shift is chroma, not hue"
+            "note": "14\u00b0 of hue, but saturation 60% \u2192 92% \u2014 the shift is chroma, not hue"
           },
           "--background": {
             "base": "30 18% 91%",
@@ -822,10 +881,10 @@
           "background and card lightness",
           "a single accent replaced by a four-step effort ramp"
         ],
-        "recipe": "Re-hued and re-saturated the accent, then added a yellow→orange ramp so effort reads as a gradient rather than a state.",
+        "recipe": "Re-hued and re-saturated the accent, then added a yellow\u2192orange ramp so effort reads as a gradient rather than a state.",
         "contractNotes": {
           "held": [
-            "The ramp is additive — it sits alongside --accent rather than replacing it, so democrito components referencing --accent still resolve."
+            "The ramp is additive \u2014 it sits alongside --accent rather than replacing it, so democrito components referencing --accent still resolve."
           ],
           "broke": []
         },
@@ -848,14 +907,14 @@
     },
     {
       "title": "A stock component can be broken by the token layer alone",
-      "body": "habito's sidebar.tsx is byte-identical to shadcn stock and renders transparent, unbordered and hoverless. Nobody edited it. The seven tokens it references were never declared. Its chart.tsx hardcodes .dark, which habito replaced with data-theme — dead code in a file nobody touched.",
+      "body": "habito's sidebar.tsx is byte-identical to shadcn stock and renders transparent, unbordered and hoverless. Nobody edited it. The seven tokens it references were never declared. Its chart.tsx hardcodes .dark, which habito replaced with data-theme \u2014 dead code in a file nobody touched.",
       "evidence": [
         "habito: sidebar.tsx, chart.tsx"
       ]
     },
     {
       "title": "The contract stops at the CSS boundary",
-      "body": "Fonts, radius scales, spacing and type scales can reach components through tailwind.config.ts instead of custom properties. Anything supplied by config cannot be re-scoped by CSS — which means it cannot be re-themed by the mechanism democrito is built on.",
+      "body": "Fonts, radius scales, spacing and type scales can reach components through tailwind.config.ts instead of custom properties. Anything supplied by config cannot be re-scoped by CSS \u2014 which means it cannot be re-themed by the mechanism democrito is built on.",
       "evidence": [
         "prompt-x: all three font families and 26 bare `rounded` classes",
         "southern-startups: the entire radius scale",
@@ -864,7 +923,7 @@
     },
     {
       "title": "Value format is part of the contract",
-      "body": "democrito stores bare HSL triplets consumed as hsl(var(--x)). habito stores complete hsl() at a primitive tier. Both are defensible; they are not interchangeable, and mixing them produces hsl(hsl(0 0% 98%)) — invalid, and silent.",
+      "body": "democrito stores bare HSL triplets consumed as hsl(var(--x)). habito stores complete hsl() at a primitive tier. Both are defensible; they are not interchangeable, and mixing them produces hsl(hsl(0 0% 98%)) \u2014 invalid, and silent.",
       "evidence": [
         "habito"
       ]
