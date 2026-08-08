@@ -362,6 +362,13 @@ Three systems, three verdicts, none of them 'tokens only'. The lightest touch st
 - prompt-x: partial-fork
 - southern-startups: rewrite
 
+### @theme-derived tokens cannot be re-scoped
+
+Tailwind v4's @theme block derives --color-* as hsl(var(--x)) and --radius-* as calc(var(--radius)…). A custom property's value is computed where it is declared — these are declared once at :root, substitute the root's values, and freeze. Descendants inherit the resolved colour, not the expression. So overriding --background on a subtree changes nothing that bg-background reads. We hit this building the vignettes on this page: all three rendered democrito's own warm palette while their data claimed otherwise, in every theme, until the derived names were re-declared on each wrapper too.
+
+- democrito-site: SystemVignette.tsx
+- tokens/index.css @theme block
+
 ---
 
 ## Built something on democrito?

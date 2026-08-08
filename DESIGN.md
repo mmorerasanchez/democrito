@@ -16,7 +16,7 @@
 >
 > This file is the *taste layer*; those files are the *vocabulary*.
 >
-> Last updated: 2026-08-07
+> Last updated: 2026-08-08
 
 ---
 
