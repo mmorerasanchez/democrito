@@ -2,11 +2,11 @@
 
 # Built on democrito
 
-One token layer, five products. habito went fully achromatic and dropped the accent hue altogether. prompt-x inverted the whole palette to dark while holding the accent at exactly 18°. Southern Startups swapped terracotta for Andalucía green, kept a single theme, and shares none of the original colour values — and is still, structurally, the same system. Each entry below shows what it inherited, what it made its own, and the real democrito components rendered live under its tokens.
+democrito is an AI, atomic and agnostic design system based on token contracts, not just a component library. There are multiple ways to use democrito, from re-theme to complete re-make, so here we collect some of the applications shared by users.
 
-> How far a system went is a measure, not a grade. Further right means pushed harder, not built worse.
+## democrito's applications
 
-## How far each system went
+Measured by how the final result diverged from the original system.
 
 | Approach | Label | Systems | Definition |
 |---|---|---|---|
@@ -14,8 +14,6 @@ One token layer, five products. habito went fully achromatic and dropped the acc
 | retheme-additions | Retheme + extend | habito, strength (prototype) | Tokens changed, new components added alongside the inherited ones. |
 | partial-fork | Adapt the components | prompt-x | Inherited components adapted — classes, variants or props. |
 | rewrite | Rebuild on the same bones | Southern Startups | Own component layer, built against the same token contract. |
-
-> The three shipped products each went past token values — and the foundation held at every distance. Southern Startups sits furthest out, sharing no colours and no components with base, and is still recognisably democrito. That range is the point: the contract is what travels, not the palette.
 
 ---
 
@@ -26,8 +24,6 @@ One token layer, five products. habito went fully achromatic and dropped the acc
 URL: <https://habito-health.lovable.app/>
 Status: live · 2026 · Built by Mariano Morera
 Approach: retheme-additions · Audit coverage: 7 of 46 (Component-layer coverage is 15%. Published as-is rather than claimed complete.)
-
-> Dropped the accent hue entirely — and the inherited components carried on regardless.
 
 ### Token diff from base
 
@@ -87,8 +83,6 @@ URL: <https://prompt-x.io/>
 Status: live · 2026 · Built by Mariano Morera
 Approach: partial-fork · Audit coverage: 49 of 49 surveyed (8 of 49 restyled with non-stock tokens; 3 of those given new API surface.)
 
-> Inverted the palette end to end, and held the accent hue exactly where it started.
-
 ### Token diff from base
 
 | Token | Base | System | Note |
@@ -145,8 +139,6 @@ Took democrito's token contract and component set, inverted the default theme to
 URL: <https://www.southern-startups.com/>
 Status: alpha · 2026 · Built by Mariano Morera
 Approach: rewrite · Audit coverage: 5 of 5 (100% of the primitive layer) (5 of 5 primitives fully verified. The 29 atomic components were not diffed against democrito's equivalents. Total component coverage: 15%.)
-
-> Kept none of the original colours. Still, structurally, the same system.
 
 ### Token diff from base
 
@@ -209,8 +201,6 @@ Take democrito's token architecture and directory taxonomy. Keep the storage for
 Status: prototype · 2026 · Built by Mariano Morera
 Approach: pure-retheme · Audit coverage: 0 — board-declared only
 
-> The only pure retheme in the set. One hue moved; nothing else did.
-
 ### Token diff from base
 
 | Token | Base | System | Note |
@@ -255,8 +245,6 @@ Changed --accent and --accent-muted. Stopped.
 
 Status: prototype · 2026 · Built by Mariano Morera
 Approach: retheme-additions · Audit coverage: 0 — board-declared only
-
-> A semantic ramp where democrito has a single accent.
 
 ### Token diff from base
 
