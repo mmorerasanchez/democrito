@@ -5,7 +5,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/generate-counts.mjs && node scripts/generate-showcase.mjs && node scripts/generate-tokens.mjs && node scripts/stamp-design-date.mjs && node scripts/sync-skill-docs.mjs && REGISTRY_URL=https://democrito.design/r node scripts/build-registry.mjs",
+    "build": "node scripts/generate-counts.mjs && node scripts/generate-tokens.mjs && node scripts/stamp-design-date.mjs && node scripts/sync-skill-docs.mjs && REGISTRY_URL=https://democrito.design/r node scripts/build-registry.mjs",
     "verify": "node scripts/verify-registry-tokens.mjs",
     "test": "node scripts/verify-registry-tokens.mjs && vitest run",
     "test:watch": "vitest",
