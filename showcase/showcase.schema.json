@@ -11,7 +11,7 @@
     "generated": { "type": "string" },
     "intro": {
       "type": "object",
-      "required": ["heading", "body", "note"],
+      "required": ["heading", "body"],
       "properties": {
         "heading": { "type": "string" },
         "body":    { "type": "string" },
@@ -35,7 +35,7 @@
     },
     "spectrum": {
       "type": "object",
-      "required": ["axis", "note"],
+      "required": ["axis"],
       "properties": {
         "axis": {
           "type": "array",
@@ -45,6 +45,7 @@
           }
         },
         "note":             { "type": "string" },
+        "subtitle":         { "type": "string" },
         "axisLabels":      { "type": "object", "additionalProperties": { "type": "string" } },
         "axisDefinitions": { "type": "object", "additionalProperties": { "type": "string" } }
       }

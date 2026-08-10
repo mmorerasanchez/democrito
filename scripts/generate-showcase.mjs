@@ -168,10 +168,6 @@ function renderSystem(sys, lines, lbl = {}) {
   lines.push(`Status: ${sys.status} · ${sys.year} · Built by ${sys.builtBy}`);
   lines.push(`${lbl.approach ?? "Verdict"}: ${sys.divergence.verdict}${coveragePart}`);
   lines.push("");
-  if (sys.headline) {
-    lines.push(`> ${sys.headline}`);
-    lines.push("");
-  }
   lines.push(`### ${lbl.tokenDiff ?? "Token Diff"}`);
   lines.push("");
   lines.push(tokenTable(sys.tokens, lbl.absentValue));
@@ -216,10 +212,16 @@ function genShowcaseMd(d) {
   lines.push("");
   lines.push(d.intro.body);
   lines.push("");
-  lines.push(`> ${d.intro.note}`);
-  lines.push("");
+  if (d.intro?.note) {
+    lines.push(`> ${d.intro.note}`);
+    lines.push("");
+  }
   lines.push(`## ${lbl.spectrumTitle ?? "Divergence Spectrum"}`);
   lines.push("");
+  if (d.spectrum.subtitle) {
+    lines.push(d.spectrum.subtitle);
+    lines.push("");
+  }
 
   // Build verdict → system names map for the merged table
   const systemsByVerdict = {};
@@ -244,8 +246,10 @@ function genShowcaseMd(d) {
     lines.push(`| ${slug} | ${label} | ${systems} | ${def} |`);
   }
   lines.push("");
-  lines.push(`> ${d.spectrum.note}`);
-  lines.push("");
+  if (d.spectrum.note) {
+    lines.push(`> ${d.spectrum.note}`);
+    lines.push("");
+  }
   lines.push("---");
   lines.push("");
 
