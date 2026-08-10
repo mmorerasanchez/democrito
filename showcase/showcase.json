@@ -3,11 +3,10 @@
   "generated": "hand-authored; edit this file, never docs/showcase.md or the README region",
   "intro": {
     "heading": "Built on democrito",
-    "body": "One token layer, five products. habito went fully achromatic and dropped the accent hue altogether. prompt-x inverted the whole palette to dark while holding the accent at exactly 18°. Southern Startups swapped terracotta for Andalucía green, kept a single theme, and shares none of the original colour values — and is still, structurally, the same system. Each entry below shows what it inherited, what it made its own, and the real democrito components rendered live under its tokens.",
-    "note": "How far a system went is a measure, not a grade. Further right means pushed harder, not built worse."
+    "body": "democrito is an AI, atomic and agnostic design system based on token contracts, not just a component library. There are multiple ways to use democrito, from re-theme to complete re-make, so here we collect some of the applications shared by users."
   },
   "labels": {
-    "spectrumTitle": "How far each system went",
+    "spectrumTitle": "democrito's applications",
     "caseStudies": "The systems",
     "prototypes": "Prototypes",
     "learnings": "What five builds taught us",
@@ -19,7 +18,11 @@
     "carriedOver": "What carried over",
     "neededOnTop": "What it needed on top",
     "coverage": "Audit coverage",
-    "absentValue": "not used"
+    "absentValue": "not used",
+    "showcase": "Showcase",
+    "liveRender": "Live token-scoped render",
+    "tokenContract": "Token contract",
+    "diff": "Diff"
   },
   "base": {
     "name": "democrito",
@@ -65,7 +68,7 @@
       "partial-fork",
       "rewrite"
     ],
-    "note": "The three shipped products each went past token values — and the foundation held at every distance. Southern Startups sits furthest out, sharing no colours and no components with base, and is still recognisably democrito. That range is the point: the contract is what travels, not the palette.",
+    "subtitle": "Measured by how the final result diverged from the original system.",
     "axisLabels": {
       "pure-retheme": "Retheme",
       "retheme-additions": "Retheme + extend",
