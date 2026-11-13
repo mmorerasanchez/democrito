@@ -48,3 +48,7 @@ docs/claude-code-prompts-*.md
 .lovable/
 .claude/
 PHASE-*.md
+# Environment files — never committed
+.env
+.env.*
+!.env.example
