@@ -4,6 +4,7 @@
   "version": "3.5.0",
   "type": "module",
   "license": "MIT",
+  "packageManager": "npm@10.8.2",
   "scripts": {
     "build": "node scripts/generate-counts.mjs && node scripts/generate-showcase.mjs && node scripts/generate-tokens.mjs && node scripts/stamp-design-date.mjs && node scripts/sync-skill-docs.mjs && REGISTRY_URL=https://democrito.design/r node scripts/build-registry.mjs",
     "verify": "node scripts/verify-registry-tokens.mjs",
