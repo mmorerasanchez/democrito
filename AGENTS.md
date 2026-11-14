@@ -115,7 +115,7 @@ There is one accent color: **terracotta**. Accent is brand only — status uses 
 ## Branch and PR rules
 
 - **NEVER commit to `main`.** Branch from the latest `main` as `<type>/<issue#>-<desc>`, open a PR against `main`, and wait for review.
-- **NEVER merge your own PR.**
+- **Never merge your own PR** — except in an auto-pilot run the maintainer started, when every one of these holds, each recorded in the run log: (1) the change's Blast radius is 1; (2) CI is green on the PR; (3) every acceptance criterion ran and passed, with its real output pasted; (4) `git diff --name-only main...HEAD` lists only files named in the change's scope; (5) nothing destructive ran and nothing outside this repository changed; (6) a review run in a fresh context — never the session that built the change — read the diff against the change's spec and against this AGENTS.md, and reported no hard finding. Any miss: open the PR and stop; the maintainer reviews and merges. Changes to this rule are always merged by the maintainer.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/): `<type>(<scope>): <description>` — lowercase, imperative mood, no trailing period, ≤72 characters. Describe **what changed**, not what you did.
 - Types: `feat` | `fix` | `docs` | `style` | `refactor` | `chore` | `perf` | `test`
 - Scopes map to layers: `tokens` | `atoms` | `molecules` | `organisms` | `templates` | `ui` | `theme` | `deps` | `pages`
