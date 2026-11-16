@@ -44,7 +44,7 @@ Semantic heading element with design-system typography.
 ### Usage
 
 ```tsx
-import { Heading } from "@/components/atoms";
+import { Heading } from "@/components/atoms/Heading";
 
 <Heading level="h1">Page Title</Heading>
 <Heading level="h3" as="h2">Visually small, semantically h2</Heading>
@@ -91,7 +91,7 @@ General-purpose text element with variant and size control.
 ### Usage
 
 ```tsx
-import { Text } from "@/components/atoms";
+import { Text } from "@/components/atoms/Text";
 
 <Text variant="muted" size="sm">Secondary information</Text>
 <Text mono size="xs" variant="muted">v1.2.3 · 2 min ago</Text>
@@ -124,7 +124,7 @@ Inline code element with accent-colored monospace styling.
 ### Usage
 
 ```tsx
-import { Code } from "@/components/atoms";
+import { Code } from "@/components/atoms/Code";
 
 <Code>{{variable_name}}</Code>
 ```
@@ -156,7 +156,7 @@ Keyboard shortcut indicator.
 ### Usage
 
 ```tsx
-import { Kbd } from "@/components/atoms";
+import { Kbd } from "@/components/atoms/Kbd";
 
 <span className="flex items-center gap-0.5"><Kbd>⌘</Kbd><Kbd>K</Kbd></span>
 ```
@@ -204,7 +204,7 @@ Chip/label element with anatomy field color support.
 ### Usage
 
 ```tsx
-import { Tag } from "@/components/atoms";
+import { Tag } from "@/components/atoms/Tag";
 
 <Tag>default</Tag>
 <Tag color="role">Role</Tag>
@@ -255,7 +255,7 @@ Loading indicator with accessible labeling. Includes `ThinkingDots` sub-componen
 ### Usage
 
 ```tsx
-import { Spinner, ThinkingDots } from "@/components/atoms";
+import { Spinner, ThinkingDots } from "@/components/atoms/Spinner";
 
 <Spinner size="sm" />
 <ThinkingDots />
@@ -291,7 +291,7 @@ Anchor element with external link support.
 ### Usage
 
 ```tsx
-import { Link } from "@/components/atoms";
+import { Link } from "@/components/atoms/Link";
 
 <Link href="/docs">Internal link</Link>
 <Link href="https://example.com" external>External link ↗</Link>
@@ -325,7 +325,7 @@ Brand mark rendered from the uploaded logo image. Works across all three themes
 ### Usage
 
 ```tsx
-import { Logo } from "@/components/atoms";
+import { Logo } from "@/components/atoms/Logo";
 
 <Logo size={32} />
 ```
@@ -357,7 +357,7 @@ Horizontal-scroll only — content never wraps.
 ### Usage
 
 ```tsx
-import { CodeBlock } from "@/components/atoms";
+import { CodeBlock } from "@/components/atoms/CodeBlock";
 
 <CodeBlock language="bash" code={`npm install democrito`} />
 ```
@@ -394,7 +394,7 @@ selecting the nearest `<pre>` if the clipboard API is unavailable.
 ### Usage
 
 ```tsx
-import { CopyButton } from "@/components/atoms";
+import { CopyButton } from "@/components/atoms/CopyButton";
 
 <CopyButton variant="primary" value="npm install democrito" label="Copy install command" />
 ```
@@ -426,7 +426,7 @@ Lifecycle status badge for the four prompt states: draft, testing, production, a
 ### Usage
 
 ```tsx
-import { StatusBadge } from "@/components/atoms";
+import { StatusBadge } from "@/components/atoms/StatusBadge";
 
 <StatusBadge status="production" />
 <StatusBadge status="draft" />

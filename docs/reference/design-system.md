@@ -7,7 +7,7 @@
 
 ## 1. Executive Summary
 
-democrito is a production-ready design system for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal platforms. The design system uses monochromatic warm stone grays (95% of surface area), a terracotta orange accent (4%), and semantic colors (1%). It is IDE-inspired with a distraction-free workspace aesthetic, ships 80+ components across 5 atomic layers, supports 3 themes (warm default, dark, light), and meets WCAG 2.1 AA accessibility standards.
+democrito is a production-ready design system for data-dense, IDE-inspired applications — dashboards, editors, AI tools, and internal platforms. The design system uses monochromatic warm stone grays (95% of surface area), a terracotta orange accent (4%), and semantic colors (1%). It is IDE-inspired with a distraction-free workspace aesthetic, ships components across 5 atomic layers, supports 3 themes (warm default, dark, light), and meets WCAG 2.1 AA accessibility standards.
 
 ---
 
@@ -20,7 +20,7 @@ democrito is a production-ready design system for data-dense, IDE-inspired appli
 | Data Is Code | All user-editable content, variables, identifiers, and code use `font-mono` always |
 | Typography as Hierarchy | Display (titles/nav), Body (labels/descriptions), Mono (data/code) |
 | Progressive Disclosure | Start with lightest variant, add complexity on demand |
-| Accessible by Default | WCAG 2.1 AA, 44×44px touch targets, Radix UI primitives |
+| Accessible by Default | WCAG 2.1 AA, 44×44px touch targets (AAA, SC 2.5.5), Radix UI primitives |
 | IDE-Inspired | Clean, distraction-free workspace for data-dense work |
 
 ---
@@ -255,7 +255,7 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | Textarea | shadcn/ui Textarea | Ready |
 | Tooltip | shadcn/ui Tooltip | Ready |
 
-### Molecules (17)
+### Molecules (18)
 
 | Name | Base | Status | Notes |
 |---|---|---|---|
@@ -275,7 +275,8 @@ Each field uses a colored dot indicator. Cards use plain `bg-card` backgrounds w
 | ActivityFeedItem | custom | Ready | Activity row with user, action badge, target, timestamp |
 | VariableEditorRow | custom | Ready | Name/value input pair with delete and highlight state |
 | RunHistoryItem | custom | Ready | Run entry with model, status, tokens, latency |
-| TokenReferenceCard | custom | Ready | Inline token swatch + name + value for token docs pages |
+| ThemeToggle | custom | Ready | Warm/Dark/Light theme switcher, no props |
+| TokenReferenceCard | custom | Ready | Grouped token-name reference (surfaces, text, accent, fonts) |
 
 > **Pagination** is a shadcn/ui primitive at `registry/ui/pagination.tsx`, not a custom democrito molecule.
 
@@ -334,7 +335,7 @@ See [CHANGELOG.md](../CHANGELOG.md) for the full version history.
 | Keyboard navigation | Radix UI primitives for all interactive elements |
 | Screen readers | Semantic HTML + ARIA attributes |
 | Motion | `prefers-reduced-motion` disables all animations |
-| Touch targets | 44×44px minimum for all interactive elements |
+| Touch targets | 44×44px minimum for all interactive elements (SC 2.5.5, AAA; the AA floor is SC 2.5.8, 24×24px, WCAG 2.2) |
 | Forms | `aria-describedby` for help text, `aria-invalid` for errors |
 
 ---
@@ -383,7 +384,7 @@ Three themes — warm is the default at `:root`; dark and light are class-toggle
 
 All pages follow a standardized information architecture:
 
-1. **PageHeader:** H1 (`font-display text-xl font-semibold`) + muted subtitle (`Text variant="muted"`)
+1. **PageHeader:** H1 (`font-display text-2xl font-semibold`) + muted subtitle (`Text variant="muted"`)
 2. **KPI Row:** 4× `StatCard` in a `grid-cols-2 lg:grid-cols-4` grid
 3. **Content Blocks:** Bordered card containers (`rounded-md border border-border bg-card`)
 4. **Vertical Spacing:** Major sections separated by `space-y-6`
@@ -424,6 +425,6 @@ All form components (Input, Textarea, SelectTrigger) must align visually with st
 
 ---
 
-*11 custom atoms + 15 shadcn/ui atoms · 17 molecules · 19 organisms · 7 templates · 3 themes · WCAG 2.1 AA*
+*11 custom atoms + 15 shadcn/ui atoms · 18 molecules · 19 organisms · 7 templates · 3 themes · WCAG 2.1 AA*
 
-<!-- CHECKSUM: Custom Atoms(11) + Molecules(17) + Organisms(19) + Templates(7) = 54 custom components; 48+ shadcn/ui primitives in ui/ -->
+<!-- CHECKSUM: Custom Atoms(11) + Molecules(18) + Organisms(19) + Templates(7) = 55 custom components; 48+ shadcn/ui primitives in ui/ -->

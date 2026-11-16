@@ -84,7 +84,7 @@ Accessibility is not an afterthought or an enhancement — it's a baseline requi
 
 **In practice:**
 - All text/background combinations meet WCAG 2.1 AA contrast ratios (4.5:1 for normal text, 3:1 for large text)
-- Interactive elements have a minimum touch target of 44×44px
+- Interactive elements have a minimum touch target of 44×44px (SC 2.5.5, AAA); the AA floor is SC 2.5.8, 24×24px, WCAG 2.2
 - Focus states use `ring` tokens for consistent, visible keyboard navigation
 - Reduced-motion preferences are respected via `prefers-reduced-motion` media query
 - Semantic HTML elements (`<nav>`, `<main>`, `<section>`) are used over generic `<div>`
