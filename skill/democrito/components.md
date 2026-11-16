@@ -46,7 +46,7 @@ Semantic heading element with design-system typography.
 ### Usage
 
 ```tsx
-import { Heading } from "@/components/atoms";
+import { Heading } from "@/components/atoms/Heading";
 
 <Heading level="h1">Page Title</Heading>
 <Heading level="h3" as="h2">Visually small, semantically h2</Heading>
@@ -93,7 +93,7 @@ General-purpose text element with variant and size control.
 ### Usage
 
 ```tsx
-import { Text } from "@/components/atoms";
+import { Text } from "@/components/atoms/Text";
 
 <Text variant="muted" size="sm">Secondary information</Text>
 <Text mono size="xs" variant="muted">v1.2.3 · 2 min ago</Text>
@@ -126,7 +126,7 @@ Inline code element with accent-colored monospace styling.
 ### Usage
 
 ```tsx
-import { Code } from "@/components/atoms";
+import { Code } from "@/components/atoms/Code";
 
 <Code>{{variable_name}}</Code>
 ```
@@ -158,7 +158,7 @@ Keyboard shortcut indicator.
 ### Usage
 
 ```tsx
-import { Kbd } from "@/components/atoms";
+import { Kbd } from "@/components/atoms/Kbd";
 
 <span className="flex items-center gap-0.5"><Kbd>⌘</Kbd><Kbd>K</Kbd></span>
 ```
@@ -206,7 +206,7 @@ Chip/label element with anatomy field color support.
 ### Usage
 
 ```tsx
-import { Tag } from "@/components/atoms";
+import { Tag } from "@/components/atoms/Tag";
 
 <Tag>default</Tag>
 <Tag color="role">Role</Tag>
@@ -257,7 +257,7 @@ Loading indicator with accessible labeling. Includes `ThinkingDots` sub-componen
 ### Usage
 
 ```tsx
-import { Spinner, ThinkingDots } from "@/components/atoms";
+import { Spinner, ThinkingDots } from "@/components/atoms/Spinner";
 
 <Spinner size="sm" />
 <ThinkingDots />
@@ -293,7 +293,7 @@ Anchor element with external link support.
 ### Usage
 
 ```tsx
-import { Link } from "@/components/atoms";
+import { Link } from "@/components/atoms/Link";
 
 <Link href="/docs">Internal link</Link>
 <Link href="https://example.com" external>External link ↗</Link>
@@ -327,7 +327,7 @@ Brand mark rendered from the uploaded logo image. Works across all three themes
 ### Usage
 
 ```tsx
-import { Logo } from "@/components/atoms";
+import { Logo } from "@/components/atoms/Logo";
 
 <Logo size={32} />
 ```
@@ -359,7 +359,7 @@ Horizontal-scroll only — content never wraps.
 ### Usage
 
 ```tsx
-import { CodeBlock } from "@/components/atoms";
+import { CodeBlock } from "@/components/atoms/CodeBlock";
 
 <CodeBlock language="bash" code={`npm install democrito`} />
 ```
@@ -396,7 +396,7 @@ selecting the nearest `<pre>` if the clipboard API is unavailable.
 ### Usage
 
 ```tsx
-import { CopyButton } from "@/components/atoms";
+import { CopyButton } from "@/components/atoms/CopyButton";
 
 <CopyButton variant="primary" value="npm install democrito" label="Copy install command" />
 ```
@@ -428,7 +428,7 @@ Lifecycle status badge for the four prompt states: draft, testing, production, a
 ### Usage
 
 ```tsx
-import { StatusBadge } from "@/components/atoms";
+import { StatusBadge } from "@/components/atoms/StatusBadge";
 
 <StatusBadge status="production" />
 <StatusBadge status="draft" />
@@ -923,6 +923,54 @@ Labeled slider + numeric input for model parameters.
 ✅ Do: Always provide explicit `min`, `max`, and `step` values — never rely on the defaults (0, 1, 0.01) for model-specific parameters like temperature or top-p.
 ❌ Don't: Never use `ParameterControl` for boolean settings — use a `Switch` or `Checkbox` ui primitive instead; sliders imply a continuous range.
 ❌ Don't: Never render `ParameterControl` without a `label` — the label is the only context for what the parameter controls.
+
+---
+
+## ThemeToggle
+
+Segmented switcher for the three themes — Warm (default), Dark and Light. Reads and sets the active theme through `useTheme`; labels collapse to icons below the `sm` breakpoint.
+
+**Composes**: `Button` (ui)
+
+No props.
+
+```tsx
+<ThemeToggle />
+```
+
+**Tokens**: `bg-muted`, `border-border`, `Button` `default` (active) / `ghost` (inactive) variants, `font-display`
+
+### Do/Don't
+
+✅ Do: Render one `ThemeToggle` per app, in persistent chrome such as the header or settings panel, so the theme control is always in the same place.
+✅ Do: Mount `ThemeProvider` (from `use-theme`) above it — without the provider the toggle falls back to the default context and does nothing.
+❌ Don't: Never add a fourth theme option inline — the theme list is defined by the design system, not per page.
+❌ Don't: Never use `ThemeToggle` as a generic segmented control for other settings — use `TabNav` or a `ToggleGroup` ui primitive instead.
+
+---
+
+## TokenReferenceCard
+
+Reference card listing the core token names — surfaces, text, accent and fonts — with a one-line description each. Shows a static grid from `md` up and collapsible groups on mobile (first group open).
+
+**Composes**: `Card` (ui), `Heading`, `Text` (atoms)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Extra classes merged onto the card |
+
+```tsx
+<TokenReferenceCard className="mt-8" />
+```
+
+**Tokens**: `Card`, `text-foreground-muted` (group labels), `font-mono text-sm text-foreground` (token names), `focus-visible:outline-accent` (mobile group toggles)
+
+### Do/Don't
+
+✅ Do: Use `TokenReferenceCard` on docs and onboarding pages as a quick map of the token names people will type.
+✅ Do: Let it take the full content width — the desktop grid needs room for its four columns.
+❌ Don't: Never treat it as a live token inspector — it lists names and descriptions, not resolved values or swatches.
+❌ Don't: Never nest it inside another `Card` — it already renders its own card surface.
 
 ---
 

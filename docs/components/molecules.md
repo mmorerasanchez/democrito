@@ -475,6 +475,54 @@ Labeled slider + numeric input for model parameters.
 
 ---
 
+## ThemeToggle
+
+Segmented switcher for the three themes — Warm (default), Dark and Light. Reads and sets the active theme through `useTheme`; labels collapse to icons below the `sm` breakpoint.
+
+**Composes**: `Button` (ui)
+
+No props.
+
+```tsx
+<ThemeToggle />
+```
+
+**Tokens**: `bg-muted`, `border-border`, `Button` `default` (active) / `ghost` (inactive) variants, `font-display`
+
+### Do/Don't
+
+✅ Do: Render one `ThemeToggle` per app, in persistent chrome such as the header or settings panel, so the theme control is always in the same place.
+✅ Do: Mount `ThemeProvider` (from `use-theme`) above it — without the provider the toggle falls back to the default context and does nothing.
+❌ Don't: Never add a fourth theme option inline — the theme list is defined by the design system, not per page.
+❌ Don't: Never use `ThemeToggle` as a generic segmented control for other settings — use `TabNav` or a `ToggleGroup` ui primitive instead.
+
+---
+
+## TokenReferenceCard
+
+Reference card listing the core token names — surfaces, text, accent and fonts — with a one-line description each. Shows a static grid from `md` up and collapsible groups on mobile (first group open).
+
+**Composes**: `Card` (ui), `Heading`, `Text` (atoms)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Extra classes merged onto the card |
+
+```tsx
+<TokenReferenceCard className="mt-8" />
+```
+
+**Tokens**: `Card`, `text-foreground-muted` (group labels), `font-mono text-sm text-foreground` (token names), `focus-visible:outline-accent` (mobile group toggles)
+
+### Do/Don't
+
+✅ Do: Use `TokenReferenceCard` on docs and onboarding pages as a quick map of the token names people will type.
+✅ Do: Let it take the full content width — the desktop grid needs room for its four columns.
+❌ Don't: Never treat it as a live token inspector — it lists names and descriptions, not resolved values or swatches.
+❌ Don't: Never nest it inside another `Card` — it already renders its own card surface.
+
+---
+
 # Examples: prompt-x molecules
 
 The following molecules live in the democrito-site repo and are not part of the public registry. They are full reference implementations for prompt-engineering UIs, importable for projects building on the prompt-x stack.

@@ -261,9 +261,9 @@ Pattern: `{category}-{role}-{variant}`
 | `text-sm` | 0.8125rem (13px) | 1.5 | Small body text, helper text |
 | `text-base` | 0.875rem (14px) | 1.6 | Default body text |
 | `text-md` | 1rem (16px) | 1.5 | H3 headings, emphasized body |
-| `text-lg` | 1.125rem (18px) | 1.5 | H2 headings |
-| `text-xl` | 1.375rem (22px) | 1.4 | H1 headings |
-| `text-2xl` | 1.5rem (24px) | 1.3 | Page titles |
+| `text-lg` | 1.125rem (18px) | 1.5 | Dialog and sheet titles |
+| `text-xl` | 1.375rem (22px) | 1.4 | H2 headings |
+| `text-2xl` | 1.5rem (24px) | 1.3 | H1 headings, page titles |
 | `text-3xl` | 2.25rem (36px) | 1.2 | Hero / display text |
 
 ### Weight Scale
@@ -279,10 +279,10 @@ Pattern: `{category}-{role}-{variant}`
 
 | Level | Classes |
 |---|---|
-| H1 | `text-xl font-semibold font-display tracking-tight` |
-| H2 | `text-lg font-medium font-display` |
+| H1 | `text-2xl font-semibold font-display tracking-tight text-wrap-balance` |
+| H2 | `text-xl font-medium font-display tracking-tight text-wrap-balance` |
 | H3 | `text-md font-medium font-display` |
-| H4 | `text-base font-medium font-display` |
+| H4 | `text-sm font-medium font-display uppercase tracking-widest text-muted-foreground` |
 
 ### Special Text Patterns
 
@@ -530,4 +530,4 @@ Each color swatch displays two compact copy chips — one for HEX, one for HSL. 
 
 ## Touch Targets
 
-Minimum interactive element size: **44×44px** (WCAG 2.5.5 AAA).
+Minimum interactive element size: **44×44px** (SC 2.5.5 Target Size (Enhanced), AAA). The AA floor is SC 2.5.8 Target Size (Minimum), 24×24px, WCAG 2.2.

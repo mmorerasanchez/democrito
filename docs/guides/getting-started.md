@@ -138,7 +138,7 @@ The agent will read democrito's token definitions and generate components that i
 | **3-Surface Depth Hierarchy** | `--background` (page) → `--surface` (panels) → `--card` (elevated) |
 | **3-Font Typography System** | Display (headings), Body (content), Mono (data/code) |
 | **Monochromatic + Accent** | 95% warm stone grays, single terracotta accent, semantic colors |
-| **Full WCAG 2.1 AA** | Accessible color contrast, 44×44px touch targets, keyboard nav |
+| **Full WCAG 2.1 AA** | Accessible color contrast, 44×44px touch targets (AAA), keyboard nav |
 | **Zero Breaking Changes** | Override tokens for custom branding without touching code |
 
 ---
@@ -236,7 +236,7 @@ For a complete theming guide with real-world examples, see [Theming](./theming.m
 
 ### For Contributors & System Explorers
 
-Clone the repository and run the interactive showcase locally. Browse all 80+ components, tokens, and themes. Contribute components, tokens, or documentation.
+Clone the repository and run the interactive showcase locally. Browse all components, tokens, and themes. Contribute components, tokens, or documentation.
 
 ```bash
 git clone https://github.com/mmorerasanchez/democrito.git
