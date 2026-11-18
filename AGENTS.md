@@ -115,7 +115,8 @@ There is one accent color: **terracotta**. Accent is brand only — status uses 
 ## Branch and PR rules
 
 - **NEVER commit to `main`.** Branch from the latest `main` as `<type>/<issue#>-<desc>`, open a PR against `main`, and wait for review.
-- **Never merge your own PR** — except in an auto-pilot run the maintainer started, when every one of these holds, each recorded in the run log: (1) the change's Blast radius is 1; (2) CI is green on the PR; (3) every acceptance criterion ran and passed, with its real output pasted; (4) `git diff --name-only main...HEAD` lists only files named in the change's scope; (5) nothing destructive ran and nothing outside this repository changed; (6) a review run in a fresh context — never the session that built the change — read the diff against the change's spec and against this AGENTS.md, and reported no hard finding. Any miss: open the PR and stop; the maintainer reviews and merges. Changes to this rule are always merged by the maintainer.
+- **Merging** follows the *Auto-pilot* section below. Outside an auto-pilot run the maintainer started, never merge your own PR. A change to this bullet or to the *Auto-pilot* section is always merged by the maintainer, at any Blast radius.
+- **NEVER touch PR #90 or its branch `feat/showcase-copy-reframe`** — no checkout, commit, push, rebase, merge-from, comment, label change or close. It does not count as this repository's open PR.
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/): `<type>(<scope>): <description>` — lowercase, imperative mood, no trailing period, ≤72 characters. Describe **what changed**, not what you did.
 - Types: `feat` | `fix` | `docs` | `style` | `refactor` | `chore` | `perf` | `test`
 - Scopes map to layers: `tokens` | `atoms` | `molecules` | `organisms` | `templates` | `ui` | `theme` | `deps` | `pages`
@@ -141,3 +142,30 @@ Full branch, PR, and component-creation guide: `CONTRIBUTING.md`.
 | `DESIGN.md` | Design philosophy and visual language — the taste layer |
 | `CONTRIBUTING.md` | Development workflow, commit conventions, component creation guide |
 | `CHANGELOG.md` | Version history (Keep a Changelog format) |
+
+## Auto-pilot
+
+> Auto-pilot rules for this repository. Paste verbatim; fill only the ceiling.
+
+Merge ceiling: Blast radius 1, declared by the maintainer.
+
+- The executor merges its own PR only when every condition of the merge rule holds, each recorded
+  in the run record: Blast radius at or under the ceiling above · CI green on the PR · every
+  acceptance criterion ran and passed, real output pasted · `git diff --name-only main...HEAD` lists
+  only the change's scope · nothing destructive ran and nothing outside the repository changed · a
+  review run in a fresh context read the diff against the change's spec and this file and reported
+  no hard finding, its report pasted into the run record. Any miss: open the PR, do not merge, log
+  REVIEW.
+- Blast radius 3 and above is always merged by the maintainer.
+- Main checkout only; inside a worktree, STOP. One branch per change, cut from the latest `main`;
+  after each merged change, `git checkout main && git pull --ff-only`.
+- One open PR in this repository at a time; changes run in order.
+- The concurrent-writer check before the first change and after any platform step.
+- The plan for each change goes in the run record before any file is edited.
+- Stop the run after two BLOCKED changes in a row, or two red CI runs.
+- Never edit the project tracker, never delete a branch, never touch a production database, never
+  run a destructive command.
+- End with a summary table (change · branch · PR · CI · acceptance · MERGED / REVIEW / BLOCKED ·
+  reason), one status line per change, and for the maintainer:
+  `git branch --merged main | grep -v '^\*\|main$' | xargs -r git branch -d`
+- Where this file states a stricter rule elsewhere, the stricter rule wins.
