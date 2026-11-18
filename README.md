@@ -118,7 +118,6 @@ All token values are HSL CSS custom properties defined in all three themes simul
 
 ## Built With democrito
 
-<!-- BEGIN GENERATED: showcase -->
 democrito is a token contract. 5 systems show how far builders actually went.
 
 | System | What it did | Verdict | URL |
@@ -130,7 +129,6 @@ democrito is a token contract. 5 systems show how far builders actually went.
 | **strength** (prototype) | A semantic ramp where democrito has a single accent. | retheme-additions | — |
 
 Full audit, token diffs, and what broke: [docs/showcase.md](docs/showcase.md)
-<!-- END GENERATED: showcase -->
 
 ---
 
