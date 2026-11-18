@@ -9,6 +9,8 @@
 
 **95% warm stone grays · 4% terracotta orange accent · 1% semantic colors.**
 
+This split governs **decorative color only** — brand and UI chrome. Color that encodes data is a separate use, described below.
+
 The palette is intentionally restrained. A near-monochromatic foundation keeps the interface calm and professional, while a single warm accent color (terracotta orange, `--accent`) draws attention exactly where it's needed — active states, links, variable highlights, and primary CTAs.
 
 Semantic colors (success, warning, error, info) exist strictly for feedback. They never appear decoratively.
@@ -17,6 +19,19 @@ Semantic colors (success, warning, error, info) exist strictly for feedback. The
 - Use `bg-background`, `bg-surface`, `bg-card` for layouts — never colored backgrounds
 - Reserve `text-accent` / `bg-accent` for interactive or highlighted elements
 - Semantic feedback colors (`text-success`, `text-error`, etc.) appear only in response to user actions or system state
+
+### Two uses of color: decorative and categorical
+
+Color does one of two jobs in an interface, and the rules differ.
+
+| Use | What it is | Governed by |
+|---|---|---|
+| **Decorative** | Brand and UI chrome: backgrounds, borders, emphasis, section headers | The 95 / 4 / 1 split above. Restraint is the point. |
+| **Categorical / data-encoding** | A fixed set of domain values that must stay visually distinguishable from each other: chart series, domain fields, status markers | The `--category-*` palette. It needs as many distinct hues as the set has members. |
+
+**The test.** Remove the color. If the reader can no longer tell which series, field or state something is — and the layout, label or copy does not recover it — the color is **categorical**. If the meaning survives and only the styling gets poorer, it is **decorative**. A status dot with no label next to it is encoding; a colored section header is decorating.
+
+**Reference pattern.** democrito ships the `--category-*` tokens for categorical encoding. Downstream products that encode a fixed domain set (for example one hue per field of a data model) should use that pattern instead of inventing a new multi-hue ramp, and are not breaking this principle by doing so. Decorative uses still follow the 95 / 4 / 1 split.
 
 ---
 
@@ -108,7 +123,7 @@ democrito is designed for tools, not toys. The visual language borrows from code
 
 When making design decisions, check against these questions:
 
-1. **Is it monochromatic?** Only accent and semantic colors should stand out.
+1. **Is it monochromatic?** For decorative color, only accent and semantic colors should stand out. Color that encodes data follows the `--category-*` pattern.
 2. **Which surface layer?** Background, surface, or card — pick the right depth.
 3. **Which font family?** Display, body, or mono — the family signals the content type.
 4. **Is it minimal?** Start light, add complexity only when justified.
