@@ -143,9 +143,10 @@ Full branch, PR, and component-creation guide: `CONTRIBUTING.md`.
 | `CONTRIBUTING.md` | Development workflow, commit conventions, component creation guide |
 | `CHANGELOG.md` | Version history (Keep a Changelog format) |
 
+<!-- auto-pilot block · canon canon-049 -->
 ## Auto-pilot
 
-> Auto-pilot rules for this repository. Paste verbatim; fill only the ceiling.
+> Auto-pilot rules for this repository.
 
 Merge ceiling: Blast radius 1, declared by the maintainer.
 
